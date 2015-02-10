@@ -22,7 +22,7 @@ function showLoginDialog(error, message) {
 }
 
 function dropPrice(id) {
-    if (window.dns.au || window.dns.fb.au) {
+    if (window.dns.au) {
         var $modal = $("<div/>").addClass("modal fade").attr("tabindex", "-1").attr("role", "dialog").data("remote", "/sale/drop/" + encodeURIComponent(id)).append($("<div/>").addClass("modal-dialog").append($("<div/>").addClass("modal-content")));
         $("body").append($modal);
         $modal.modal("show");
