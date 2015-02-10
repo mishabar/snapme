@@ -23,8 +23,6 @@ namespace SNAPME.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
@@ -32,6 +30,11 @@ namespace SNAPME.Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult FAQ()
+        {
             return View();
         }
     }

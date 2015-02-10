@@ -14,6 +14,12 @@ namespace SNAPME.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "SaleDetails",
+                url: "sale/{id}",
+                defaults: new { controller = "Sale", action = "Details" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

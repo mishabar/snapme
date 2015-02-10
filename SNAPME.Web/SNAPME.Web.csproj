@@ -173,13 +173,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Sale\DropPriceDialogModel.cs" />
+    <Compile Include="Models\Dialog\LoginDialogModel.cs" />
     <Compile Include="Models\Home\HomepageModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -193,6 +197,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\about-concept.png" />
+    <Content Include="Content\Images\about-benefits.png" />
+    <Content Include="Content\Images\about-faq.gif" />
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\navbar-bottom.png" />
     <Content Include="Content\Images\ribbon-central.png" />
@@ -204,6 +211,10 @@
     <Content Include="Content\Images\snapme-over.png" />
     <Content Include="Content\Images\snapme-snapped.png" />
     <Content Include="Content\Images\snaps-flag.png" />
+    <Content Include="Content\Images\step1.png" />
+    <Content Include="Content\Images\step2.png" />
+    <Content Include="Content\Images\step3.png" />
+    <Content Include="Content\Images\step4.png" />
     <Content Include="Content\Images\timer.png" />
     <Content Include="Content\Images\top-banner-bg.png" />
     <Content Include="Content\Images\top-banner-hand.png" />
@@ -251,6 +262,7 @@
     <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.bxslider.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -304,6 +316,12 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Facebook.cshtml" />
+    <Content Include="Views\Dialog\_NewUser.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Dialog\_Login.cshtml" />
+    <Content Include="Views\Sale\_Drop.cshtml" />
+    <Content Include="Views\Sale\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

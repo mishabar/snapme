@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 text-center">
-                <h4><div>How Does SnapMe Work?</div></h4>
+                <h4 class="ribbon"><div>How Does SnapMe Work?</div></h4>
                 <div class="video-frame">
                     <div class="video embed-responsive embed-responsive-16by9"></div>
                 </div>
@@ -37,7 +37,9 @@
                 <h2 class="text-left">Ending Soon</h2>
                 <div class="sale ending-soon-sale">
                     <div class="time-to-end"><i class="ti ti-timer"></i>@Model.EndingSoon.ends_on.AsTimeToEnd()</div>
-                    <div class="sale-image embed-responsive embed-responsive-16by9" title="Bose SoundLink Mini" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat; background-size: contain;">&nbsp;</div>
+                    <a href="/Sale/@Model.EndingSoon.id">
+                        <div class="sale-image embed-responsive embed-responsive-16by9" title="Bose SoundLink Mini" data-open="Product" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat; background-size: contain;">&nbsp;</div>
+                    </a>
                     <div class="price-range">
                         <div class="price-bubble price-bubble-left pull-left">@Model.EndingSoon.product.retail_price.AsPrice()</div>
                         <div class="price-bubble price-bubble-right pull-right">@Model.EndingSoon.target_price.AsPrice()</div>
@@ -58,7 +60,7 @@
                                 <div class="price">@Model.EndingSoon.current_price.AsPrice()</div>
                             </div>
                             <div class="col-md-6 action">
-                                <button type="button" class="btn btn-block bln-lg btn-snapme">SnapMe</button>
+                                <button type="button" data-action="price-drop" data-id="@Model.EndingSoon.id" class="btn btn-block bln-lg btn-snapme">Drop</button>
                             </div>
                         </div>
                     </div>
@@ -71,9 +73,11 @@
                     {
                         <div class="col-md-6 sale sale featured-sale">
                             <h4>@item.product.name</h4>
-                            <div class="sale-image embed-responsive embed-responsive-16by9" title="Bose SoundLink Mini" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat; background-size: contain;">&nbsp;</div>
+                            <a href="/Sale/@item.id">
+                                <div class="sale-image embed-responsive embed-responsive-16by9" title="Bose SoundLink Mini" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat; background-size: contain;">&nbsp;</div>
+                            </a>
                             <div class="actions">
-                                <button class="btn btn-snapme"></button>
+                                <button class="btn btn-snapme" data-action="price-drop" data-id="@item.id"></button>
                             </div>
                             <div class="price-range">
                                 <div class="progress">
@@ -128,7 +132,9 @@
                                 <div class="sale">
                                     <h4>@sale.product.name</h4>
                                     <div class="box text-center">
-                                        <div class="sale-image embed-responsive embed-responsive-16by9" title="Bose SoundLink Mini" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat; background-size: contain;">&nbsp;</div>
+                                        <a href="/Sale/@sale.id">
+                                            <div class="sale-image embed-responsive embed-responsive-16by9" title="Bose SoundLink Mini" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat; background-size: contain;">&nbsp;</div>
+                                        </a>
                                         <div class="price-range">
                                             <div class="price-bubble price-bubble-left pull-left">@sale.product.retail_price.AsPrice()</div>
                                             <div class="price-bubble price-bubble-right pull-right">@sale.target_price.AsPrice()</div>
@@ -146,7 +152,7 @@
                                         </div>
                                         <div class="current-price">@sale.current_price.AsPrice()</div>
                                         <div class="actions">
-                                            <button type="button" class="btn btn-block bln-lg btn-snapme">Snap To Drop</button>
+                                            <button type="button" data-action="price-drop" data-id="@sale.id" class="btn btn-block bln-lg btn-snapme">Drop The Price</button>
                                         </div>
                                     </div>
                                 </div>

@@ -1,0 +1,24 @@
+﻿@model SNAPME.Web.Models.Sale.DropPriceDialogModel
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="price-drop">
+        <div class="text-center">
+            <div>
+                <img src="~/Content/Images/logo.png" alt="SnapMe" />
+            </div>
+            <br />
+            <div>
+                You just dropped the price of @Model.ProductName by @string.Format("{0:c}", Model.Drop). Want to drop it even more? Share this sale with you friends on Facebook!
+                <br />
+                <button type="button" data-action="fb-share" data-url="/Sale/@Model.SaleID" class="btn btn-lg btn-block facebook">Share</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("[data-action=fb-share]").on("click", function () { shareOnFacebook(document.location.origin + $(this).data("url")); });
+</script>

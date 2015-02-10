@@ -55,6 +55,11 @@
   background-color: #ffde00 !important;
   border-color: #ffde00 !important;
 }
+.form-control {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
 .form-control:focus {
   border-color: #ffde00;
   outline: 0;
@@ -62,9 +67,29 @@
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 222, 0, 0.6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 222, 0, 0.6);
 }
+.modal-content {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.modal-header {
+  background-color: #ffde00;
+  border-bottom: none;
+  min-height: 30px;
+  padding: 6px 10px;
+}
+.close {
+  text-shadow: none;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.product {
+  padding-bottom: 30px;
+}
 .product h4.title {
   color: #363636;
   font-size: 25px;
+  margin: 20px auto 10px;
 }
 .product h5 {
   font-size: 18px;
@@ -78,10 +103,12 @@
 }
 .product .images .image-sm {
   border: 1px solid #cccccc;
+  background-color: #fff;
 }
 .product .images .image-lg {
   border: 1px solid #898989;
   position: relative;
+  background-color: #fff;
 }
 .product .images .image-lg .snaps-flag {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAABvCAMAAACQGsPQAAAApVBMVEX/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gD/3gCNnvZpAAAANnRSTlMAAgQGDRAVGR8jJCYqMDQ+QERIVVxiZmlqbXd+jI+VoKausbfGzM7U1dnk5ufr7e/19vn7/f4Jk+5gAAAArUlEQVR4Xu3Pxw6CQBhF4TsC9gL2igVFLNhQ3v/RTEhMjL9lxvU9+29xkP4VGRmZVmRkZGRkZGRkZGRkZGRkZGRkodveG7NdRwGOfzVil7GNrPrKgM3LeKQGR00WuniuMNNhcU/hJW8jmJhyILNGZ8nklKwUfGaRh8+1tu9Z3M/hW/YkkUxOyWrLVxZUoJHqHp5Z1IRm+ektY2LqV411xhLfgVHW8JQiqMK44uIOfNeVMOh5gOgAAAAASUVORK5CYII=') /*Images/snaps_flag.png*/ no-repeat top left;
@@ -124,16 +151,6 @@
 .product .price hr {
   border-color: #898989;
 }
-.product .price .retail {
-  padding: 15px 15px 0 15px;
-  line-height: 21px;
-  color: #898989;
-}
-.product .price .retail span {
-  font-size: 21px;
-  color: #ed1c24;
-  text-decoration: line-through;
-}
 .product .price .current {
   color: #898989;
 }
@@ -168,26 +185,6 @@
   color: #FFF;
   font-size: 60px;
   text-shadow: 2px 2px 2px #333;
-}
-.top-banner h4 {
-  background: url('Images/ribbon-sx.png') no-repeat top left, url('Images/ribbon-dx.png') no-repeat top right;
-  height: 47px;
-}
-.top-banner h4 div {
-  background-image: url('Images/ribbon-central.png');
-  height: 38px;
-  margin: 0 59px;
-  line-height: 38px;
-  font-size: 24px;
-  color: #000;
-  text-align: center;
-}
-.top-banner .video-frame {
-  border: 2px solid #999;
-}
-.top-banner .video-frame .video {
-  background: rgba(255, 255, 255, 0.3);
-  margin: 6px;
 }
 .top-banner .register {
   margin-top: 30px;
@@ -249,6 +246,17 @@
 }
 .sale {
   padding: 0 15px 30px 15px;
+  /*.retail {
+        font-size: 16px;
+        line-height: 16px;
+        color: #666;
+        font-weight: bold;
+
+        span {
+            color: #ed1c24;
+            text-decoration: line-through;
+        }
+    }*/
 }
 .sale > h4 {
   text-align: center;
@@ -259,22 +267,7 @@
 }
 .sale .sale-image {
   border-bottom: 1px solid #eee;
-}
-.sale .price-range {
-  padding: 10px 10px 0 10px;
-}
-.sale .price-range .progress {
-  margin-top: 20px;
-  height: 5px;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-}
-.sale .price-range .progress .progress-bar {
-  background-color: #ffde00;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  cursor: pointer;
 }
 .sale .box {
   border: 1px solid #c2c2c2;
@@ -362,6 +355,7 @@
 }
 .featured-sale .sale-image {
   border: 1px solid #eee;
+  cursor: pointer;
 }
 .featured-sale .actions {
   text-align: center;
@@ -531,11 +525,14 @@ footer .panel-default.in .panel-body {
   text-shadow: 1px 1px #eee;
 }
 .about .about-register .btn-transparent {
-  border-color: #000;
+  border-color: #666;
   color: #000;
   text-transform: uppercase;
   margin: 30px 0;
-  padding: 10px 50px;
+  padding: 15px 85px;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 5px;
 }
 .btn-snapme {
   background-color: #FFDE00;
@@ -544,6 +541,22 @@ footer .panel-default.in .panel-body {
 .btn-snapme:active,
 .btn-snapme:focus {
   outline: 0 !important;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.price-range {
+  padding: 10px 10px 0 10px;
+}
+.price-range .progress {
+  margin-top: 20px;
+  height: 5px;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.price-range .progress .progress-bar {
+  background-color: #ffde00;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -597,5 +610,174 @@ footer .panel-default.in .panel-body {
   top: 100%;
   border: 6px solid;
   border-color: #fff #fff transparent transparent;
+}
+h4.ribbon {
+  background: url('Images/ribbon-sx.png') no-repeat top left, url('Images/ribbon-dx.png') no-repeat top right;
+  height: 47px;
+}
+h4.ribbon div {
+  background-image: url('Images/ribbon-central.png');
+  height: 38px;
+  margin: 0 59px;
+  line-height: 38px;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+}
+.video-frame {
+  border: 2px solid #999;
+}
+.video-frame .video {
+  background: rgba(255, 255, 255, 0.3);
+  margin: 6px;
+}
+.facebook {
+  margin-top: 30px;
+  background-color: #3b5998;
+  color: #fff;
+  font-size: 16px;
+}
+.welcome-new-user {
+  padding: 0 18%;
+}
+.welcome-new-user .video-frame {
+  border: 2px solid #ffde00;
+}
+.welcome-new-user .privacy {
+  text-align: left;
+  margin-top: 10px;
+}
+.welcome-new-user .privacy i {
+  font-size: 21px;
+  color: #00a651;
+  line-height: 30px;
+}
+.welcome-new-user .form-horizontal {
+  margin-top: 10px;
+}
+.welcome-new-user .form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+.login-user {
+  padding: 0 18%;
+  font-size: 16px;
+}
+.text-small {
+  font-size: 12px;
+}
+.about-social-power {
+  background-color: #fff;
+  border-top: 2px solid #F8F8F8;
+}
+.about-benefits {
+  background: transparent url('/Content/Images/about-benefits.png') no-repeat top center;
+  /*height: 580px;*/
+  color: #fff;
+}
+.about-benefits .benefit {
+  font-size: 16px;
+  line-height: 20px;
+  height: 60px;
+  padding: 10px 10px 10px 100px;
+  border: 1px solid #f1f1f1;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.about-how-it-works .step {
+  padding: 25px 25px 0 25px;
+}
+.about-more-questions {
+  background: transparent url('/Content/Images/about-faq.gif') no-repeat top center;
+  height: 280px;
+}
+.about-more-questions h2 {
+  margin-top: 100px;
+}
+.about-more-questions h2 a {
+  color: #000;
+  border: 1px solid #000;
+  margin-left: 20px;
+}
+.dialog-error {
+  background-color: #DB0E4C;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+.dialog-error > div {
+  border: 2px dashed #FFF;
+  color: #FFF;
+  min-height: 60px;
+  padding: 5px 10px;
+}
+.dialog-error > div > div:first-child {
+  font-size: 32px;
+  font-weight: bold;
+  float: left;
+}
+.dialog-error > div > div:last-child {
+  font-size: 18px;
+  padding-left: 20px;
+  text-align: left;
+  height: 45px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.dialog-message {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.price-drop {
+  font-size: 18px;
+  margin: 0 18%;
+}
+.sale-info {
+  border: 1px solid #898989;
+  background-color: #fff;
+  padding: 10px;
+}
+.sale-info .btn-snapme {
+  background: #ffde00 url('/Content/Images/snapme-button.png') no-repeat 10% 50%;
+  font-size: 28px;
+}
+.sale-info .retail {
+  font-size: 16px;
+  line-height: 16px;
+  color: #666;
+  font-weight: bold;
+}
+.sale-info .retail span {
+  color: #ed1c24;
+  text-decoration: line-through;
+}
+.sale-info .timer {
+  margin-top: 10px;
+  height: 36px;
+  border: 2px solid #ccc;
+  font-size: 22px;
+}
+.sale-info .timer i {
+  background-color: #ccc;
+  padding: 0 5px;
+  color: #fff;
+  line-height: 32px;
+  display: block;
+}
+.sale-info .timer div {
+  margin-left: 35px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.current-price {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.current-price .value {
+  font-family: Ubuntu;
+  font-size: 44px;
+}
+.white-bg {
+  background-color: #fff;
 }
 /*# sourceMappingURL=site.css.map */

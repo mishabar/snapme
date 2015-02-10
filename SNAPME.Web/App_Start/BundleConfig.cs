@@ -22,6 +22,7 @@ namespace SNAPME.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/jquery.bxslider.min.js",
+                      "~/Scripts/jquery.cookie.js",
                       "~/Scripts/snapme.js",
                       "~/Scripts/respond.js"));
 

@@ -11,6 +11,7 @@
 
 </head>
 <body>
+    @Html.Partial("_Facebook")
     @Html.Partial("_Navbar")
     @RenderBody()
     @Html.Partial("_Footer")
@@ -18,5 +19,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        window.dns = { au: @User.Identity.IsAuthenticated.ToString().ToLower() };
+    </script>
 </body>
 </html>

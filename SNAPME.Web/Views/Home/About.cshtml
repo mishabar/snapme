@@ -6,7 +6,9 @@
     <div class="about-social-power">
         <div class="container">
             <div class="row">
-                <div class="col-md-5"></div>
+                <div class="col-md-5">
+                    <img src="~/Content/Images/about-concept.png" />
+                </div>
                 <div class="col-md-7 text-center">
                     <h2>Social Power that helps you Pay Less</h2>
                     <div>snap, share and save on things you really want</div>
@@ -21,8 +23,40 @@
         <div class="container">
             <h2 class="text-center">How Does It Work</h2>
             <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
+                <div class="col-md-12">
+                    <div class="step row">
+                        <div class="col-md-6 text-center">
+                            <img src="~/Content/Images/step1.png" />
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h3>Step #1</h3>
+                        </div>
+                    </div>
+                    <div class="step row">
+                        <div class="col-md-6 text-center">
+                            <img src="~/Content/Images/step2.png" />
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h3>Step #2</h3>
+                        </div>
+                    </div>
+                    <div class="step row">
+                        <div class="col-md-6 text-center">
+                            <img src="~/Content/Images/step3.png" />
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h3>Step #3</h3>
+                        </div>
+                    </div>
+                    <div class="step row">
+                        <div class="col-md-6 text-center">
+                            <img src="~/Content/Images/step4.png" />
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h3>Step #4</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -31,20 +65,40 @@
         <div class="container">
             <div class="text-center">
                 <h3>What are you waiting for? Register now, it's Free!</h3>
-                <a class="btn btn-transparent btn-lg" data-toggle="#registerModal">Register</a>
+                <a class="btn btn-transparent btn-lg btn-snapme" data-toggle="#registerModal">Register</a>
             </div>
         </div>
     </div>
 
     <div class="about-benefits">
         <div class="container">
-            &nbsp;
+            <h2 class="text-center">Benefits</h2>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="benefit">Register for free!</div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="benefit">Pay less for things you want</div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="benefit">Share with your friends and be a bargain Hero</div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="benefit">Put the buying power back in your hands</div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="benefit">Get exclusive deals based on your preferences</div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="benefit">100% risk free!</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="about-more-questions">
         <div class="container">
-            &nbsp;
+            <h2 class="text-center">More Questions? <a class="btn btn-lg btn-transparent" href="/Home/FAQ">FAQ</a></h2>
         </div>
     </div>
 </div>
@@ -53,5 +107,11 @@
 {
     <script type="text/javascript">
         $(function () { setActiveMenu("mnuAbout") });
+        $(".about-how-it-works .col-md-12").bxSlider({
+            slideWidth: $(".about-how-it-works .container").width(),
+            minSlides: 1,
+            maxSlides: 1,
+            slideMargin: 0
+        });
     </script>
 }
