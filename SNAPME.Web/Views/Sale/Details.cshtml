@@ -94,16 +94,14 @@
 @section scripts{
     <script type="text/javascript">
         $(function () {
-            $(window).on("dns.fbauth", function () {
-                if (!window.dns.au && !window.dns.fb.au) {
-                    if (typeof $.cookie("__dnsu") === "undefined") {
-                        $.cookie("__dnsu", "1", { expires: 365 });
-                        showWelcomeNewUser();
-                    } else {
-                        showLoginDialog("", "You must login in order to participate in a sale");
-                    }
+            if (!window.dns.au) {
+                if (typeof $.cookie("__dnsu") === "undefined") {
+                    $.cookie("__dnsu", "1", { expires: 365 });
+                    showWelcomeNewUser();
+                } else {
+                    showLoginDialog("", "You must login in order to participate in a sale");
                 }
-            });
+            }
         });
     </script>
 }
