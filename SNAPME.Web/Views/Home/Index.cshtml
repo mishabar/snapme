@@ -100,16 +100,16 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" id="active-sales">
     <div class="text-center">
         <div class="category-filter">
             <h2>Snaps</h2>
             <div class="text-center categories-list">
                 <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="#">All</a></li>
+                    <li data-id="0" role="presentation" class="active"><a href="#">All</a></li>
                     @foreach (var item in Model.Categories)
                     {
-                        <li role="presentation"><a href="@string.Format("#cat{0}", item.name.Replace(' ', '_')))">@item.name</a></li>
+                        <li role="presentation" data-id="@item.id"><a href="#">@item.name</a></li>
                     }
                 </ul>
             </div>
@@ -118,7 +118,7 @@
     <div class="sales">
         @foreach (var item in Model.Categories)
         {
-            <div class="category" id="@string.Format("cat{0}", item.name.Replace(' ', '_')))">
+            <div class="category" data-id="@item.id">
                 <div class="row">
                     <div class="col-xs-6">
                         <span class="category-name">@item.name</span>
@@ -175,6 +175,18 @@
             buildSliders();
             $(window).on("resize", function () {
                 setTimeout(buildSliders, 200);
+            });
+            $(".categories-list a").on("click", function (event) {
+                $(".categories-list li").toggleClass("active", false);
+                $(this).parent().toggleClass("active", true);
+                event.preventDefault();
+                // Show only relevant section
+                var id = $(this).parent().data("id");
+                $(".sales .category").each(function (i, item) {
+                    if ($(item).data("id") !== id) {
+                        $(item).hide("fast");
+                    } else { $(item).show("fast"); }
+                });
             });
         });
 

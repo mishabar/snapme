@@ -1,4 +1,6 @@
-﻿<nav class="navbar navbar-default">
+﻿@using Microsoft.AspNet.Identity
+
+<nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
@@ -9,7 +11,31 @@
             <li id="mnuHome"><a href="/Home">Home</a></li>
             <li id="mnuAbout"><a href="/Home/About">About</a></li>
             <li id="mnuContact"><a href="/Home/Contact">Contact</a></li>
-            <li id="mnuLogin"><a href="#" onclick="showLoginDialog()">Sign in</a></li>
+            @if (Request.IsAuthenticated)
+            {
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="avatar" src="@((User.Identity as System.Security.Claims.ClaimsIdentity).FindFirstValue("smn:image_url"))" /></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/Manage/Index">My Account</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li id="mnuLogin"><a href="#" onclick="showLoginDialog()">Sign in</a></li>
+            }
         </ul>
     </div>
 </nav>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "hidden" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+}

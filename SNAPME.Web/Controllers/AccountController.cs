@@ -370,7 +370,7 @@ namespace SNAPME.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ImageUrl = "http://grpah.facebook.com/" + info.Login.ProviderKey + "/picture?type=square" };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

@@ -1,7 +1,7 @@
 ﻿@model SNAPME.Tokens.SaleToken
 @using SNAPME.Web.Core;
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.product.name;
     Layout = "~/Views/Shared/_Layout.cshtml";
     int complete = 0;
 }
@@ -54,19 +54,35 @@
                     </div>
                 </div>
                 <hr />
-                <div class="retail">RETAIL PRICE<span class="pull-right">@Model.product.retail_price.AsPrice()</span></div>
-                <hr />
-                <div class="current-price text-center">
-                    <div>CURRENT PRICE</div>
-                    <div class="value">@Model.current_price.AsPrice()</div>
-                </div>
-                <div class="actions">
-                    <button type="button" data-action="price-drop" data-id="@Model.id" class="btn btn-block bln-lg btn-snapme">Drop The Price</button>
-                </div>
-                <div class="timer">
-                    <i class="ti ti-timer pull-left"></i>
-                    <div>@Model.ends_on.AsTimeToEnd()</div>
-                </div>
+                @if (Model.ends_on < DateTime.UtcNow)
+                {
+                    <div class="current-price text-center">
+                        <div>CLOSED AT</div>
+                        <div class="final value">@Model.current_price.AsPrice()</div>
+                    </div>
+                    <div class="actions">
+                        <a href="/#active-sales" class="btn btn-block bln-lg no-logo btn-snapme">Go to Active Sales</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="retail">RETAIL PRICE<span class="pull-right">@Model.product.retail_price.AsPrice()</span></div>
+                    <hr />
+                    <div class="current-price text-center">
+                        <div>CURRENT PRICE</div>
+                        <div class="value">@Model.current_price.AsPrice()</div>
+                    </div>
+                    <div class="actions">
+                        <button type="button" data-action="price-drop" data-id="@Model.id" class="btn btn-block bln-lg btn-snapme">Drop The Price</button>
+                    </div>
+                    <div class="timer">
+                        <i class="ti ti-timer pull-left"></i>
+                        <div>@Model.ends_on.AsTimeToEnd()</div>
+                    </div>
+                }
+            </div>
+            <div class="share-bar">
+                <a><i class="fa fa-facebook"></i></a>
             </div>
         </div>
     </div>
@@ -76,19 +92,44 @@
         <div class="row">
             <div class="col-md-8">
                 <hr />
-                <h5>Description and details</h5>
+                <h3>Description and details</h3>
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
                 </p>
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="~/Content/Images/info-size.png" /><span class="attribute">@Model.product.size</span>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img src="~/Content/Images/info-weight.png" /><span class="attribute">@Model.product.weight</span>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img src="~/Content/Images/info-state.png" /><span class="attribute">@Model.product.condition</span>
+                    </div>
+                </div>
                 <ul class="details"></ul>
                 <hr />
-                <h5>Features</h5>
+                <h3>Features</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+                </p>
+                <hr />
+                <h3>Shipping</h3>
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
                 </p>
             </div>
+            <div class="col-md-4">
+                <div class="suggested-right">
+                    <h4 class="text-center"><strong>You might be interested in</strong></h4>
+                    <div class="items text-center">
+                        <i class="fa fa-spin fa-spinner"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <br /><br />
 </div>
 
 @section scripts{

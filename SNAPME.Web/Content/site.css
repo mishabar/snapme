@@ -25,6 +25,15 @@
   padding: 6px 0;
   font-size: 16px;
 }
+.navbar ul.navbar-nav > li.dropdown > a[data-toggle=dropdown] {
+  padding: 0 15px 5px 15px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.navbar ul.navbar-nav > li.dropdown > a[data-toggle=dropdown] img {
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+}
 .navbar-default {
   border: none;
   -moz-border-radius: 0;
@@ -740,6 +749,9 @@ h4.ribbon div {
   background: #ffde00 url('/Content/Images/snapme-button.png') no-repeat 10% 50%;
   font-size: 28px;
 }
+.sale-info .btn-snapme.no-logo {
+  background-image: none;
+}
 .sale-info .retail {
   font-size: 16px;
   line-height: 16px;
@@ -777,7 +789,25 @@ h4.ribbon div {
   font-family: Ubuntu;
   font-size: 44px;
 }
+.current-price .value.final {
+  border: 1px solid #eee;
+  margin-top: 10px;
+  background: url(Images/sold.png) no-repeat top right;
+}
 .white-bg {
   background-color: #fff;
+}
+.text-uppercase {
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+span.attribute {
+  margin-left: 15px;
+}
+.suggested-right {
+  border: 1px solid #F1F1F1;
+  background-color: #F8F8F8;
+  padding: 15px;
+  margin-top: 20px;
 }
 /*# sourceMappingURL=site.css.map */

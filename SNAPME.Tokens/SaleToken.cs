@@ -26,7 +26,7 @@ namespace SNAPME.Tokens
                     started_on = DateTime.UtcNow.AddMinutes(-random.Next(400)),
                     current_price = random.Next(2000) + 8000,
                     target_price = -random.Next(2000) + 8000,
-                    ends_on = DateTime.UtcNow.AddMinutes(random.Next(400)),
+                    ends_on = DateTime.UtcNow.AddMinutes(random.Next(400) - 200),
                     product = ProductToken.Generate()
                 });
             }
