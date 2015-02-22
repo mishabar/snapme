@@ -448,7 +448,7 @@ namespace SNAPME.Web.Controllers
 
         public ActionResult Favorites()
         {
-            return View(new MyAccountFavoritesModel { ActiveSection = AccountMenuSection.Favorites });
+            return View(new MyAccountFavoritesModel { ActiveSection = AccountMenuSection.Favorites, Favorites = Enumerable.Empty<ProductToken>() });
         }
 
         #endregion

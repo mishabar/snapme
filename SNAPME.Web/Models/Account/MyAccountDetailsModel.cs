@@ -41,7 +41,7 @@ namespace SNAPME.Web.Models.Account
 
     public class MyAccountFavoritesModel : MyAccountBaseModel
     {
-        
+        public IEnumerable<ProductToken> Favorites { get; set; }
     }
 
     public class MyAccountDropsModel : MyAccountBaseModel

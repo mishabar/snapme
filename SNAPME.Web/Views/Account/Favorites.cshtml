@@ -13,7 +13,7 @@
             <div class="col-md-9">
                 <h3 class="text-center">FAVORITES</h3>
                 <hr />
-                @if (Model.Favorites == 0)
+                @if (!Model.Favorites.Any())
                 {
                     <div class="text-center">
                         <h4>Hi @((User.Identity as System.Security.Claims.ClaimsIdentity).Name)! You've yet to add a product to your Favorites list!</h4>

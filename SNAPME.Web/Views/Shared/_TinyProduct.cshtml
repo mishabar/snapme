@@ -23,6 +23,7 @@
     <div class="side-by-side">
         <div class="retail">@Model.product.retail_price.AsPrice()</div>
         <div class="target">@Model.target_price.AsPrice()</div>
+        <div class="clearfix"></div>
     </div>
     @if (Model.ended_on.HasValue)
     { 
