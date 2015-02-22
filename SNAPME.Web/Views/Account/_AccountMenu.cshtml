@@ -1,0 +1,38 @@
+﻿@model SNAPME.Web.Models.Account.MyAccountBaseModel
+
+<h3>@((User.Identity as System.Security.Claims.ClaimsIdentity).Name)</h3>
+<img class="img-responsive img-thumbnail avatar" data-src="@((User.Identity as System.Security.Claims.ClaimsIdentity).Claims.First(c => c.Type == "smn:image_url").Value)" />
+<br />
+<ul class="account-menu">
+    <li>
+        <div class="total-savings text-center">
+            Total Money Saved
+            <h3>@Model.Savings.ToString("C")</h3>
+        </div>
+    </li>
+    <li role="navigation" class="@(Model.ActiveSection == SNAPME.Web.Models.Account.AccountMenuSection.Points ? "active" : string.Empty)">
+        <a href="/Account/Points">My Points</a>
+        <span class="pull-right">@Model.Points</span>
+    </li>
+    <li role="navigation" class="@(Model.ActiveSection == SNAPME.Web.Models.Account.AccountMenuSection.Drops ? "active" : string.Empty)">
+        <a href="/Account/Drops">My Drops</a>
+        <span class="value pull-right">@Model.DropsCount</span>
+    </li>
+    <li role="navigation" class="@(Model.ActiveSection == SNAPME.Web.Models.Account.AccountMenuSection.Snaps ? "active" : string.Empty)">
+        <a href="/Account/Snaps">My Snaps</a>
+        <span class="value pull-right">@Model.SnapsCount</span>
+    </li>
+    <li role="navigation" class="@(Model.ActiveSection == SNAPME.Web.Models.Account.AccountMenuSection.Favorites ? "active" : string.Empty)">
+        <a href="/Account/Favorites">My Favorites</a>
+        <span class="value pull-right">@Model.FavoritesCount</span>
+    </li>
+</ul>
+<ul class="account-menu">
+    <li class="grey-bg" role="navigation">
+        <a href="/Account">Account Details</a><i class="pull-right ti ti-arrow-circle-right"></i>
+    </li>
+    <li class="grey-bg" role="navigation">
+        <a href="/Account/Address">Address Details</a><i class="pull-right ti ti-arrow-circle-right"></i>
+    </li>
+</ul>
+<p>&nbsp;</p>

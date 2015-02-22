@@ -71,8 +71,9 @@
                 <div class="row">
                     @foreach (var item in Model.Featured)
                     {
-                        <div class="col-md-6 sale sale featured-sale">
-                            <h4>@item.product.name</h4>
+                        <div class="col-md-6 sale featured-sale">
+                            @Html.Partial("_TinyProduct", item)
+                            @*<h4>@item.product.name</h4>
                             <a href="/Sale/@item.id">
                                 <div class="sale-image embed-responsive embed-responsive-16by9" title="Bose SoundLink Mini" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat; background-size: contain;">&nbsp;</div>
                             </a>
@@ -92,7 +93,7 @@
                                     <div class="retail">@item.product.retail_price.AsPrice()</div>
                                     <div class="target">@item.target_price.AsPrice()</div>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                     }
                 </div>

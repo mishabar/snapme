@@ -1,8 +1,14 @@
-﻿body {
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
     font-family: Questrial, sans-serif;
     font-size: 14px;
     color: #333;
     background-color: #f8f8f8;
+    margin-bottom: 148px;
 }
 
 .container {
@@ -38,6 +44,13 @@
                 border-radius: 25px;
             }
         }
+
+        .facebook {
+            margin-top: 5px;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+        }
     }
 }
 
@@ -49,6 +62,7 @@
     background-color: #fff;
     border-color: transparent;
     margin-bottom: 0;
+    border-bottom: 2px solid #F8F8F8;
 
     .navbar-brand {
         padding: 0 15px;
@@ -105,6 +119,10 @@
     text-shadow: none;
     filter: alpha(opacity=100);
     opacity: 1;
+}
+
+img.img-responsive.avatar {
+    width: 100%;
 }
 
 .product {
@@ -256,6 +274,45 @@
         font-size: 21px;
         color: #fff;
         text-shadow: 2px 2px 2px #333;
+    }
+}
+
+.coming-soon {
+    .top-banner {
+        h2 {
+            margin: 50px 0 30px 0;
+            padding: 20px 0 30px 0;
+            text-align: center;
+            color: #FFF;
+            font-size: 46px;
+            text-shadow: 2px 2px 2px #333;
+        }
+
+        h4 {
+            color: #ffffff;
+            margin-bottom: 150px;
+            text-align: center;
+        }
+    }
+
+    .early-birds {
+        background-color: #fff;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .sharing-saving {
+        background: rgba(0, 0, 0, 0) url('/Content/Images/about-benefits.png') no-repeat top center;
+        padding: 40px 0;
+
+        h2, h4 {
+            color: #ffffff;
+        }
+    }
+
+    .benefits {
+        background-color: #ffffff;
+        padding: 30px 0;
     }
 }
 
@@ -485,6 +542,14 @@
             font-size: 16px;
         }
     }
+
+    .ended-on {
+        margin-top: 5px;
+
+        i {
+            color: #00BC0D;
+        }
+    }
 }
 
 .ending-soon-sale {
@@ -572,6 +637,10 @@ footer {
     background-color: #454545;
     padding: 20px;
     color: #FFF;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     hr {
         border-top-color: #999;
@@ -766,7 +835,7 @@ h4.ribbon {
 
 .facebook {
     margin-top: 30px;
-    background-color: #3b5998;
+    background-color: #3b5998 !important;
     color: #fff;
     font-size: 16px;
 }
@@ -810,7 +879,6 @@ h4.ribbon {
 
 .about-social-power {
     background-color: #fff;
-    border-top: 2px solid #F8F8F8;
 }
 
 .about-benefits {
@@ -971,4 +1039,59 @@ span.attribute {
     background-color: #F8F8F8;
     padding: 15px;
     margin-top: 20px;
+}
+
+
+ul.account-menu {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+
+    .total-savings {
+        padding: 10px 0 5px 0;
+        background-color: #ffde00;
+    }
+
+    li[role=navigation] {
+        font-size: 14px;
+        padding: 7px 0 7px 7px;
+        background-color: #f8f8f8;
+        border-top: 2px solid #f8f8f8;
+
+        a {
+            color: #333;
+        }
+
+        &.active {
+            background-color: #898989;
+            color: #FFF;
+
+            a {
+                color: #FFF;
+            }
+        }
+
+        .value {
+            background-color: #ffde00;
+        }
+
+        .pull-right {
+            width: 40px;
+            display: inline-block;
+            text-align: center;
+            margin: -5px 2px -5px 0;
+            padding: 4px 0;
+            font-size: 16px;
+        }
+
+        &.grey-bg {
+            background-color: #898989;
+            color: #fff;
+            border-top: 2px solid #898989;
+
+            a {
+                color: #fff;
+            }
+        }
+    }
 }

@@ -1,0 +1,20 @@
+﻿@model SNAPME.Web.Models.Account.MyAccountAddressModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Address";
+}
+
+<div class="container-fluid white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.Partial("_AccountMenu", Model)
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-center">ADDRESSES</h3>
+                <hr />
+            </div>
+        </div>
+    </div>
+</div>
+

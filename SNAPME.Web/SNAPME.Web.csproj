@@ -181,6 +181,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Account\MyAccountDetailsModel.cs" />
     <Compile Include="Models\Sale\DropPriceDialogModel.cs" />
     <Compile Include="Models\Dialog\LoginDialogModel.cs" />
     <Compile Include="Models\Home\HomepageModel.cs" />
@@ -199,6 +200,9 @@
     <Content Include="Content\Images\about-concept.png" />
     <Content Include="Content\Images\about-benefits.png" />
     <Content Include="Content\Images\about-faq.gif" />
+    <Content Include="Content\Images\benefit1.png" />
+    <Content Include="Content\Images\benefit2.png" />
+    <Content Include="Content\Images\benefit3.png" />
     <Content Include="Content\Images\default-avatar.png" />
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\navbar-bottom.png" />
@@ -323,6 +327,15 @@
     <Content Include="Views\Dialog\_Login.cshtml" />
     <Content Include="Views\Sale\_Drop.cshtml" />
     <Content Include="Views\Sale\Details.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Account\_AccountMenu.cshtml" />
+    <Content Include="Views\Account\Points.cshtml" />
+    <Content Include="Views\Account\Drops.cshtml" />
+    <Content Include="Views\Account\Snaps.cshtml" />
+    <Content Include="Views\Account\Favorites.cshtml" />
+    <Content Include="Views\Account\Address.cshtml" />
+    <Content Include="Views\Home\ComingSoon.cshtml" />
+    <Content Include="Views\Shared\_TinyProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

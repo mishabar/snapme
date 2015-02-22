@@ -1,0 +1,20 @@
+﻿@model SNAPME.Web.Models.Account.MyAccountDetailsModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Account Details";
+}
+
+<div class="container-fluid white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.Partial("_AccountMenu", Model)
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-center">ACCOUNT DETAILS</h3>
+                <hr />
+            </div>
+        </div>
+    </div>
+</div>
+

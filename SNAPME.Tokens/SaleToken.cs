@@ -13,6 +13,7 @@ namespace SNAPME.Tokens
         public DateTime ends_on { get; set; }
         public int current_price { get; set; }
         public int target_price { get; set; }
+        public DateTime? ended_on { get; set; }
         public ProductToken product { get; set; }
 
         public static IEnumerable<SaleToken> Generate(int count)
@@ -27,7 +28,29 @@ namespace SNAPME.Tokens
                     current_price = random.Next(2000) + 8000,
                     target_price = -random.Next(2000) + 8000,
                     ends_on = DateTime.UtcNow.AddMinutes(random.Next(400) - 200),
-                    product = ProductToken.Generate()
+                    product = ProductToken.Generate(),
+                    ended_on = null
+                });
+            }
+
+            return list;
+        }
+        public static IEnumerable<SaleToken> GenerateEnded(int count)
+        {
+            List<SaleToken> list = new List<SaleToken>();
+            Random random = new Random(DateTime.UtcNow.Millisecond);
+            for (int i = 0; i < count; i++)
+            {
+                DateTime ends_on = DateTime.UtcNow.AddMinutes(random.Next(200) - 400); 
+                list.Add(new SaleToken
+                {
+                    id = Guid.NewGuid().ToString(),
+                    started_on = DateTime.UtcNow.AddMinutes(-random.Next(400)),
+                    current_price = random.Next(2000) + 8000,
+                    target_price = -random.Next(2000) + 8000,
+                    ends_on = ends_on,
+                    product = ProductToken.Generate(),
+                    ended_on = ends_on
                 });
             }
 

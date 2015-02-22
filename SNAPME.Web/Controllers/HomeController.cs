@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,13 +13,17 @@ namespace SNAPME.Web.Controllers
     {
         public ActionResult Index()
         {
-            HomepageModel model = new HomepageModel 
+            if (ConfigurationManager.AppSettings["ComingSoon"] == null)
             {
-                Categories = CategoryToken.Generate(4),
-                EndingSoon = SaleToken.Generate(1).First(),
-                Featured = SaleToken.Generate(4)
-            };
-            return View(model);
+                HomepageModel model = new HomepageModel
+                {
+                    Categories = CategoryToken.Generate(4),
+                    EndingSoon = SaleToken.Generate(1).First(),
+                    Featured = SaleToken.Generate(4)
+                };
+                return View(model);
+            }
+            return View("ComingSoon");
         }
 
         public ActionResult About()

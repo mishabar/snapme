@@ -8,7 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SNAPME.Tokens;
 using SNAPME.Web.Models;
+using SNAPME.Web.Models.Account;
 
 namespace SNAPME.Web.Controllers
 {
@@ -370,7 +372,7 @@ namespace SNAPME.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ImageUrl = "http://graph.facebook.com/" + info.Login.ProviderKey + "/picture?type=square" };
+                var user = new ApplicationUser { UserName = info.ExternalIdentity.GetUserName(), Email = model.Email, ImageUrl = "http://graph.facebook.com/" + info.Login.ProviderKey + "/picture?type=square" };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -405,6 +407,51 @@ namespace SNAPME.Web.Controllers
         {
             return View();
         }
+
+        #region Account Screens
+
+        public ActionResult Details() 
+        {
+            return View(new MyAccountDetailsModel { ActiveSection = AccountMenuSection.Details });
+        }
+
+        public ActionResult Address()
+        {
+            return View(new MyAccountAddressModel { ActiveSection = AccountMenuSection.Address });
+        }
+
+        public ActionResult Points()
+        {
+            return View(new MyAccountPointsModel { ActiveSection = AccountMenuSection.Points });
+        }
+
+        public ActionResult Drops()
+        {
+            int drops = new Random().Next(10);
+            return View(new MyAccountDropsModel 
+            { 
+                ActiveSection = AccountMenuSection.Drops,
+                DropsCount = drops,
+                Drops = SaleToken.Generate(drops)
+            });
+        }
+
+        public ActionResult Snaps()
+        {
+            int snaps = new Random().Next(10);
+            return View(new MyAccountSnapsModel { 
+                ActiveSection = AccountMenuSection.Snaps,
+                SnapsCount = snaps,
+                Snaps = SaleToken.GenerateEnded(snaps)
+            });
+        }
+
+        public ActionResult Favorites()
+        {
+            return View(new MyAccountFavoritesModel { ActiveSection = AccountMenuSection.Favorites });
+        }
+
+        #endregion
 
         #region Helpers
         // Used for XSRF protection when adding external logins

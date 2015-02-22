@@ -1,0 +1,40 @@
+﻿@model SNAPME.Web.Models.Account.MyAccountDropsModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Drops";
+}
+
+<div class="container-fluid white-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.Partial("_AccountMenu", Model)
+            </div>
+            <div class="col-md-9">
+                <h3 class="text-center">DROPS</h3>
+                <hr />
+                @if (!Model.Drops.Any())
+                {
+                    <div class="text-center">
+                        <h4>Hi @((User.Identity as System.Security.Claims.ClaimsIdentity).Name)! You've yet to drop a price on any product!</h4>
+                        <h5>Check out our <a href="/">Sales Page</a> and start dropping today!</h5>
+                        <div>
+                            Not sure how it works? Check out our <a href="/Home/FAQ">FAQ</a>?
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        @foreach (var item in Model.Drops)
+                        {
+                            <div class="col-md-4 sale featured-sale">
+                                @Html.Partial("_TinyProduct", item)
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
