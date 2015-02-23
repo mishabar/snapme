@@ -13,17 +13,18 @@ namespace SNAPME.Web.Controllers
     {
         public ActionResult Index()
         {
-            if (ConfigurationManager.AppSettings["ComingSoon"] == null)
+            HomepageModel model = new HomepageModel
             {
-                HomepageModel model = new HomepageModel
-                {
-                    Categories = CategoryToken.Generate(4),
-                    EndingSoon = SaleToken.Generate(1).First(),
-                    Featured = SaleToken.Generate(4)
-                };
-                return View(model);
-            }
-            return View("ComingSoon");
+                Categories = CategoryToken.Generate(4),
+                EndingSoon = SaleToken.Generate(1).First(),
+                Featured = SaleToken.Generate(4)
+            };
+            return View(model);
+        }
+
+        public ActionResult ComingSoon()
+        {
+            return View();
         }
 
         public ActionResult About()
