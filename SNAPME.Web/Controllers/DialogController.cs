@@ -20,5 +20,11 @@ namespace SNAPME.Web.Controllers
         {
             return PartialView("_Login", new LoginDialogModel { Error = error, Message = message });
         }
+
+        // GET: PrivacyPolicy
+        public PartialViewResult PrivacyPolicy()
+        {
+            return PartialView("_PrivacyPolicy");
+        }
     }
 }

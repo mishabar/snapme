@@ -5,9 +5,8 @@
 
 body {
     font-family: Questrial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
-    background-color: #f8f8f8;
     margin-bottom: 148px;
 }
 
@@ -113,6 +112,21 @@ body {
     border-bottom: none;
     min-height: 30px;
     padding: 6px 10px;
+}
+
+.popover {
+    border: 1px solid #ffde00;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 16px;
+
+    &.top > .arrow {
+        border-top-color: #FFDE00;
+    }
+}
+
+*[data-toggle=popover]{
+    cursor: pointer;
 }
 
 .close {
@@ -278,7 +292,11 @@ img.img-responsive.avatar {
 }
 
 .coming-soon {
+    font-size: 18px;
+
     .top-banner {
+        background: url('/Content/Images/top-header-coming-soon.jpg') no-repeat top center;
+
         h2 {
             margin: 50px 0 30px 0;
             padding: 20px 0 30px 0;
@@ -290,29 +308,85 @@ img.img-responsive.avatar {
 
         h4 {
             color: #ffffff;
-            margin-bottom: 150px;
+            margin-bottom: 38px;
             text-align: center;
+            font-size: 24px;
+
+            a {
+                color: #ffffff;
+                text-decoration: none;
+                margin: 20px 0;
+                display: block;
+
+                .fa-play-circle {
+                    font-size: 96px;
+                    opacity: 0.4;
+
+                    &:hover {
+                        color: #ffde00;
+                    }
+                }
+            }
         }
     }
 
     .early-birds {
-        background-color: #fff;
-        padding: 40px;
+        background: #fff url('/Content/Images/early-birds-bg.gif') no-repeat top center;
+        padding: 0 0 60px 0;
         text-align: center;
+        font-size: 18px;
+        margin-top: 30px;
+
+        .stay-tuned {
+            background-color: #ffde00;
+            padding: 1px 0 10px 0;
+            margin: 0 10%;
+            position: relative;
+
+            .arrow {
+                position: absolute;
+                bottom: -10px;
+                border: 10px solid #ffde00;
+                left: 49%;
+                -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
     }
 
     .sharing-saving {
-        background: rgba(0, 0, 0, 0) url('/Content/Images/about-benefits.png') no-repeat top center;
-        padding: 40px 0;
+        background: rgba(0, 0, 0, 0) url('/Content/Images/bg-map.jpg') no-repeat top center;
+
+        h2 {
+            margin-top: 40px;
+        }
 
         h2, h4 {
             color: #ffffff;
         }
+
+        .social-map {
+            height: 320px;
+            background: transparent url('/Content/Images/social-map.png') no-repeat top center;
+        }
+    }
+
+    .special-invite{
+        background-color: #f8f8f8;
+        padding: 30px 0 50px 0;
+        font-size: 18px;
     }
 
     .benefits {
         background-color: #ffffff;
-        padding: 30px 0;
+        padding: 30px 0 50px 0;
+
+        .col-md-4{
+            padding: 0 30px;
+        }
     }
 }
 
@@ -634,9 +708,9 @@ img.img-responsive.avatar {
 }
 
 footer {
-    background-color: #454545;
+    background-color: #363636;
     padding: 20px;
-    color: #FFF;
+    color: #959595;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -646,48 +720,12 @@ footer {
         border-top-color: #999;
     }
 
-    input[type=email] {
-        background-color: rgba(0, 0, 0, 0);
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        -moz-border-radius: 0;
-        -webkit-border-radius: 0;
-        border-radius: 0;
-        color: #fff;
-    }
+    .nav-justified > li > a {
+        color: #cccccc;
 
-    .panel {
-        background-color: transparent;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        margin-bottom: 0;
-    }
-
-    .panel-default {
-        border: none;
-
-        > .panel-heading {
-            color: #ffde00;
+        &:hover, &:active {
             background-color: transparent;
-            border-color: transparent;
-            cursor: pointer;
-
-            i {
-                margin-right: 15px;
-            }
-        }
-
-        .panel-body {
-            display: none;
-            padding-bottom: 0;
-        }
-
-        &.in {
-            .panel-body {
-                display: block;
-            }
+            color: #ffde00;
         }
     }
 }
@@ -1094,4 +1132,9 @@ ul.account-menu {
             }
         }
     }
+}
+
+
+.yellow {
+    color: #ffde00 !important;
 }

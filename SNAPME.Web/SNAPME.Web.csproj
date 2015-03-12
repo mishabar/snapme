@@ -203,7 +203,9 @@
     <Content Include="Content\Images\benefit1.png" />
     <Content Include="Content\Images\benefit2.png" />
     <Content Include="Content\Images\benefit3.png" />
+    <Content Include="Content\Images\bg-map.jpg" />
     <Content Include="Content\Images\default-avatar.png" />
+    <Content Include="Content\Images\early-birds-bg.gif" />
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\navbar-bottom.png" />
     <Content Include="Content\Images\ribbon-central.png" />
@@ -211,6 +213,7 @@
     <Content Include="Content\Images\ribbon-sx.png" />
     <Content Include="Content\Images\snapme-button.png" />
     <Content Include="Content\Images\snaps-flag.png" />
+    <Content Include="Content\Images\social-map.png" />
     <Content Include="Content\Images\sold.png" />
     <Content Include="Content\Images\step1.png" />
     <Content Include="Content\Images\step2.png" />
@@ -223,6 +226,7 @@
     <Content Include="Content\Images\info-size.png" />
     <Content Include="Content\Images\info-state.png" />
     <Content Include="Content\Images\info-weight.png" />
+    <Content Include="Content\Images\top-header-coming-soon.jpg" />
     <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\site.css">
       <DependentUpon>site.less</DependentUpon>
@@ -336,6 +340,7 @@
     <Content Include="Views\Account\Address.cshtml" />
     <Content Include="Views\Home\ComingSoon.cshtml" />
     <Content Include="Views\Shared\_TinyProduct.cshtml" />
+    <Content Include="Views\Dialog\_PrivacyPolicy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

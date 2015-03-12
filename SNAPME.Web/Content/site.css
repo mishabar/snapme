@@ -4,9 +4,8 @@
 }
 body {
   font-family: Questrial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
-  background-color: #f8f8f8;
   margin-bottom: 148px;
 }
 .container {
@@ -98,6 +97,18 @@ body {
   border-bottom: none;
   min-height: 30px;
   padding: 6px 10px;
+}
+.popover {
+  border: 1px solid #ffde00;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 16px;
+}
+.popover.top > .arrow {
+  border-top-color: #FFDE00;
+}
+*[data-toggle=popover] {
+  cursor: pointer;
 }
 .close {
   text-shadow: none;
@@ -229,6 +240,12 @@ img.img-responsive.avatar {
   color: #fff;
   text-shadow: 2px 2px 2px #333;
 }
+.coming-soon {
+  font-size: 18px;
+}
+.coming-soon .top-banner {
+  background: url('/Content/Images/top-header-coming-soon.jpg') no-repeat top center;
+}
 .coming-soon .top-banner h2 {
   margin: 50px 0 30px 0;
   padding: 20px 0 30px 0;
@@ -239,25 +256,72 @@ img.img-responsive.avatar {
 }
 .coming-soon .top-banner h4 {
   color: #ffffff;
-  margin-bottom: 150px;
+  margin-bottom: 38px;
   text-align: center;
+  font-size: 24px;
+}
+.coming-soon .top-banner h4 a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 20px 0;
+  display: block;
+}
+.coming-soon .top-banner h4 a .fa-play-circle {
+  font-size: 96px;
+  opacity: 0.4;
+}
+.coming-soon .top-banner h4 a .fa-play-circle:hover {
+  color: #ffde00;
 }
 .coming-soon .early-birds {
-  background-color: #fff;
-  padding: 40px;
+  background: #ffffff url('/Content/Images/early-birds-bg.gif') no-repeat top center;
+  padding: 0 0 60px 0;
   text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+}
+.coming-soon .early-birds .stay-tuned {
+  background-color: #ffde00;
+  padding: 1px 0 10px 0;
+  margin: 0 10%;
+  position: relative;
+}
+.coming-soon .early-birds .stay-tuned .arrow {
+  position: absolute;
+  bottom: -10px;
+  border: 10px solid #ffde00;
+  left: 49%;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .coming-soon .sharing-saving {
-  background: rgba(0, 0, 0, 0) url('/Content/Images/about-benefits.png') no-repeat top center;
-  padding: 40px 0;
+  background: rgba(0, 0, 0, 0) url('/Content/Images/bg-map.jpg') no-repeat top center;
+}
+.coming-soon .sharing-saving h2 {
+  margin-top: 40px;
 }
 .coming-soon .sharing-saving h2,
 .coming-soon .sharing-saving h4 {
   color: #ffffff;
 }
+.coming-soon .sharing-saving .social-map {
+  height: 320px;
+  background: transparent url('/Content/Images/social-map.png') no-repeat top center;
+}
+.coming-soon .special-invite {
+  background-color: #f8f8f8;
+  padding: 30px 0 50px 0;
+  font-size: 18px;
+}
 .coming-soon .benefits {
   background-color: #ffffff;
-  padding: 30px 0;
+  padding: 30px 0 50px 0;
+}
+.coming-soon .benefits .col-md-4 {
+  padding: 0 30px;
 }
 .category-filter {
   font-size: 28px;
@@ -528,9 +592,9 @@ img.img-responsive.avatar {
   right: 12px;
 }
 footer {
-  background-color: #454545;
+  background-color: #363636;
   padding: 20px;
-  color: #FFF;
+  color: #959595;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -539,41 +603,13 @@ footer {
 footer hr {
   border-top-color: #999;
 }
-footer input[type=email] {
-  background-color: rgba(0, 0, 0, 0);
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-  color: #fff;
+footer .nav-justified > li > a {
+  color: #cccccc;
 }
-footer .panel {
+footer .nav-justified > li > a:hover,
+footer .nav-justified > li > a:active {
   background-color: transparent;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  margin-bottom: 0;
-}
-footer .panel-default {
-  border: none;
-}
-footer .panel-default > .panel-heading {
   color: #ffde00;
-  background-color: transparent;
-  border-color: transparent;
-  cursor: pointer;
-}
-footer .panel-default > .panel-heading i {
-  margin-right: 15px;
-}
-footer .panel-default .panel-body {
-  display: none;
-  padding-bottom: 0;
-}
-footer .panel-default.in .panel-body {
-  display: block;
 }
 .about > div {
   padding: 20px 0;
@@ -907,5 +943,8 @@ ul.account-menu li[role=navigation].grey-bg {
 }
 ul.account-menu li[role=navigation].grey-bg a {
   color: #fff;
+}
+.yellow {
+  color: #ffde00 !important;
 }
 /*# sourceMappingURL=site.css.map */

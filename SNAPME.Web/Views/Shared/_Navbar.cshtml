@@ -8,7 +8,7 @@
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            @if (Request.IsAuthenticated || System.Configuration.ConfigurationManager.AppSettings["ComingSoon"] == null)
+            @if (Request.IsAuthenticated || ViewBag.ComingSoon == null)
             {
                 <li id="mnuHome"><a href="/Home">Home</a></li>
                 <li id="mnuAbout"><a href="/Home/About">About</a></li>
