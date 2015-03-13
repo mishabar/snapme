@@ -125,7 +125,7 @@ body {
     }
 }
 
-*[data-toggle=popover]{
+*[data-toggle=popover] {
     cursor: pointer;
 }
 
@@ -297,9 +297,13 @@ img.img-responsive.avatar {
     .top-banner {
         background: url('/Content/Images/top-header-coming-soon.jpg') no-repeat top center;
 
+        .container {
+            height: 578px;
+        }
+
         h2 {
-            margin: 50px 0 30px 0;
-            padding: 20px 0 30px 0;
+            margin: 30px 0;
+            padding: 0;
             text-align: center;
             color: #FFF;
             font-size: 46px;
@@ -332,7 +336,7 @@ img.img-responsive.avatar {
 
     .early-birds {
         background: #fff url('/Content/Images/early-birds-bg.gif') no-repeat top center;
-        padding: 0 0 60px 0;
+        padding: 20px 0 40px 0;
         text-align: center;
         font-size: 18px;
         margin-top: 30px;
@@ -340,7 +344,7 @@ img.img-responsive.avatar {
         .stay-tuned {
             background-color: #ffde00;
             padding: 1px 0 10px 0;
-            margin: 0 10%;
+            margin: 0 10% 50px 10%;
             position: relative;
 
             .arrow {
@@ -374,7 +378,7 @@ img.img-responsive.avatar {
         }
     }
 
-    .special-invite{
+    .special-invite {
         background-color: #f8f8f8;
         padding: 30px 0 50px 0;
         font-size: 18px;
@@ -382,10 +386,75 @@ img.img-responsive.avatar {
 
     .benefits {
         background-color: #ffffff;
-        padding: 30px 0 50px 0;
+        padding: 20px 0 70px 0;
 
-        .col-md-4{
-            padding: 0 30px;
+        .col-sm-4 {
+            padding: 30px;
+
+            i {
+                font-size: 64px;
+                color: #ffde00;
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .steps {
+        background: url('Images/landing-colourful.jpg') no-repeat 50% 50%;
+        padding: 70px 0;
+        color: #ffffff;
+
+        i {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+
+    .game-changer {
+        padding: 30px 0;
+
+        .iisnap-snap-coins {
+            font-size: 80px;
+            display: block;
+            margin: 30px;
+        }
+
+        .col-sm-6 {
+            .fa.fa-plus-circle {
+                margin-right: 10px;
+            }
+        }
+
+        hr {
+            border-top-style: dashed;
+        }
+    }
+
+    &.v2 {
+        .benefits {
+            background-color: #ffde00;
+            padding: 20px 0;
+
+            .col-sm-4 {
+                padding: 30px;
+
+                i {
+                    font-size: 48px;
+                    color: #ffffff;
+                    display: block;
+                    float: left;
+                }
+
+                div {
+                    margin-left: 90px;
+                }
+            }
+        }
+
+        .special-invite {
+            background-color: #f8f8f8;
         }
     }
 }
@@ -1137,4 +1206,38 @@ ul.account-menu {
 
 .yellow {
     color: #ffde00 !important;
+}
+
+@media (max-width: 767px) {
+    .coming-soon .v2 .benefits {
+    }
+}
+
+@media (max-width: 590px) {
+    .coming-soon {
+        .top-banner {
+
+            h2 {
+                padding: 0;
+                margin: 30px 0;
+                font-size: 28px;
+            }
+
+            h4 {
+                font-size: 20px;
+            }
+        }
+
+        .sharing-saving {
+            display: none;
+        }
+
+        .benefits {
+            background-color: #f8f8f8;
+        }
+
+        .special-invite {
+            background-color: #ffffff;
+        }
+    }
 }

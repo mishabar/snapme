@@ -1,0 +1,11 @@
+﻿@model object
+@{
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+    ViewBag.Title = "Thank you for pre-registering to iiSnap";
+    ViewBag.ComingSoon = true;
+}
+
+<div class="container">
+    <h2>Thanks for pre registering...</h2>
+    <p>We will send you an email to @Model.ToString() with more details...</p>
+</div>

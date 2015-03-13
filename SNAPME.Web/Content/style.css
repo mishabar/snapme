@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('/fonts/iisnap.eot?-ys69rz');
+    src: url('/fonts/iisnap.eot?#iefix-ys69rz') format('embedded-opentype'), url('/fonts/iisnap.woff?-ys69rz') format('woff'), url('/fonts/iisnap.ttf?-ys69rz') format('truetype'), url('/fonts/iisnap.svg?-ys69rz#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="iisnap-"], [class*=" iisnap-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    zoom: 1.2;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.iisnap-snap-coins:before {
+    content: "\e607";
+}
+
+.iisnap-snap-points:before {
+    content: "\e603";
+}
+
+.iisnap-drop-o:before {
+    content: "\e604";
+}
+
+.iisnap-devices:before {
+    content: "\e605";
+}
+
+.iisnap-cart:before {
+    content: "\e606";
+}
+
+.iisnap-letter:before {
+    content: "\e600";
+}
+
+.iisnap-computeriisnap:before {
+    content: "\e601";
+}
+
+.iisnap-drop:before {
+    content: "\e602";
+}

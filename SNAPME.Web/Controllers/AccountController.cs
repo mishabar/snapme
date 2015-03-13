@@ -23,7 +23,7 @@ namespace SNAPME.Web.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -125,7 +125,7 @@ namespace SNAPME.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -160,8 +160,8 @@ namespace SNAPME.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -410,7 +410,7 @@ namespace SNAPME.Web.Controllers
 
         #region Account Screens
 
-        public ActionResult Details() 
+        public ActionResult Details()
         {
             return View(new MyAccountDetailsModel { ActiveSection = AccountMenuSection.Details });
         }
@@ -428,8 +428,8 @@ namespace SNAPME.Web.Controllers
         public ActionResult Drops()
         {
             int drops = new Random().Next(10);
-            return View(new MyAccountDropsModel 
-            { 
+            return View(new MyAccountDropsModel
+            {
                 ActiveSection = AccountMenuSection.Drops,
                 DropsCount = drops,
                 Drops = SaleToken.Generate(drops)
@@ -439,7 +439,8 @@ namespace SNAPME.Web.Controllers
         public ActionResult Snaps()
         {
             int snaps = new Random().Next(10);
-            return View(new MyAccountSnapsModel { 
+            return View(new MyAccountSnapsModel
+            {
                 ActiveSection = AccountMenuSection.Snaps,
                 SnapsCount = snaps,
                 Snaps = SaleToken.GenerateEnded(snaps)
@@ -451,6 +452,15 @@ namespace SNAPME.Web.Controllers
             return View(new MyAccountFavoritesModel { ActiveSection = AccountMenuSection.Favorites, Favorites = Enumerable.Empty<ProductToken>() });
         }
 
+        #endregion
+
+        #region Early Birds
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult EarlyBird(string email)
+        {
+            return View((object)email);
+        }
         #endregion
 
         #region Helpers

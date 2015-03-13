@@ -246,9 +246,12 @@ img.img-responsive.avatar {
 .coming-soon .top-banner {
   background: url('/Content/Images/top-header-coming-soon.jpg') no-repeat top center;
 }
+.coming-soon .top-banner .container {
+  height: 578px;
+}
 .coming-soon .top-banner h2 {
-  margin: 50px 0 30px 0;
-  padding: 20px 0 30px 0;
+  margin: 30px 0;
+  padding: 0;
   text-align: center;
   color: #FFF;
   font-size: 46px;
@@ -275,7 +278,7 @@ img.img-responsive.avatar {
 }
 .coming-soon .early-birds {
   background: #ffffff url('/Content/Images/early-birds-bg.gif') no-repeat top center;
-  padding: 0 0 60px 0;
+  padding: 20px 0 40px 0;
   text-align: center;
   font-size: 18px;
   margin-top: 30px;
@@ -283,7 +286,7 @@ img.img-responsive.avatar {
 .coming-soon .early-birds .stay-tuned {
   background-color: #ffde00;
   padding: 1px 0 10px 0;
-  margin: 0 10%;
+  margin: 0 10% 50px 10%;
   position: relative;
 }
 .coming-soon .early-birds .stay-tuned .arrow {
@@ -318,10 +321,59 @@ img.img-responsive.avatar {
 }
 .coming-soon .benefits {
   background-color: #ffffff;
-  padding: 30px 0 50px 0;
+  padding: 20px 0 70px 0;
 }
-.coming-soon .benefits .col-md-4 {
-  padding: 0 30px;
+.coming-soon .benefits .col-sm-4 {
+  padding: 30px;
+}
+.coming-soon .benefits .col-sm-4 i {
+  font-size: 64px;
+  color: #ffde00;
+  display: block;
+  margin-bottom: 10px;
+}
+.coming-soon .steps {
+  background: url('Images/landing-colourful.jpg') no-repeat 50% 50%;
+  padding: 70px 0;
+  color: #ffffff;
+}
+.coming-soon .steps i {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 20px;
+}
+.coming-soon .game-changer {
+  padding: 30px 0;
+}
+.coming-soon .game-changer .iisnap-snap-coins {
+  font-size: 80px;
+  display: block;
+  margin: 30px;
+}
+.coming-soon .game-changer .col-sm-6 .fa.fa-plus-circle {
+  margin-right: 10px;
+}
+.coming-soon .game-changer hr {
+  border-top-style: dashed;
+}
+.coming-soon.v2 .benefits {
+  background-color: #ffde00;
+  padding: 20px 0;
+}
+.coming-soon.v2 .benefits .col-sm-4 {
+  padding: 30px;
+}
+.coming-soon.v2 .benefits .col-sm-4 i {
+  font-size: 48px;
+  color: #ffffff;
+  display: block;
+  float: left;
+}
+.coming-soon.v2 .benefits .col-sm-4 div {
+  margin-left: 90px;
+}
+.coming-soon.v2 .special-invite {
+  background-color: #f8f8f8;
 }
 .category-filter {
   font-size: 28px;
@@ -946,5 +998,24 @@ ul.account-menu li[role=navigation].grey-bg a {
 }
 .yellow {
   color: #ffde00 !important;
+}
+@media (max-width: 590px) {
+  .coming-soon .top-banner h2 {
+    padding: 0;
+    margin: 30px 0;
+    font-size: 28px;
+  }
+  .coming-soon .top-banner h4 {
+    font-size: 20px;
+  }
+  .coming-soon .sharing-saving {
+    display: none;
+  }
+  .coming-soon .benefits {
+    background-color: #f8f8f8;
+  }
+  .coming-soon .special-invite {
+    background-color: #ffffff;
+  }
 }
 /*# sourceMappingURL=site.css.map */
