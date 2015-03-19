@@ -1,0 +1,90 @@
+﻿@model SNAPME.Web.Areas.Seller.Models.SellerRegistrationModel
+@{
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+    ViewBag.Title = "Seller Registration";
+}
+
+<div class="standard-section grey-bg">
+    <div class="container">
+        <h2 class="text-center">Register your interest with iiSnap</h2>
+        <div class="text-center">someone from our partnership team will contact you shortly</div>
+        <br />
+        <div class="row">
+            <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-2">
+                @using (Html.BeginForm("Register", "Home", new { area = "Seller" }, FormMethod.Post, new { id = "registrationForm" }))
+                {
+                    @Html.ValidationSummary()
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FullName)
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "John Doe" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "JohnDoe@email.com" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Website)
+                        @Html.TextBoxFor(m => m.Website, new { @class = "form-control", placeholder = "http://www.JohnDoe.com" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BusinessType)
+                        @Html.TextBoxFor(m => m.BusinessType, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LegalBusinessName)
+                        @Html.TextBoxFor(m => m.LegalBusinessName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.TradingName)
+                        @Html.TextBoxFor(m => m.TradingName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.TaxID)
+                        @Html.TextBoxFor(m => m.TaxID, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.AddressLine1)
+                        @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control", placeholder = "Address" })
+                        <br />
+                        @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control", placeholder = "Appartment / Suite #, etc" })
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-4" style="padding-right:0;">@Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", placeholder = "Zip code" })</div>
+                            <div class="col-xs-4" style="padding-right:0;">@Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "City" })</div>
+                            <div class="col-xs-4">@Html.TextBoxFor(m => m.State, new { @class = "form-control", placeholder = "State" })</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PhoneNumber)
+                        <div class="row">
+                            <div class="col-xs-2" style="padding-right:0;">@Html.TextBoxFor(m => m.CountryCode, new { @class = "form-control" })</div>
+                            <div class="col-xs-10">@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Comments)
+                        @Html.TextAreaFor(m => m.Comments, new { rows = 8, @class = "form-control", placeholder = "Briefly tell us about your products" })
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.TermsAccepted) I have read and I accept <a href="/Terms">iiSnap Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-lg yellow-bg">Submit</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#registrationForm").submit(function (e) {
+            if ($("#TermsAccepted").prop("checked") != true) {
+
+                return false;
+            }
+        });
+    </script>
+}

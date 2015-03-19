@@ -8,6 +8,18 @@ body {
   color: #333;
   margin-bottom: 148px;
 }
+.validation-summary-errors {
+  background-color: lightcoral;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.input-validation-error {
+  border-color: lightcoral;
+}
+textarea {
+  resize: none;
+}
 .container {
   width: 100% !important;
   max-width: 1170px !important;
@@ -374,6 +386,93 @@ img.img-responsive.avatar {
 }
 .coming-soon.v2 .special-invite {
   background-color: #f8f8f8;
+}
+.sellers {
+  font-size: 18px;
+}
+.sellers .top-banner {
+  background: url('/Content/Images/seller-header.jpg') no-repeat top center;
+  height: 580px;
+}
+.sellers .top-banner .why-iisnap {
+  height: 580px;
+  position: relative;
+}
+.sellers .top-banner .why-iisnap > div {
+  position: absolute;
+  bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  color: #ffffff;
+}
+.sellers .top-banner .why-iisnap > div h2 {
+  text-shadow: none;
+  font-size: 28px;
+}
+.sellers .steps {
+  background-color: #FFDE00;
+  color: #000000;
+  padding: 30px 0;
+  font-size: 28px;
+  line-height: 34px;
+}
+.sellers .steps span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 34px;
+  font-weight: bold;
+}
+.sellers .steps a.btn {
+  font-size: inherit;
+  border: 2px solid #ffffff;
+  color: inherit;
+  padding: 0 5px;
+  margin-top: -3px;
+}
+.sellers .opportunities {
+  background-color: #f1f1f1;
+  padding: 20px 0;
+}
+.sellers .opportunities h2 {
+  margin-bottom: 30px;
+}
+.sellers .opportunities .opportunity {
+  padding: 7px;
+  border-top: 1px dashed #999999;
+  font-size: 16px;
+  line-height: 26px;
+}
+.sellers .opportunities .opportunity i {
+  color: limegreen;
+  font-size: 26px;
+  margin-right: 10px;
+}
+.sellers .middle-banner {
+  background: url('/Content/Images/seller-port.jpg') no-repeat top center;
+  height: 400px;
+}
+.sellers .middle-banner .port-item {
+  margin: 80px 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 240px;
+}
+.sellers .middle-banner .port-item i {
+  color: #ffffff;
+  font-size: 96px;
+  padding: 25px 0;
+  display: block;
+  margin-bottom: 20px;
+}
+.sellers .middle-banner .port-item p {
+  color: #ffde00;
+}
+.sellers .registered h2 {
+  color: #ffffff;
+}
+.registered h2 {
+  padding: 20px 0;
+}
+.standard-section {
+  padding: 40px 0 !important;
 }
 .category-filter {
   font-size: 28px;
@@ -939,6 +1038,12 @@ h4.ribbon div {
 .white-bg {
   background-color: #fff;
 }
+.grey-bg {
+  background-color: #f8f8f8;
+}
+.green-bg {
+  background-color: #32CD32;
+}
 .text-uppercase {
   letter-spacing: 4px;
   font-weight: bold;
@@ -998,6 +1103,17 @@ ul.account-menu li[role=navigation].grey-bg a {
 }
 .yellow {
   color: #ffde00 !important;
+}
+.yellow-bg {
+  background-color: #ffde00;
+}
+@media (max-width: 767px) {
+  .sellers .middle-banner .port-item {
+    margin: 80px 10px;
+  }
+  .sellers .middle-banner .port-item i {
+    font-size: 64px;
+  }
 }
 @media (max-width: 590px) {
   .coming-soon .top-banner h2 {

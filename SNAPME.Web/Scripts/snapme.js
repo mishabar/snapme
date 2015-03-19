@@ -32,10 +32,11 @@ function dropPrice(id) {
 }
 
 $(function () {
-    $("footer .panel-heading").on("click", function () { $(this).parent().toggleClass("in"); });
+    //$("footer .panel-heading").on("click", function () { $(this).parent().toggleClass("in"); });
     $("[data-action=fb-share]").on("click", function () { shareOnFacebook($(this).data("url")); });
     $("[data-action=price-drop]").on("click", function () { dropPrice($(this).data("id")); });
     $("img.avatar[data-src]").each(function (i, img) {
         $(img).attr("src", $(img).data("src") + "&width=" + $(img).width());
     });
+    $("body").css("margin-bottom", $("footer").height() + 40 + "px");
 });

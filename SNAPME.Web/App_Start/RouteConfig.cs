@@ -16,19 +16,22 @@ namespace SNAPME.Web
             routes.MapRoute(
                 name: "SaleDetails",
                 url: "sale/{id}",
-                defaults: new { controller = "Sale", action = "Details" }
+                defaults: new { controller = "Sale", action = "Details" },
+                namespaces: new string[] { "SNAPME.Web.Controllers" }
             );
 
             routes.MapRoute(
                 name: "AccountRoutes",
                 url: "Account/{action}/{id}",
-                defaults: new { controller = "Account", action = "Details", id = UrlParameter.Optional }
+                defaults: new { controller = "Account", action = "Details", id = UrlParameter.Optional },
+                namespaces: new string[] { "SNAPME.Web.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "ComingSoon", id = UrlParameter.Optional },
+                namespaces: new string[] { "SNAPME.Web.Controllers" }
             );
         }
     }

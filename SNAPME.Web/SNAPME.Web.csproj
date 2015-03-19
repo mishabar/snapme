@@ -171,6 +171,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Seller\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Seller\Models\SellerRegistrationModel.cs" />
+    <Compile Include="Areas\Seller\SellerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -209,6 +212,7 @@
     <Content Include="Content\Images\ribbon-central.png" />
     <Content Include="Content\Images\ribbon-dx.png" />
     <Content Include="Content\Images\ribbon-sx.png" />
+    <Content Include="Content\Images\seller-port.jpg" />
     <Content Include="Content\Images\snapme-button.png" />
     <Content Include="Content\Images\snaps-flag.png" />
     <Content Include="Content\Images\social-map.png" />
@@ -225,7 +229,9 @@
     <Content Include="Content\Images\info-state.png" />
     <Content Include="Content\Images\info-weight.png" />
     <Content Include="Content\Images\top-header-coming-soon.jpg" />
+    <Content Include="Content\Images\xxl-logo.png" />
     <Content Include="Content\jquery.bxslider.css" />
+    <Content Include="Content\Images\seller-header.jpg" />
     <Content Include="Content\site.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
@@ -255,6 +261,10 @@
     <Content Include="fonts\iisnap.eot" />
     <Content Include="fonts\iisnap.ttf" />
     <Content Include="fonts\iisnap.woff" />
+    <Content Include="Areas\Seller\Views\web.config" />
+    <Content Include="Areas\Seller\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Seller\Views\Home\Register.cshtml" />
+    <Content Include="Areas\Seller\Views\Home\Registered.cshtml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -340,6 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Seller\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
