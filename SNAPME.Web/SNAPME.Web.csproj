@@ -209,6 +209,7 @@
     <Content Include="Content\Images\early-birds-bg.gif" />
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\navbar-bottom.png" />
+    <Content Include="Content\Images\pre-launch-email-bg.jpg" />
     <Content Include="Content\Images\ribbon-central.png" />
     <Content Include="Content\Images\ribbon-dx.png" />
     <Content Include="Content\Images\ribbon-sx.png" />
