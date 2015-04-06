@@ -1,0 +1,37 @@
+﻿@model SNAPME.Tokens.Admin.SellerToken
+
+@{
+    ViewBag.Title = "Edit " + Model.name;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>
+        @Model.name
+        <a class="pull-right btn btn-default" href="/Admin/Seller"><i class="fa fa-angle-left"></i> Back to list</a>
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col-xs-2">
+            <ul class="nav nav-pills nav-stacked" id="menuSeller">
+                <li><a href="#" onclick="getContent('#content', '/Admin/Seller/Details/@Model.id', 1)"><i class="fa fa-street-view"></i><span class="hidden-xs">Details</span></a></li>
+                <li><a href="#" onclick="getContent('#content', '/Admin/Seller/Products/@Model.id', 2)"><i class="fa fa-cubes"></i><span class="hidden-xs">Products</span></a></li>
+                <li><a href="#" onclick="getContent('#content', '/Admin/Seller/Sales/@Model.id', 3)"><i class="fa fa-gavel"></i><span class="hidden-xs">Sales</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-10">
+            <div id="content"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlProduct" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/seller")
+}

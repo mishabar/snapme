@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SNAPME.Tokens.ProductToken>
+
+
+<div class="text-right">
+    <a data-toggle="modal" href="#mdlProduct" data-entity="product" data-id="" class="btn btn-default pull-right" title="Create Product"><i class="fa fa-cube"></i></a>
+</div>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Short Description</th>
+            <th>Images</th>
+            <th>RRP</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td><a data-toggle="modal" href="#mdlProduct" data-entity="product" data-id="@product.id">@product.name</a></td>
+                <td>@product.short_descritpion</td>
+                <td>@(product.images != null && product.images.Count() > 0 ? "<i class='fa fa-image'></i>" : string.Empty)</td>
+                <td>@product.retail_price.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/seller")
+}

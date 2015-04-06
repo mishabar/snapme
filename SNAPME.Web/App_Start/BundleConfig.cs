@@ -26,6 +26,9 @@ namespace SNAPME.Web
                       "~/Scripts/snapme.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/seller").Include(
+                      "~/Areas/Admin/Scripts/seller.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
@@ -33,6 +36,12 @@ namespace SNAPME.Web
                       "~/Content/style.css", // icomoon
                       "~/Content/jquery.bxslider.css",
                       "~/Content/site.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/admin_css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/themify-icons.css",
+                      "~/Content/admin.min.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

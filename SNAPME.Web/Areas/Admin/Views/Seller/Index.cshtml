@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SNAPME.Tokens.Admin.SellerToken>
+@{
+    ViewBag.Title = "Sellers List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>
+        Sellers List<a href="/Admin/Seller/Create" class="btn btn-default pull-right" title="Create Seller"><i class="fa fa-street-view"></i></a>
+    </h2>
+    <hr />
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Website</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var seller in Model)
+            {
+                <tr>
+                    <td><a href="/Admin/Seller/Edit/@seller.id">@seller.name</a></td>
+                    <td>@seller.website</td>
+                    <td>@seller.email</td>
+                    <td>@seller.phone</td>
+                    <td>@seller.comments</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/seller")
+}
