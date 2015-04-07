@@ -11,5 +11,9 @@ namespace SNAPME.Data.Repositories
         IEnumerable<Product> GetAllForSeller(string id);
 
         Product GetById(string id);
+
+        void Save(Product product);
+
+        void SaveImage(string id, string image, int idx);
     }
 }

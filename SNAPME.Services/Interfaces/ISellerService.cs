@@ -19,5 +19,9 @@ namespace SNAPME.Services.Interfaces
         IEnumerable<ProductToken> GetAllProducts(string id);
 
         ProductToken GetProduct(string id);
+
+        void SaveProduct(ProductToken product);
+
+        void SaveProductImage(string id, string image, int idx);
     }
 }

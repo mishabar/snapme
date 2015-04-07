@@ -36,7 +36,19 @@ function getContent(content, url, midx) {
 function saveDetails() {
     if ($('#frmSellerDetails').valid()) {
         var data = $('#frmSellerDetails').serializeArray();
-        $.post('/Admin/Seller', data, function (response) { });
+        $.post('/Admin/Seller/Create', data, function (response) {
+            if ("url" in response) { document.location.href = response.url; }
+        });
+    } else {
+        $('#frmSellerDetails .has-error .form-control').focus();
+    }
+}
+
+function saveProduct() {
+    if ($('#frmEditProduct').valid()) {
+        var data = $('#frmEditProduct').serializeArray();
+        data.push({ name: "seller_id", value: $('#GlobalSellerID').val() });
+        $.post('/Admin/Seller/Product', data, function (response) { });
     } else {
         $('#frmSellerDetails .has-error .form-control').focus();
     }
@@ -44,6 +56,22 @@ function saveDetails() {
 
 function attachEvents() {
     $('a[data-toggle=modal][data-entity=product]').on('click', function () {
-        $('#mdlProduct').data('remote', '/Admin/Seller/Product/' + $(this).data('id'));
+        $('#mdlProduct').data('remote', '/Admin/Seller/Product/' + $(this).data('id')).one("loaded.bs.modal", function () {
+            $.validator.unobtrusive.parse($('form', this));
+
+            $('input[type=file]').on('change', function () {
+                if ($(this).val() !== "") {
+                    var reader = new FileReader();
+                    var idx = $(this).data('idx');
+                    var $that = $(this);
+                    reader.onload = function () {
+                        $.post("/Admin/Seller/ProductImage", { id: $('#id').val(), image: reader.result, idx: idx }, function (response) {
+                            $that.parent().css('background-image', 'url(' + reader.result + ')');
+                        });
+                    };
+                    reader.readAsDataURL($(this)[0].files[0]);
+                }
+            });
+        });
     });
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Tokens.Admin;
+using SNAPME.Web.Areas.Admin.Models;
 
 namespace SNAPME.Web.Areas.Admin.Controllers
 {
@@ -30,7 +31,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
         // GET: Admin/Seller
         public ActionResult Create()
         {
-            return View();
+            return View(new SellerToken { id = null });
         }
 
         // POST: Admin/Seller
@@ -42,6 +43,10 @@ namespace SNAPME.Web.Areas.Admin.Controllers
                 try
                 {
                     _sellerService.Save(token);
+                    if (Request.IsAjaxRequest())
+                    {
+                        return Json(new { url = "/Admin/Seller" });
+                    }
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -77,7 +82,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
             return PartialView("_Sales");
         }
 
-        // GET: Admin/Seller/Products/{id}
+        // GET: Admin/Seller/Product/{id}
         public ActionResult Product(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -88,6 +93,46 @@ namespace SNAPME.Web.Areas.Admin.Controllers
             {
                 return PartialView("_Product", _sellerService.GetProduct(id));
             }
+        }
+
+        // POST: Admin/Seller/Product
+        [HttpPost]
+        public JsonResult Product(ProductToken product)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _sellerService.SaveProduct(product);
+                    return Json(product);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { error = ex.Message });
+                }
+            }
+
+            return Json(new { error = "Bad Request" });
+        }
+
+        // POST: Admin/Seller/ProductImage
+        [HttpPost]
+        public JsonResult ProductImage(ProductImageModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _sellerService.SaveProductImage(model.id, model.image, model.idx);
+                    return Json(new { });
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { error = ex.Message });
+                }
+            }
+
+            return Json(new { error = "Bad Request" });
         }
     }
 }

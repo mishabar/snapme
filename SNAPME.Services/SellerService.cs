@@ -49,5 +49,17 @@ namespace SNAPME.Services
         {
             return _productRepository.GetById(id).AsToken();
         }
+
+
+        public void SaveProduct(ProductToken product)
+        {
+            _productRepository.Save(product.AsProduct());
+        }
+
+
+        public void SaveProductImage(string id, string image, int idx)
+        {
+            _productRepository.SaveImage(id, image, idx);
+        }
     }
 }

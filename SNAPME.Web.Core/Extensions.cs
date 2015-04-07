@@ -13,6 +13,11 @@ namespace SNAPME.Web.Core
             return ((decimal)price / 100M).ToString("C");
         }
 
+        public static string AsPrice(this double price)
+        {
+            return price.ToString("C");
+        }
+
         public static string AsTimeToEnd(this DateTime dt)
         {
             var timeLeft = (dt - DateTime.UtcNow);

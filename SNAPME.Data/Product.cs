@@ -14,7 +14,7 @@ namespace SNAPME.Data
         public string short_descritpion { get; set; }
         public string descritpion { get; set; }
         public int retail_price { get; set; }
-        public IEnumerable<string> images { get; set; }
+        public string[] images { get; set; }
         public string size { get; set; }
         public string weight { get; set; }
         public int condition { get; set; }

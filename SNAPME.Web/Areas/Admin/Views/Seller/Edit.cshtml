@@ -11,6 +11,7 @@
         <a class="pull-right btn btn-default" href="/Admin/Seller"><i class="fa fa-angle-left"></i> Back to list</a>
     </h2>
     <hr />
+    @Html.HiddenFor(m => m.id, new { id = "GlobalSellerID" })
     <div class="row">
         <div class="col-xs-2">
             <ul class="nav nav-pills nav-stacked" id="menuSeller">

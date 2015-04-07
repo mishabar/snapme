@@ -9,12 +9,9 @@
         Register Seller
     </h2>
     <hr />
-    @using (Html.BeginForm("Create", "Seller", new { area = "Admin" }, FormMethod.Post))
+    @using (Html.BeginForm("Create", "Seller", new { area = "Admin" }, FormMethod.Post, new { id = "frmSellerDetails" }))
     {
         @Html.Partial("_Details", Model)
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
     }
 </div>
 

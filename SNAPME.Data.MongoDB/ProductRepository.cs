@@ -28,5 +28,45 @@ namespace SNAPME.Data.MongoDB
         {
             return _collection.FindOne(Query<Product>.EQ(p => p.id, id));
         }
+
+
+        public void Save(Product product)
+        {
+            _collection.FindAndModify(new FindAndModifyArgs {
+                Query = Query<Product>.EQ(p => p.id, product.id),
+                Update = Update<Product>
+                        .Set(p => p.seller_id, product.seller_id)
+                        .Set(p => p.name, product.name)
+                        .Set(p => p.descritpion, product.descritpion)
+                        .Set(p => p.short_descritpion, product.short_descritpion)
+                        .Set(p => p.condition, product.condition)
+                        .Set(p => p.retail_price, product.retail_price)
+                        .Set(p => p.size, product.size)
+                        .Set(p => p.weight, product.weight)
+                        .SetOnInsert(p => p.images, new string[6])
+                        .SetOnInsert(p => p.is_draft, true),
+                Upsert = true
+            });
+        }
+
+
+        public void SaveImage(string id, string image, int idx)
+        {
+            if (idx >= 6) return;
+
+            var product = _collection.FindAndModify(new FindAndModifyArgs {
+                Query = Query<Product>.EQ(p => p.id, id),
+                Update = Update.Set(string.Format("images.{0}", idx), image),
+                Upsert = false,
+                VersionReturned = FindAndModifyDocumentVersion.Modified
+            }).GetModifiedDocumentAs<Product>();
+
+            if (product == null) 
+            {
+                product = new Product { id = id, images = new string[6], is_draft = true };
+                product.images[idx] = image;
+                _collection.Save(product);
+            }
+        }
     }
 }
