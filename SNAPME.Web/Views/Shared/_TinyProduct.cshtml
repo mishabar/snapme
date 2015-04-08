@@ -14,7 +14,7 @@
 <div class="price-range">
     <div class="progress">
         @{
-            complete = 100 * (Model.product.retail_price - Model.current_price) / (Model.product.retail_price - Model.target_price);
+            complete = (int)Math.Floor(100F * (Model.product.retail_price - Model.current_price) / (Model.product.retail_price - Model.target_price));
         }
         <div class="progress-bar" role="progressbar" aria-valuenow="@complete" aria-valuemin="0" aria-valuemax="100" style="width: @complete%;">
             <span class="sr-only">@complete% Complete</span>

@@ -311,6 +311,7 @@
     <Content Include="Areas\Admin\Views\Seller\_Products.cshtml" />
     <Content Include="Areas\Admin\Views\Seller\_Sales.cshtml" />
     <Content Include="Areas\Admin\Views\Seller\_Product.cshtml" />
+    <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
