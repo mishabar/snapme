@@ -37,6 +37,7 @@
                 <br />
                 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
+                    @Html.AntiForgeryToken()
                     <div class="form-group">
                         <div class="col-xs-12">
                             <input type="text" name="Email" value="" class="form-control" placeholder="Email" />
