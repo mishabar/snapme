@@ -10,10 +10,12 @@ namespace SNAPME.Data
     {
         public string id { get; set; }
         public string seller_id { get; set; }
+        public string category { get; set; }
         public string name { get; set; }
         public string short_descritpion { get; set; }
         public string descritpion { get; set; }
         public int retail_price { get; set; }
+        public int purchase_price { get; set; }
         public string[] images { get; set; }
         public string size { get; set; }
         public string weight { get; set; }

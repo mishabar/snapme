@@ -36,11 +36,13 @@ namespace SNAPME.Data.MongoDB
                 Query = Query<Product>.EQ(p => p.id, product.id),
                 Update = Update<Product>
                         .Set(p => p.seller_id, product.seller_id)
+                        .Set(p => p.category, product.category)
                         .Set(p => p.name, product.name)
                         .Set(p => p.descritpion, product.descritpion)
                         .Set(p => p.short_descritpion, product.short_descritpion)
                         .Set(p => p.condition, product.condition)
                         .Set(p => p.retail_price, product.retail_price)
+                        .Set(p => p.purchase_price, product.purchase_price)
                         .Set(p => p.size, product.size)
                         .Set(p => p.weight, product.weight)
                         .SetOnInsert(p => p.images, new string[6])

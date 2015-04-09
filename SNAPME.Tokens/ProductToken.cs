@@ -14,6 +14,8 @@ namespace SNAPME.Tokens
         [Required]
         public string seller_id { get; set; }
         [Required]
+        public string category { get; set; }
+        [Required]
         public string name { get; set; }
         [Required]
         public string short_descritpion { get; set; }
@@ -21,9 +23,16 @@ namespace SNAPME.Tokens
         [Required]
         [Range(0.01F, Double.MaxValue)]
         public double retail_price { get; set; }
+        [Required]
+        [Range(0.01F, Double.MaxValue)]
+        public double purchase_price { get; set; }
         public string[] images { get; set; }
         [Required]
-        public string size { get; set; }
+        public string length { get; set; }
+        [Required]
+        public string width { get; set; }
+        [Required]
+        public string height { get; set; }
         [Required]
         public string weight { get; set; }
         [Required]
@@ -41,7 +50,7 @@ namespace SNAPME.Tokens
                 id = Guid.NewGuid().ToString(),
                 name = Guid.NewGuid().ToString().Replace('-', ' '), 
                 retail_price = new Random().Next(5000) + 10000,
-                size = "12cm x 14cm x 25cm",
+                //size = "12cm x 14cm x 25cm",
                 weight = "0.8kg",
                 condition = ProductCondition.New
             };
@@ -52,15 +61,21 @@ namespace SNAPME.Tokens
     {
         public static ProductToken AsToken(this Product product)
         {
+            string[] sizes = product.size.Split('x');
+
             return new ProductToken {
                 id = product.id,
                 seller_id = product.seller_id,
+                category = product.category,
                 name = product.name,
                 short_descritpion = product.short_descritpion,
                 descritpion = product.descritpion,
                 retail_price = product.retail_price / 100F,
+                purchase_price = product.purchase_price / 100F,
                 images = product.images,
-                size = product.size,
+                length = sizes[0],
+                width = sizes[1],
+                height = sizes[2],
                 weight = product.weight,
                 condition = (ProductCondition)product.condition,
                 is_draft = product.is_draft
@@ -77,7 +92,8 @@ namespace SNAPME.Tokens
                 short_descritpion = product.short_descritpion,
                 descritpion = product.descritpion,
                 retail_price = (int)Math.Floor(product.retail_price * 100F),
-                size = product.size,
+                purchase_price = (int)Math.Floor(product.purchase_price * 100F),
+                size = string.Join("x", product.length, product.width, product.height),
                 weight = product.weight,
                 condition = (int)product.condition
                 //images, is_draft -> Saved Separately

@@ -48,7 +48,10 @@ function saveProduct() {
     if ($('#frmEditProduct').valid()) {
         var data = $('#frmEditProduct').serializeArray();
         data.push({ name: "seller_id", value: $('#GlobalSellerID').val() });
-        $.post('/Admin/Seller/Product', data, function (response) { });
+        $.post('/Admin/Seller/Product', data, function (response) {
+            if ('error' in response) { }
+            else { $('#mdlProduct').modal('hide'); }
+        });
     } else {
         $('#frmSellerDetails .has-error .form-control').focus();
     }
