@@ -1,67 +1,74 @@
-﻿@{
-    ViewBag.Title = "Details";
+﻿@model SNAPME.Tokens.ProductToken
+@{
+    ViewBag.Title = Model.name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
-    <div class="row product">
-        <div class="col-md-8">
-            <h4 class="title text-center">Bose SoundLink Mini Bluetooth Speaker</h4>
-        </div>
-        <!-- Details -->
-        <div class="col-sm-8">
-            <div class="row images">
-                <div class="col-sm-2">
-                    <ul>
-                        <li>
-                            <div class="image-sm embed-responsive embed-responsive-16by9" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat;background-size:contain;">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="image-sm embed-responsive embed-responsive-16by9" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat;background-size:contain;">
-                            </div>
-                        </li>
+<div class="grey-bg">
+    <div class="container">
+        <div class="row product">
+            <div class="col-sm-6 col-xs-12 text-center">
+                <a href="#" title="Add to favorites" class="ovr ovr-favorite"><i class="fa fa-heart"></i></a>
+                <a href="#" title="Like" class="ovr ovr-like"><i class="fa fa-thumbs-o-up"></i></a>
+                <a href="#" title="Social activity" class="ovr ovr-group"><i class="fa fa-group"></i></a>
+                <div class="drops-counter">nnn Drops</div>
+                <div class="images" style="overflow: hidden;">
+                    @foreach (var image in Model.images)
+                    {
+                        if (!string.IsNullOrEmpty(image))
+                        {
+                            <div style="background: url(@image) no-repeat 50% 50%; background-size: cover;" class="hidden"></div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div role="tabpanel" class="tabs-left">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-dollar"></i></a></li>
+                        <li role="presentation"><a href="#share" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-share-alt"></i></a></li>
                     </ul>
-                </div>
-                <div class="col-sm-10">
-                    <div class="image-lg embed-responsive embed-responsive-16by9" style="background-image: url(https://www.bose.co.uk/GLOBAL/Images/000000000000060933_660x460.jpg); background-position: center center; background-repeat: no-repeat;background-size:contain;">
-                        <div class="snaps-flag text-center">
-                            <div>360</div>
-                            SNAPS
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="details">
+                            <h2 class="text-center title">@Model.name</h2>
+                            <div class="text-center short-description">@Model.short_descritpion</div>
+                            <div class="price-range">
+                                <div class="pull-left">@Model.retail_price.ToString("C")</div>
+                                <div class="pull-right"><i class="fa fa-flag-checkered"></i></div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                                        <span class="sr-only">50% Complete</span>
+                                    </div>
+                                    <div class="progress-indicator" style="left: 50%;">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div role="tabpanel" class="tab-pane" id="share">...</div>
                     </div>
-                </div>
-            </div>
-            <hr />
-            <h5>Description and details</h5>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
-            </p>
-            <ul class="details"></ul>
-            <hr />
-            <h5>Features</h5>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
-            </p>
-        </div>
-        <div class="col-sm-4">
-            <div class="availability">
-                <div class="text-center">
-                    <div>Availability <span class="limited">LIMITED STOCK</span></div>
-                    <div class="timer"><i class="icon icon-time"></i>01:23:45</div>
-                </div>
-            </div>
-            <div class="price">
-                <div class="retail">RETAIL PRICE<span class="pull-right">$199.99</span></div>
-                <hr />
-                <div class="text-center current">
-                    <div>CURRENT PRICE</div>
-                    <div class="value">$188.00</div>
-                </div>
-                <div class="action">
-                    <button type="button" class="btn btn-snapme btn-block"></button>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        var w = $('.product .images').width();
+        var h = w / 16 * 9;
+        //$('.product .images, .product .nav-tabs, .product .tab-content').css('height', h + 'px');
+        $('.product .images > div').css('height', h + 'px').css('width', w + 'px').removeClass('hidden');
+        $('.product .images').bxSlider({
+            slideWidth: w,
+            minSlides: 1,
+            maxSlides: 1,
+            slideMargin: 0
+        });
+    </script>
+}

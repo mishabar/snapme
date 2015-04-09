@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SNAPME.Services.Interfaces;
 using SNAPME.Web.Core;
 
 namespace SNAPME.Web.Controllers
 {
     public class ProductController : Controller
     {
+        private IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         // GET: Product
         [Route("products", Name = "ListProducts"), HttpGet, EnableCompression]
         public ActionResult Index()
@@ -20,7 +28,7 @@ namespace SNAPME.Web.Controllers
         [Route("product/{id}", Name = "ProductDetails"), HttpGet, EnableCompression]
         public ActionResult Details(string id)
         {
-            return View();
+            return View(_productService.GetById(id));
         }
     }
 }

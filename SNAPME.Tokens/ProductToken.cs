@@ -28,11 +28,15 @@ namespace SNAPME.Tokens
         public double purchase_price { get; set; }
         public string[] images { get; set; }
         [Required]
-        public string length { get; set; }
+        [Range(0.01F, Double.MaxValue)]
+        public double length { get; set; }
         [Required]
-        public string width { get; set; }
+        [Range(0.01F, Double.MaxValue)]
+        public double width { get; set; }
         [Required]
-        public string height { get; set; }
+        [Range(0.01F, Double.MaxValue)]
+        public double height { get; set; }
+        public string size { get; set; }
         [Required]
         public string weight { get; set; }
         [Required]
@@ -73,9 +77,10 @@ namespace SNAPME.Tokens
                 retail_price = product.retail_price / 100F,
                 purchase_price = product.purchase_price / 100F,
                 images = product.images,
-                length = sizes[0],
-                width = sizes[1],
-                height = sizes[2],
+                length = double.Parse(sizes[0]),
+                width = double.Parse(sizes[1]),
+                height = double.Parse(sizes[2]),
+                size = product.size,
                 weight = product.weight,
                 condition = (ProductCondition)product.condition,
                 is_draft = product.is_draft
