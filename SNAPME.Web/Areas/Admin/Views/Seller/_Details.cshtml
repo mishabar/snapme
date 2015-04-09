@@ -1,5 +1,8 @@
 ﻿@model SNAPME.Tokens.Admin.SellerToken
 
+@{
+    var businessTypes = new[] { "Manufacturer", "Wholesaler", "Retailer", "Importer" };
+}
 <form role="form" id="frmSellerDetails">
     @if (!string.IsNullOrEmpty(Model.id))
     {
@@ -20,7 +23,7 @@
         </div>
         <div class="form-group col-sm-6">
             @Html.LabelFor(m => m.business_type, "Business Type")
-            @Html.TextBoxFor(m => m.business_type, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.business_type, businessTypes.Select(t => new SelectListItem { Text = t, Value = t}), new { @class = "form-control" })
         </div>
         <div class="form-group col-sm-4">
             @Html.LabelFor(m => m.legal_name, "Legal Name")
