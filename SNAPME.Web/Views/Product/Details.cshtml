@@ -11,7 +11,10 @@
                 <a href="#" title="Add to favorites" class="ovr ovr-favorite"><i class="fa fa-heart"></i></a>
                 <a href="#" title="Like" class="ovr ovr-like"><i class="fa fa-thumbs-o-up"></i></a>
                 <a href="#" title="Social activity" class="ovr ovr-group"><i class="fa fa-group"></i></a>
-                <div class="drops-counter">nnn Drops</div>
+                @if (Model.Sale != null)
+                {
+                    <div class="drops-counter">@Model.Sale.drops.Count() Drops</div>
+                }
                 <div class="images" style="overflow: hidden;">
                     @foreach (var image in Model.images)
                     {
@@ -36,36 +39,45 @@
                         <div role="tabpanel" class="tab-pane active" id="details">
                             <h2 class="text-center title">@Model.name</h2>
                             <div class="text-center short-description">@Model.short_descritpion</div>
-                            <div class="price-range">
-                                <div class="pull-left">@Model.retail_price.ToString("C")</div>
-                                <div class="pull-right"><i class="fa fa-flag-checkered"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="@Model.Sale.progress" aria-valuemin="0" aria-valuemax="100" style="width: @string.Format("{0}%", Model.Sale.progress);">
-                                        <span class="sr-only">@string.Format("{0}%", Model.Sale.progress) Complete</span>
+                            @if (Model.Sale != null)
+                            {
+                                <div class="price-range">
+                                    <div class="pull-left">@Model.retail_price.ToString("C")</div>
+                                    <div class="pull-right"><i class="fa fa-flag-checkered"></i></div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.Sale.progress" aria-valuemin="0" aria-valuemax="100" style="width: @string.Format("{0}%", Model.Sale.progress);">
+                                            <span class="sr-only">@string.Format("{0}%", Model.Sale.progress) Complete</span>
+                                        </div>
+                                        <div class="progress-indicator" style="left: @string.Format("{0}%", Model.Sale.progress);">
+                                        </div>
                                     </div>
-                                    <div class="progress-indicator" style="left: @string.Format("{0}%", Model.Sale.progress);">
+                                </div>
+                                <div style="height: 46px;">
+                                    <div class="current-price pull-left">@(Model.Sale.current_price.ToString("C"))</div>
+                                    <div class="action pull-right">
+                                        <a class="btn btn-success btn-lg">Join Sale</a>
                                     </div>
                                 </div>
-                            </div>
-                            <div style="height: 46px;">
-                                <div class="current-price pull-left">@(Model.Sale.current_price.ToString("C"))</div>
-                                <div class="action pull-right">
-                                    <a class="btn btn-success btn-lg">Join Sale</a>
+                                <hr />
+                                <div>
+                                    <div class="potential-points pull-left">
+                                        Collect: +@Model.Sale.potential_points
+                                    </div>
+                                    <div class="invite-friends pull-right"></div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div>
-                                <div class="potential-points pull-left">
-                                    Collect: +@Model.Sale.potential_points
+                                <div class="time-left">
+                                    @{
+                                var v = Model.Sale.ends_on - DateTime.UtcNow;
+                                @:Sale ends in @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
+                                    }
                                 </div>
-                                <div class="invite-friends pull-right"></div>
-                            </div>
-                            <div class="time-left">
-                                @{
-                                    var v = Model.Sale.ends_on - DateTime.UtcNow;
-                                    @:Sale ends in @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
-                                }
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="time-left">
+                                    No active sale
+                                </div>
+                            }
                         </div>
                         <div role="tabpanel" class="tab-pane" id="share">...</div>
                     </div>
@@ -93,9 +105,9 @@
                     <div role="tabpanel" class="tab-pane active" id="fulldetails">
                         <p>@Model.descritpion</p>
                         <div class="row measures">
-                            <div class="col-sm-4"><i class="ti ti-package"></i>&nbsp;Condition: @Model.condition</div>
-                            <div class="col-sm-4"><i class="fa fa-expand"></i>&nbsp;@Model.size cm</div>
-                            <div class="col-sm-4"><i class="glyphicon glyphicon-scale"></i> &nbsp;@Model.weight kg</div>
+                            <div class="col-sm-4"><div class="snap-condition">Condition: @Model.condition</div></div>
+                            <div class="col-sm-4"><div class="snap-size">@Model.size cm</div></div>
+                            <div class="col-sm-4"><div class="snap-weight">@Model.weight kg</div></div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="shipping">

@@ -12,10 +12,12 @@ namespace SNAPME.Web.Controllers
     public class ProductController : Controller
     {
         private IProductService _productService;
+        private ISaleService _saleService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ISaleService saleService)
         {
             _productService = productService;
+            _saleService = saleService;
         }
 
         // GET: Product
@@ -30,7 +32,8 @@ namespace SNAPME.Web.Controllers
         public ActionResult Details(string id)
         {
             var product = _productService.GetById(id);
-            product.Sale = SaleToken.Generate(1, 1000).First();
+            product.Sale = _saleService.GetActive(id);
+            
             return View(product);
         }
     }

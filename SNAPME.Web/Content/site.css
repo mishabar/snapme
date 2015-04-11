@@ -342,11 +342,29 @@ img.img-responsive.avatar {
   color: #000000;
   box-shadow: 6px 0 4px 0 #999999, -6px 0 4px 0 #999999;
 }
+.product-details .tab-pane {
+  min-height: 100px;
+  padding-bottom: 20px;
+}
 .product-details #fulldetails p {
   white-space: pre-wrap;
 }
 .product-details #fulldetails .measures {
   margin: 20px 0;
+}
+.product-details #fulldetails .measures div[class^=snap] {
+  height: 32px;
+  line-height: 32px;
+  padding-left: 40px;
+}
+.product-details #fulldetails .measures .snap-condition {
+  background: transparent url(/Content/Images/info-state.png) no-repeat 0 50%;
+}
+.product-details #fulldetails .measures .snap-size {
+  background: transparent url(/Content/Images/info-size.png) no-repeat 0 50%;
+}
+.product-details #fulldetails .measures .snap-weight {
+  background: transparent url(/Content/Images/info-state.png) no-repeat 0 50%;
 }
 .product-details .input-group-btn .btn-default {
   background-color: #eaeaea;

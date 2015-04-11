@@ -54,6 +54,7 @@
     <Compile Include="DBInitializer.cs" />
     <Compile Include="IDRepository.cs" />
     <Compile Include="ProductRepository.cs" />
+    <Compile Include="SaleRepository.cs" />
     <Compile Include="SellerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

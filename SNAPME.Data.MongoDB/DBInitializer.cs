@@ -25,6 +25,7 @@ namespace SNAPME.Data.MongoDB
             builder.Register(c => new IDRepository()).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new SellerRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new ProductRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(c => new SaleRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             
             #endregion
 
@@ -39,6 +40,14 @@ namespace SNAPME.Data.MongoDB
             });
 
             BsonClassMap.RegisterClassMap<Product>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIdMember(cm.GetMemberMap(c => c.id));
+                cm.IdMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance);
+                cm.GetMemberMap(c => c.id).SetRepresentation(BsonType.ObjectId);
+            });
+
+            BsonClassMap.RegisterClassMap<Sale>(cm =>
             {
                 cm.AutoMap();
                 cm.SetIdMember(cm.GetMemberMap(c => c.id));
