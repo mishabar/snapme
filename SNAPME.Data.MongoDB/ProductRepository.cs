@@ -43,8 +43,10 @@ namespace SNAPME.Data.MongoDB
                         .Set(p => p.condition, product.condition)
                         .Set(p => p.retail_price, product.retail_price)
                         .Set(p => p.purchase_price, product.purchase_price)
+                        .Set(p => p.suggested_sell_price, product.suggested_sell_price)
                         .Set(p => p.size, product.size)
                         .Set(p => p.weight, product.weight)
+                        .Set(p => p.is_dropship, product.is_dropship)
                         .SetOnInsert(p => p.images, new string[6])
                         .SetOnInsert(p => p.is_draft, true),
                 Upsert = true

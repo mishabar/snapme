@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SNAPME.Services.Interfaces;
+using SNAPME.Tokens;
 using SNAPME.Web.Core;
 
 namespace SNAPME.Web.Controllers
@@ -28,7 +29,9 @@ namespace SNAPME.Web.Controllers
         [Route("product/{id}", Name = "ProductDetails"), HttpGet, EnableCompression]
         public ActionResult Details(string id)
         {
-            return View(_productService.GetById(id));
+            var product = _productService.GetById(id);
+            product.Sale = SaleToken.Generate(1, 1000).First();
+            return View(product);
         }
     }
 }

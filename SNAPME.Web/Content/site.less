@@ -97,11 +97,6 @@ textarea {
     border-radius: 0;
 }
 
-.btn-default, .btn-default:hover, .btn-default:active {
-    background-color: #ffde00 !important;
-    border-color: #ffde00 !important;
-}
-
 .form-control {
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -183,6 +178,10 @@ img.img-responsive.avatar {
         line-height: 32px;
         font-size: 18px;
 
+        &:hover {
+            color: #ffde00;
+        }
+
         &.ovr-favorite {
             top: 0;
             left: 0;
@@ -231,12 +230,15 @@ img.img-responsive.avatar {
         ul.nav-tabs {
             background-color: #cccccc;
 
-            > li a, li a:hover, li a:focus {
+            > li a {
                 color: #ffffff;
                 font-weight: bold;
-                font-size: 24px;
                 text-align: center;
                 border-color: transparent;
+            }
+
+            > li a:hover, > li a:focus {
+                color: #000000;
             }
 
             > li.active a, li.active a:hover, li.active a:focus {
@@ -250,7 +252,9 @@ img.img-responsive.avatar {
             background-color: #ffffff;
 
             .tab-pane {
-                margin-left: 52px;
+                margin-left: 45px;
+                min-height: 100px;
+                padding: 0 10px;
 
                 h2.title {
                     margin-top: 0;
@@ -258,7 +262,58 @@ img.img-responsive.avatar {
                 }
 
                 .short-description {
-                    margin: 10px;
+                    height: 68px;
+                    overflow: hidden;
+                }
+
+                .price-range {
+                    padding: 10px 0 0 0;
+                    margin-bottom: 25px;
+                }
+
+                .action {
+
+                    .btn {
+                        border-radius: 6px;
+                    }
+                }
+
+                .current-price {
+                    background-color: #000000;
+                    color: #ffffff;
+                    padding: 6px 16px 7px;
+                    font-size: 25px;
+                    line-height: 1.3333333;
+                    letter-spacing: 4px;
+                    border-radius: 6px;
+                    font-family: 'Ubuntu';
+                }
+
+                hr {
+                    margin-bottom: 10px;
+                }
+
+                .potential-points {
+                    height: 28px;
+                    line-height: 28px;
+                    font-size: 16px;
+                    color: #6E6E6E;
+                    background: rgba(0, 0, 0, 0) url(/Content/Images/sp-grey.png) no-repeat 100% 50%;
+                    padding-right: 26px;
+                }
+
+                .invite-friends {
+                    width: 133px;
+                    height: 28px;
+                    background: transparent url(/Content/Images/invite.png) no-repeat 50% 50%;
+                }
+
+                .time-left{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
                 }
             }
         }
@@ -336,6 +391,48 @@ img.img-responsive.avatar {
                 background: url(Images/snapme-snapped.png) no-repeat center center;
                 background-size: contain;
             }
+        }
+    }
+}
+
+.product-details {
+
+    .details-sections {
+        background-color: #cccccc;
+        margin-bottom: 15px;
+
+        .nav-tabs.nav-justified {
+            a {
+                background-color: transparent;
+                color: #ffffff;
+                border: 1px solid #cccccc;
+                border-left-color: #FFF;
+                border-right-color: #FFF;
+                border-radius: 0;
+            }
+
+            li.active a {
+                background-color: #ffffff;
+                border-color: #FFF;
+                color: #000000;
+                box-shadow: 6px 0 4px 0 #999, -6px 0 4px 0 #999;
+            }
+        }
+    }
+
+    #fulldetails {
+        p {
+            white-space: pre-wrap;
+        }
+
+        .measures {
+            margin: 20px 0;
+        }
+    }
+
+    .input-group-btn {
+        .btn-default {
+            background-color: #eaeaea;
         }
     }
 }

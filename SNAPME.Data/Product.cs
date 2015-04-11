@@ -16,10 +16,12 @@ namespace SNAPME.Data
         public string descritpion { get; set; }
         public int retail_price { get; set; }
         public int purchase_price { get; set; }
+        public int suggested_sell_price { get; set; }
         public string[] images { get; set; }
         public string size { get; set; }
         public string weight { get; set; }
         public int condition { get; set; }
         public bool is_draft { get; set; }
+        public bool is_dropship { get; set; }
     }
 }

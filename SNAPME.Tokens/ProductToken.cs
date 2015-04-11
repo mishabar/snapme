@@ -26,6 +26,9 @@ namespace SNAPME.Tokens
         [Required]
         [Range(0.01F, Double.MaxValue)]
         public double purchase_price { get; set; }
+        [Required]
+        [Range(0.01F, Double.MaxValue)]
+        public double suggested_sell_price { get; set; }
         public string[] images { get; set; }
         [Required]
         [Range(0.01F, Double.MaxValue)]
@@ -42,6 +45,11 @@ namespace SNAPME.Tokens
         [Required]
         public ProductCondition condition { get; set; }
         public bool is_draft { get; set; }
+        [Required]
+        public bool is_dropship { get; set; }
+
+        // Sale
+        public SaleToken Sale { get; set; }
 
         public ProductToken()
         {
@@ -76,6 +84,7 @@ namespace SNAPME.Tokens
                 descritpion = product.descritpion,
                 retail_price = product.retail_price / 100F,
                 purchase_price = product.purchase_price / 100F,
+                suggested_sell_price = product.suggested_sell_price / 100F,
                 images = product.images,
                 length = double.Parse(sizes[0]),
                 width = double.Parse(sizes[1]),
@@ -83,7 +92,8 @@ namespace SNAPME.Tokens
                 size = product.size,
                 weight = product.weight,
                 condition = (ProductCondition)product.condition,
-                is_draft = product.is_draft
+                is_draft = product.is_draft,
+                is_dropship = product.is_dropship
             };
         }
 
@@ -98,9 +108,11 @@ namespace SNAPME.Tokens
                 descritpion = product.descritpion,
                 retail_price = (int)Math.Floor(product.retail_price * 100F),
                 purchase_price = (int)Math.Floor(product.purchase_price * 100F),
+                suggested_sell_price = (int)Math.Floor(product.suggested_sell_price * 100F),
                 size = string.Join("x", product.length, product.width, product.height),
                 weight = product.weight,
-                condition = (int)product.condition
+                condition = (int)product.condition,
+                is_dropship = product.is_dropship
                 //images, is_draft -> Saved Separately
             };
         }

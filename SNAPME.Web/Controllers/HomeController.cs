@@ -16,8 +16,8 @@ namespace SNAPME.Web.Controllers
             HomepageModel model = new HomepageModel
             {
                 Categories = CategoryToken.Generate(4),
-                EndingSoon = SaleToken.Generate(1).First(),
-                Featured = SaleToken.Generate(4)
+                EndingSoon = SaleToken.Generate(1, 1000).First(),
+                Featured = SaleToken.Generate(4, 1000)
             };
             return View(model);
         }

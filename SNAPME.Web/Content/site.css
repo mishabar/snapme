@@ -81,12 +81,6 @@ textarea {
   -webkit-border-radius: 0;
   border-radius: 0;
 }
-.btn-default,
-.btn-default:hover,
-.btn-default:active {
-  background-color: #ffde00 !important;
-  border-color: #ffde00 !important;
-}
 .form-control {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -157,6 +151,9 @@ img.img-responsive.avatar {
   line-height: 32px;
   font-size: 18px;
 }
+.product a.ovr:hover {
+  color: #ffde00;
+}
 .product a.ovr.ovr-favorite {
   top: 0;
   left: 0;
@@ -194,14 +191,15 @@ img.img-responsive.avatar {
 .product .tabs-left ul.nav-tabs {
   background-color: #cccccc;
 }
-.product .tabs-left ul.nav-tabs > li a,
-.product .tabs-left ul.nav-tabs li a:hover,
-.product .tabs-left ul.nav-tabs li a:focus {
+.product .tabs-left ul.nav-tabs > li a {
   color: #ffffff;
   font-weight: bold;
-  font-size: 24px;
   text-align: center;
   border-color: transparent;
+}
+.product .tabs-left ul.nav-tabs > li a:hover,
+.product .tabs-left ul.nav-tabs > li a:focus {
+  color: #000000;
 }
 .product .tabs-left ul.nav-tabs > li.active a,
 .product .tabs-left ul.nav-tabs li.active a:hover,
@@ -214,14 +212,57 @@ img.img-responsive.avatar {
   background-color: #ffffff;
 }
 .product .tabs-left .tab-content .tab-pane {
-  margin-left: 52px;
+  margin-left: 45px;
+  min-height: 100px;
+  padding: 0 10px;
 }
 .product .tabs-left .tab-content .tab-pane h2.title {
   margin-top: 0;
   padding-top: 10px;
 }
 .product .tabs-left .tab-content .tab-pane .short-description {
-  margin: 10px;
+  height: 68px;
+  overflow: hidden;
+}
+.product .tabs-left .tab-content .tab-pane .price-range {
+  padding: 10px 0 0 0;
+  margin-bottom: 25px;
+}
+.product .tabs-left .tab-content .tab-pane .action .btn {
+  border-radius: 6px;
+}
+.product .tabs-left .tab-content .tab-pane .current-price {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 6px 16px 7px;
+  font-size: 25px;
+  line-height: 1.3333333;
+  letter-spacing: 4px;
+  border-radius: 6px;
+  font-family: 'Ubuntu';
+}
+.product .tabs-left .tab-content .tab-pane hr {
+  margin-bottom: 10px;
+}
+.product .tabs-left .tab-content .tab-pane .potential-points {
+  height: 28px;
+  line-height: 28px;
+  font-size: 16px;
+  color: #6E6E6E;
+  background: rgba(0, 0, 0, 0) url(/Content/Images/sp-grey.png) no-repeat 100% 50%;
+  padding-right: 26px;
+}
+.product .tabs-left .tab-content .tab-pane .invite-friends {
+  width: 133px;
+  height: 28px;
+  background: transparent url(/Content/Images/invite.png) no-repeat 50% 50%;
+}
+.product .tabs-left .tab-content .tab-pane .time-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 .product h4.title {
   color: #363636;
@@ -282,6 +323,33 @@ img.img-responsive.avatar {
 .product .price .btn-snapme.snapped {
   background: url(Images/snapme-snapped.png) no-repeat center center;
   background-size: contain;
+}
+.product-details .details-sections {
+  background-color: #cccccc;
+  margin-bottom: 15px;
+}
+.product-details .details-sections .nav-tabs.nav-justified a {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #cccccc;
+  border-left-color: #FFF;
+  border-right-color: #FFF;
+  border-radius: 0;
+}
+.product-details .details-sections .nav-tabs.nav-justified li.active a {
+  background-color: #ffffff;
+  border-color: #FFF;
+  color: #000000;
+  box-shadow: 6px 0 4px 0 #999999, -6px 0 4px 0 #999999;
+}
+.product-details #fulldetails p {
+  white-space: pre-wrap;
+}
+.product-details #fulldetails .measures {
+  margin: 20px 0;
+}
+.product-details .input-group-btn .btn-default {
+  background-color: #eaeaea;
 }
 .top-banner {
   background: transparent url(Images/top-banner-bg.png) no-repeat top center;

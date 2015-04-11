@@ -40,19 +40,84 @@
                                 <div class="pull-left">@Model.retail_price.ToString("C")</div>
                                 <div class="pull-right"><i class="fa fa-flag-checkered"></i></div>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-                                        <span class="sr-only">50% Complete</span>
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="@Model.Sale.progress" aria-valuemin="0" aria-valuemax="100" style="width: @string.Format("{0}%", Model.Sale.progress);">
+                                        <span class="sr-only">@string.Format("{0}%", Model.Sale.progress) Complete</span>
                                     </div>
-                                    <div class="progress-indicator" style="left: 50%;">
+                                    <div class="progress-indicator" style="left: @string.Format("{0}%", Model.Sale.progress);">
                                     </div>
                                 </div>
+                            </div>
+                            <div style="height: 46px;">
+                                <div class="current-price pull-left">@(Model.Sale.current_price.ToString("C"))</div>
+                                <div class="action pull-right">
+                                    <a class="btn btn-success btn-lg">Join Sale</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <div class="potential-points pull-left">
+                                    Collect: +@Model.Sale.potential_points
+                                </div>
+                                <div class="invite-friends pull-right"></div>
+                            </div>
+                            <div class="time-left">
+                                @{
+                                    var v = Model.Sale.ends_on - DateTime.UtcNow;
+                                    @:Sale ends in @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
+                                }
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="share">...</div>
                     </div>
-
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row product-details">
+        <div class="col-xs-12 col-sm-8 col-md-9">
+            <div role="tabpanel">
+                <div class="details-sections">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <ul class="nav nav-tabs nav-justified" role="tablist">
+                                <li role="presentation" class="active"><a href="#fulldetails" role="tab" data-toggle="tab">Product Details</a></li>
+                                <li role="presentation"><a href="#shipping" role="tab" data-toggle="tab">Shipping</a></li>
+                                <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="fulldetails">
+                        <p>@Model.descritpion</p>
+                        <div class="row measures">
+                            <div class="col-sm-4"><i class="ti ti-package"></i>&nbsp;Condition: @Model.condition</div>
+                            <div class="col-sm-4"><i class="fa fa-expand"></i>&nbsp;@Model.size cm</div>
+                            <div class="col-sm-4"><i class="glyphicon glyphicon-scale"></i> &nbsp;@Model.weight kg</div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="shipping">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Enter your Zip Code to see available shipping options</label>
+                                <div class="input-group" style="width: 320px;">
+                                    <span class="input-group-addon"><i class="fa fa-truck"></i>&nbsp;Zip Code</span>
+                                    <input type="text" id="zipCode" class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><i class="fa fa-chevron-right"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="reviews">...</div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-3">
+            <h4 class="text-center">Check ou these items...</h4>
         </div>
     </div>
 </div>
@@ -62,10 +127,9 @@
     <script type="text/javascript">
         var w = $('.product .images').width();
         var h = w / 16 * 9;
-        //$('.product .images, .product .nav-tabs, .product .tab-content').css('height', h + 'px');
         $('.product .images > div').css('height', h + 'px').css('width', w + 'px').removeClass('hidden');
         $('.product .images').bxSlider({
-            slideWidth: w,
+            slideWidth: $('.product .images').width(),
             minSlides: 1,
             maxSlides: 1,
             slideMargin: 0

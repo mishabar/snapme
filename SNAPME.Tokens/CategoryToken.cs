@@ -20,7 +20,7 @@ namespace SNAPME.Tokens
             List<CategoryToken> list = new List<CategoryToken>();
             for (int i = 0; i < count; i++)
 			{
-                list.Add(new CategoryToken { id = Guid.NewGuid().ToString(), name = names[i], sales = SaleToken.Generate(random.Next(5) + 1) });
+                list.Add(new CategoryToken { id = Guid.NewGuid().ToString(), name = names[i], sales = SaleToken.Generate(random.Next(5) + 1, 1000) });
 			}
             return list;
         }

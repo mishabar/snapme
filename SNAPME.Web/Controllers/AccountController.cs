@@ -432,7 +432,7 @@ namespace SNAPME.Web.Controllers
             {
                 ActiveSection = AccountMenuSection.Drops,
                 DropsCount = drops,
-                Drops = SaleToken.Generate(drops)
+                Drops = SaleToken.Generate(drops, 1000)
             });
         }
 
