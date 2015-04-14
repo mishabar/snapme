@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\SellerToken.cs" />
+    <Compile Include="Api\BaseProductToken.cs" />
     <Compile Include="CategoryToken.cs" />
     <Compile Include="ProductCondition.cs" />
     <Compile Include="ProductToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaleToken.cs" />
+    <Compile Include="UserPreferencesToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SNAPME.Data\SNAPME.Data.csproj">

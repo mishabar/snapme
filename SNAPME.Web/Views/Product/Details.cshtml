@@ -8,9 +8,11 @@
     <div class="container">
         <div class="row product">
             <div class="col-sm-6 col-xs-12 text-center">
-                <a href="#" title="Add to favorites" class="ovr ovr-favorite"><i class="fa fa-heart"></i></a>
-                <a href="#" title="Like" class="ovr ovr-like"><i class="fa fa-thumbs-o-up"></i></a>
-                <a href="#" title="Social activity" class="ovr ovr-group"><i class="fa fa-group"></i></a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="#" data-action="favor-product" data-id="@Model.id" title="Add to favorites" class="ovr ovr-favorite @(Model.UserPreferences.favors ? "active" : string.Empty)"><i class="fa fa-heart"></i></a>
+                    <a href="#" data-action="like-product" data-id="@Model.id" title="Like" class="ovr ovr-like @(Model.UserPreferences.likes ? "active" : string.Empty)"><i class="fa fa-thumbs-o-up"></i></a>
+                }
                 @if (Model.Sale != null)
                 {
                     <div class="drops-counter">@Model.Sale.drops.Count() Drops</div>
@@ -32,6 +34,7 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-dollar"></i></a></li>
                         <li role="presentation"><a href="#share" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-share-alt"></i></a></li>
+                        <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab"><i class="fa fa-group"></i></a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -79,7 +82,8 @@
                                 </div>
                             }
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="share">...</div>
+                        <div role="tabpanel" class="tab-pane" id="share">Sharing options</div>
+                        <div role="tabpanel" class="tab-pane" id="social">Social options</div>
                     </div>
                 </div>
             </div>

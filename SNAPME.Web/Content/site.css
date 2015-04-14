@@ -158,9 +158,15 @@ img.img-responsive.avatar {
   top: 0;
   left: 0;
 }
+.product a.ovr.ovr-favorite.active {
+  color: #EF3F6B;
+}
 .product a.ovr.ovr-like {
   top: 34px;
   left: 0;
+}
+.product a.ovr.ovr-like.active {
+  color: #29BFB1;
 }
 .product a.ovr.ovr-group {
   top: 68px;

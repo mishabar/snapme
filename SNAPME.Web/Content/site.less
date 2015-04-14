@@ -185,11 +185,19 @@ img.img-responsive.avatar {
         &.ovr-favorite {
             top: 0;
             left: 0;
+
+            &.active {
+                color: #EF3F6B;
+            }
         }
 
         &.ovr-like {
             top: 34px;
             left: 0;
+
+            &.active {
+                color: #29BFB1;
+            }
         }
 
         &.ovr-group {
@@ -308,7 +316,7 @@ img.img-responsive.avatar {
                     background: transparent url(/Content/Images/invite.png) no-repeat 50% 50%;
                 }
 
-                .time-left{
+                .time-left {
                     position: absolute;
                     bottom: 0;
                     left: 0;
@@ -420,7 +428,7 @@ img.img-responsive.avatar {
         }
     }
 
-    .tab-pane{
+    .tab-pane {
         min-height: 100px;
         padding-bottom: 20px;
     }
@@ -433,19 +441,21 @@ img.img-responsive.avatar {
         .measures {
             margin: 20px 0;
 
-            div[class^=snap]{
+            div[class^=snap] {
                 height: 32px;
                 line-height: 32px;
                 padding-left: 40px;
             }
 
-            .snap-condition{
+            .snap-condition {
                 background: transparent url(/Content/Images/info-state.png) no-repeat 0 50%;
             }
-            .snap-size{
+
+            .snap-size {
                 background: transparent url(/Content/Images/info-size.png) no-repeat 0 50%;
             }
-            .snap-weight{
+
+            .snap-weight {
                 background: transparent url(/Content/Images/info-state.png) no-repeat 0 50%;
             }
         }

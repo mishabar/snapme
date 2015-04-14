@@ -35,6 +35,10 @@ $(function () {
     //$("footer .panel-heading").on("click", function () { $(this).parent().toggleClass("in"); });
     $("[data-action=fb-share]").on("click", function () { shareOnFacebook($(this).data("url")); });
     $("[data-action=price-drop]").on("click", function () { dropPrice($(this).data("id")); });
+
+    $('[data-action=like-product').on('click', function () { $.post('/api/v1/like/product', { id: $(this).data('id') }, function (r) { $('a[data-action=like-product][data-id=' + r.id + ']').toggleClass('active', r.liked); }); });
+    $('[data-action=favor-product').on('click', function () { $.post('/api/v1/favorite/product', { id: $(this).data('id') }, function (r) { $('a[data-action=favor-product][data-id=' + r.id + ']').toggleClass('active', r.favored); }); });
+
     $("img.avatar[data-src]").each(function (i, img) {
         $(img).attr("src", $(img).data("src") + "&width=" + $(img).width());
     });

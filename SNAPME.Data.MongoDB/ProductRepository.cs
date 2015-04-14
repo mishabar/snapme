@@ -48,6 +48,7 @@ namespace SNAPME.Data.MongoDB
                         .Set(p => p.weight, product.weight)
                         .Set(p => p.is_dropship, product.is_dropship)
                         .SetOnInsert(p => p.images, new string[6])
+                        .SetOnInsert(p => p.likes, new string[0])
                         .SetOnInsert(p => p.is_draft, true),
                 Upsert = true
             });
@@ -70,6 +71,21 @@ namespace SNAPME.Data.MongoDB
                 product = new Product { id = id, images = new string[6], is_draft = true };
                 product.images[idx] = image;
                 _collection.Save(product);
+            }
+        }
+
+
+        public void AddLike(string productId, string userId, bool add)
+        {
+            if (add)
+            {
+                _collection.Update(Query<Product>.EQ(p => p.id, productId),
+                    Update<Product>.Push(p => p.likes, userId).Inc(p => p.likes_count, 1));
+            }
+            else
+            {
+                _collection.Update(Query<Product>.EQ(p => p.id, productId),
+                    Update<Product>.Pull(p => p.likes, userId).Inc(p => p.likes_count, -1));
             }
         }
     }

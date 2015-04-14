@@ -46,8 +46,10 @@
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\ISaleRepository.cs" />
     <Compile Include="Repositories\ISellerRepository.cs" />
+    <Compile Include="Repositories\IUserPreferencesRepository.cs" />
     <Compile Include="Sale.cs" />
     <Compile Include="Seller.cs" />
+    <Compile Include="UserPreferences.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

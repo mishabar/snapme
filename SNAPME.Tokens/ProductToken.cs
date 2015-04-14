@@ -48,6 +48,9 @@ namespace SNAPME.Tokens
         [Required]
         public bool is_dropship { get; set; }
 
+        // User Preferences
+        public UserPreferencesToken UserPreferences { get; set; }
+
         // Sale
         public SaleToken Sale { get; set; }
 
