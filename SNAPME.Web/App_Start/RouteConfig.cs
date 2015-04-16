@@ -12,13 +12,14 @@ namespace SNAPME.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapMvcAttributeRoutes();
 
-            routes.MapRoute(
-                name: "SaleDetails",
-                url: "sale/{id}",
-                defaults: new { controller = "Sale", action = "Details" },
-                namespaces: new string[] { "SNAPME.Web.Controllers" }
-            );
+            //routes.MapRoute(
+            //    name: "SaleDetails",
+            //    url: "sale/{id}",
+            //    defaults: new { controller = "Sale", action = "Details" },
+            //    namespaces: new string[] { "SNAPME.Web.Controllers" }
+            //);
 
             routes.MapRoute(
                 name: "AccountRoutes",

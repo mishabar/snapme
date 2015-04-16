@@ -47,6 +47,9 @@ namespace SNAPME.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -69,6 +72,9 @@ namespace SNAPME.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -158,6 +164,9 @@ namespace SNAPME.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
             return View();
         }
 
@@ -168,6 +177,9 @@ namespace SNAPME.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/");
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
