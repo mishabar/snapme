@@ -105,7 +105,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
                     var body = renderer.RenderViewToString("~/Views/Emails/_SellerWelcome.cshtml", 
                         new SellerWelcomeModel { Email = seller.email, Name = seller.name, Password = password });
 
-                    _emailService.Send("barmic@gmail.com", "Welcome to iiSnap", body);
+                    _emailService.Send(seller.email, "Welcome to iiSnap", body);
                     return Json(new { result = "User Created" });
                 }
             }
