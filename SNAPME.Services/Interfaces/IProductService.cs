@@ -16,5 +16,7 @@ namespace SNAPME.Services.Interfaces
         bool ToggleFavorite(string userId, string productId);
 
         UserPreferencesToken GetPreferences(string id, string userId);
+
+        IEnumerable<ProductToken> GetFavorites(string userId);
     }
 }

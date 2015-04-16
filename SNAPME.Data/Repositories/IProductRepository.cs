@@ -17,5 +17,7 @@ namespace SNAPME.Data.Repositories
         void SaveImage(string id, string image, int idx);
 
         void AddLike(string productId, string userId, bool add);
+
+        IEnumerable<Product> GetByIds(string[] ids);
     }
 }

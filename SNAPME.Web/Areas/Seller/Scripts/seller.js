@@ -38,7 +38,6 @@ function saveDetails(redirect) {
         var data = $('#frmSellerDetails').serializeArray();
         $.post('/api/v1/save/seller', data, function (response) {
             if (response.error) { alert(response.error); }
-            else if (response.isNew) { document.location.href = '/Admin/Seller'; }
             else { alert('Seller details were saved'); $('.container > h2 > span').text($('#name').val()); }
         });
     } else {
@@ -61,7 +60,7 @@ function saveProduct() {
 
 function attachEvents() {
     $('a[data-toggle=modal][data-entity=product]').on('click', function () {
-        $('#mdlProduct').data('remote', '/Admin/Seller/Product/' + $(this).data('id')).one("loaded.bs.modal", function () {
+        $('#mdlProduct').data('remote', '/Seller/Home/Product/' + $(this).data('id')).one("loaded.bs.modal", function () {
             $.validator.unobtrusive.parse($('form', this));
 
             $('input[type=file]').on('change', function () {
@@ -78,15 +77,5 @@ function attachEvents() {
                 }
             });
         });
-    });
-}
-
-function createAccount(id) {
-    $('#btnCreateAccount').addClass('disabled').find('i').removeClass('fa-lock').addClass('fa-spin fa-spinner disabled');
-    $.post("/Admin/Seller/CreateAccount", { id: id, __RequestVerificationToken: $('input[name=__RequestVerificationToken]').val() }, function (r) {
-        if (r.error) { alert(r.error); $('#btnCreateAccount').removeClass('disabled').find('i').addClass('fa-lock').removeClass('fa-spin fa-spinner'); }
-        else {
-            $('#btnCreateAccount i').remove();
-        }
     });
 }

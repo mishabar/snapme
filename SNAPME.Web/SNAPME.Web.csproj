@@ -203,16 +203,20 @@
     <Compile Include="Areas\Seller\SellerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
+    <Compile Include="Controllers\Api\SellerController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ViewRenderer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Account\MyAccountDetailsModel.cs" />
+    <Compile Include="Models\Emails\SellerWelcomeModel.cs" />
     <Compile Include="Models\Sale\DropPriceDialogModel.cs" />
     <Compile Include="Models\Dialog\LoginDialogModel.cs" />
     <Compile Include="Models\Home\HomepageModel.cs" />
@@ -223,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Scripts\seller.js" />
+    <Content Include="Areas\Seller\Scripts\seller.js" />
     <Content Include="Content\admin.css">
       <DependentUpon>admin.less</DependentUpon>
     </Content>
@@ -324,6 +329,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Seller\Views\Home\_Details.cshtml" />
+    <Content Include="Areas\Seller\Views\Home\Details.cshtml" />
+    <Content Include="Areas\Seller\Views\Shared\_SellerLayout.cshtml" />
+    <Content Include="Areas\Seller\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\Seller\Views\Shared\_Navbar.cshtml" />
+    <Content Include="Areas\Seller\Views\Home\_Product.cshtml" />
+    <Content Include="Areas\Seller\Views\Home\_Products.cshtml" />
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -393,13 +405,13 @@
     <Content Include="Views\Dialog\_Login.cshtml" />
     <Content Include="Views\Sale\_Drop.cshtml" />
     <Content Include="Views\Sale\Details.cshtml" />
-    <Content Include="Views\Account\Details.cshtml" />
-    <Content Include="Views\Account\_AccountMenu.cshtml" />
-    <Content Include="Views\Account\Points.cshtml" />
-    <Content Include="Views\Account\Drops.cshtml" />
-    <Content Include="Views\Account\Snaps.cshtml" />
-    <Content Include="Views\Account\Favorites.cshtml" />
-    <Content Include="Views\Account\Address.cshtml" />
+    <Content Include="Views\MyAccount\Details.cshtml" />
+    <Content Include="Views\MyAccount\_AccountMenu.cshtml" />
+    <Content Include="Views\MyAccount\Points.cshtml" />
+    <Content Include="Views\MyAccount\Drops.cshtml" />
+    <Content Include="Views\MyAccount\Snaps.cshtml" />
+    <Content Include="Views\MyAccount\Favorites.cshtml" />
+    <Content Include="Views\MyAccount\Address.cshtml" />
     <Content Include="Views\Home\ComingSoon.cshtml" />
     <Content Include="Views\Shared\_TinyProduct.cshtml" />
     <Content Include="Views\Dialog\_PrivacyPolicy.cshtml" />
@@ -407,10 +419,10 @@
     <Content Include="Views\Shared\_NavbarLanding.cshtml" />
     <Content Include="Views\Home\LaunchingSoon.cshtml" />
     <Content Include="Views\Account\EarlyBird.cshtml" />
+    <Content Include="Views\Emails\_SellerWelcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Seller\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

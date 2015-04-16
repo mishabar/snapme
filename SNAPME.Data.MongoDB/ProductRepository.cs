@@ -88,5 +88,11 @@ namespace SNAPME.Data.MongoDB
                     Update<Product>.Pull(p => p.likes, userId).Inc(p => p.likes_count, -1));
             }
         }
+
+
+        public IEnumerable<Product> GetByIds(string[] ids)
+        {
+            return _collection.Find(Query<Product>.In(p => p.id, ids));
+        }
     }
 }

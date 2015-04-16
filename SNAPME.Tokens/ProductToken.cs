@@ -100,6 +100,14 @@ namespace SNAPME.Tokens
             };
         }
 
+        public static ProductToken AsToken(this Product product, UserPreferences prefs)
+        {
+            var token = product.AsToken();
+            token.UserPreferences = prefs.AsToken(token.id);
+
+            return token;
+        }
+
         public static Product AsProduct(this ProductToken product)
         {
             return new Product

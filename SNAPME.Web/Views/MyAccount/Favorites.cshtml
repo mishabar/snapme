@@ -23,6 +23,17 @@
                         </div>
                     </div>
                 }
+                <div class="row">
+                    @foreach (var product in Model.Favorites)
+                    {
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="product-sm">
+                                <h4 class="text-center">@product.name</h4>
+                                <div class="embed-responsive embed-responsive-16by9" style="background: url(@product.images.FirstOrDefault(i => !string.IsNullOrWhiteSpace(i))) no-repeat 50% 50%; background-size: cover;"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,29 @@
+﻿@model SNAPME.Web.Models.Emails.SellerWelcomeModel
+@{
+    Layout = null;
+}
+
+<body style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 14px; line-height: 18px;">
+    <div style="background: transparent url(http://snapme.apphb.com/Content/Images/logo.png) no-repeat top left; padding-top: 60px;">
+        <p>
+            Hi @Model.Name!
+        </p>
+        <p>
+            Welcome to iiSnap! We wanted to welcome you to our Seller Program!<br />
+            Please use the following credentials to <a href="http://snapme.apphb.com/Account/Login">login to your seller portal</a>.
+        </p>
+        <p>
+            Username: &nbsp; <strong>@Model.Email</strong><br />
+            Password: &nbsp; <strong>@Model.Password</strong>
+        </p>
+        <p>
+            Best Regards,<br />
+            Ami Barda<br />
+            iiSnap CEO
+        </p>
+    </div>
+    <div>
+        <hr style="border-bottom: none;" />
+        &copy; @DateTime.UtcNow.Year iiSnap Corp LTD - All Rights Resereved
+    </div>
+</body>

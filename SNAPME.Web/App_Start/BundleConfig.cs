@@ -26,8 +26,11 @@ namespace SNAPME.Web
                       "~/Scripts/snapme.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/seller").Include(
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                       "~/Areas/Admin/Scripts/seller.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/seller").Include(
+                      "~/Areas/Seller/Scripts/seller.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

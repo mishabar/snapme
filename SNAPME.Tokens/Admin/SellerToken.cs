@@ -27,6 +27,7 @@ namespace SNAPME.Tokens.Admin
         public string country { get; set; }
         public string phone { get; set; }
         public string comments { get; set; }
+        public bool has_account { get; set; }
     }
 
     public static class SellerTokenExtensions
@@ -49,7 +50,8 @@ namespace SNAPME.Tokens.Admin
                 state = seller.state,
                 country = seller.country,
                 phone = seller.phone,
-                comments = seller.comments
+                comments = seller.comments,
+                has_account = false
             };
         }
 

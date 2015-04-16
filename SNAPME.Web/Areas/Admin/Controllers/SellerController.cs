@@ -7,6 +7,11 @@ using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Tokens.Admin;
 using SNAPME.Web.Areas.Admin.Models;
+using Microsoft.AspNet.Identity.Owin;
+using SNAPME.Web.Models;
+using System.Threading.Tasks;
+using SNAPME.Web.Helpers;
+using SNAPME.Web.Models.Emails;
 
 namespace SNAPME.Web.Areas.Admin.Controllers
 {
@@ -15,11 +20,13 @@ namespace SNAPME.Web.Areas.Admin.Controllers
     {
         private ISellerService _sellerService;
         private IIDService _idService;
+        private IEmailService _emailService;
 
-        public SellerController(ISellerService sellerService, IIDService idService)
+        public SellerController(ISellerService sellerService, IIDService idService, IEmailService emailService)
         {
             _sellerService = sellerService;
             _idService = idService;
+            _emailService = emailService;
         }
 
         // GET: Admin/Seller
@@ -34,34 +41,14 @@ namespace SNAPME.Web.Areas.Admin.Controllers
             return View(new SellerToken { id = null });
         }
 
-        // POST: Admin/Seller
-        [HttpPost]
-        public ActionResult Create(SellerToken token)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _sellerService.Save(token);
-                    if (Request.IsAjaxRequest())
-                    {
-                        return Json(new { url = "/Admin/Seller" });
-                    }
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    TempData["error"] = ex.ToString();
-                    return View(token);
-                }
-            }
-            return View(token);
-        }
-
         // GET: Admin/Seller/Edit/{id}
-        public ActionResult Edit(string id)
+        public async Task<ActionResult> Edit(string id)
         {
-            return View(_sellerService.GetById(id));
+            var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var seller = _sellerService.GetById(id);
+            ApplicationUser sellerUser = await userManager.FindByEmailAsync(seller.email);
+            seller.has_account = (sellerUser != null    );
+            return View(seller);
         }
 
         // GET: Admin/Seller/Details/{id}
@@ -87,7 +74,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
         {
             if (string.IsNullOrEmpty(id))
             {
-                return PartialView("_Product", new ProductToken { is_draft = true, id =  _idService.GenerateId() });  
+                return PartialView("_Product", new ProductToken { is_draft = true, id = _idService.GenerateId() });
             }
             else
             {
@@ -95,44 +82,35 @@ namespace SNAPME.Web.Areas.Admin.Controllers
             }
         }
 
-        // POST: Admin/Seller/Product
         [HttpPost]
-        public JsonResult Product(ProductToken product)
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> CreateAccount(string id)
         {
-            if (ModelState.IsValid)
+            var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var seller = _sellerService.GetById(id);
+            ApplicationUser sellerUser = await userManager.FindByEmailAsync(seller.email);
+
+            if (sellerUser == null)
             {
-                try
+                sellerUser = new ApplicationUser { UserName = seller.email, Email = seller.email };
+                string password = System.Web.Security.Membership.GeneratePassword(10, 4);
+                var result = await userManager.CreateAsync(sellerUser, password);
+                if (result.Succeeded)
                 {
-                    _sellerService.SaveProduct(product);
-                    return Json(product);
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { error = ex.Message });
+                    // Add Seller role
+                    result = await userManager.AddToRoleAsync(sellerUser.Id, "Seller");
+                    result = await userManager.AddClaimAsync(sellerUser.Id, new System.Security.Claims.Claim("urn:iisnap:name", seller.name));
+                    result = await userManager.AddClaimAsync(sellerUser.Id, new System.Security.Claims.Claim("urn:iisnap:seller_id", seller.id));
+                    var renderer = new ViewRenderer();
+                    var body = renderer.RenderViewToString("~/Views/Emails/_SellerWelcome.cshtml", 
+                        new SellerWelcomeModel { Email = seller.email, Name = seller.name, Password = password });
+
+                    _emailService.Send("barmic@gmail.com", "Welcome to iiSnap", body);
+                    return Json(new { result = "User Created" });
                 }
             }
 
-            return Json(new { error = "Bad Request" });
-        }
-
-        // POST: Admin/Seller/ProductImage
-        [HttpPost]
-        public JsonResult ProductImage(ProductImageModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _sellerService.SaveProductImage(model.id, model.image, model.idx);
-                    return Json(new { });
-                }
-                catch (Exception ex)
-                {
-                    return Json(new { error = ex.Message });
-                }
-            }
-
-            return Json(new { error = "Bad Request" });
+            return Json(new { error = "User Already Exists" });
         }
     }
 }

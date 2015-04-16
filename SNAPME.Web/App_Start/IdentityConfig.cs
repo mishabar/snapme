@@ -53,9 +53,9 @@ namespace SNAPME.Web
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
+                RequiredLength = 8,
                 RequireNonLetterOrDigit = false,
-                RequireDigit = true,
+                RequireDigit = false,
                 RequireLowercase = false,
                 RequireUppercase = false,
             };

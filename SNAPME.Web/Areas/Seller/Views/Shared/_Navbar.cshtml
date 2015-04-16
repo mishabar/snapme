@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNet.Identity
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Seller">
+                <img alt="iiSnap" src="~/Content/Images/logo.png">
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    </div>
+</nav>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "hidden" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+}

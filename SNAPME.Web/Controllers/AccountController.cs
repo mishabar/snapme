@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Models;
 using SNAPME.Web.Models.Account;
@@ -76,10 +77,23 @@ namespace SNAPME.Web.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var user = await UserManager.FindByEmailAsync(model.Email);
+                    if (user.Roles.Contains("Administrator"))
+                    {
+                        return Redirect("/Admin");
+                    }
+                    else if (user.Roles.Contains("Seller"))
+                    {
+                        return Redirect("/Seller");
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -372,13 +386,14 @@ namespace SNAPME.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = info.ExternalIdentity.GetUserName(), Email = model.Email, ImageUrl = "http://graph.facebook.com/" + info.Login.ProviderKey + "/picture?type=square" };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, ImageUrl = "http://graph.facebook.com/" + info.Login.ProviderKey + "/picture?type=square" };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        await UserManager.AddClaimAsync(user.Id, new Claim("urn:iisnap:name", info.ExternalIdentity.GetUserName()));
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
@@ -407,52 +422,6 @@ namespace SNAPME.Web.Controllers
         {
             return View();
         }
-
-        #region Account Screens
-
-        public ActionResult Details()
-        {
-            return View(new MyAccountDetailsModel { ActiveSection = AccountMenuSection.Details });
-        }
-
-        public ActionResult Address()
-        {
-            return View(new MyAccountAddressModel { ActiveSection = AccountMenuSection.Address });
-        }
-
-        public ActionResult Points()
-        {
-            return View(new MyAccountPointsModel { ActiveSection = AccountMenuSection.Points });
-        }
-
-        public ActionResult Drops()
-        {
-            int drops = new Random().Next(10);
-            return View(new MyAccountDropsModel
-            {
-                ActiveSection = AccountMenuSection.Drops,
-                DropsCount = drops,
-                Drops = SaleToken.Generate(drops, 1000)
-            });
-        }
-
-        public ActionResult Snaps()
-        {
-            int snaps = new Random().Next(10);
-            return View(new MyAccountSnapsModel
-            {
-                ActiveSection = AccountMenuSection.Snaps,
-                SnapsCount = snaps,
-                Snaps = SaleToken.GenerateEnded(snaps)
-            });
-        }
-
-        public ActionResult Favorites()
-        {
-            return View(new MyAccountFavoritesModel { ActiveSection = AccountMenuSection.Favorites, Favorites = Enumerable.Empty<ProductToken>() });
-        }
-
-        #endregion
 
         #region Early Birds
         [HttpPost]

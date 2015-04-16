@@ -1,0 +1,73 @@
+﻿@model SNAPME.Tokens.Admin.SellerToken
+
+@{
+    var businessTypes = new[] { "Manufacturer", "Wholesaler", "Retailer", "Importer" };
+}
+<form role="form" id="frmSellerDetails">
+    @if (!string.IsNullOrEmpty(Model.id))
+    {
+        @Html.HiddenFor(m => m.id)
+    }
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.name, "Name")
+            @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.email, "Email")
+            @Html.HiddenFor(m => m.email)
+            <p class="form-control-static">@Model.email</p>
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.website, "Web Site")
+            @Html.TextBoxFor(m => m.website, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.business_type, "Business Type")
+            @Html.DropDownListFor(m => m.business_type, businessTypes.Select(t => new SelectListItem { Text = t, Value = t}), new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.legal_name, "Legal Name")
+            @Html.TextBoxFor(m => m.legal_name, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.trading_name, "Trading Name")
+            @Html.TextBoxFor(m => m.trading_name, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.tax_id, "Tax ID")
+            @Html.TextBoxFor(m => m.tax_id, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-12">
+            @Html.LabelFor(m => m.address, "Address")
+            @Html.TextAreaFor(m => m.address, new { @class = "form-control", rows = 4 })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.zip, "Zip")
+            @Html.TextBoxFor(m => m.zip, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.city, "City")
+            @Html.TextBoxFor(m => m.city, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.state, "State")
+            @Html.TextBoxFor(m => m.state, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.country, "Country")
+            @Html.TextBoxFor(m => m.country, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.phone, "Phone")
+            @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-sm-12">
+            @Html.LabelFor(m => m.comments, "Comments")
+            @Html.TextAreaFor(m => m.comments, new { @class = "form-control", rows = 4 })
+        </div>
+    </div>
+    <div class="form-group text-right">
+        <button type="button" onclick="saveDetails()" class="btn btn-primary">Save</button>
+    </div>
+</form>

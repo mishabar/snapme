@@ -7,17 +7,21 @@
 
 <div class="container">
     <h2>
-        @Model.name
-        <a class="pull-right btn btn-default" href="/Admin/Seller"><i class="fa fa-angle-left"></i> Back to list</a>
+        <span>@Model.name</span>
+        @if (!Model.has_account)
+        { 
+            <button class="pull-right btn btn-success" onclick="createAccount('@Model.id')" id="btnCreateAccount"><i class="fa fa-lock"></i> Create account</button>
+        }
+        <a class="pull-right btn btn-default" href="/Admin/Seller"><i class="fa fa-angle-left"></i> Back to list</a>&nbsp;
     </h2>
     <hr />
     @Html.HiddenFor(m => m.id, new { id = "GlobalSellerID" })
     <div class="row">
         <div class="col-xs-2">
             <ul class="nav nav-pills nav-stacked" id="menuSeller">
-                <li><a href="#" onclick="getContent('#content', '/Admin/Seller/Details/@Model.id', 1)"><i class="fa fa-street-view"></i><span class="hidden-xs">Details</span></a></li>
-                <li><a href="#" onclick="getContent('#content', '/Admin/Seller/Products/@Model.id', 2)"><i class="fa fa-cubes"></i><span class="hidden-xs">Products</span></a></li>
-                <li><a href="#" onclick="getContent('#content', '/Admin/Seller/Sales/@Model.id', 3)"><i class="fa fa-gavel"></i><span class="hidden-xs">Sales</span></a></li>
+                <li><a href="#details" onclick="getContent('#content', '/Admin/Seller/Details/@Model.id', 1)"><i class="fa fa-street-view"></i><span class="hidden-xs">Details</span></a></li>
+                <li><a href="#products" onclick="getContent('#content', '/Admin/Seller/Products/@Model.id', 2)"><i class="fa fa-cubes"></i><span class="hidden-xs">Products</span></a></li>
+                <li><a href="#sales" onclick="getContent('#content', '/Admin/Seller/Sales/@Model.id', 3)"><i class="fa fa-gavel"></i><span class="hidden-xs">Sales</span></a></li>
             </ul>
         </div>
         <div class="col-xs-10">
@@ -32,7 +36,9 @@
     </div>
 </div>
 
+@Html.AntiForgeryToken()
+
 @section scripts
 {
-    @Scripts.Render("~/bundles/seller")
+    @Scripts.Render("~/bundles/admin")
 }

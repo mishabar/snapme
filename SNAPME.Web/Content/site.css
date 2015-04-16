@@ -330,6 +330,11 @@ img.img-responsive.avatar {
   background: url(Images/snapme-snapped.png) no-repeat center center;
   background-size: contain;
 }
+.product-sm {
+  border: 1px solid #f1f1f1;
+  border-top: 3px solid #ffde00;
+  border-radius: 4px;
+}
 .product-details .details-sections {
   background-color: #cccccc;
   margin-bottom: 15px;

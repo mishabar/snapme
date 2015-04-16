@@ -47,4 +47,7 @@ a.navbar-brand > img {
   opacity: 0;
   cursor: pointer;
 }
+h2 .btn + .btn {
+  margin-right: 10px;
+}
 /*# sourceMappingURL=admin.css.map */
