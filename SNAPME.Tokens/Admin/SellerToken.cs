@@ -14,10 +14,12 @@ namespace SNAPME.Tokens.Admin
         [Required]
         public string name { get; set; }
         [Required]
+        [EmailAddress]
         public string email { get; set; }
         public string website { get; set; }
         public string business_type { get; set; }
         public string legal_name { get; set; }
+        [Required]
         public string trading_name { get; set; }
         public string tax_id { get; set; }
         public string address { get; set; }
@@ -26,8 +28,10 @@ namespace SNAPME.Tokens.Admin
         public string state { get; set; }
         public string country { get; set; }
         public string phone { get; set; }
+        public string pickup_address { get; set; }
         public string comments { get; set; }
         public bool has_account { get; set; }
+        public bool is_archived { get; set; }
     }
 
     public static class SellerTokenExtensions
@@ -50,7 +54,9 @@ namespace SNAPME.Tokens.Admin
                 state = seller.state,
                 country = seller.country,
                 phone = seller.phone,
+                pickup_address = seller.pickup_address,
                 comments = seller.comments,
+                is_archived = seller.is_archived,
                 has_account = false
             };
         }
@@ -73,7 +79,9 @@ namespace SNAPME.Tokens.Admin
                 state = seller.state,
                 country = seller.country,
                 phone = seller.phone,
-                comments = seller.comments
+                comments = seller.comments,
+                pickup_address = seller.pickup_address,
+                is_archived = seller.is_archived
             };
         }
     }

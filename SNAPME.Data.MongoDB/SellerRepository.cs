@@ -36,5 +36,11 @@ namespace SNAPME.Data.MongoDB
         {
             return _colletion.FindOne(Query<Seller>.EQ(q => q.id, id));
         }
+
+
+        public void Archive(string id)
+        {
+            _colletion.Update(Query<Seller>.EQ(s => s.id, id), Update<Seller>.Set(s => s.is_archived, true));
+        }
     }
 }

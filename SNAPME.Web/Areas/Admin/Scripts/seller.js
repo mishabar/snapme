@@ -2,7 +2,9 @@
     $('#mnuSellers').addClass('active');
     $('#menuSeller > li:first-child() > a').trigger('click');
 
-    $('#mdlProduct').on('hidden.bs.modal', function(){ $(this).removeData('bs.modal').find('.modal-content').html(''); });
+    $('#mdlProduct').on('hidden.bs.modal', function () { $(this).removeData('bs.modal').find('.modal-content').html(''); });
+    $('#filter').on('click', filterList);
+    $('#clear').on('click', function (event) { filterList(event, true); });
 });
 
 $.validator.setDefaults({
@@ -86,7 +88,32 @@ function createAccount(id) {
     $.post("/Admin/Seller/CreateAccount", { id: id, __RequestVerificationToken: $('input[name=__RequestVerificationToken]').val() }, function (r) {
         if (r.error) { alert(r.error); $('#btnCreateAccount').removeClass('disabled').find('i').addClass('fa-lock').removeClass('fa-spin fa-spinner'); }
         else {
-            $('#btnCreateAccount i').remove();
+            $('#btnCreateAccount').remove();
         }
     });
+}
+
+function archiveSeller(id) {
+    $('#btnArchiveAccount').addClass('disabled').find('i').removeClass('fa-archive').addClass('fa-spin fa-spinner disabled');
+    $.post("/Admin/Seller/Archive", { id: id, __RequestVerificationToken: $('input[name=__RequestVerificationToken]').val() }, function (r) {
+        if (r.error) { alert(r.error); $('#btnArchiveAccount').removeClass('disabled').find('i').addClass('fa-archive').removeClass('fa-spin fa-spinner'); }
+        else {
+            $('#btnArchiveAccount').remove();
+        }
+    });
+}
+
+function filterList(event, clear) {
+    clear = clear || false;
+    var $query = $(event.target).closest('.input-group').find('input[type=text]');
+    if (clear) { $query.val(''); }
+
+    if ($query.val().trim() !== "") {
+        var re = new RegExp($query.val().trim(), "gi");
+        $('#sellersList tbody tr').each(function (idx, item) {
+            $(item).toggleClass('hidden', !re.test($(item).text()));
+        });
+    } else {
+        $('#sellersList tbody tr').removeClass('hidden');
+    }
 }

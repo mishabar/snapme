@@ -50,4 +50,10 @@ a.navbar-brand > img {
 h2 .btn + .btn {
   margin-right: 10px;
 }
+.archived {
+  display: none;
+}
+.all tr.archived {
+  display: table-row;
+}
 /*# sourceMappingURL=admin.css.map */

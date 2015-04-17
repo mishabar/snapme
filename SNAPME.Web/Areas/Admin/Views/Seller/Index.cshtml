@@ -9,10 +9,29 @@
         Sellers List<a href="/Admin/Seller/Create" class="btn btn-default pull-right" title="Create Seller"><i class="fa fa-street-view"></i></a>
     </h2>
     <hr />
-    <table class="table table-condensed">
+    <div class="row">
+        <div class="col-md-3 col-sm-5 col-xs-12 pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Filter..." />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="filter" type="button"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default" id="clear" type="button"><i class="fa fa-close"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-12 pull-right">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" onchange="$('#sellersList').toggleClass('all', $(this).prop('checked'))" /> Show Archived
+                </label>
+            </div>
+        </div>
+    </div>
+    <table class="table table-condensed" id="sellersList">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Company</th>
+                <th>Represenative</th>
                 <th>Website</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -22,8 +41,9 @@
         <tbody>
             @foreach (var seller in Model)
             {
-                <tr>
-                    <td><a href="/Admin/Seller/Edit/@seller.id">@seller.name</a></td>
+                <tr class="@(seller.is_archived ? "archived" : string.Empty)">
+                    <td><a href="/Admin/Seller/Edit/@seller.id">@seller.trading_name</a></td>
+                    <td>@seller.name</td>
                     <td>@seller.website</td>
                     <td>@seller.email</td>
                     <td>@seller.phone</td>

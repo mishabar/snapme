@@ -32,7 +32,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
         // GET: Admin/Seller
         public ActionResult Index()
         {
-            return View(_sellerService.GetAll());
+            return View(_sellerService.GetAll().OrderBy(s => s.trading_name));
         }
 
         // GET: Admin/Seller
@@ -47,7 +47,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
             var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var seller = _sellerService.GetById(id);
             ApplicationUser sellerUser = await userManager.FindByEmailAsync(seller.email);
-            seller.has_account = (sellerUser != null    );
+            seller.has_account = (sellerUser != null);
             return View(seller);
         }
 
@@ -102,7 +102,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
                     result = await userManager.AddClaimAsync(sellerUser.Id, new System.Security.Claims.Claim("urn:iisnap:name", seller.name));
                     result = await userManager.AddClaimAsync(sellerUser.Id, new System.Security.Claims.Claim("urn:iisnap:seller_id", seller.id));
                     var renderer = new ViewRenderer();
-                    var body = renderer.RenderViewToString("~/Views/Emails/_SellerWelcome.cshtml", 
+                    var body = renderer.RenderViewToString("~/Views/Emails/_SellerWelcome.cshtml",
                         new SellerWelcomeModel { Email = seller.email, Name = seller.name, Password = password });
 
                     _emailService.Send(seller.email, "Welcome to iiSnap", body);
@@ -111,6 +111,23 @@ namespace SNAPME.Web.Areas.Admin.Controllers
             }
 
             return Json(new { error = "User Already Exists" });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Archive(string id)
+        {
+            try
+            {
+                _sellerService.Archive(id);
+                // Check with Ami whether account should be deleted as well / or at least locked
+
+                return Json(new { result = "Seller Archived" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = ex.Message });
+            }
         }
     }
 }

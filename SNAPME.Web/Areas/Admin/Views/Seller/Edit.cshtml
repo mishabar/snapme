@@ -12,6 +12,10 @@
         { 
             <button class="pull-right btn btn-success" onclick="createAccount('@Model.id')" id="btnCreateAccount"><i class="fa fa-lock"></i> Create account</button>
         }
+        @if (!Model.is_archived)
+        {
+            <button class="pull-right btn btn-danger" onclick="archiveSeller('@Model.id')" id="btnArchiveAccount"><i class="fa fa-archive"></i> Archive</button>
+        }
         <a class="pull-right btn btn-default" href="/Admin/Seller"><i class="fa fa-angle-left"></i> Back to list</a>&nbsp;
     </h2>
     <hr />

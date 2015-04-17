@@ -13,5 +13,7 @@ namespace SNAPME.Data.Repositories
         IEnumerable<Seller> GetAll();
 
         Seller GetById(string id);
+
+        void Archive(string id);
     }
 }

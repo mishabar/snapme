@@ -9,6 +9,7 @@ namespace SNAPME.Data
     public class Product
     {
         public string id { get; set; }
+        public string sku { get; set; }
         public string seller_id { get; set; }
         public string category { get; set; }
         public string name { get; set; }

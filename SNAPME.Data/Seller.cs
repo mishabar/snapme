@@ -22,6 +22,8 @@ namespace SNAPME.Data
         public string state { get; set; }
         public string country { get; set; }
         public string phone { get; set; }
+        public string pickup_address { get; set; }
         public string comments { get; set; }
+        public bool is_archived { get; set; }
     }
 }

@@ -61,5 +61,11 @@ namespace SNAPME.Services
         {
             _productRepository.SaveImage(id, image, idx);
         }
+
+
+        public void Archive(string id)
+        {
+            _sellerRepository.Archive(id);
+        }
     }
 }

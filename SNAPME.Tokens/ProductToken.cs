@@ -12,6 +12,8 @@ namespace SNAPME.Tokens
     {
         public string id { get; set; }
         [Required]
+        public string sku { get; set; }
+        [Required]
         public string seller_id { get; set; }
         [Required]
         public string category { get; set; }
