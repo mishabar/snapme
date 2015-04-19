@@ -11,10 +11,11 @@
     var kidsGroup = new SelectListGroup { Name = "Kids" };
     var techGroup = new SelectListGroup { Name = "Tech" };
     var sportGroup = new SelectListGroup { Name = "Sport & Fitness" };
+    var homewareGroup = new SelectListGroup { Name = "Homeware" };
 
     var categoriesList = new List<SelectListItem>();
-    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Head Fones", Value = "AUD-HEADPHONES" });
-    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Ear Fones", Value = "AUD-EARFONES" });
+    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Headphones", Value = "AUD-HEADPHONES" });
+    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Earphones", Value = "AUD-EARPHONES" });
     categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Accessories", Value = "AUD-ACCESSORIES" });
     categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Bluetooth Speakers", Value = "AUD-BLUETOOTHSPEAKERS" });
     categoriesList.Add(new SelectListItem { Group = mobileGroup, Text = "Smart Phones", Value = "MOB-HEADFONES" });
@@ -38,6 +39,13 @@
     categoriesList.Add(new SelectListItem { Group = sportGroup, Text = "Equipment", Value = "SPORT-EQUIOMENT" });
     categoriesList.Add(new SelectListItem { Group = sportGroup, Text = "Outdoor Sport", Value = "SPORT-OUTDOOR" });
     categoriesList.Add(new SelectListItem { Group = sportGroup, Text = "Bikes", Value = "SPORT-BIKES" });
+    categoriesList.Add(new SelectListItem { Group = homewareGroup, Text = "Bedding", Value = "HOME-BEDDING" });
+    categoriesList.Add(new SelectListItem { Group = homewareGroup, Text = "Bath", Value = "HOME-BATH" });
+    categoriesList.Add(new SelectListItem { Group = homewareGroup, Text = "Kitchen", Value = "HOME-KITCHEN" });
+    categoriesList.Add(new SelectListItem { Group = homewareGroup, Text = "Home Decor", Value = "HOME-HOMEDECOR" });
+    categoriesList.Add(new SelectListItem { Group = homewareGroup, Text = "Other", Value = "HOME-OTHER" });
+
+    var stockModels = (new string[] { "", "In Stock", "Ordre Only" }).Select(m => new SelectListItem { Text = m, Value = m });
 }
 
 <div class="modal-header">
@@ -55,7 +63,7 @@
                 @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
             </div>
             <div class="form-group col-sm-2">
-                @Html.LabelFor(m => m.category, "SKU (Modle Id)")
+                @Html.LabelFor(m => m.category, "SKU (Model Id)")
                 @Html.TextBoxFor(m => m.sku, new { @class = "form-control" })
             </div>
             <div class="form-group col-sm-2">
@@ -68,11 +76,11 @@
             </div>
             <div class="form-group col-sm-12">
                 @Html.LabelFor(m => m.short_descritpion, "Short Descritpion")
-                @Html.TextAreaFor(m => m.short_descritpion, new { @class = "form-control", rows = 3 })
+                @Html.TextAreaFor(m => m.short_descritpion, new { @class = "form-control", rows = 2 })
             </div>
             <div class="form-group col-sm-12">
                 @Html.LabelFor(m => m.descritpion, "Descritpion")
-                @Html.TextAreaFor(m => m.descritpion, new { @class = "form-control", rows = 5 })
+                @Html.TextAreaFor(m => m.descritpion, new { @class = "form-control", rows = 4 })
             </div>
             <div class="form-group col-sm-12">
                 <label>Images</label>&nbsp;<span>Minimum image size: 853x480 px (16:9 ratio)</span>
@@ -115,6 +123,14 @@
                         @Html.CheckBoxFor(m => m.is_dropship) Dropship
                     </label>
                 </div>
+            </div>
+            <div class="form-group col-sm-3">
+                @Html.LabelFor(m => m.stock_model, "Stock Model")
+                @Html.DropDownListFor(m => m.stock_model, stockModels, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-sm-3">
+                @Html.LabelFor(m => m.min_quantity, "Min. Quantity")
+                @Html.TextBoxFor(m => m.min_quantity, new { @class = "form-control" })
             </div>
             <div class="clearfix">&nbsp;</div>
             <div class="form-group col-sm-3">

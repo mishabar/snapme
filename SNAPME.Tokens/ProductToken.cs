@@ -56,6 +56,10 @@ namespace SNAPME.Tokens
         // Sale
         public SaleToken Sale { get; set; }
 
+        // Stock Model
+        public string stock_model { get; set; }
+        public int min_quantity { get; set; }
+
         public ProductToken()
         {
             is_draft = true;
@@ -99,7 +103,9 @@ namespace SNAPME.Tokens
                 weight = product.weight,
                 condition = (ProductCondition)product.condition,
                 is_draft = product.is_draft,
-                is_dropship = product.is_dropship
+                is_dropship = product.is_dropship,
+                stock_model = product.stock_model,
+                min_quantity = product.min_quantity
             };
         }
 
@@ -129,8 +135,9 @@ namespace SNAPME.Tokens
                 weight = product.weight,
                 condition = (int)product.condition,
                 is_draft = product.is_draft,
-                is_dropship = product.is_dropship
-                //images, is_draft -> Saved Separately
+                is_dropship = product.is_dropship,
+                stock_model = product.stock_model,
+                min_quantity = product.min_quantity
             };
         }
     }

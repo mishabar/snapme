@@ -45,6 +45,8 @@ namespace SNAPME.Data.MongoDB
                         .Set(p => p.retail_price, product.retail_price)
                         .Set(p => p.purchase_price, product.purchase_price)
                         .Set(p => p.suggested_sell_price, product.suggested_sell_price)
+                        .Set(p => p.stock_model, product.stock_model)
+                        .Set(p => p.min_quantity, product.min_quantity)
                         .Set(p => p.size, product.size)
                         .Set(p => p.weight, product.weight)
                         .Set(p => p.is_dropship, product.is_dropship)

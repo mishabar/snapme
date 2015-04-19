@@ -24,6 +24,8 @@ namespace SNAPME.Data
         public int condition { get; set; }
         public bool is_draft { get; set; }
         public bool is_dropship { get; set; }
+        public string stock_model { get; set; }
+        public int min_quantity { get; set; }
 
         public string[] likes { get; set; }
         public long likes_count { get; set; }
