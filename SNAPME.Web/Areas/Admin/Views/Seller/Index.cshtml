@@ -42,8 +42,8 @@
             @foreach (var seller in Model)
             {
                 <tr class="@(seller.is_archived ? "archived" : string.Empty)">
-                    <td><a href="/Admin/Seller/Edit/@seller.id">@seller.trading_name</a></td>
-                    <td>@seller.name</td>
+                    <td>@seller.trading_name</td>
+                    <td><a href="/Admin/Seller/Edit/@seller.id">@seller.name</a></td>
                     <td>@seller.website</td>
                     <td>@seller.email</td>
                     <td>@seller.phone</td>
