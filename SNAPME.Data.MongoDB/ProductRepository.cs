@@ -38,6 +38,7 @@ namespace SNAPME.Data.MongoDB
                         .Set(p => p.seller_id, product.seller_id)
                         .Set(p => p.category, product.category)
                         .Set(p => p.name, product.name)
+                        .Set(p => p.sku, product.sku)
                         .Set(p => p.descritpion, product.descritpion)
                         .Set(p => p.short_descritpion, product.short_descritpion)
                         .Set(p => p.condition, product.condition)

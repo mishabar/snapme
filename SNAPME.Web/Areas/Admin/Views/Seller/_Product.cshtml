@@ -1,7 +1,43 @@
 ﻿@model SNAPME.Tokens.ProductToken
 
 @{
-    var categories = new[] { "Technology", "Electronics", "Homeware", "Apparel", "Kids", "Lyfe Style" };
+    /* Categories groups and items */
+    var audioGroup = new SelectListGroup { Name = "Audio" };
+    var mobileGroup = new SelectListGroup { Name = "Mobile" };
+    var wearableGroup = new SelectListGroup { Name = "Wearable Tech" };
+    var camerasGroup = new SelectListGroup { Name = "Cameras" };
+    var connectedDevicesGroup = new SelectListGroup { Name = "Connected Devices" };
+    var appliancesGroup = new SelectListGroup { Name = "Appliances" };
+    var kidsGroup = new SelectListGroup { Name = "Kids" };
+    var techGroup = new SelectListGroup { Name = "Tech" };
+    var sportGroup = new SelectListGroup { Name = "Sport & Fitness" };
+
+    var categoriesList = new List<SelectListItem>();
+    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Head Fones", Value = "AUD-HEADPHONES" });
+    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Ear Fones", Value = "AUD-EARFONES" });
+    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Accessories", Value = "AUD-ACCESSORIES" });
+    categoriesList.Add(new SelectListItem { Group = audioGroup, Text = "Bluetooth Speakers", Value = "AUD-BLUETOOTHSPEAKERS" });
+    categoriesList.Add(new SelectListItem { Group = mobileGroup, Text = "Smart Phones", Value = "MOB-HEADFONES" });
+    categoriesList.Add(new SelectListItem { Group = mobileGroup, Text = "Tablets", Value = "MOB-HEADFONES" });
+    categoriesList.Add(new SelectListItem { Group = mobileGroup, Text = "Accessories", Value = "MOB-ACCESSORIES" });
+    categoriesList.Add(new SelectListItem { Group = wearableGroup, Text = "Medical", Value = "WEAR-medical" });
+    categoriesList.Add(new SelectListItem { Group = wearableGroup, Text = "Smart Watch", Value = "WEAR-SMARTWATCH" });
+    categoriesList.Add(new SelectListItem { Group = wearableGroup, Text = "Fashion", Value = "WEAR-FASHION" });
+    categoriesList.Add(new SelectListItem { Group = camerasGroup, Text = "Monitoring", Value = "CAMERAS-MONITORING" });
+    categoriesList.Add(new SelectListItem { Group = camerasGroup, Text = "Video", Value = "CAMERAS-VIDEO" });
+    categoriesList.Add(new SelectListItem { Group = camerasGroup, Text = "Photo", Value = "CAMERAS-PHOTO" });
+    categoriesList.Add(new SelectListItem { Group = connectedDevicesGroup, Text = "Smart Home", Value = "CONN-SMARTHOME" });
+    categoriesList.Add(new SelectListItem { Group = connectedDevicesGroup, Text = "Personal", Value = "CONN-PERSONAL" });
+    categoriesList.Add(new SelectListItem { Group = appliancesGroup, Text = "Entertainment", Value = "APPL-ENTERTAINMENT" });
+    categoriesList.Add(new SelectListItem { Group = appliancesGroup, Text = "Kitchen", Value = "APPL-KITCHEN" });
+    categoriesList.Add(new SelectListItem { Group = kidsGroup, Text = "Gaming", Value = "KIDS-GAMING" });
+    categoriesList.Add(new SelectListItem { Group = kidsGroup, Text = "Educational Toys", Value = "KIDS-EDUCTOYS" });
+    categoriesList.Add(new SelectListItem { Group = kidsGroup, Text = "Toys", Value = "KIDS-TOYS" });
+    categoriesList.Add(new SelectListItem { Group = techGroup, Text = "Gadgets", Value = "TECH-GADGETS" });
+    categoriesList.Add(new SelectListItem { Group = techGroup, Text = "Robotics", Value = "TECH-ROBOTICS" });
+    categoriesList.Add(new SelectListItem { Group = sportGroup, Text = "Equipment", Value = "SPORT-EQUIOMENT" });
+    categoriesList.Add(new SelectListItem { Group = sportGroup, Text = "Outdoor Sport", Value = "SPORT-OUTDOOR" });
+    categoriesList.Add(new SelectListItem { Group = sportGroup, Text = "Bikes", Value = "SPORT-BIKES" });
 }
 
 <div class="modal-header">
@@ -14,13 +50,17 @@
     <form role="form" id="frmEditProduct">
         @Html.HiddenFor(m => m.id)
         <div class="row">
-            <div class="form-group col-sm-8">
+            <div class="form-group col-sm-6">
                 @Html.LabelFor(m => m.name, "Name")
                 @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
             </div>
             <div class="form-group col-sm-2">
+                @Html.LabelFor(m => m.category, "SKU (Modle Id)")
+                @Html.TextBoxFor(m => m.sku, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-sm-2">
                 @Html.LabelFor(m => m.category, "Category")
-                @Html.DropDownListFor(m => m.category, categories.Select(c => new SelectListItem { Text = c, Value = c }), new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.category, categoriesList, new { @class = "form-control" })
             </div>
             <div class="form-group col-sm-2">
                 @Html.LabelFor(m => m.condition, "Condition")

@@ -82,6 +82,7 @@ namespace SNAPME.Tokens
 
             return new ProductToken {
                 id = product.id,
+                sku = product.sku,
                 seller_id = product.seller_id,
                 category = product.category,
                 name = product.name,
@@ -115,8 +116,10 @@ namespace SNAPME.Tokens
             return new Product
             {
                 id = product.id,
+                sku = product.sku,
                 seller_id = product.seller_id,
                 name = product.name,
+                category = product.category,
                 short_descritpion = product.short_descritpion,
                 descritpion = product.descritpion,
                 retail_price = (int)Math.Floor(product.retail_price * 100F),
@@ -125,6 +128,7 @@ namespace SNAPME.Tokens
                 size = string.Join("x", product.length, product.width, product.height),
                 weight = product.weight,
                 condition = (int)product.condition,
+                is_draft = product.is_draft,
                 is_dropship = product.is_dropship
                 //images, is_draft -> Saved Separately
             };
