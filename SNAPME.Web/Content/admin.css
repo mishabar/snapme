@@ -56,4 +56,10 @@ h2 .btn + .btn {
 .all tr.archived {
   display: table-row;
 }
+.faq dt {
+  font-size: larger;
+}
+.faq dd {
+  margin-bottom: 20px;
+}
 /*# sourceMappingURL=admin.css.map */

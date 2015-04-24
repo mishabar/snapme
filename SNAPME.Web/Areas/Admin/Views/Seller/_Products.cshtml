@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Category</th>
             <th style="width: 50%;">Short Description</th>
             <th>Images</th>
             <th>RRP</th>
@@ -17,7 +18,8 @@
         @foreach (var product in Model)
         {
             <tr>
-                <td><a data-toggle="modal" href="#mdlProduct" data-entity="product" data-id="@product.id">@product.name</a>&nbsp;<a href="/Product/Details/@product.id" target="_blank" title="View on site"><i class="fa fa-eye"></i></a></td>
+                <td><a data-toggle="modal" href="#mdlProduct" data-entity="product" data-id="@product.id">@product.name</a>&nbsp;<a href="/Product/@product.id" target="_blank" title="View on site"><i class="fa fa-eye"></i></a></td>
+                <td>@product.category</td>
                 <td>@product.short_descritpion</td>
                 <td>
                     @if (product.images != null && product.images.Any(img => !string.IsNullOrWhiteSpace(img)))
@@ -30,6 +32,14 @@
         }
     </tbody>
 </table>
+
+<div class="modal fade" id="mdlProduct" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+@Html.AntiForgeryToken()
 
 @section scripts
 {

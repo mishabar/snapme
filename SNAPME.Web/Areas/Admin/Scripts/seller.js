@@ -1,10 +1,12 @@
 ﻿$(function () {
-    $('#mnuSellers').addClass('active');
+    $('#mnu' + section).addClass('active');
     $('#menuSeller > li:first-child() > a').trigger('click');
 
     $('#mdlProduct').on('hidden.bs.modal', function () { $(this).removeData('bs.modal').find('.modal-content').html(''); });
     $('#filter').on('click', filterList);
     $('#clear').on('click', function (event) { filterList(event, true); });
+
+    attachEvents();
 });
 
 $.validator.setDefaults({
@@ -110,10 +112,10 @@ function filterList(event, clear) {
 
     if ($query.val().trim() !== "") {
         var re = new RegExp($query.val().trim(), "gi");
-        $('#sellersList tbody tr').each(function (idx, item) {
+        $('table tbody tr').each(function (idx, item) {
             $(item).toggleClass('hidden', !re.test($(item).text()));
         });
     } else {
-        $('#sellersList tbody tr').removeClass('hidden');
+        $('table tbody tr').removeClass('hidden');
     }
 }

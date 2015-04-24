@@ -17,7 +17,7 @@
         @foreach (var product in Model)
         {
             <tr>
-                <td><a data-toggle="modal" href="#mdlProduct" data-entity="product" data-id="@product.id">@product.name</a>&nbsp;<a href="/Product/Details/@product.id" target="_blank" title="View on site"><i class="fa fa-eye"></i></a></td>
+                <td><a data-toggle="modal" href="#mdlProduct" data-entity="product" data-id="@product.id">@product.name</a>&nbsp;<a href="/Product/@product.id" target="_blank" title="View on site"><i class="fa fa-eye"></i></a></td>
                 <td>@product.short_descritpion</td>
                 <td>
                     @if (product.images != null && product.images.Any(img => !string.IsNullOrWhiteSpace(img)))

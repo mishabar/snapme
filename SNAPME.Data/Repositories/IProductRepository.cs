@@ -19,5 +19,7 @@ namespace SNAPME.Data.Repositories
         void AddLike(string productId, string userId, bool add);
 
         IEnumerable<Product> GetByIds(string[] ids);
+
+        IEnumerable<Product> GetAll();
     }
 }

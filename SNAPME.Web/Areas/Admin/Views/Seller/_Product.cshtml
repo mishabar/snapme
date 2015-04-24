@@ -56,6 +56,10 @@
 </div>
 <div class="modal-body">
     <form role="form" id="frmEditProduct">
+        @if (User.IsInRole("Administrator"))
+        {
+            @Html.Hidden("GlobalSellerID", Model.seller_id)
+        }
         @Html.HiddenFor(m => m.id)
         <div class="row">
             <div class="form-group col-sm-6">
@@ -163,6 +167,9 @@
             </div>
         </div>
     </form>
+
+
+
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

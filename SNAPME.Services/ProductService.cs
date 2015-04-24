@@ -53,5 +53,11 @@ namespace SNAPME.Services
             var prefs = _userPreferencesRepository.GetById(userId, null);
             return _productRepository.GetByIds(prefs.favorites).Select(p => p.AsToken(prefs));
         }
+
+
+        public IEnumerable<ProductToken> GetAll()
+        {
+            return _productRepository.GetAll().Select(p => p.AsToken());
+        }
     }
 }

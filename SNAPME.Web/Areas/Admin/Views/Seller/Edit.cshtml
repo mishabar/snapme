@@ -9,7 +9,7 @@
     <h2>
         <span>@Model.name</span>
         @if (!Model.has_account)
-        { 
+        {
             <button class="pull-right btn btn-success" onclick="createAccount('@Model.id')" id="btnCreateAccount"><i class="fa fa-lock"></i> Create account</button>
         }
         @if (!Model.is_archived)
@@ -44,5 +44,8 @@
 
 @section scripts
 {
+    <script>
+        var section = "Sellers";
+    </script>
     @Scripts.Render("~/bundles/admin")
 }

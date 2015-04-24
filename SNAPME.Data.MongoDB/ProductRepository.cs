@@ -97,5 +97,11 @@ namespace SNAPME.Data.MongoDB
         {
             return _collection.Find(Query<Product>.In(p => p.id, ids));
         }
+
+
+        public IEnumerable<Product> GetAll()
+        {
+            return _collection.FindAll();
+        }
     }
 }

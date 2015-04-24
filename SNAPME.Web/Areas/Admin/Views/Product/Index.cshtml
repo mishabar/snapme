@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SNAPME.Tokens.ProductToken>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>
+        Products List
+    </h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-3 col-sm-5 col-xs-12 pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Filter..." />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="filter" type="button"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default" id="clear" type="button"><i class="fa fa-close"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-12 pull-right">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" onchange="$('#productsList').toggleClass('all', $(this).prop('checked'))" /> Show Drafts
+                </label>
+            </div>
+        </div>
+    </div>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th style="width: 50%;">Short Description</th>
+                <th>Images</th>
+                <th>RRP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td><a data-toggle="modal" href="#mdlProduct" data-entity="product" data-id="@product.id">@product.name</a>&nbsp;<a href="/Product/@product.id" target="_blank" title="View on site"><i class="fa fa-eye"></i></a></td>
+                    <td>@product.category</td>
+                    <td>@product.short_descritpion</td>
+                    <td>
+                        @if (product.images != null && product.images.Any(img => !string.IsNullOrWhiteSpace(img)))
+                        {
+                            <i class='fa fa-image'></i>
+                        }
+                    </td>
+                    <td>@product.retail_price.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="mdlProduct" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        var section = "Products";
+    </script>
+    @Scripts.Render("~/bundles/admin")
+}

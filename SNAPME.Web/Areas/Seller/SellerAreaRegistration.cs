@@ -14,6 +14,14 @@ namespace SNAPME.Web.Areas.Seller
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+
+            context.MapRoute(
+                name: "Seller_Login",
+                url: "Seller/Login",
+                defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional },
+                namespaces: new string[] { "SNAPME.Web.Areas.Seller.Controllers" }
+            );
+
             context.MapRoute(
                 name: "Seller_Register",
                 url: "Seller/Register",

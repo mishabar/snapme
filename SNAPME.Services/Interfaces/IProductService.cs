@@ -18,5 +18,7 @@ namespace SNAPME.Services.Interfaces
         UserPreferencesToken GetPreferences(string id, string userId);
 
         IEnumerable<ProductToken> GetFavorites(string userId);
+
+        IEnumerable<ProductToken> GetAll();
     }
 }
