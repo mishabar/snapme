@@ -45,7 +45,7 @@
     categoriesList.Add(new SelectListItem { Group = homewareGroup, Text = "Home Decor", Value = "HOME-HOMEDECOR" });
     categoriesList.Add(new SelectListItem { Group = homewareGroup, Text = "Other", Value = "HOME-OTHER" });
 
-    var stockModels = (new string[] { "", "In Stock", "Ordre Only" }).Select(m => new SelectListItem { Text = m, Value = m });
+    var stockModels = (new string[] { "", "Item In Stock", "By Order Only" }).Select(m => new SelectListItem { Text = m, Value = m });
 }
 
 <div class="modal-header">
@@ -62,7 +62,7 @@
         }
         @Html.HiddenFor(m => m.id)
         <div class="row">
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-7">
                 @Html.LabelFor(m => m.name, "Name")
                 @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
             </div>
@@ -70,13 +70,9 @@
                 @Html.LabelFor(m => m.category, "SKU (Model Id)")
                 @Html.TextBoxFor(m => m.sku, new { @class = "form-control" })
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 @Html.LabelFor(m => m.category, "Category")
                 @Html.DropDownListFor(m => m.category, categoriesList, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-sm-2">
-                @Html.LabelFor(m => m.condition, "Condition")
-                @Html.DropDownListFor(m => m.condition, EnumHelper.GetSelectList(typeof(SNAPME.Tokens.ProductCondition)), new { @class = "form-control" })
             </div>
             <div class="form-group col-sm-12">
                 @Html.LabelFor(m => m.short_descritpion, "Short Descritpion")
@@ -114,11 +110,23 @@
                 </div>
             </div>
             <div class="form-group col-sm-3">
+                @Html.LabelFor(m => m.min_quantity, "MOQ")
+                @Html.TextBoxFor(m => m.min_quantity, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-sm-3">
                 @Html.LabelFor(m => m.suggested_sell_price, "Suggested Sell Price")
                 <div class="input-group">
                     @Html.TextBoxFor(m => m.suggested_sell_price, new { @class = "form-control" })
                     <span class="input-group-addon">@System.Globalization.CultureInfo.CurrentUICulture.NumberFormat.CurrencySymbol</span>
                 </div>
+            </div>
+            <div class="form-group col-sm-3">
+                @Html.LabelFor(m => m.stock_model, "Inventory")
+                @Html.DropDownListFor(m => m.stock_model, stockModels, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-sm-3">
+                @Html.LabelFor(m => m.stock_model, "Lead Time")
+                @Html.TextBoxFor(m => m.lead_time, new { @class = "form-control" })
             </div>
             <div class="form-group col-sm-3">
                 <label>&nbsp;</label>
@@ -129,12 +137,12 @@
                 </div>
             </div>
             <div class="form-group col-sm-3">
-                @Html.LabelFor(m => m.stock_model, "Stock Model")
-                @Html.DropDownListFor(m => m.stock_model, stockModels, new { @class = "form-control" })
-            </div>
-            <div class="form-group col-sm-3">
-                @Html.LabelFor(m => m.min_quantity, "Min. Quantity")
-                @Html.TextBoxFor(m => m.min_quantity, new { @class = "form-control" })
+                <label>&nbsp;</label>
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(m => m.is_oem) OEM
+                    </label>
+                </div>
             </div>
             <div class="clearfix">&nbsp;</div>
             <div class="form-group col-sm-3">

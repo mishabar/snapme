@@ -8,7 +8,14 @@
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            @if (Request.IsAuthenticated)
+            {
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            }
+            else
+            {
+                <li><a href="/Seller/Login">Login</a></li>
+            }
         </ul>
     </div>
 </nav>

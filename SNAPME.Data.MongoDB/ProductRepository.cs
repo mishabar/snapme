@@ -41,7 +41,7 @@ namespace SNAPME.Data.MongoDB
                         .Set(p => p.sku, product.sku)
                         .Set(p => p.descritpion, product.descritpion)
                         .Set(p => p.short_descritpion, product.short_descritpion)
-                        .Set(p => p.condition, product.condition)
+                        .Set(p => p.lead_time, product.lead_time)
                         .Set(p => p.retail_price, product.retail_price)
                         .Set(p => p.purchase_price, product.purchase_price)
                         .Set(p => p.suggested_sell_price, product.suggested_sell_price)
@@ -50,6 +50,7 @@ namespace SNAPME.Data.MongoDB
                         .Set(p => p.size, product.size)
                         .Set(p => p.weight, product.weight)
                         .Set(p => p.is_dropship, product.is_dropship)
+                        .Set(p => p.is_oem, product.is_oem)
                         .SetOnInsert(p => p.images, new string[6])
                         .SetOnInsert(p => p.likes, new string[0])
                         .SetOnInsert(p => p.is_draft, true),

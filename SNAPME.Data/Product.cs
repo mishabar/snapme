@@ -21,9 +21,10 @@ namespace SNAPME.Data
         public string[] images { get; set; }
         public string size { get; set; }
         public string weight { get; set; }
-        public int condition { get; set; }
+        public int lead_time { get; set; }
         public bool is_draft { get; set; }
         public bool is_dropship { get; set; }
+        public bool is_oem { get; set; }
         public string stock_model { get; set; }
         public int min_quantity { get; set; }
 

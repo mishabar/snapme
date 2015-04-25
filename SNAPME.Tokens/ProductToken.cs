@@ -44,11 +44,13 @@ namespace SNAPME.Tokens
         public string size { get; set; }
         [Required]
         public string weight { get; set; }
-        [Required]
-        public ProductCondition condition { get; set; }
+        [Range(0, 999)]
+        public int lead_time { get; set; }
         public bool is_draft { get; set; }
         [Required]
         public bool is_dropship { get; set; }
+        [Required]
+        public bool is_oem { get; set; }
 
         // User Preferences
         public UserPreferencesToken UserPreferences { get; set; }
@@ -72,8 +74,7 @@ namespace SNAPME.Tokens
                 name = Guid.NewGuid().ToString().Replace('-', ' '), 
                 retail_price = new Random().Next(5000) + 10000,
                 //size = "12cm x 14cm x 25cm",
-                weight = "0.8kg",
-                condition = ProductCondition.New
+                weight = "0.8kg"
             };
         }
     }
@@ -101,9 +102,10 @@ namespace SNAPME.Tokens
                 height = double.Parse(sizes[2]),
                 size = product.size,
                 weight = product.weight,
-                condition = (ProductCondition)product.condition,
+                lead_time = product.lead_time,
                 is_draft = product.is_draft,
                 is_dropship = product.is_dropship,
+                is_oem = product.is_oem,
                 stock_model = product.stock_model,
                 min_quantity = product.min_quantity
             };
@@ -133,9 +135,10 @@ namespace SNAPME.Tokens
                 suggested_sell_price = (int)Math.Floor(product.suggested_sell_price * 100F),
                 size = string.Join("x", product.length, product.width, product.height),
                 weight = product.weight,
-                condition = (int)product.condition,
+                lead_time = product.lead_time,
                 is_draft = product.is_draft,
                 is_dropship = product.is_dropship,
+                is_oem = product.is_oem,
                 stock_model = product.stock_model,
                 min_quantity = product.min_quantity
             };
