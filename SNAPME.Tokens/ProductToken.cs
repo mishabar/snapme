@@ -8,6 +8,12 @@ using SNAPME.Data;
 
 namespace SNAPME.Tokens
 {
+    public class ProductBaseToken
+    {
+        [Required]
+        public string id { get; set; }
+    }
+    
     public class ProductToken
     {
         public string id { get; set; }
@@ -29,7 +35,7 @@ namespace SNAPME.Tokens
         [Range(0.01F, Double.MaxValue)]
         public double purchase_price { get; set; }
         [Required]
-        [Range(0.01F, Double.MaxValue)]
+        [Range(0.0F, Double.MaxValue)]
         public double suggested_sell_price { get; set; }
         public string[] images { get; set; }
         [Required]

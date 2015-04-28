@@ -20,6 +20,9 @@ footer {
   left: 0;
   right: 0;
 }
+.modal-lg {
+  width: 90%;
+}
 a.navbar-brand {
   padding: 5px;
   margin-right: 40px;
@@ -61,5 +64,13 @@ h2 .btn + .btn {
 }
 .faq dd {
   margin-bottom: 20px;
+}
+input[data-val-required].form-control,
+textarea[data-val-required].form-control {
+  padding-right: 16px;
+  background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAB7UlEQVQokV2Ry2sTURjFz713mkk7SWg1iUlsrF0YW4xFSXRhaAlYqIIL7aIimFYKhe4EqRtBFAQXBXEjuDLgQvEPqOCjQo1QN5ZSSHw0pqHpi0QnTPOYzEw7uW4caT2rc+D3W3x8DH9z3NXRNRWJjR6QHF35spxtIZQNh8LD10Ph88uKvFUx9AoAMEuYPjd45+po4kHEGwh9zS6ngpLT/XAk8TgWj98QZcWYXc19AADBEuZXsu8uVGu3fX7fyZHTZyYI5zu+w/6woTbIj7VCyuII9uTp0JXk5ejZMaNF4JwD9t1dsri09PLizKuExQj9we5LJ4JHIiAEEG12VdO4o6xRgJB6q2jmGbdNxuL3wDkya4UFcjfa/2zc3z0OwwAoAyMETNMBAKZdhMmbAG8CNhuSm/mkkKsq6bfu2hwIcKhV8vTY2nrbfssEAFE9HfzbTuN7SdWKMAzkqkp63w2PIgPTg86Dt0xKCAjhzGyS9zX5ydSX1E2LoVaJSu3H+gKdE0qtyhbUyvxiXZlT6lV6KtA5FnG091jcvz9c6+277yV0oNQ0t178zEymy6XZo27vkKkbHiZJwufixut9wnajsa0LzMwo8ptPpY2ZTU0tckrNVdMofCysPP+lN9bxfxyUOUXKXNa2U+aS9mwA+AO7hMJp+M14lgAAAABJRU5ErkJggg==') /*/Content/Images/asterisk.png*/ no-repeat 99% center;
+}
+.iisnap-alert {
+  text-align: left;
 }
 /*# sourceMappingURL=admin.css.map */

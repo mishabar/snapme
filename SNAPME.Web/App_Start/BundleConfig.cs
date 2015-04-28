@@ -23,13 +23,16 @@ namespace SNAPME.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/jquery.bxslider.min.js",
                       "~/Scripts/jquery.cookie.js",
+                      "~/Scripts/bootbox.min.js",
                       "~/Scripts/snapme.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                      "~/Scripts/admin.js",
                       "~/Areas/Admin/Scripts/seller.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/seller").Include(
+                      "~/Scripts/admin.js",
                       "~/Areas/Seller/Scripts/seller.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

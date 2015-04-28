@@ -104,5 +104,16 @@ namespace SNAPME.Data.MongoDB
         {
             return _collection.FindAll();
         }
+
+
+        public void CheckProduct(string id)
+        {
+            var product = _collection.FindOne(Query<Product>.EQ(p => p.id, id));
+
+            if (product != null && product.size == null) 
+            {
+                _collection.Remove(Query<Product>.EQ(p => p.id, id));
+            }
+        }
     }
 }

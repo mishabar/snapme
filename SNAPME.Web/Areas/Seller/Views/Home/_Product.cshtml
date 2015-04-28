@@ -70,13 +70,13 @@
                 @Html.LabelFor(m => m.category, "Category")
                 @Html.DropDownListFor(m => m.category, categoriesList, new { @class = "form-control" })
             </div>
-            <div class="form-group col-sm-12">
+            <div class="form-group col-sm-12 col-md-6">
                 @Html.LabelFor(m => m.short_descritpion, "Short Descritpion")
-                @Html.TextAreaFor(m => m.short_descritpion, new { @class = "form-control", rows = 2 })
+                @Html.TextAreaFor(m => m.short_descritpion, new { @class = "form-control", rows = 3 })
             </div>
-            <div class="form-group col-sm-12">
+            <div class="form-group col-sm-12 col-md-6">
                 @Html.LabelFor(m => m.descritpion, "Descritpion")
-                @Html.TextAreaFor(m => m.descritpion, new { @class = "form-control", rows = 4 })
+                @Html.TextAreaFor(m => m.descritpion, new { @class = "form-control", rows = 3 })
             </div>
             <div class="form-group col-sm-12">
                 <label>Images</label>&nbsp;<span>Minimum image size: 853x480 px (16:9 ratio)</span>
@@ -109,8 +109,10 @@
                 @Html.LabelFor(m => m.min_quantity, "MOQ")
                 @Html.TextBoxFor(m => m.min_quantity, new { @class = "form-control" })
             </div>
-            @Html.HiddenFor(m => m.suggested_sell_price)
-            <div class="clearfix">&nbsp;</div>
+            <div class="form-group col-sm-3">
+                <div style="height: 59px;">&nbsp;</div>
+                @Html.HiddenFor(m => m.suggested_sell_price)
+            </div>
             <div class="form-group col-sm-3">
                 @Html.LabelFor(m => m.stock_model, "Inventory")
                 @Html.DropDownListFor(m => m.stock_model, stockModels, new { @class = "form-control" })
@@ -135,7 +137,6 @@
                     </label>
                 </div>
             </div>
-            <div class="clearfix">&nbsp;</div>
             <div class="form-group col-sm-3">
                 @Html.LabelFor(m => m.length, "Length")
                 <div class="input-group">
@@ -168,6 +169,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="removeGhost()">Cancel</button>
     <button type="button" class="btn btn-primary" onclick="saveProduct()">Save</button>
 </div>

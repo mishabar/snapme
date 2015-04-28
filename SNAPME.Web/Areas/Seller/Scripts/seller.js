@@ -2,7 +2,9 @@
     $('#mnuSellers').addClass('active');
     $('#menuSeller > li:first-child() > a').trigger('click');
 
-    $('#mdlProduct').on('hidden.bs.modal', function(){ $(this).removeData('bs.modal').find('.modal-content').html(''); });
+    $('#mdlProduct').on('hidden.bs.modal', function () {
+        $(this).removeData('bs.modal').find('.modal-content').html('');
+    });
 });
 
 $.validator.setDefaults({
@@ -26,8 +28,11 @@ function getContent(content, url, midx) {
             $(content).html(response);
             if ($(content + ' form').length > 0) {
                 var form = $(content + ' form').removeData("validator").removeData("unobtrusiveValidation");
-                $.validator.unobtrusive.parse(form);
+                $.validator.unobtrusive.parse(form); form.validate().resetForm();
             }
+            $(content).find('.modal').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal').find('.modal-content').html('');
+            });
             attachEvents();
         }
     });
@@ -37,11 +42,12 @@ function saveDetails(redirect) {
     if ($('#frmSellerDetails').valid()) {
         var data = $('#frmSellerDetails').serializeArray();
         $.post('/api/v1/save/seller', data, function (response) {
-            if (response.error) { alert(response.error); }
-            else { alert('Seller details were saved'); $('.container > h2 > span').text($('#name').val()); }
+            if (response.error) { showAlert('danger', 'One or more errors occured while trying to save your data. Please try again!'); }
+            else { showAlert('success', 'Seller details were saved'); $('.container > h2 > span').text($('#name').val()); }
         });
     } else {
         $('#frmSellerDetails .has-error .form-control').focus();
+        showAlert('danger', 'Please enter the mandatory information and try again!');
     }
 }
 
@@ -50,12 +56,18 @@ function saveProduct() {
         var data = $('#frmEditProduct').serializeArray();
         data.push({ name: "seller_id", value: $('#GlobalSellerID').val() });
         $.post('/api/v1/save/product', data, function (response) {
-            if ('error' in response) { }
-            else { $('#mdlProduct').modal('hide'); $('#menuSeller li.active a').trigger('click'); }
+            if ('error' in response) { showAlert('danger', 'One or more errors occured while trying to save your data. Please try again!', true); }
+            else { $('#mdlProduct').modal('hide'); $('#menuSeller li.active a').trigger('click'); showAlert('success', 'Product details were saved'); }
         });
     } else {
         $('#frmSellerDetails .has-error .form-control').focus();
+        showAlert('danger', 'Please enter the mandatory information and try again!', true);
     }
+}
+
+function removeGhost() {
+    var data = { id: $('#id').val() };
+    $.post('/api/v1/check/product', data, function (response) { });
 }
 
 function attachEvents() {

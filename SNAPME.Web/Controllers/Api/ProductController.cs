@@ -77,6 +77,14 @@ namespace SNAPME.Web.Controllers.Api
             return BadRequest(ModelState);
         }
 
+        [Route("check/product"), HttpPost, Authorize(Roles = "Administrator, Seller")]
+        public IHttpActionResult Check(ProductBaseToken product)
+        {
+            _sellerService.CheckProduct(product.id);
+
+            return Ok();
+        }
+
         [Route("product/image"), HttpPost, Authorize(Roles="Administrator, Seller")]
         public IHttpActionResult AddImage(ProductImageModel model)
         {

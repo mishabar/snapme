@@ -67,5 +67,11 @@ namespace SNAPME.Services
         {
             _sellerRepository.Archive(id);
         }
+
+
+        public void CheckProduct(string id)
+        {
+            _productRepository.CheckProduct(id);
+        }
     }
 }

@@ -25,5 +25,7 @@ namespace SNAPME.Services.Interfaces
         void SaveProductImage(string id, string image, int idx);
 
         void Archive(string id);
+
+        void CheckProduct(string id);
     }
 }

@@ -21,5 +21,7 @@ namespace SNAPME.Data.Repositories
         IEnumerable<Product> GetByIds(string[] ids);
 
         IEnumerable<Product> GetAll();
+
+        void CheckProduct(string id);
     }
 }
