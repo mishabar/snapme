@@ -42,7 +42,7 @@ namespace SNAPME.Tokens.Admin
             {
                 id = seller.id,
                 name = seller.name,
-                email = seller.email,
+                email = seller.email.Trim(),
                 website = seller.website,
                 business_type = seller.business_type,
                 legal_name = seller.legal_name,
@@ -67,7 +67,7 @@ namespace SNAPME.Tokens.Admin
             {
                 id = seller.id,
                 name = seller.name,
-                email = seller.email,
+                email = seller.email.Trim(),
                 website = seller.website,
                 business_type = seller.business_type,
                 legal_name = seller.legal_name,

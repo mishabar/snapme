@@ -81,13 +81,13 @@ namespace SNAPME.Web.Areas.Seller.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var signInManager = HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await signInManager.PasswordSignInAsync(model.Email.Trim(), model.Password.Trim(), model.RememberMe, shouldLockout: false);
 
             switch (result)
             {
                 case SignInStatus.Success:
                     var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                    var user = await userManager.FindByEmailAsync(model.Email);
+                    var user = await userManager.FindByEmailAsync(model.Email.Trim());
                     if (user.Roles.Contains("Administrator"))
                     {
                         return Redirect("/Admin");
