@@ -88,10 +88,10 @@
                             <div class="row share-buttons">
                                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
                                     <ul>
-                                        <li><a class="btn btn-block btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url.OriginalString" target="_blank"><i class="fa fa-facebook-f pull-left"></i>Share on Facebook</a></li>
-                                        <li><a class="btn btn-block btn-twitter" href="https://twitter.com/home?status=Check out this great product on %23iiSnap @Request.Url.OriginalString" target="_blank"><i class="fa fa-twitter pull-left"></i>Share on Twitter</a></li>
-                                        <li><a class="btn btn-block btn-google-plus" href="https://plus.google.com/share?url=@Request.Url.OriginalString" target="_blank"><i class="fa fa-google-plus pull-left"></i>Share on Google+</a></li>
-                                        <li><a class="btn btn-block btn-pinterest" href="https://pinterest.com/pin/create/button/?url=@Request.Url.OriginalString&media=@string.Format("http://{0}/Image/{1}/{2}", Request.Url.DnsSafeHost, Model.id, firstImageIndex)&description=@Model.name" target="_blank"><i class="fa fa-pinterest-p pull-left"></i>Share on Pinterest</a></li>
+                                        <li><a class="btn btn-block btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=@string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)" target="_blank"><i class="fa fa-facebook-f pull-left"></i>Share on Facebook</a></li>
+                                        <li><a class="btn btn-block btn-twitter" href="https://twitter.com/home?status=Check out this great product on %23iiSnap @string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)" target="_blank"><i class="fa fa-twitter pull-left"></i>Share on Twitter</a></li>
+                                        <li><a class="btn btn-block btn-google-plus" href="https://plus.google.com/share?url=@string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)" target="_blank"><i class="fa fa-google-plus pull-left"></i>Share on Google+</a></li>
+                                        <li><a class="btn btn-block btn-pinterest" href="https://pinterest.com/pin/create/button/?url=@string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)&media=@string.Format("http://{0}/Image/{1}/{2}", Request.Url.DnsSafeHost, Model.id, firstImageIndex)&description=@Model.name" target="_blank"><i class="fa fa-pinterest-p pull-left"></i>Share on Pinterest</a></li>
                                     </ul>
                                 </div>
                             </div>
