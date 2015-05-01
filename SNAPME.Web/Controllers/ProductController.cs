@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -32,14 +33,47 @@ namespace SNAPME.Web.Controllers
         [Route("product/{id}", Name = "ProductDetails"), HttpGet, EnableCompression]
         public ActionResult Details(string id)
         {
-            var product = _productService.GetById(id);
-            if (User.Identity.IsAuthenticated)
+            try
             {
-                product.UserPreferences = _productService.GetPreferences(id, User.Identity.GetUserId());
-            }
-            product.Sale = _saleService.GetActive(id);
+                var product = _productService.GetById(id);
+                if (User.Identity.IsAuthenticated)
+                {
+                    product.UserPreferences = _productService.GetPreferences(id, User.Identity.GetUserId());
+                }
+                product.Sale = _saleService.GetActive(id);
 
-            return View(product);
+                return View(product);
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+        }
+
+        // GET: Image
+        [Route("image/{id}/{idx}", Name = "ProductIamge"), HttpGet, EnableCompression]
+        public ActionResult Image(string id, int idx)
+        {
+            try
+            {
+
+                var product = _productService.GetById(id);
+                MemoryStream stream = new MemoryStream();
+                string[] imageParts = product.images[idx].Split(';');
+
+                string contentType = imageParts[0].Substring(5);
+                byte[] image = Convert.FromBase64String(imageParts[1].Substring(7));
+
+                stream.Write(image, 0, image.Length);
+                stream.Flush();
+                stream.Seek(0, SeekOrigin.Begin);
+
+                return new FileStreamResult(stream, contentType);
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
         }
     }
 }

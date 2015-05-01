@@ -182,6 +182,25 @@ img.img-responsive.avatar {
   z-index: 1;
   border-radius: 4px;
 }
+.product .share-buttons {
+  margin: 0 0 0 10px;
+}
+.product .share-buttons ul {
+  list-style-type: none;
+  margin: 20px 0;
+  padding: 0;
+}
+.product .share-buttons ul li {
+  padding: 18px 0;
+}
+.product .share-buttons ul li .btn {
+  border-radius: 4px;
+}
+.product .share-buttons ul li .btn i {
+  line-height: inherit;
+  font-size: 22px;
+  margin: -4px;
+}
 .product .bx-wrapper {
   margin-bottom: 0;
 }
@@ -1380,5 +1399,21 @@ ul.account-menu li[role=navigation].grey-bg a {
 .tabs-right > .nav-tabs .active > a:focus {
   border-color: #ddd #ddd #ddd transparent;
   *border-left-color: #ffffff;
+}
+.btn-facebook {
+  background-color: #3b5998;
+  color: #fff;
+}
+.btn-twitter {
+  background-color: #00aced;
+  color: #fff;
+}
+.btn-google-plus {
+  background-color: #dd4b39;
+  color: #fff;
+}
+.btn-pinterest {
+  background-color: #cb2027;
+  color: #fff;
 }
 /*# sourceMappingURL=site.css.map */

@@ -93,7 +93,7 @@ namespace SNAPME.Web.Areas.Admin.Controllers
             if (sellerUser == null)
             {
                 sellerUser = new ApplicationUser { UserName = seller.email, Email = seller.email };
-                string password = System.Web.Security.Membership.GeneratePassword(10, 4);
+                string password = System.Web.Security.Membership.GeneratePassword(10, 0);
                 var result = await userManager.CreateAsync(sellerUser, password);
                 if (result.Succeeded)
                 {
