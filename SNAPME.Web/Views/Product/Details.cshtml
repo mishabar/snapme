@@ -73,7 +73,7 @@
                             <div class="time-left">
                                 @{
                                 var v = Model.Sale.ends_on - DateTime.UtcNow;
-                                    @:Sale ends in @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
+                                @:Sale ends in @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
                                 }
                             </div>
                             }
@@ -96,7 +96,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="social">Social options</div>
+                        <div role="tabpanel" class="tab-pane" id="social">
+                            <div class="row social">
+                                <div class="col-xs-12 text-center">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="options" id="option1" autocomplete="off" checked> Feed
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="options" id="option2" autocomplete="off"> My Friends
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -162,5 +175,14 @@
             maxSlides: 1,
             slideMargin: 0
         });
+
+        //function prependListItem(listName, listItemHTML) {
+        //    $(listItemHTML)
+        //        .hide()
+        //        .css('opacity', 0.0)
+        //        .prependTo('#' + listName)
+        //        .slideDown('slow')
+        //        .animate({ opacity: 1.0 })
+        //}
     </script>
 }

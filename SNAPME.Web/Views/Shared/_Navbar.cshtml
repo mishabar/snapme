@@ -3,49 +3,65 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed @(Request.IsAuthenticated ? "navbar-toggle-auth" : string.Empty)" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                @if (Request.IsAuthenticated)
+                {
+                    <img class="avatar" src="@((User.Identity as System.Security.Claims.ClaimsIdentity).FindFirstValue("smn:image_url"))" />
+                }
+                else
+                {
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                }
+            </button>
+
+
             <a class="navbar-brand" href="#">
                 <img alt="iiSnap" src="~/Content/Images/logo.png">
             </a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            @if (Request.IsAuthenticated || ViewBag.ComingSoon == null)
-            {
-                <li id="mnuHome"><a href="/Home">Home</a></li>
-                <li id="mnuAbout"><a href="/Home/About">About</a></li>
-                <li id="mnuContact"><a href="/Home/Contact">Contact</a></li>
-                if (Request.IsAuthenticated)
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                @if (Request.IsAuthenticated || ViewBag.ComingSoon == null)
                 {
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="avatar" src="@((User.Identity as System.Security.Claims.ClaimsIdentity).FindFirstValue("smn:image_url"))" /></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="/MyAccount/Details">My Account</a></li>
-                            @if (User.IsInRole("Administrator"))
-                            {
+                    <li id="mnuHome"><a href="/Home">Home</a></li>
+                    <li id="mnuAbout"><a href="/Home/About">About</a></li>
+                    <li id="mnuContact"><a href="/Home/Contact">Contact</a></li>
+                    if (Request.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="avatar" src="@((User.Identity as System.Security.Claims.ClaimsIdentity).FindFirstValue("smn:image_url"))" /></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/MyAccount/Details">My Account</a></li>
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <li class="divider"></li>
+                                    <li><a href="/Admin">Manage</a></li>
+                                }
                                 <li class="divider"></li>
-                                <li><a href="/Admin">Manage</a></li>
-                            }
-                            <li class="divider"></li>
-                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                        </ul>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                            </ul>
 
-                    </li>
+                        </li>
+                    }
+                    else
+                    {
+                        <li id="mnuLogin"><a href="#" onclick="showLoginDialog()">Sign in</a></li>
+                    }
                 }
                 else
                 {
-                    <li id="mnuLogin"><a href="#" onclick="showLoginDialog()">Sign in</a></li>
+                    <li>
+                        <form action="/Account/ExternalLogin" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account" class="btn btn-block facebook"><i class="fa fa-facebook"></i></button>
+                        </form>
+                    </li>
                 }
-            }
-            else
-            {
-                <li>
-                    <form action="/Account/ExternalLogin" method="post">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account" class="btn btn-block facebook"><i class="fa fa-facebook"></i></button>
-                    </form>
-                </li>
-            }
-        </ul>
-
+            </ul>
+        </div>
     </div>
 </nav>
 
