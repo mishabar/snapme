@@ -61,6 +61,9 @@ namespace SNAPME.Tokens
         // User Preferences
         public UserPreferencesToken UserPreferences { get; set; }
 
+        // Social Feed
+        public FeedEntryToken[] SocialFeed { get; set; }
+
         // Sale
         public SaleToken Sale { get; set; }
 

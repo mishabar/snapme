@@ -43,6 +43,7 @@
     <Compile Include="Admin\SellerToken.cs" />
     <Compile Include="Api\BaseProductToken.cs" />
     <Compile Include="CategoryToken.cs" />
+    <Compile Include="FeedEntryToken.cs" />
     <Compile Include="ProductCondition.cs" />
     <Compile Include="ProductToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

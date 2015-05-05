@@ -43,5 +43,10 @@ namespace SNAPME.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult HowItWorks()
+        {
+            return View();
+        }
     }
 }

@@ -378,6 +378,38 @@ img.img-responsive.avatar {
   background: url(Images/snapme-snapped.png) no-repeat center center;
   background-size: contain;
 }
+.product .social-feed {
+  width: 100%;
+  height: 255px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 10px;
+  margin-top: 15px;
+}
+.product .social-feed ul {
+  list-style-type: none;
+  padding: 0;
+}
+.product .social-feed ul li.entry {
+  text-align: left;
+  border-top: 1px solid #ccc;
+  line-height: 18px;
+}
+.product .social-feed ul li.entry > div {
+  margin-left: 55px;
+}
+.product .social-feed ul li.entry > div img {
+  width: 50px;
+  height: 50px;
+}
+.product .social-feed ul li.entry > div .username {
+  font-weight: bold;
+}
+.product .social-feed ul li.entry > div .timestamp {
+  color: #ddd;
+}
 .product-sm {
   border: 1px solid #f1f1f1;
   border-top: 3px solid #ffde00;
@@ -1457,5 +1489,23 @@ ul.account-menu li[role=navigation].grey-bg a {
 .btn-pinterest {
   background-color: #cb2027;
   color: #fff;
+}
+#carousel-howitworks h1 {
+  margin: 0;
+  text-align: center;
+  padding: 30px 0;
+  color: #ffffff;
+}
+#carousel-howitworks .item:nth-child(1) {
+  background-image: linear-gradient(to bottom, #acd4ad 0, #41bfc2 100%);
+}
+#carousel-howitworks .item:nth-child(2) {
+  background-image: linear-gradient(to bottom, #8364a6 0, #26a2d7 100%);
+}
+#carousel-howitworks .item:nth-child(3) {
+  background-image: linear-gradient(to bottom, #3b5a95 0, #c96091 100%);
+}
+#carousel-howitworks .item:nth-child(4) {
+  background-image: linear-gradient(to bottom, #a3ca54 0, #20aa53 100%);
 }
 /*# sourceMappingURL=site.css.map */

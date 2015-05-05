@@ -36,6 +36,7 @@ namespace SNAPME.Web.Controllers
             try
             {
                 var product = _productService.GetById(id);
+                product.SocialFeed = new FeedEntryToken[] { new FeedEntryToken { user_id = "54e8c6d88e65a93d08655aaf", username = "Michael Bar", when = DateTime.UtcNow } };
                 if (User.Identity.IsAuthenticated)
                 {
                     product.UserPreferences = _productService.GetPreferences(id, User.Identity.GetUserId());

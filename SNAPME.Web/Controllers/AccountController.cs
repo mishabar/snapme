@@ -435,6 +435,24 @@ namespace SNAPME.Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public async Task<RedirectResult> Image(string id)
+        {
+            try
+            {
+                var user = await UserManager.FindByIdAsync(id);
+                if (user != null && !string.IsNullOrWhiteSpace(user.ImageUrl))
+                {
+                    return Redirect(user.ImageUrl);
+                }
+            }
+            catch
+            {
+            }
+
+            return Redirect("/Content/Images/iisnap.ico");
+        }
+
         #region Early Birds
         [HttpPost]
         [AllowAnonymous]

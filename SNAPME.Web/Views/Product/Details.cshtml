@@ -101,11 +101,26 @@
                                 <div class="col-xs-12 text-center">
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default active">
-                                            <input type="radio" name="options" id="option1" autocomplete="off" checked> Feed
+                                            <input type="radio" name="options" id="feed" autocomplete="off" checked> Feed
                                         </label>
                                         <label class="btn btn-default">
-                                            <input type="radio" name="options" id="option2" autocomplete="off"> My Friends
+                                            <input type="radio" name="options" id="myFriends" autocomplete="off"> My Friends
                                         </label>
+                                    </div>
+                                    <div class="social-feed">
+                                        <ul>
+                                            @foreach (var item in Model.SocialFeed)
+                                            {
+                                                <li class="entry">
+                                                    <img src="/Account/Image/@item.user_id" alt="@item.username" class="feed-avatar pull-left" />
+                                                    <div>
+                                                        <div class="username">@item.username</div>
+                                                        <div class="action">did something</div>
+                                                        <div class="timestamp">@item.when.ToString("HH:mm dd/MM/yyyy")</div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -176,6 +191,7 @@
             slideMargin: 0
         });
 
+        $('.social-feed').scrollator();
         //function prependListItem(listName, listItemHTML) {
         //    $(listItemHTML)
         //        .hide()

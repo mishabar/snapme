@@ -265,7 +265,7 @@ img.img-responsive.avatar {
         margin: 0 0 0 10px;
         padding: 10px 0;
 
-        .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
+        .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
             background-color: #ffde00;
             color: #fff;
         }
@@ -452,6 +452,48 @@ img.img-responsive.avatar {
             &.snapped {
                 background: url(Images/snapme-snapped.png) no-repeat center center;
                 background-size: contain;
+            }
+        }
+    }
+
+    .social-feed {
+        width: 100%;
+        height: 255px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        overflow: auto;
+        padding: 10px;
+        margin-top: 15px;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li.entry {
+                text-align: left;
+                border-top: 1px solid #ccc;
+                line-height: 18px;
+
+                > div {
+                    margin-left: 55px;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                    }
+
+                    .username {
+                        font-weight: bold;
+                    }
+
+                    .action {
+                    }
+
+                    .timestamp {
+                        color: #ddd;
+                    }
+                }
             }
         }
     }
@@ -1791,4 +1833,26 @@ ul.account-menu {
 .btn-pinterest {
     background-color: #cb2027;
     color: #fff;
+}
+
+#carousel-howitworks {
+    h1 {
+        margin: 0;
+        text-align: center;
+        padding: 30px 0;
+        color: #ffffff;
+    }
+
+    .item:nth-child(1) {
+        background-image: linear-gradient(to bottom, #ACD4AD 0, #41BFC2 100%);
+    }
+    .item:nth-child(2) {
+        background-image: linear-gradient(to bottom, #8364A6 0, #26A2D7 100%);
+    }
+    .item:nth-child(3) {
+        background-image: linear-gradient(to bottom, #3B5A95 0, #C96091 100%);
+    }
+    .item:nth-child(4) {
+        background-image: linear-gradient(to bottom, #A3CA54 0, #20AA53 100%);
+    }
 }

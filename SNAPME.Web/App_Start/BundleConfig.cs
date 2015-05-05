@@ -24,6 +24,7 @@ namespace SNAPME.Web
                       "~/Scripts/jquery.bxslider.min.js",
                       "~/Scripts/jquery.cookie.js",
                       "~/Scripts/bootbox.min.js",
+                      "~/Scripts/fm.scrollator.jquery.js",
                       "~/Scripts/snapme.js",
                       "~/Scripts/respond.js"));
 
@@ -41,6 +42,7 @@ namespace SNAPME.Web
                       "~/Content/themify-icons.css",
                       "~/Content/style.css", // icomoon
                       "~/Content/jquery.bxslider.css",
+                      "~/Content/fm.scrollator.jquery.css",
                       "~/Content/site.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/admin_css").Include(
