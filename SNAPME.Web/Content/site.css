@@ -1490,60 +1490,68 @@ ul.account-menu li[role=navigation].grey-bg a {
   background-color: #cb2027;
   color: #fff;
 }
-#carousel-howitworks h1 {
+.how-it-works {
+  background-image: linear-gradient(to bottom, #acd4ad 0, #41bfc2 100%);
+}
+.how-it-works #carousel-howitworks {
+  /*.item:nth-child(1) {
+        background-image: linear-gradient(to bottom, #ACD4AD 0, #41BFC2 100%);
+    }
+
+    .item:nth-child(2) {
+        background-image: linear-gradient(to bottom, #8364A6 0, #26A2D7 100%);
+    }
+
+    .item:nth-child(3) {
+        background-image: linear-gradient(to bottom, #3B5A95 0, #C96091 100%);
+    }
+
+    .item:nth-child(4) {
+        background-image: linear-gradient(to bottom, #A3CA54 0, #20AA53 100%);
+    }*/
+}
+.how-it-works #carousel-howitworks h1 {
   margin: 0;
   text-align: center;
   padding: 30px 0;
   color: #ffffff;
 }
-#carousel-howitworks .item {
+.how-it-works #carousel-howitworks .item {
   padding: 0 40px 110px 40px;
   color: #fff;
 }
-#carousel-howitworks .item .text-vcenter {
+.how-it-works #carousel-howitworks .item .text-vcenter {
   height: 500px;
   display: table-cell;
   vertical-align: middle;
   font-size: 20px;
 }
-#carousel-howitworks .item:nth-child(1) {
-  background-image: linear-gradient(to bottom, #acd4ad 0, #41bfc2 100%);
-}
-#carousel-howitworks .item:nth-child(2) {
-  background-image: linear-gradient(to bottom, #8364a6 0, #26a2d7 100%);
-}
-#carousel-howitworks .item:nth-child(3) {
-  background-image: linear-gradient(to bottom, #3b5a95 0, #c96091 100%);
-}
-#carousel-howitworks .item:nth-child(4) {
-  background-image: linear-gradient(to bottom, #a3ca54 0, #20aa53 100%);
-}
-#carousel-howitworks .carousel-indicators {
+.how-it-works #carousel-howitworks .carousel-indicators {
   left: 0;
   margin-left: 0;
   width: 100%;
   color: #fff;
 }
-#carousel-howitworks .carousel-indicators li {
+.how-it-works #carousel-howitworks .carousel-indicators li {
   width: 22%;
   border: none;
   background: rgba(0, 0, 0, 0);
   text-indent: 0;
   text-align: center;
 }
-#carousel-howitworks .carousel-indicators li span {
+.how-it-works #carousel-howitworks .carousel-indicators li span {
   padding: 12px;
   border: 2px solid #fff;
   font-size: 36px;
   border-radius: 50px;
 }
-#carousel-howitworks .carousel-indicators li div {
+.how-it-works #carousel-howitworks .carousel-indicators li div {
   margin-top: 10px;
 }
-#carousel-howitworks .carousel-indicators li.active span {
+.how-it-works #carousel-howitworks .carousel-indicators li.active span {
   border-color: #ffde00;
 }
-.snap-map {
+.how-it-works .snap-map {
   margin-top: 50px;
 }
 #carousel-home .hero-product {
