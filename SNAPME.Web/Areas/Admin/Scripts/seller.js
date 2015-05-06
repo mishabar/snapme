@@ -97,6 +97,16 @@ function attachEvents() {
             $(this).removeData('bs.modal').find('.modal-content').html('');
         });
     }
+
+    $('a[data-toggle=modal][data-action=resetpwd]').on('click', function () {
+        $('#mdl').data('remote', '/Admin/Seller/ResetPassword?Email=' + $(this).data('id')).one("loaded.bs.modal", function () {
+            $.validator.unobtrusive.parse($('form', this));
+        });
+    });
+
+    $('#mdl').on('hidden.bs.modal', function () {
+        $(this).removeData('bs.modal').find('.modal-content').html('');
+    });
 }
 
 function createAccount(id) {
@@ -131,5 +141,15 @@ function filterList(event, clear) {
         });
     } else {
         $('table tbody tr').removeClass('hidden');
+    }
+}
+
+function resetPassword() {
+    if ($('#frmResetPassword').valid()) {
+        var data = $('#frmResetPassword').serializeArray();
+        $.post('/Admin/Seller/ResetPassword', data, function (response) {
+            if ('error' in response) { showAlert('danger', response.error, true); }
+            else { $('#mdl').modal('hide'); showAlert('success', 'Password was reset!'); }
+        });
     }
 }

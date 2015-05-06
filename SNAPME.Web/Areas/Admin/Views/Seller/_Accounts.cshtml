@@ -1,0 +1,20 @@
+﻿@model IEnumerable<SNAPME.Web.Models.ApplicationUser>
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th style="width: 1%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Model)
+        {
+            <tr>
+                <td>@account.Email</td>
+                <td><a href="#mdl" data-id="@account.Email" data-action="resetpwd" data-toggle="modal" class="btn btn-sm btn-danger">Reset Password</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

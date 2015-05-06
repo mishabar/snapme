@@ -1843,16 +1843,110 @@ ul.account-menu {
         color: #ffffff;
     }
 
+    .item {
+        padding: 0 40px 110px 40px;
+        color: #fff;
+
+        .text-vcenter {
+            height: 500px;
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+    }
+
     .item:nth-child(1) {
         background-image: linear-gradient(to bottom, #ACD4AD 0, #41BFC2 100%);
     }
+
     .item:nth-child(2) {
         background-image: linear-gradient(to bottom, #8364A6 0, #26A2D7 100%);
     }
+
     .item:nth-child(3) {
         background-image: linear-gradient(to bottom, #3B5A95 0, #C96091 100%);
     }
+
     .item:nth-child(4) {
         background-image: linear-gradient(to bottom, #A3CA54 0, #20AA53 100%);
+    }
+
+    .carousel-indicators {
+        left: 0;
+        margin-left: 0;
+        width: 100%;
+        color: #fff;
+
+        li {
+            width: 22%;
+            border: none;
+            background: rgba(0, 0, 0, 0);
+            text-indent: 0;
+            text-align: center;
+
+            span {
+                padding: 12px;
+                border: 2px solid #fff;
+                font-size: 36px;
+                border-radius: 50px;
+            }
+
+            div {
+                margin-top: 10px;
+            }
+
+            &.active {
+                span {
+                    border-color: #ffde00;
+                }
+            }
+        }
+    }
+}
+
+.snap-map {
+    margin-top: 50px;
+}
+
+#carousel-home {
+    .hero-product {
+        height: 500px;
+        padding: 20px 40px;
+        color: #fff;
+
+        h1 {
+            padding-top: 50px;
+            padding-bottom: 30px;
+        }
+
+        h4{
+            padding-bottom: 40px;
+        }
+
+        &.red {
+            background-color: #ED4E4D;
+        }
+
+        &.green {
+            background-color: #ACD4AD;
+        }
+
+        &.purple {
+            background-color: #8364A6;
+        }
+
+        &.blue {
+            background-color: #26A2D7;
+        }
+    }
+}
+
+.btn-black{
+    background: #000;
+    border-color: #000;
+    color: #fff;
+
+    &:hover, &:active{
+        color: #c1c1c1;
     }
 }

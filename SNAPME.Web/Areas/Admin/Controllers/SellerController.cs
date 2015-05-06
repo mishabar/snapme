@@ -129,5 +129,36 @@ namespace SNAPME.Web.Areas.Admin.Controllers
                 return Json(new { error = ex.Message });
             }
         }
+
+        public PartialViewResult Accounts(string id)
+        {
+            var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            return PartialView("_Accounts", userManager.Users.Where(u => u.Claims.Any(c => c.Type == "urn:iisnap:seller_id" && c.Value == id)));
+        }
+
+        public PartialViewResult ResetPassword(string email)
+        {
+            return PartialView("_ResetPassword", new ResetPasswordViewModel { Email = email });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var user = await userManager.FindByEmailAsync(model.Email);
+                model.Code = await userManager.GeneratePasswordResetTokenAsync(user.Id);
+                var result = await userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+                if (result.Succeeded)
+                {
+                    return Json(new { result = "Password Set" });
+                }
+                return Json(new { error = result.Errors.First() });
+            }
+
+            return Json(new { result = "Bad Request" });
+        }
     }
 }

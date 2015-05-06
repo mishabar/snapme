@@ -22,11 +22,6 @@ namespace SNAPME.Web.Controllers
             return View(model);
         }
 
-        public ActionResult ComingSoon()
-        {
-            return View(new Random().Next(2) == 0 ? "ComingSoon" : "LaunchingSoon");
-        }
-
         public ActionResult About()
         {
             return View();

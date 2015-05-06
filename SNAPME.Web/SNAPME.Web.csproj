@@ -212,6 +212,7 @@
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Controllers\WelcomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -348,6 +349,8 @@
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Seller\Views\Home\FAQ.cshtml" />
     <Content Include="Areas\Seller\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Seller\_Accounts.cshtml" />
+    <Content Include="Areas\Admin\Views\Seller\_ResetPassword.cshtml" />
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\admin.js" />
@@ -427,12 +430,12 @@
     <Content Include="Views\MyAccount\Snaps.cshtml" />
     <Content Include="Views\MyAccount\Favorites.cshtml" />
     <Content Include="Views\MyAccount\Address.cshtml" />
-    <Content Include="Views\Home\ComingSoon.cshtml" />
+    <Content Include="Views\Welcome\ComingSoon.cshtml" />
     <Content Include="Views\Shared\_TinyProduct.cshtml" />
     <Content Include="Views\Dialog\_PrivacyPolicy.cshtml" />
     <Content Include="Views\Shared\_LayoutLanding.cshtml" />
     <Content Include="Views\Shared\_NavbarLanding.cshtml" />
-    <Content Include="Views\Home\LaunchingSoon.cshtml" />
+    <Content Include="Views\Welcome\LaunchingSoon.cshtml" />
     <Content Include="Views\Account\EarlyBird.cshtml" />
     <Content Include="Views\Emails\_SellerWelcome.cshtml" />
     <Content Include="Views\Home\HowItWorks.cshtml" />
