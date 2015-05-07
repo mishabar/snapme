@@ -73,7 +73,7 @@ namespace SNAPME.Web.Controllers
             }
             catch
             {
-                return HttpNotFound();
+                return Redirect("/Content/Images/logo.png");
             }
         }
     }

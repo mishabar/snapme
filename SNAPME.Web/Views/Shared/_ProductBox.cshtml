@@ -1,0 +1,89 @@
+﻿@model SNAPME.Tokens.ProductToken
+@{
+    var isDemo = Model.id == "000000000000000000000000";
+}
+@if (isDemo)
+{
+    <div class="product-box">
+        <div class="title" data-container="body" data-toggle="popover" data-placement="top" data-content="Product Title">iiSnap Smaple Product</div>
+        <div class="image embed-responsive embed-responsive-16by9" data-container="body" data-toggle="popover" data-placement="right" data-content="Product Image, Click on it to open a full Product/Sale Page" style="background-image: url(/Content/Images/logo.png); background-size: initial; background-color: rgba(0,0,0,0.05);">
+            <a class="ovr ovr-favorite" data-container="body" data-toggle="popover" data-placement="left" data-content="Favorite indicator, click to add/remove current product from your Favorites list"><i class=" fa fa-heart"></i></a>
+            <a class="ovr ovr-like" data-container="body" data-toggle="popover" data-placement="left" data-content="Like indicator, click to like/unlike current product"><i class="fa fa-thumbs-o-up"></i></a>
+            <a class="ovr ovr-group" data-container="body" data-toggle="popover" data-placement="left" data-content="Toggle Social Activity mode. Click to activate."><i class="fa fa-group"></i></a>
+            <div class="timer" data-container="body" data-toggle="popover" data-placement="right" data-content="Time left until the Sale is over">02:00:00</div>
+        </div>
+        <div class="price-bar">
+            <div class="price-range">
+                <div class="pull-left" data-container="body" data-toggle="popover" data-placement="left" data-content="Manufacturer's recommended retail price">@((250F).ToString("C"))</div>
+                <div class="pull-right" data-container="body" data-toggle="popover" data-placement="right" data-content="Final drop price, may vary depending on the demand"><i class="fa fa-flag-checkered"></i></div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="51" aria-valuemin="0" aria-valuemax="100" style="width: 51%;">
+                        <span class="sr-only">51% Complete</span>
+                    </div>
+                    <div class="progress-indicator" style="left: 51%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="snaps-counter" data-container="body" data-toggle="popover" data-placement="left" data-content="Number of drops made by the users during the current Sale">300 Drops</div>
+            <div class="current-price" data-container="body" data-toggle="popover" data-placement="right" data-content="Current price of the product for this ongoing Sale">@((132.4F).ToString("C"))</div>
+        </div>
+        <div class="social">
+            <a class="ovr ovr-close" data-container="body" data-toggle="popover" data-placement="right" data-content="Close Social Activity mode"><i class="fa fa-close"></i></a>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div data-container="body" data-toggle="popover" data-placement="top" data-content="Toggle between global activity feed and the one showing only your friends' activities">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="options" id="feed" autocomplete="off" checked> Feed
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" id="myFriends" autocomplete="off"> My Friends
+                            </label>
+                        </div>
+                    </div>
+                    <div class="social-feed">
+                        <ul>
+                            <li class="entry">
+                                <img src="//graph.facebook.com/10152299152237123/picture?type=square&width=50&height=50" alt="Michael Bar" class="feed-avatar pull-left" />
+                                <div>
+                                    <div class="username">Michael Bar</div>
+                                    <div class="action">Just dropped the price</div>
+                                    <div class="timestamp">@DateTime.UtcNow.AddMinutes(-1).ToString("HH:mm dd/MM/yyyy")</div>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/p160x160/10678850_10152474358326417_1354951518788262910_n.jpg?oh=6eb7670d99223f5d2a029e1d15872bc1&oe=55CB3689&__gda__=1439355410_274880c55f3057c1ea81ebdb928eff1e" alt="Ami Barda" class="feed-avatar pull-left" />
+                                <div>
+                                    <div class="username">Ami Barda</div>
+                                    <div class="action">Added this product to his favorites list</div>
+                                    <div class="timestamp">@DateTime.UtcNow.AddMinutes(-3).ToString("HH:mm dd/MM/yyyy")</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="product-box">
+        <div class="title" title="@Model.name">@Model.name</div>
+        <div class="image embed-responsive embed-responsive-16by9" style="background-image: url(/Image/@Model.id/0);">
+            <a class="ovr ovr-favorite"><i class="fa fa-heart"></i></a>
+            <a class="ovr ovr-like"><i class="fa fa-thumbs-o-up"></i></a>
+            <a class="ovr ovr-group"><i class="fa fa-group"></i></a>
+            <div class="timer">02:00:00</div>
+        </div>
+        <div class="price-bar"></div>
+        <div class="footer">
+            <div class="snaps-counter">@Model.Sale.drops.Count Drops</div>
+            <div class="current-price">@Model.Sale.current_price.ToString("C")</div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}

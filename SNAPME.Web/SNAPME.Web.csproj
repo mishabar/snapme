@@ -207,6 +207,7 @@
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SellerController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
@@ -244,6 +245,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fm.scrollator.jquery.css" />
     <Content Include="Content\Images\asterisk.png" />
+    <Content Include="Content\Images\contact-us-header.jpg" />
     <Content Include="Content\Images\iisnap.ico" />
     <Content Include="Content\Images\img-step1.png" />
     <Content Include="Content\Images\img-step2.png" />
@@ -439,6 +441,8 @@
     <Content Include="Views\Account\EarlyBird.cshtml" />
     <Content Include="Views\Emails\_SellerWelcome.cshtml" />
     <Content Include="Views\Home\HowItWorks.cshtml" />
+    <Content Include="Views\Errors\FileNotFound.cshtml" />
+    <Content Include="Views\Shared\_ProductBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
