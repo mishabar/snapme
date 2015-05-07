@@ -100,8 +100,8 @@
     <script type="text/javascript">
         $(function () {
             $('[data-toggle=popover]').popover({ trigger: 'hover' });
-            $('.ovr-group').on('click', function () { $(this).closest('.product-box').find('.social').show('slow'); });
-            $('.ovr-close').on('click', function () { $(this).closest('.social').hide('slow'); });
+            $('.ovr-group').on('click', function () { $(this).closest('.product-box').find('.social').fadeIn('slow'); });
+            $('.ovr-close').on('click', function () { $(this).closest('.social').fadeOut('slow'); });
         });
     </script>
 }
