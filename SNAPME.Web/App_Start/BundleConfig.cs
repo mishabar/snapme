@@ -41,6 +41,7 @@ namespace SNAPME.Web
                       "~/Content/font-awesome.min.css",
                       "~/Content/themify-icons.css",
                       "~/Content/style.css", // icomoon
+                      "~/Content/font-questrial.min.css",
                       "~/Content/jquery.bxslider.css",
                       "~/Content/fm.scrollator.jquery.css",
                       "~/Content/site.min.css"));

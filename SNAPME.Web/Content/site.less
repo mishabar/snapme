@@ -4,7 +4,8 @@
 }
 
 body {
-    font-family: Questrial, sans-serif;
+    font-family: 'Questrial-Regular', sans-serif;
+    font-weight: normal !important;
     font-size: 16px;
     color: #333;
     margin-bottom: 148px;
@@ -85,10 +86,10 @@ textarea {
     border-bottom: 1px solid #CCC;
 
     .navbar-brand {
-        padding: 0 15px;
-        height: 56px;
+        padding: 12px 15px;
         font-size: 28px;
         line-height: 58px;
+        height: auto;
 
         > img {
             display: inline-block;
@@ -2073,6 +2074,11 @@ a.ovr {
         background-color: #f8f8f8;
     }
 
+    .row {
+        display: flex;
+        align-items: center;
+    }
+
     .header {
         background: transparent url(/Content/Images/LandingPage/header.jpg) no-repeat 50% 50%;
         height: 580px;
@@ -2080,19 +2086,24 @@ a.ovr {
         margin-left: -15px;
         color: #fff;
 
+        > .container > .row {
+            height: 580px;
+        }
+
         h1 {
             font-size: 52px;
             text-shadow: 2px -2px 3px #666;
             margin-bottom: 30px;
+            font-weight: normal !important;
         }
 
         h3 {
             text-shadow: 2px -2px 2px #666;
             line-height: 30px;
+            font-weight: normal !important;
         }
 
         .well {
-            margin-top: 25%;
             background-color: #727272;
             border-color: #727272;
             font-size: 18px;
@@ -2143,27 +2154,25 @@ a.ovr {
                     color: #fff;
                     text-shadow: 2px 2px 2px #666;
                     border-radius: 6px;
-                    padding: 7px 30px;
-                    font-size: 22px;
                 }
             }
         }
     }
 
     .always-pay-less {
-        padding: 20px 0;
+        color: #363636;
     }
 
     .shopping-with-friends {
-        padding: 20px 0;
+        color: #363636;
     }
 
     .earn-points {
-        padding: 20px 0;
+        color: #363636;
     }
 
     .join-free {
-        padding: 20px 0;
+        color: #363636;
 
         .form-control {
             border-radius: 6px;
@@ -2185,17 +2194,11 @@ a.ovr {
             color: #fff;
             text-shadow: 2px 2px 2px #666;
             border-radius: 6px;
-            padding: 7px 30px;
-            font-size: 22px;
         }
     }
 
     > div:nth-child(3), > div:nth-child(5) {
         text-align: right;
-    }
-
-    h1 {
-        margin-top: 20%;
     }
 }
 
@@ -2219,6 +2222,14 @@ footer.landing-page {
 
 @media (max-width: 767px) {
     .landing-page {
+        .row {
+            display: block;
+
+            img {
+                margin: 0 auto;
+            }
+        }
+
         .header {
             h1 {
                 font-size: 32px;
@@ -2228,7 +2239,7 @@ footer.landing-page {
             }
 
             .well {
-                font-size: 14px;
+                padding-bottom: 0;
 
                 form {
                     .spam-security {
@@ -2283,5 +2294,15 @@ footer.landing-page {
                 float: none;
             }
         }
+    }
+}
+
+@media (max-width: 380px) {
+    .col-xs-6 {
+        width: 100%;
+    }
+
+    .header h3 {
+        display: none !important;
     }
 }

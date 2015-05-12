@@ -3,7 +3,8 @@
   min-height: 100%;
 }
 body {
-  font-family: Questrial, sans-serif;
+  font-family: 'Questrial-Regular', sans-serif;
+  font-weight: normal !important;
   font-size: 16px;
   color: #333;
   margin-bottom: 148px;
@@ -72,10 +73,10 @@ textarea {
   border-bottom: 1px solid #CCC;
 }
 .navbar-default .navbar-brand {
-  padding: 0 15px;
-  height: 56px;
+  padding: 12px 15px;
   font-size: 28px;
   line-height: 58px;
+  height: auto;
 }
 .navbar-default .navbar-brand > img {
   display: inline-block;
@@ -1696,6 +1697,10 @@ a.ovr.ovr-close {
 .landing-page .bg-grey {
   background-color: #f8f8f8;
 }
+.landing-page .row {
+  display: flex;
+  align-items: center;
+}
 .landing-page .header {
   background: transparent url(/Content/Images/LandingPage/header.jpg) no-repeat 50% 50%;
   height: 580px;
@@ -1703,17 +1708,21 @@ a.ovr.ovr-close {
   margin-left: -15px;
   color: #fff;
 }
+.landing-page .header > .container > .row {
+  height: 580px;
+}
 .landing-page .header h1 {
   font-size: 52px;
   text-shadow: 2px -2px 3px #666666;
   margin-bottom: 30px;
+  font-weight: normal !important;
 }
 .landing-page .header h3 {
   text-shadow: 2px -2px 2px #666666;
   line-height: 30px;
+  font-weight: normal !important;
 }
 .landing-page .header .well {
-  margin-top: 25%;
   background-color: #727272;
   border-color: #727272;
   font-size: 18px;
@@ -1758,20 +1767,18 @@ a.ovr.ovr-close {
   color: #fff;
   text-shadow: 2px 2px 2px #666;
   border-radius: 6px;
-  padding: 7px 30px;
-  font-size: 22px;
 }
 .landing-page .always-pay-less {
-  padding: 20px 0;
+  color: #363636;
 }
 .landing-page .shopping-with-friends {
-  padding: 20px 0;
+  color: #363636;
 }
 .landing-page .earn-points {
-  padding: 20px 0;
+  color: #363636;
 }
 .landing-page .join-free {
-  padding: 20px 0;
+  color: #363636;
 }
 .landing-page .join-free .form-control {
   border-radius: 6px;
@@ -1790,15 +1797,10 @@ a.ovr.ovr-close {
   color: #fff;
   text-shadow: 2px 2px 2px #666;
   border-radius: 6px;
-  padding: 7px 30px;
-  font-size: 22px;
 }
 .landing-page > div:nth-child(3),
 .landing-page > div:nth-child(5) {
   text-align: right;
-}
-.landing-page h1 {
-  margin-top: 20%;
 }
 footer.landing-page ul {
   margin: 0;
@@ -1814,6 +1816,12 @@ footer.landing-page ul li a {
   color: #fff;
 }
 @media (max-width: 767px) {
+  .landing-page .row {
+    display: block;
+  }
+  .landing-page .row img {
+    margin: 0 auto;
+  }
   .landing-page .header h1 {
     font-size: 32px;
     text-align: center;
@@ -1821,7 +1829,7 @@ footer.landing-page ul li a {
     margin-top: 20px;
   }
   .landing-page .header .well {
-    font-size: 14px;
+    padding-bottom: 0;
   }
   .landing-page .header .well form .spam-security {
     font-size: 14px;
@@ -1854,6 +1862,14 @@ footer.landing-page ul li a {
   }
   nav.navbar.landing-page .navbar-header .navbar-brand {
     float: none;
+  }
+}
+@media (max-width: 380px) {
+  .col-xs-6 {
+    width: 100%;
+  }
+  .header h3 {
+    display: none !important;
   }
 }
 /*# sourceMappingURL=site.css.map */
