@@ -11,6 +11,7 @@ using SNAPME.Tokens;
 using System.Threading.Tasks;
 using SNAPME.Web.Models;
 using Microsoft.AspNet.Identity.Owin;
+using SNAPME.Tokens.Admin;
 
 namespace SNAPME.Web.Areas.Seller.Controllers
 {
@@ -119,6 +120,14 @@ namespace SNAPME.Web.Areas.Seller.Controllers
         {
             if (ModelState.IsValid)
             {
+                _sellerService.Save(new SellerToken {
+                    name = model.FullName,
+                    email = model.Email,
+                    website = model.Website,
+                    phone = model.CountryCode + model.PhoneNumber,
+                    comments = model.Comments
+                });
+
                 return RedirectToAction("Registered");
             }
             return View(model);
