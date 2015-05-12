@@ -87,7 +87,7 @@
         <div class="row snap-map">
             <div class="col-md-4 col-md-offset-4 text-center">
                 @*<img src="~/Content/Images/snap-map.png" alt="iiSnap Map" class="img-responsive" />*@
-                @Html.Partial("_ProductBox", new SNAPME.Tokens.ProductToken { id = "000000000000000000000000", name = "iiSnap Sample Product", Sale = new SNAPME.Tokens.SaleToken { current_price = 99.87F } })
+                @Html.Partial("_ProductBox", SNAPME.Tokens.ProductToken.Demo)
                 <br />
                 <div>Hover with the pointer over various parts of the Product box to see what they mean.</div>
             </div>

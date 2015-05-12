@@ -86,6 +86,8 @@ namespace SNAPME.Tokens
                 weight = "0.8kg"
             };
         }
+
+        public static readonly ProductToken Demo = new ProductToken { id = "000000000000000000000000" };
     }
 
     public static class ProductTokenExtensions

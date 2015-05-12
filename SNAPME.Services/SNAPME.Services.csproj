@@ -48,9 +48,11 @@
     <Compile Include="IDService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Interfaces\IIDService.cs" />
+    <Compile Include="Interfaces\IInvitationService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\ISaleService.cs" />
     <Compile Include="Interfaces\ISellerService.cs" />
+    <Compile Include="InvitationService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaleService.cs" />

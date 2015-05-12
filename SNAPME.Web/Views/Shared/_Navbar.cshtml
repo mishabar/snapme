@@ -22,6 +22,8 @@
                 <img alt="iiSnap" src="~/Content/Images/logo.png">
             </a>
         </div>
+@if (System.Configuration.ConfigurationManager.AppSettings["ComingSoon"] != "true" || Request.IsAuthenticated)
+{ 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 @if (Request.IsAuthenticated || ViewBag.ComingSoon == null)
@@ -62,6 +64,7 @@
                 }
             </ul>
         </div>
+}
     </div>
 </nav>
 

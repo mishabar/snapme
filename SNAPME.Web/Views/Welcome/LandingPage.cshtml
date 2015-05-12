@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Welcome to iisnap";
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+}
+
+<div class="landing-page">
+    <div class="container-fluid">
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>iiSnap is a new fun way to shop online</h1>
+                        <h3 class="hidden-xs">&quot;iiSnap is an online shopping platform that brings people together to create a buying power that drives values to its' shoppers&quot;</h3>
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-1">
+                        <div class="well">
+                            <div class="text-center">
+                                <span>Join</span> our invitation list before we go live and <br /><span>receive awesome rewards</span> to get you started!
+                            </div>
+                            <form role="form" action="/Welcome/Register" method="post">
+                                <div class="form-group">
+                                    <input type="text" name="email" value="" placeholder="Leave your email address here" class="form-control input-lg" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-6 text-left spam-security">
+                                            <i class="fa fa-lock"></i> Spam Security
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <button type="submit" class="btn btn-lg">Invite me!</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="always-pay-less">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>Always pay less for things you buy</h1>
+                    <h3>iiSnap brings people together to offer bigger savings on everything you buy</h3>
+                </div>
+                <div class="col-sm-6">
+                    <img src="/Content/Images/LandingPage/img1.png" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-grey">
+        <div class="container">
+            <div class="shopping-with-friends">
+                <div class="row">
+                    <div class="col-sm-7 hidden-xs">
+                        <img src="/Content/Images/LandingPage/img2.png" class="img-responsive" />
+                    </div>
+                    <div class="col-sm-5">
+                        <h1>Shopping with your friends is more fun!</h1>
+                        <h3>Now you can do it online</h3>
+                    </div>
+                    <div class="col-xs-12 visible-xs">
+                        <img src="/Content/Images/LandingPage/img2.png" class="img-responsive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="earn-points">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h1>Earn awesome Snap Points!</h1>
+                    <h3>Use Snap Points credit during checkout or give them as a gift to your friends</h3>
+                </div>
+                <div class="col-sm-7">
+                    <img src="/Content/Images/LandingPage/img3.png" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-grey">
+        <div class="container">
+            <div class="join-free">
+                <div class="row">
+                    <div class="col-sm-7 hidden-xs">
+                        <img src="/Content/Images/LandingPage/img4.png" class="img-responsive" />
+                    </div>
+                    <div class="col-sm-5">
+                        <h1>Always Free to Join!</h1>
+                        <h3>Join our invitation list before we go live and receive awesome rewards to get you started!</h3>
+                        <form role="form" action="/Welcome/Register" method="post">
+                            <div class="form-group">
+                                <input type="text" name="email" value="" placeholder="Leave your email address here" class="form-control input-lg" />
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-6 text-left spam-security">
+                                        <i class="fa fa-lock"></i> Spam Security
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <button type="submit" class="btn btn-lg">Invite me!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 visible-xs">
+                        <img src="/Content/Images/LandingPage/img4.png" class="img-responsive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

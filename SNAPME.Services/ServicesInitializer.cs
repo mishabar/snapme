@@ -17,6 +17,7 @@ namespace SNAPME.Services
             builder.Register(c => new ProductService(c.Resolve<IProductRepository>(), c.Resolve<IUserPreferencesRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new SaleService(c.Resolve<ISaleRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new EmailService()).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(c => new InvitationService(c.Resolve<IInvitationRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

@@ -27,6 +27,7 @@ namespace SNAPME.Data.MongoDB
             builder.Register(c => new ProductRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new SaleRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new UserPreferencesRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(c => new InvitationRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             
             #endregion
 
@@ -64,6 +65,11 @@ namespace SNAPME.Data.MongoDB
                 cm.GetMemberMap(c => c.id).SetRepresentation(BsonType.ObjectId);
             });
 
+            BsonClassMap.RegisterClassMap<Invitation>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIdMember(cm.GetMemberMap(c => c.email));
+            });
             #endregion
         }
     }

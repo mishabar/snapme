@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DBInitializer.cs" />
     <Compile Include="IDRepository.cs" />
+    <Compile Include="InvitationRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="SaleRepository.cs" />
     <Compile Include="SellerRepository.cs" />
