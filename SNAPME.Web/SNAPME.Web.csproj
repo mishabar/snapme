@@ -279,6 +279,8 @@
     <Content Include="Content\Images\ribbon-central.png" />
     <Content Include="Content\Images\ribbon-dx.png" />
     <Content Include="Content\Images\ribbon-sx.png" />
+    <Content Include="Content\Images\seller-header%402x.jpg" />
+    <Content Include="Content\Images\seller-port%402x.jpg" />
     <Content Include="Content\Images\seller-port.jpg" />
     <Content Include="Content\Images\snapme-button.png" />
     <Content Include="Content\Images\snaps-flag.png" />

@@ -65,11 +65,11 @@
                         @Html.LabelFor(m => m.Comments)
                         @Html.TextAreaFor(m => m.Comments, new { rows = 8, @class = "form-control", placeholder = "Briefly tell us about your products" })
                     </div>
-                    <div class="checkbox">
+                    @*<div class="checkbox">
                         <label>
                             @Html.CheckBoxFor(m => m.TermsAccepted) I have read and I accept <a href="/Terms">iiSnap Terms & Conditions</a>
                         </label>
-                    </div>
+                    </div>*@
                     <button type="submit" class="btn btn-block btn-lg yellow-bg">Submit</button>
                 }
             </div>
@@ -79,12 +79,4 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $("#registrationForm").submit(function (e) {
-            if ($("#TermsAccepted").prop("checked") != true) {
-                
-                return false;
-            }
-        });
-    </script>
 }
