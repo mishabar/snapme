@@ -250,6 +250,7 @@
     <Content Include="Content\Images\ComingSoon.png" />
     <Content Include="Content\Images\contact-us-header.jpg" />
     <Content Include="Content\Images\iisnap.ico" />
+    <Content Include="Content\Images\iisnap_fb_logo.png" />
     <Content Include="Content\Images\img-step1.png" />
     <Content Include="Content\Images\img-step2.png" />
     <Content Include="Content\Images\img-step3.png" />
