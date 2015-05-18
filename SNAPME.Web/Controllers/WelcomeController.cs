@@ -41,12 +41,12 @@ namespace SNAPME.Web.Controllers
                 {
                     referer = Request.Cookies["ref"].Value.Trim();
                 }
-                _invitationService.AddToList(model.Email, referer);
+                string newRef = _invitationService.AddToList(model.Email, referer);
                 HttpCookie cookie = new HttpCookie("ref");
                 cookie.Expires = new DateTime(1900, 1, 1);
                 Response.Cookies.Add(cookie);
 
-                return View("ThankYou");
+                return View("ThankYou", (object)newRef);
             }
 
             return View();

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model string
+@{
     ViewBag.Title = "Welcome to iisnap";
     Layout = "~/Views/Shared/_LayoutLanding.cshtml";
 }
@@ -6,12 +7,20 @@
 <div class="thank-you-page">
     <div class="container">
         <div class="text-center">
-            <h3>Thank you for registering for out invitation list.</h3>
-            <div>Once the site goes live you will be the first to know!!!</div>
+            <h2>Congratulations!</h2>
+            <h4>You have made it to to our invitation list and once we go live and you complete your registration, <br />you will get your bonus of 100 Snap Points!</h4>
             <br />
-            <div>
-                We will also email you an invitation link you can use to spread the word among your friends!<br />
-                The more friends you will bring, the more reward you will receive once we go live!
+            <h4>
+                Want to earn more Snap Points?
+            </h4>
+            <div class="well">
+                <h3>Invite your friends to join iiSnap</h3>
+                <h4>Send the following url for you friends and family</h4>
+                <input class="ref-link" type="text" value="https://www.iisnap.com/welcome?ref=@Model" readonly onclick="this.setSelectionRange(0, this.value.length)" />
+                <div>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.iisnap.com/welcome?ref=@Model" class="btn facebook" title="Facebook"><i class="fa fa-facebook-f"></i></a>
+                    <a href="mailto:?subject=Join me on iiSnap&body=https://www.iisnap.com/welcome?ref=@Model" class="btn email" title="Email"><i class="fa fa-envelope"></i></a>
+                </div>
             </div>
         </div>
     </div>

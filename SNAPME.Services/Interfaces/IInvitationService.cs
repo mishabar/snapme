@@ -8,6 +8,6 @@ namespace SNAPME.Services.Interfaces
 {
     public interface IInvitationService
     {
-        void AddToList(string email, string referer);
+        string AddToList(string email, string referer);
     }
 }

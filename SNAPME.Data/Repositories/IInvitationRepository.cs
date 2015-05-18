@@ -8,6 +8,6 @@ namespace SNAPME.Data.Repositories
 {
     public interface IInvitationRepository
     {
-        void AddToList(string email, string referer);
+        string AddToList(string email, string referer);
     }
 }

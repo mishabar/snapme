@@ -17,9 +17,9 @@ namespace SNAPME.Services
             _invitationRepository = invitationRepository;
         }
 
-        public void AddToList(string email, string referer)
+        public string AddToList(string email, string referer)
         {
-            _invitationRepository.AddToList(email, referer);
+            return _invitationRepository.AddToList(email, referer);
         }
     }
 }
