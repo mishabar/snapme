@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SNAPME.Services.Interfaces;
+using SNAPME.Web.Helpers;
 using SNAPME.Web.Models.Welcome;
 
 namespace SNAPME.Web.Controllers
@@ -11,10 +12,12 @@ namespace SNAPME.Web.Controllers
     public class WelcomeController : Controller
     {
         private IInvitationService _invitationService;
+        private IEmailService _emailService;
 
-        public WelcomeController(IInvitationService invitationService)
+        public WelcomeController(IInvitationService invitationService, IEmailService emailService)
         {
             _invitationService = invitationService;
+            _emailService = emailService;
         }
 
         // GET: Welcome
@@ -45,6 +48,11 @@ namespace SNAPME.Web.Controllers
                 HttpCookie cookie = new HttpCookie("ref");
                 cookie.Expires = new DateTime(1900, 1, 1);
                 Response.Cookies.Add(cookie);
+
+                var renderer = new ViewRenderer();
+                var body = renderer.RenderViewToString("~/Views/Emails/_InvitationListWelcome.cshtml", (object)newRef);
+
+                _emailService.Send(model.Email, "Welcome to iiSnap", body);
 
                 return View("ThankYou", (object)newRef);
             }

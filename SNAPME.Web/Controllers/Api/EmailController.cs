@@ -24,8 +24,7 @@ namespace SNAPME.Web.Controllers.Api
         public IHttpActionResult SendTestEmail(string email)
         {
             var renderer = new ViewRenderer();
-            string body = renderer.RenderViewToString("~/Views/Emails/_SellerWelcome.cshtml",
-                        new SellerWelcomeModel { Email = email, Name = "Username", Password = "Password" });
+            string body = renderer.RenderViewToString("~/Views/Emails/_InvitationListWelcome.cshtml", (object)"DEMO");
 
             _emailService.Send(email, "Welcome to iiSnap", body);
 
