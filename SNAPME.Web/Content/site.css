@@ -8,6 +8,7 @@ body {
   font-size: 16px;
   color: #333;
   margin-bottom: 148px;
+  padding-top: 80px;
 }
 .validation-summary-errors {
   background-color: lightcoral;
@@ -73,10 +74,11 @@ textarea {
   border-bottom: 1px solid #CCC;
 }
 .navbar-default .navbar-brand {
-  padding: 12px 15px;
+  padding: 11px 15px;
   font-size: 28px;
   line-height: 58px;
   height: auto;
+  display: inline-block;
 }
 .navbar-default .navbar-brand > img {
   display: inline-block;
@@ -1777,6 +1779,12 @@ a.ovr.ovr-close {
 .landing-page .earn-points {
   color: #363636;
 }
+.landing-page .earn-points h1 {
+  margin-top: 30px;
+}
+.landing-page .earn-points img {
+  margin: 30px auto 0 auto;
+}
 .landing-page .join-free {
   color: #363636;
 }
@@ -1816,19 +1824,15 @@ footer.landing-page ul li a {
   color: #fff;
 }
 .thank-you-page .btn {
-  font-size: 34px;
+  font-size: 38px;
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  margin-top: 30px;
   color: #fff;
-}
-.thank-you-page .btn.email {
-  background-color: #32CD32;
-  margin-left: 30px;
+  margin: 30px 15px;
 }
 .thank-you-page .ref-link {
-  min-width: 300px;
+  min-width: 232px;
   margin: 10px auto;
   padding: 5px 10px;
   background-color: #fff;
@@ -1841,6 +1845,13 @@ footer.landing-page ul li a {
   }
   .landing-page .row img {
     margin: 0 auto;
+  }
+  .landing-page h1 {
+    margin-top: 30px !important;
+    font-size: 28px;
+  }
+  .landing-page h3 {
+    font-size: 18px;
   }
   .landing-page .header h1 {
     font-size: 32px;
@@ -1885,9 +1896,6 @@ footer.landing-page ul li a {
   }
 }
 @media (max-width: 380px) {
-  .col-xs-6 {
-    width: 100%;
-  }
   .header h3 {
     display: none !important;
   }

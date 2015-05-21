@@ -266,6 +266,7 @@
     <Content Include="Content\Images\bg-map.jpg" />
     <Content Include="Content\Images\default-avatar.png" />
     <Content Include="Content\Images\early-birds-bg.gif" />
+    <Content Include="Content\Images\LandingPage\header%402x.jpg" />
     <Content Include="Content\Images\LandingPage\header.jpg" />
     <Content Include="Content\Images\LandingPage\img1%402x.png" />
     <Content Include="Content\Images\LandingPage\img1.png" />
@@ -396,6 +397,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\retina.min.js" />
     <Content Include="Scripts\snapme.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -467,6 +469,7 @@
     <Content Include="Views\Shared\_FooterLanding.cshtml" />
     <Content Include="Views\Welcome\ThankYou.cshtml" />
     <Content Include="Views\Emails\_InvitationListWelcome.cshtml" />
+    <Content Include="Views\Welcome\FAQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

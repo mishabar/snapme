@@ -26,7 +26,8 @@ namespace SNAPME.Web
                       "~/Scripts/bootbox.min.js",
                       "~/Scripts/fm.scrollator.jquery.js",
                       "~/Scripts/snapme.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/retina.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                       "~/Scripts/admin.js",

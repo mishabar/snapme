@@ -59,5 +59,11 @@ namespace SNAPME.Web.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult FAQ()
+        {
+            return View();
+        }
     }
 }
