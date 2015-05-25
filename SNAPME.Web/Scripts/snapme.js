@@ -9,6 +9,14 @@ function shareOnFacebook(url) {
     });
 }
 
+function sendFBInvitation(refid) {
+    FB.ui({
+        method: 'send',
+        link: 'http://www.iisnap.com/welcome?ref=' + refid,
+        redirect_uri: 'http://www.iisnap.com/welcome'
+    });
+}
+
 function showWelcomeNewUser() {
     var $modal = $("<div/>").addClass("modal fade").attr("tabindex", "-1").attr("role", "dialog").data("remote", "/dialog/newuser").append($("<div/>").addClass("modal-dialog").append($("<div/>").addClass("modal-content")));
     $("body").append($modal);

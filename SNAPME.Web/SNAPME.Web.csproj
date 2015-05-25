@@ -249,7 +249,7 @@
     <Content Include="Content\Images\asterisk.png" />
     <Content Include="Content\Images\ComingSoon.png" />
     <Content Include="Content\Images\contact-us-header.jpg" />
-    <Content Include="Content\Images\Emails\welcome-email-bg.jpg" />
+    <Content Include="Content\Images\Emails\LandingPage\header.png" />
     <Content Include="Content\Images\iisnap.ico" />
     <Content Include="Content\Images\iisnap_fb_logo.png" />
     <Content Include="Content\Images\img-step1.png" />

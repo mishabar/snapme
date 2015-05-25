@@ -26,7 +26,7 @@ namespace SNAPME.Web.Controllers.Api
             var renderer = new ViewRenderer();
             string body = renderer.RenderViewToString("~/Views/Emails/_InvitationListWelcome.cshtml", (object)"DEMO");
 
-            _emailService.Send(email, "Welcome to iiSnap", body);
+            _emailService.Send(email, "Welcome to iiSnap Invitation List", body, new string[] { "~/Content/Images/Emails/LandingPage/header.png" });
 
             return Ok();
         }

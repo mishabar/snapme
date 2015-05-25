@@ -6,9 +6,9 @@
     <title>@ViewBag.Title - iiSnap</title>
     <link rel="icon" type="image/x-icon" href="~/Content/Images/iisnap.ico">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
-    <meta property="og:title" content="I just joined iiSnap invite list and I thought you would like it too!" />
+    <meta property="og:title" content="I just joined iiSnap invitstion list!" />
     <meta property="og:site_name" content="iiSnap" />
-    <meta property="og:description" content="iiSnap is a new way to shop online! You can shop with your friends, unlock rewards and drop the price of things you like. This is a special link that allows you to join iiSnap invitation list and get 100 bonus Snap Points that you can latter use to buy staff on iiSnap!" />
+    <meta property="og:description" content="Join iiSnap invitation list and unlock a bonus of 100 snap points." />
     <meta property="og:image" content="http://www.iisnap.com/content/images/iisnap_fb_logo.png" />
 
     @Styles.Render("~/Content/css")
@@ -16,6 +16,7 @@
 
 </head>
 <body>
+    @Html.Partial("_Facebook")
     @Html.Partial("_NavbarLanding")
     @RenderBody()
     <div class="clearfix"></div>

@@ -7,18 +7,16 @@
 <div class="thank-you-page">
     <div class="container">
         <div class="text-center">
-            <h2>Congratulations!</h2>
-            <h4>You have made it to to our invitation list and once we go live and you complete your registration, <br />you will get your bonus of 100 Snap Points!</h4>
             <br />
-            <h4>
-                Want to earn more Snap Points?
-            </h4>
+            <h2>Thank you for joining the invitation list!</h2>
+            <br />
+            <h4>Shopping with friends is more rewarding!<br />Invite your friends to join iiSnap and unlock 50 Snap Points for every registered member you bring to iiSnap</h4>
+            <br />
             <div class="well">
-                <h3>Invite your friends to join iiSnap</h3>
-                <h4>Send the following url for you friends and family</h4>
+                <h4>Share the following link with your friends and family or use your social networks</h4>
                 <input class="ref-link" type="text" value="http://www.iisnap.com/welcome?ref=@Model" readonly onclick="this.setSelectionRange(0, this.value.length)" />
                 <div>
-                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.iisnap.com/welcome?ref=@Model" class="btn btn-facebook facebook" title="Facebook"><i class="fa fa-facebook-f"></i></a>
+                    <a onclick="sendFBInvitation('@Model')" class="btn btn-facebook facebook" title="Facebook"><i class="fa fa-facebook-f"></i></a>
                     <a href="https://plus.google.com/share?url=http://www.iisnap.com/welcome?ref=@Model" class="btn btn-google-plus google-plus" title="Google+"><i class="fa fa-google-plus"></i></a>
                 </div>
             </div>
