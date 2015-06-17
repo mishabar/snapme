@@ -9,6 +9,7 @@ using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Tokens.Api;
 using SNAPME.Web.Areas.Admin.Models;
+using SNAPME.Web.Helpers;
 
 namespace SNAPME.Web.Controllers.Api
 {
@@ -85,7 +86,7 @@ namespace SNAPME.Web.Controllers.Api
             return Ok();
         }
 
-        [Route("product/image"), HttpPost, Authorize(Roles="Administrator, Seller")]
+        [Route("product/image"), HttpPost, Authorize(Roles = "Administrator, Seller")]
         public IHttpActionResult AddImage(ProductImageModel model)
         {
             if (ModelState.IsValid)
@@ -100,6 +101,28 @@ namespace SNAPME.Web.Controllers.Api
                     ModelState.AddModelError(string.Empty, ex.Message);
                     return BadRequest(ModelState);
                 }
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [Route("product/feed"), HttpPost, AllowAnonymous]
+        public IHttpActionResult FullSocialFeed(ProductBaseToken product)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(_productService.GetFullSocialFeed(product.id.ToProductId()));
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [Route("product/feed/friends"), HttpPost, AllowAnonymous]
+        public IHttpActionResult SocialFeed(ProductBaseToken product)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(_productService.GetSocialFeed(product.id.ToProductId(), User.Identity.GetUserId()));
             }
 
             return BadRequest(ModelState);

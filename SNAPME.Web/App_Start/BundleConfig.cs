@@ -29,6 +29,13 @@ namespace SNAPME.Web
                       "~/Scripts/respond.js",
                       "~/Scripts/retina.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
+                      "~/Scripts/jquery.cookie.js",
+                      "~/Scripts/jquery.flip.min.js",
+                      "~/Scripts/snapme.js",
+                      "~/Scripts/respond.js",
+                      "~/Scripts/retina.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                       "~/Scripts/admin.js",
                       "~/Areas/Admin/Scripts/seller.js"));
@@ -46,6 +53,12 @@ namespace SNAPME.Web
                       "~/Content/jquery.bxslider.css",
                       "~/Content/fm.scrollator.jquery.css",
                       "~/Content/site.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/mcss").Include(
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/themify-icons.css",
+                      "~/Content/font-questrial.min.css",
+                      "~/Content/msite.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/admin_css").Include(
                       "~/Content/bootstrap.css",

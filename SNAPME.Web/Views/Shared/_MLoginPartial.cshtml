@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+    <li>
+        <a class="dropdown-button nav-avatar" data-beloworigin="true" data-constrainwidth="false" href="#!" data-activates="accountMenu">
+            <img src="@((User.Identity as System.Security.Claims.ClaimsIdentity).FindFirstValue("smn:image_url"))" class="circle" onerror="this.src = '/Content/Images/default-avatar.png'"></a>
+        <ul id="accountMenu" class="dropdown-content">
+            <li>
+                @Html.ActionLink("My iiSnap", "Index", "MyAccount", routeValues: null, htmlAttributes: new { title = "My Account" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    </li>
+}
+else
+{
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}

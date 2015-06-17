@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailService.cs" />
+    <Compile Include="FriendsService.cs" />
     <Compile Include="IDService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />
+    <Compile Include="Interfaces\IFriendsService.cs" />
     <Compile Include="Interfaces\IIDService.cs" />
     <Compile Include="Interfaces\IInvitationService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />

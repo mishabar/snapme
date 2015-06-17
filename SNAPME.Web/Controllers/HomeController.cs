@@ -4,21 +4,29 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Models.Home;
+using Microsoft.AspNet.Identity;
 
 namespace SNAPME.Web.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        private IProductService _productService;
+
+        public HomeController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         public ActionResult Index()
         {
+            var products = _productService.GetAllWithPreferences(User.Identity.GetUserId()).Where(p => p.images.Any(i => !string.IsNullOrWhiteSpace(i)));
             HomepageModel model = new HomepageModel
             {
-                Categories = CategoryToken.Generate(4),
-                EndingSoon = SaleToken.Generate(1, 1000).First(),
-                Featured = SaleToken.Generate(4, 1000)
+                ActiveSales = products
             };
             return View(model);
         }

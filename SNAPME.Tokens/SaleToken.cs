@@ -40,7 +40,8 @@ namespace SNAPME.Tokens
                     ends_on = DateTime.UtcNow.AddMinutes(random.Next(400) - 200),
                     target_price = target_price,
                     ended_on = null,
-                    potential_points = random.Next(150)
+                    potential_points = random.Next(150),
+                    drops = new Dictionary<string,Drop>()
                 });
             }
 

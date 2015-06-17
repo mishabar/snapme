@@ -35,6 +35,9 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -52,15 +55,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBInitializer.cs" />
+    <Compile Include="FriendRepository.cs" />
     <Compile Include="IDRepository.cs" />
     <Compile Include="InvitationRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="SaleRepository.cs" />
     <Compile Include="SellerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialFeedRepository.cs" />
     <Compile Include="UserPreferencesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MongoDB.AspNet.Identity\MongoDB.AspNet.Identity.csproj">
+      <Project>{a3716ffb-e66a-4a54-bf9b-32d20dd4d0de}</Project>
+      <Name>MongoDB.AspNet.Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SNAPME.Data\SNAPME.Data.csproj">
       <Project>{65e6499f-8e7d-4083-8ed0-e477fedf84d1}</Project>
       <Name>SNAPME.Data</Name>

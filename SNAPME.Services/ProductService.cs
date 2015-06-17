@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SNAPME.Data;
 using SNAPME.Data.Repositories;
 using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
@@ -12,11 +13,13 @@ namespace SNAPME.Services
     public class ProductService : IProductService
     {
         private IProductRepository _productRepository;
+        private ISocialFeedRepository _socialFeedRepository;
         private IUserPreferencesRepository _userPreferencesRepository;
 
-        public ProductService(IProductRepository productRepository, IUserPreferencesRepository userPreferencesRepository)
+        public ProductService(IProductRepository productRepository, IUserPreferencesRepository userPreferencesRepository, ISocialFeedRepository socialFeedRepository)
         {
             _productRepository = productRepository;
+            _socialFeedRepository = socialFeedRepository;
             _userPreferencesRepository = userPreferencesRepository;
         }
 
@@ -31,6 +34,10 @@ namespace SNAPME.Services
         {
             bool likes = _userPreferencesRepository.Likes(userId, productId);
             _productRepository.AddLike(productId, userId, likes);
+            if (likes)
+            {
+                _socialFeedRepository.Add(userId, productId, UserAction.LIKED);
+            }
 
             return likes;
         }
@@ -38,7 +45,14 @@ namespace SNAPME.Services
 
         public bool ToggleFavorite(string userId, string productId)
         {
-            return _userPreferencesRepository.Favors(userId, productId);
+            bool favors = _userPreferencesRepository.Favors(userId, productId);
+
+            if (favors)
+            {
+                _socialFeedRepository.Add(userId, productId, UserAction.FAVORED);
+            }
+
+            return favors;
         }
 
 
@@ -58,6 +72,25 @@ namespace SNAPME.Services
         public IEnumerable<ProductToken> GetAll()
         {
             return _productRepository.GetAll().Select(p => p.AsToken());
+        }
+
+
+        public IEnumerable<ProductToken> GetAllWithPreferences(string userId)
+        {
+            var prefs = _userPreferencesRepository.GetById(userId, null);
+            return _productRepository.GetAll().Select(p => p.AsToken(prefs));
+        }
+
+
+        public IEnumerable<UserActionToken> GetFullSocialFeed(string productId)
+        {
+            return _socialFeedRepository.GetByProductId(productId, null).Select(f => f.AsToken());
+        }
+
+
+        public IEnumerable<UserActionToken> GetSocialFeed(string productId, string userId)
+        {
+            return _socialFeedRepository.GetByProductId(productId, userId).Select(f => f.AsToken());
         }
     }
 }

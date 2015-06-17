@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using SNAPME.Services.Interfaces;
 using SNAPME.Web.App_Start;
 using SNAPME.Web.Models;
 
@@ -66,6 +67,14 @@ namespace SNAPME.Web
             options.Scope.Add("public_profile");
             options.Scope.Add("user_friends");
             options.Scope.Add("email");
+            options.Provider = new FacebookAuthenticationProvider()
+            {
+                OnAuthenticated = async FbContext =>
+                {
+                    FbContext.Identity.AddClaim(
+                        new System.Security.Claims.Claim("FacebookAccessToken", FbContext.AccessToken));
+                }
+            };
 
             app.UseFacebookAuthentication(options);
 

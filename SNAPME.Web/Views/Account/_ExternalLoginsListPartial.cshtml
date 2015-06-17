@@ -15,9 +15,10 @@
         using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
-                <p class="text-center">
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-lg @p.AuthenticationType.ToLowerInvariant()" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Login / Register with @p.AuthenticationType</button>
+                <p class="center-align">
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        <button type="submit" class="btn-large waves-effect waves-light @p.AuthenticationType.ToLowerInvariant()" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Login / Register with @p.AuthenticationType</button>
                     }
                 </p>
             </div>

@@ -30,5 +30,7 @@ namespace SNAPME.Data
 
         public string[] likes { get; set; }
         public long likes_count { get; set; }
+
+        public UserAction[] feed { get; set; }
     }
 }

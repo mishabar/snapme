@@ -62,7 +62,7 @@ namespace SNAPME.Tokens
         public UserPreferencesToken UserPreferences { get; set; }
 
         // Social Feed
-        public FeedEntryToken[] SocialFeed { get; set; }
+        public UserActionToken[] SocialFeed { get; set; }
 
         // Sale
         public SaleToken Sale { get; set; }
@@ -78,12 +78,14 @@ namespace SNAPME.Tokens
 
         public static ProductToken Generate()
         {
-            return new ProductToken { 
-                id = Guid.NewGuid().ToString(),
+            return new ProductToken {
+                id = Guid.NewGuid().ToString().Replace("-", ""),
                 name = Guid.NewGuid().ToString().Replace('-', ' '), 
-                retail_price = new Random().Next(5000) + 10000,
+                retail_price = 199F,
+                images = new string[] { "http://i.ebayimg.com/00/s/MTAwMFgxMDAw/z/usYAAOSw-ndToGfO/$_57.JPG" },
+                Sale = SaleToken.Generate(1, 125).First()
                 //size = "12cm x 14cm x 25cm",
-                weight = "0.8kg"
+                //weight = "0.8kg"
             };
         }
 

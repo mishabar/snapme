@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Newtonsoft.Json;
 using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Models;
@@ -19,6 +21,7 @@ namespace SNAPME.Web.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+        private IFriendsService _friendsService;
 
         public AccountController()
         {
@@ -186,6 +189,7 @@ namespace SNAPME.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddClaimAsync(user.Id, new Claim("urn:iisnap:name", model.Email));
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -364,6 +368,9 @@ namespace SNAPME.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    // Get friends list
+                    var user = await UserManager.FindAsync(loginInfo.Login);
+                    await SyncFacebookFriends(loginInfo, user);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -375,6 +382,38 @@ namespace SNAPME.Web.Controllers
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+            }
+        }
+
+        private async Task SyncFacebookFriends(ExternalLoginInfo loginInfo, ApplicationUser user)
+        {
+            using (WebClient wc = new WebClient())
+            {
+                bool hasMore = true;
+                int offset = 0;
+                while (hasMore)
+                {
+                    string url = string.Format("https://graph.facebook.com/v2.3/me/friends?access_token={0}&limit=500&offset={1}",
+                        loginInfo.ExternalIdentity.Claims.First(c => c.Type == "FacebookAccessToken").Value, offset);
+                    string json = await Task.Run(() => wc.DownloadString(url));
+                    var list = JsonConvert.DeserializeObject(json);
+                    var data = (list as Newtonsoft.Json.Linq.JObject)["data"];
+
+                    // store the list
+                    var tokensList = data.Select(d => new SNAPME.Tokens.Facebook.UserToken { id = d.Value<long>("id"), name = d.Value<string>("name") });
+                    DependencyResolver.Current.GetService<IFriendsService>().StoreFriends(long.Parse(loginInfo.Login.ProviderKey), user.Claims.FirstOrDefault(c => c.Type == "urn:iisnap:name").Value, user.Id, tokensList);
+
+                    if (data.Count() == 500)
+                    {
+                        hasMore = true;
+                        offset += 500;
+                    }
+                    else
+                    {
+                        hasMore = false;
+                    }
+                }
+
             }
         }
 
@@ -406,6 +445,8 @@ namespace SNAPME.Web.Controllers
                     if (result.Succeeded)
                     {
                         await UserManager.AddClaimAsync(user.Id, new Claim("urn:iisnap:name", info.ExternalIdentity.GetUserName()));
+                        user = await UserManager.FindByIdAsync(user.Id);
+                        await SyncFacebookFriends(info, user);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }

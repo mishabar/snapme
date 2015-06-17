@@ -2,90 +2,49 @@
 @using SNAPME.Web.Core;
 
 @{
+    Layout = "~/Views/Shared/_MLayout.cshtml";
     ViewBag.Title = "Welcome";
 }
 
-<!-- 
-<div class="container">
-    <div id="carousel-home" class="carousel slide" data-ride="carousel">
-
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-home" data-slide-to="1"></li>
-            <li data-target="#carousel-home" data-slide-to="2"></li>
-            <li data-target="#carousel-home" data-slide-to="3"></li>
-        </ol>
-
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="hero-product red">
-                    <div class="row">
-                        <div class="col-md-5 text-center">
-                            <img src="http://24.media.tumblr.com/77d820ec2b121a8e3a657464ccd6069c/tumblr_mlehly75HH1s5jjtzo1_500.png" class="img-responsive" />
-                        </div>
-                        <div class="col-md-7 text-right">
-                            <h1>Product Name</h1>
-                            <h4>Basic product description to catch the eye of the user and make him click on the product button</h4>
-                            <a class="btn btn-lg btn-black">Details <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="hero-product green">
-                    <div class="row">
-                        <div class="col-md-7 text-left">
-                            <h1>Product Name</h1>
-                            <h4>Basic product description to catch the eye of the user and make him click on the product button</h4>
-                            <a class="btn btn-lg btn-black">Details <i class="fa fa-angle-right"></i></a>
-                        </div>
-                        <div class="col-md-5">
-                            <img src="http://www.andnow.com/images/Canon5Dwt.png" class="img-responsive" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="hero-product purple">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="http://24.media.tumblr.com/77d820ec2b121a8e3a657464ccd6069c/tumblr_mlehly75HH1s5jjtzo1_500.png" class="img-responsive" />
-                        </div>
-                        <div class="col-md-7 text-right">
-                            <h1>Product Name</h1>
-                            <h4>Basic product description to catch the eye of the user and make him click on the product button</h4>
-                            <a class="btn btn-lg btn-black">Details <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="hero-product blue">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="http://24.media.tumblr.com/77d820ec2b121a8e3a657464ccd6069c/tumblr_mlehly75HH1s5jjtzo1_500.png" class="img-responsive" />
-                        </div>
-                        <div class="col-md-7 text-right">
-                            <h1>Product Name</h1>
-                            <h4>Basic product description to catch the eye of the user and make him click on the product button</h4>
-                            <a class="btn btn-lg btn-black">Details <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col l5 offset-l1 white-text">
+                <h3>This shopping revolution that starts with you</h3>
             </div>
         </div>
     </div>
 </div>
--->
 
-
-<div class="container text-center">
-    <img src="~/Content/Images/ComingSoon.png" style="margin-top: 50px;" />
+<div class="nav-tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs main-tabs z-depth-1">
+                    <li class="tab first col s3"><a class="active" href="#snappingNow">Snapping Now</a></li>
+                    <li class="tab col s3"><a href="#snappingSoon">Snapping Soon</a></li>
+                    <li class="tab last col s3"><a href="#myFavorites">My Favorites</a></li>
+                </ul>
+                <div id="snappingNow" class="col s12">
+                    <div class="row">
+                        @foreach (var item in Model.ActiveSales)
+                        {
+                            Html.RenderPartial("_ProductBox", item);
+                        }
+                    </div>
+                </div>
+                <div id="snappingSoon" class="col s12">Test 2</div>
+                <div id="myFavorites" class="col s12">Test 3</div>
+            </div>
+        </div>
+    </div>
 </div>
 
-@section scripts
-{
-    <script type="text/javascript">
-        $(function () { setActiveMenu("mnuHome") });
+
+@section scripts{
+    <script>
+        $(function () {
+            $('body').addClass('grey lighten-4');
+        });
     </script>
 }

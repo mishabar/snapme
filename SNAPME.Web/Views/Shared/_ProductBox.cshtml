@@ -71,19 +71,57 @@
 }
 else
 {
-    <div class="product-box">
-        <div class="title" title="@Model.name">@Model.name</div>
-        <div class="image embed-responsive embed-responsive-16by9" style="background-image: url(/Image/@Model.id/0);">
-            <a class="ovr ovr-favorite"><i class="fa fa-heart"></i></a>
-            <a class="ovr ovr-like"><i class="fa fa-thumbs-o-up"></i></a>
-            <a class="ovr ovr-group"><i class="fa fa-group"></i></a>
-            <div class="timer">02:00:00</div>
+    <div class="col l4 m6 s12">
+        <div class="product product-box z-depth-1" data-id="@string.Format("{0}-{1}", Model.name, Model.id).Replace(" ", "-")">
+            <div class="face">
+                <div class="product-box-title" title="@Model.name">
+                    @Model.name
+                </div>
+                <div class="product-box-image" style="background-image: url(@Model.images.First(i => !string.IsNullOrWhiteSpace(i)));">
+                    <div class="product-box-actions">
+                        <a class="btn-floating waves-effect waves-light @(Model.UserPreferences != null && Model.UserPreferences.favors ? "active" : string.Empty)" data-action="favor-product" data-id="@Model.id"><i class="mdi-action-favorite"></i></a>
+                        <a class="btn-floating waves-effect waves-light @(Model.UserPreferences != null && Model.UserPreferences.likes ? "active" : string.Empty)" data-action="like-product" data-id="@Model.id"><i class="mdi-action-thumb-up"></i></a>
+                        <a class="btn-floating waves-effect waves-light btn-flip"><i class="mdi-social-group"></i></a>
+                    </div>
+                </div>
+                <div class="product-box-footer">
+                    <div class="product-prices">
+                        <div class="product-price-rrp">@Model.retail_price.ToString("C")</div>
+                        <div class="product-price-sale">@(Model.Sale != null ? Model.Sale.current_price.ToString("C") : string.Empty)</div>
+                    </div>
+                    <div class="product-drops-counter">
+                        @(Model.Sale == null ? 0 : Model.Sale.drops.Count) Drops
+                    </div>
+                    <div class="product-sale-time" role="countdown" data-value="23:22:21">23:22:21</div>
+                </div>
+            </div>
+            <div class="back">
+                <a class="btn waves-effect waves-light grey btn-flip-back"><i class="mdi-navigation-close"></i></a>
+                <h6>Product Activity</h6>
+                <div class="row">
+                    <div class="col l8 m10 s12 offset-l2 offset-m1">
+                        <ul class="tabs feed-tabs">
+                            <li class="tab col s6"><a class="full" href="@string.Format("#all{0}", Model.id)">All</a></li>
+                            @if (Request.IsAuthenticated)
+                            {
+                            <li class="tab col s6"><a class="friends" href="@string.Format("#myFriends{0}", Model.id)">My Friends</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div id="@string.Format("all{0}", Model.id)">
+                            <ul class="collection all">
+                            </ul>
+                        </div>
+                        <div id="@string.Format("myFriends{0}", Model.id)">
+                            <ul class="collection friends">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="price-bar"></div>
-        <div class="footer">
-            <div class="snaps-counter">@Model.Sale.drops.Count Drops</div>
-            <div class="current-price">@Model.Sale.current_price.ToString("C")</div>
-        </div>
-        <div class="clearfix"></div>
     </div>
 }

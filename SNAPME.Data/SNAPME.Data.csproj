@@ -40,17 +40,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drop.cs" />
+    <Compile Include="Friend.cs" />
     <Compile Include="Invitation.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IFriendRepository.cs" />
     <Compile Include="Repositories\IIDRepository.cs" />
     <Compile Include="Repositories\IInvitationRepository.cs" />
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\ISaleRepository.cs" />
     <Compile Include="Repositories\ISellerRepository.cs" />
     <Compile Include="Repositories\IUserPreferencesRepository.cs" />
+    <Compile Include="Repositories\ISocialFeedRepository.cs" />
     <Compile Include="Sale.cs" />
     <Compile Include="Seller.cs" />
+    <Compile Include="UserAction.cs" />
     <Compile Include="UserPreferences.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

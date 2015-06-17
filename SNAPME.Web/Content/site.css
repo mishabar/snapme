@@ -1,6 +1,7 @@
 ﻿html {
   position: relative;
   min-height: 100%;
+  font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
 body {
   font-family: 'Questrial-Regular', sans-serif;
