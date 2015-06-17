@@ -112,11 +112,11 @@
                                             @foreach (var item in Model.SocialFeed)
                                             {
                                                 <li class="entry">
-                                                    <img src="/Account/Image/@item.user_id" alt="@item.username" class="feed-avatar pull-left" />
+                                                    <img src="/Account/Image/@item.user_id" alt="@item.user_name" class="feed-avatar pull-left" />
                                                     <div>
-                                                        <div class="username">@item.username</div>
-                                                        <div class="action">did something</div>
-                                                        <div class="timestamp">@item.when.ToString("HH:mm dd/MM/yyyy")</div>
+                                                        <div class="username">@item.user_name</div>
+                                                        <div class="action">@item.action</div>
+                                                        <div class="timestamp">@item.ts.ToShortDateString()</div>
                                                     </div>
                                                 </li>
                                             }
