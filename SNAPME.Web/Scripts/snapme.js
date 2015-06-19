@@ -64,7 +64,7 @@ $(function () {
                 $collection.append($('<li class="collection-item center-align">').text('No activity yet.'));
             } else {
                 var box = $collection.closest('.product-box');
-                $collection.parent().slimScroll({ height: box.height() - $('.social-header', box).height() - 40 + 'px' });
+                $collection.closest('.scroll-container').slimScroll({ height: box.height() - $('.social-header', box).height() - 40 + 'px' });
             }
         })
     });
@@ -81,7 +81,13 @@ $(function () {
                 $item.find('span.timestamp').text(new Date(item.ts).toLocaleDateString());
                 $collection.append($item);
             });
-            if (response.length == 0) { $collection.append($('<li class="collection-item center-align">').text('No activity yet.')); }
+            if (response.length == 0) {
+                $collection.append($('<li class="collection-item center-align">').text('No activity yet.'));
+            }
+            else {
+                var box = $collection.closest('.product-box');
+                $collection.closest('.scroll-container').slimScroll({ height: box.height() - $('.social-header', box).height() - 40 + 'px' });
+            }
         });
     });
 });
