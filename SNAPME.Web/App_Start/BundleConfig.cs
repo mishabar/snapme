@@ -32,6 +32,7 @@ namespace SNAPME.Web
             bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
                       "~/Scripts/jquery.cookie.js",
                       "~/Scripts/jquery.flip.min.js",
+                      "~/Scripts/jquery.slimscroll.min.js",
                       "~/Scripts/snapme.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/retina.min.js"));

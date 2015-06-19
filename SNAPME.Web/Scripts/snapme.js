@@ -60,9 +60,15 @@ $(function () {
                 $item.find('span.timestamp').text(new Date(item.ts).toLocaleDateString());
                 $collection.append($item);
             });
-            if (response.length == 0) { $collection.append($('<li class="collection-item center-align">').text('No activity yet.')); }
+            if (response.length == 0) {
+                $collection.append($('<li class="collection-item center-align">').text('No activity yet.'));
+            } else {
+                var box = $collection.closest('.product-box');
+                $collection.parent().slimScroll({ height: box.height() - $('.social-header', box).height() - 40 + 'px' });
+            }
         })
     });
+
     $('.product-box .tabs.feed-tabs li a.friends').on('click', function () {
         var $collection = $(this).closest('.back').find('.collection.friends');
         $collection.html('').append($('<li/>').addClass('center-align').append($('<div class="preloader-wrapper small active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>')));
@@ -76,6 +82,7 @@ $(function () {
                 $collection.append($item);
             });
             if (response.length == 0) { $collection.append($('<li class="collection-item center-align">').text('No activity yet.')); }
-        })
+        });
     });
 });
+

@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Core;
+using SNAPME.Web.Helpers;
 
 namespace SNAPME.Web.Controllers
 {
@@ -35,6 +36,7 @@ namespace SNAPME.Web.Controllers
         {
             try
             {
+                id = id.ToProductId();
                 var product = _productService.GetById(id);
                 if (User.Identity.IsAuthenticated)
                 {

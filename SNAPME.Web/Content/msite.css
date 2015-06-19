@@ -159,6 +159,7 @@ footer.page-footer li > a {
 .product-box .back .btn-flip-back {
   padding: 0 0.6rem;
   float: right;
+  margin: -7px 1px 0 0;
 }
 .product-box .back h6 {
   font-size: 1.3rem;
@@ -188,6 +189,9 @@ footer.page-footer li > a {
 .product-box .back .feed-tabs .tab.last a {
   border-top-right-radius: 4px;
   border-right: none;
+}
+.product-box .back .scroll-container {
+  overflow: hidden;
 }
 .product-box .back .collection {
   border-right: none;
