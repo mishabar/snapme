@@ -23,7 +23,10 @@
                 <ul class="tabs main-tabs z-depth-1">
                     <li class="tab first col s3"><a class="active" href="#snappingNow">Snapping Now</a></li>
                     <li class="tab col s3"><a href="#snappingSoon">Snapping Soon</a></li>
-                    <li class="tab last col s3"><a href="#myFavorites">My Favorites</a></li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="tab last col s3"><a href="#myFavorites">My Favorites</a></li>
+                    }
                 </ul>
                 <div id="snappingNow" class="col s12">
                     <div class="row">
@@ -33,8 +36,18 @@
                         }
                     </div>
                 </div>
-                <div id="snappingSoon" class="col s12">Test 2</div>
-                <div id="myFavorites" class="col s12">Test 3</div>
+                <div id="snappingSoon" class="col s12">Snapping Soon</div>
+                @if (Request.IsAuthenticated)
+                {
+                    <div id="myFavorites" class="col s12">
+                        <div class="row">
+                            @foreach (var item in Model.FavoriteProducts)
+                            {
+                                Html.RenderPartial("_ProductBox", item);
+                            }
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>

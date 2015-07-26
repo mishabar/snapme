@@ -1,14 +1,14 @@
 ﻿@model SNAPME.Tokens.ProductToken
 @{
     ViewBag.Title = Model.name;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_MLayout.cshtml";
     var firstImageIndex = int.MaxValue;
 }
 
-<div class="grey-bg">
+<div class="product grey lighten-4">
     <div class="container">
-        <div class="row product">
-            <div class="col-sm-6 col-xs-12 text-center">
+        <div class="row no-padding">
+            <div class="col l6 s12">
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="#" data-action="favor-product" data-id="@Model.id" title="Add to favorites" class="ovr ovr-favorite @(Model.UserPreferences.favors ? "active" : string.Empty)"><i class="fa fa-heart"></i></a>
@@ -24,157 +24,79 @@
                         if (!string.IsNullOrEmpty(Model.images[i]))
                         {
                             firstImageIndex = Math.Min(firstImageIndex, i);
-                            <div style="background: url(/Image/@Model.id/@i) no-repeat 50% 50%; background-size: cover;" class="hidden"></div>
+                            <div style="background: url(/Image/@Model.id/@i) no-repeat 50% 50%; background-size: cover;" class="hide"></div>
                         }
                     }
                 </div>
             </div>
-            <div class="col-sm-6 col-xs-12">
-                <div role="tabpanel" class="tabs-left">
-
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-dollar"></i></a></li>
-                        <li role="presentation"><a href="#share" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-share-alt"></i></a></li>
-                        <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab"><i class="fa fa-group"></i></a></li>
+            <div class="col l6 s12">
+                <nav>
+                    <ul id="dd-share" class="dropdown-content">
+                        <li><a href="#!" class="center-align"><i class="ti-facebook"></i></a></li>
+                        <li><a href="#!" class="center-align"><i class="ti-twitter"></i></a></li>
+                        <li><a href="#!" class="center-align"><i class="ti-google"></i></a></li>
+                        <li><a href="#!" class="center-align"><i class="ti-pinterest"></i></a></li>
                     </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="details">
-                            <h2 class="text-center title">@Model.name</h2>
-                            <div class="text-center short-description">@Model.short_descritpion</div>
-                            @if (Model.Sale != null)
-                            {
-                            <div class="price-range">
-                                <div class="pull-left">@Model.retail_price.ToString("C")</div>
-                                <div class="pull-right"><i class="fa fa-flag-checkered"></i></div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="@Model.Sale.progress" aria-valuemin="0" aria-valuemax="100" style="width: @string.Format("{0}%", Model.Sale.progress);">
-                                        <span class="sr-only">@string.Format("{0}%", Model.Sale.progress) Complete</span>
-                                    </div>
-                                    <div class="progress-indicator" style="left: @string.Format("{0}%", Model.Sale.progress);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="height: 46px;">
-                                <div class="current-price pull-left">@(Model.Sale.current_price.ToString("C"))</div>
-                                <div class="action pull-right">
-                                    <a class="btn btn-success btn-lg">Join Sale</a>
-                                </div>
-                            </div>
-                            <hr />
-                            <div>
-                                <div class="potential-points pull-left">
-                                    Collect: +@Model.Sale.potential_points
-                                </div>
-                                <div class="invite-friends pull-right"></div>
-                            </div>
-                            <div class="time-left">
-                                @{
-                                var v = Model.Sale.ends_on - DateTime.UtcNow;
-                                @:Sale ends in @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
-                                }
-                            </div>
-                            }
-                            else
-                            {
-                            <div class="time-left">
-                                No active sale
-                            </div>
-                            }
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="share">
-                            <div class="row share-buttons">
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                                    <ul>
-                                        <li><a class="btn btn-block btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=@string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)" target="_blank"><i class="fa fa-facebook-f pull-left"></i>Share on Facebook</a></li>
-                                        <li><a class="btn btn-block btn-twitter" href="https://twitter.com/home?status=Check out this great product on %23iiSnap @string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)" target="_blank"><i class="fa fa-twitter pull-left"></i>Share on Twitter</a></li>
-                                        <li><a class="btn btn-block btn-google-plus" href="https://plus.google.com/share?url=@string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)" target="_blank"><i class="fa fa-google-plus pull-left"></i>Share on Google+</a></li>
-                                        <li><a class="btn btn-block btn-pinterest" href="https://pinterest.com/pin/create/button/?url=@string.Format("{0}://{1}/Product/{2}", Request.Url.Scheme, Request.Url.DnsSafeHost, Model.id)&media=@string.Format("http://{0}/Image/{1}/{2}", Request.Url.DnsSafeHost, Model.id, firstImageIndex)&description=@Model.name" target="_blank"><i class="fa fa-pinterest-p pull-left"></i>Share on Pinterest</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="social">
-                            <div class="row social">
-                                <div class="col-xs-12 text-center">
-                                    <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-default active">
-                                            <input type="radio" name="options" id="feed" autocomplete="off" checked> Feed
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="options" id="myFriends" autocomplete="off"> My Friends
-                                        </label>
-                                    </div>
-                                    <div class="social-feed">
-                                        <ul>
-                                            @*@foreach (var item in Model.SocialFeed)
-                                            {
-                                                <li class="entry">
-                                                    <img src="/Account/Image/@item.user_id" alt="@item.user_name" class="feed-avatar pull-left" />
-                                                    <div>
-                                                        <div class="username">@item.user_name</div>
-                                                        <div class="action">@item.action</div>
-                                                        <div class="timestamp">@item.ts.ToShortDateString()</div>
-                                                    </div>
-                                                </li>
-                                            }*@
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="nav-wrapper">
+                        <a class="page-title">@Model.name</a>
+                        <ul class="right">
+                            <li><a href="#!" title="Share" class="dropdown-button" data-activates="dd-share"><i class="ti-sharethis"></i></a></li>
+                            <li><a href="#mdl-points" class="modal-trigger" title="Snap Points"><i class="ti-medall-alt"></i></a></li>
+                        </ul>
                     </div>
+                </nav>
+                <div class="sale-container">
+                    <div class="center-align short-description">
+                        @Model.short_descritpion
+                    </div>
+                    @if (Model.Sale != null)
+                    {
+                        <div class="price-range">
+                            <div class="pull-left">@Model.retail_price.ToString("C")</div>
+                            <div class="pull-right"><i class="fa fa-flag-checkered"></i></div>
+                            <div class="progress grey lighten-1">
+                                <div class="determinate yellow darken-1" style="width: @string.Format("{0}%", Model.Sale.progress);"></div>
+                            </div>
+                        </div>
+                        <div class="sale-actions">
+                            <div class="current-price left">@(Model.Sale.current_price.ToString("C"))</div>
+                            <div class="action right">
+                                <a class="waves-effectwaves-ligth btn green darken-2">Join Sale</a>
+                            </div>
+                        </div>
+                        <hr />
+                        <div>
+                            <div class="potential-points left">
+                                Collect: +@Model.Sale.potential_points
+                            </div>
+                            <div class="invite-friends right"></div>
+                        </div>
+                        <div class="time-left grey darken-1">
+                            @{
+                        var v = Model.Sale.ends_on - DateTime.UtcNow;
+                        @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="time-left grey darken-1">
+                            No active sale
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row product-details">
-        <div class="col-xs-12 col-sm-8 col-md-9">
-            <div role="tabpanel">
-                <div class="details-sections">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <ul class="nav nav-tabs nav-justified" role="tablist">
-                                <li role="presentation" class="active"><a href="#fulldetails" role="tab" data-toggle="tab">Product Details</a></li>
-                                <li role="presentation"><a href="#shipping" role="tab" data-toggle="tab">Shipping</a></li>
-                                <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="fulldetails">
-                        <p>@Model.descritpion</p>
-                        <div class="row measures">
-                            <div class="col-sm-4 col-sm-offset-2"><div class="snap-size">@Model.size cm</div></div>
-                            <div class="col-sm-4"><div class="snap-weight">@Model.weight kg</div></div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="shipping">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label>Enter your Zip Code to see available shipping options</label>
-                                <div class="input-group" style="width: 320px;">
-                                    <span class="input-group-addon"><i class="fa fa-truck"></i>&nbsp;Zip Code</span>
-                                    <input type="text" id="zipCode" class="form-control" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><i class="fa fa-chevron-right"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="reviews">...</div>
-                </div>
-            </div>
-        </div>
-        <div class="hidden-xs col-sm-4 col-md-3">
-            <h4 class="text-center">Check ou these items...</h4>
-        </div>
+
+<div id="mdl-points" class="modal">
+    <div class="modal-content">
+        <h4>Snap Points for this sale</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
     </div>
 </div>
 
@@ -183,7 +105,7 @@
     <script type="text/javascript">
         var w = $('.product .images').width();
         var h = w / 16 * 9;
-        $('.product .images > div').css('height', h + 'px').css('width', w + 'px').removeClass('hidden');
+        $('.product .images > div').css('height', h + 'px').css('width', w + 'px').removeClass('hide');
         $('.product .images').bxSlider({
             slideWidth: $('.product .images').width(),
             minSlides: 1,
@@ -191,7 +113,23 @@
             slideMargin: 0
         });
 
-        $('.social-feed').scrollator();
+        var h = $('.product .bx-wrapper').height() - 68;
+        $('.sale-container').height(h + 'px');
+        @if (Model.Sale != null)
+        {
+        @:$('.sale-container .short-description').toggleClass('hide', h < 240);
+                        }
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .5, // Opacity of modal background
+                in_duration: 300, // Transition in duration
+                out_duration: 200, // Transition out duration
+            });
+        });
+
+        //$('.social-feed').scrollator();
         //function prependListItem(listName, listItemHTML) {
         //    $(listItemHTML)
         //        .hide()

@@ -8,6 +8,7 @@ using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Models.Home;
 using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 
 namespace SNAPME.Web.Controllers
 {
@@ -21,12 +22,17 @@ namespace SNAPME.Web.Controllers
             _productService = productService;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var products = _productService.GetAllWithPreferences(User.Identity.GetUserId()).Where(p => p.images.Any(i => !string.IsNullOrWhiteSpace(i)));
+            IEnumerable<ProductToken> products = await Task.Run( () => _productService.GetAllWithPreferences(User.Identity.GetUserId()).Where(p => p.images.Any(i => !string.IsNullOrWhiteSpace(i))).Take(10));
+            IEnumerable<ProductToken> favoriteProducts = null;
+            if (Request.IsAuthenticated)
+                favoriteProducts = await Task.Run( () => _productService.GetFavorites(User.Identity.GetUserId()));
+
             HomepageModel model = new HomepageModel
             {
-                ActiveSales = products
+                ActiveSales = products,
+                FavoriteProducts = favoriteProducts
             };
             return View(model);
         }

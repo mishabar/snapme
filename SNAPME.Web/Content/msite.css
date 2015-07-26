@@ -300,4 +300,156 @@ footer.page-footer li > a {
 .btn-large.facebook {
   background-color: #0d47a1;
 }
+.product {
+  padding: 60px 0 40px 0;
+}
+.product .bx-wrapper {
+  margin-bottom: 0;
+}
+.product .bx-wrapper .bx-pager {
+  bottom: 5px;
+}
+.product .bx-wrapper .bx-pager.bx-default-pager a {
+  background: rgba(255, 255, 255, 0.4);
+}
+.product .bx-wrapper .bx-pager.bx-default-pager a.active {
+  background: #ffde00;
+}
+.product .drops-counter {
+  background-color: #ffde00;
+  padding: 5px 10px;
+  color: #000000;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  border-radius: 4px;
+}
+.product .row.no-padding > .col {
+  padding: 0;
+  position: relative;
+}
+.product nav {
+  box-shadow: none;
+  border-bottom: 1px solid #CCC;
+}
+.product nav,
+.product nav .nav-wrapper i {
+  height: 48px;
+  line-height: 48px;
+  font-size: 1.5rem;
+}
+.product nav a.page-title {
+  padding-left: 15px;
+  font-size: 1.5rem;
+}
+.product .sale-container {
+  padding: 10px 15px;
+  position: relative;
+  margin-left: -1px;
+  background-color: #ffffff;
+}
+.product .sale-container hr {
+  border: 1px solid #cccccc;
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  right: 0;
+}
+.product .price-range {
+  position: absolute;
+  bottom: 145px;
+  left: 15px;
+  right: 15px;
+}
+.product .sale-actions {
+  height: 55px;
+  position: absolute;
+  bottom: 85px;
+  left: 15px;
+  right: 15px;
+}
+.product .sale-actions .current-price {
+  margin: 0;
+  padding: 2px 20px;
+  background-color: #363636;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: Ubuntu;
+  border-radius: 12px;
+}
+.product .sale-actions .action .btn {
+  margin-top: 6px;
+}
+.product .potential-points {
+  height: 28px;
+  line-height: 28px;
+  font-size: 16px;
+  color: #6E6E6E;
+  background: rgba(0, 0, 0, 0) url(/Content/Images/sp-grey.png) no-repeat 100% 50%;
+  padding-right: 24px;
+  position: absolute;
+  bottom: 40px;
+  left: 15px;
+}
+.product .invite-friends {
+  width: 133px;
+  height: 28px;
+  background: transparent url(/Content/Images/invite.png) no-repeat 50% 50%;
+  position: absolute;
+  bottom: 40px;
+  right: 15px;
+}
+.product .time-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 30px;
+  letter-spacing: 4px;
+}
+a.ovr {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(80, 80, 80, 0.75);
+  color: #ffffff;
+  z-index: 1;
+  line-height: 32px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+}
+a.ovr:hover {
+  color: #ffde00;
+}
+a.ovr.ovr-favorite {
+  top: 0;
+  left: 0;
+}
+a.ovr.ovr-favorite.active {
+  color: #EF3F6B;
+}
+a.ovr.ovr-like {
+  top: 34px;
+  left: 0;
+}
+a.ovr.ovr-like.active {
+  color: #29BFB1;
+}
+a.ovr.ovr-group {
+  top: 68px;
+  left: 0;
+}
+a.ovr.ovr-group.active {
+  color: #8FA4F4;
+}
+a.ovr.ovr-close {
+  top: 0;
+  right: 0;
+}
 /*# sourceMappingURL=msite.css.map */

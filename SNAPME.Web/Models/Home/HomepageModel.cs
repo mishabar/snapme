@@ -9,5 +9,7 @@ namespace SNAPME.Web.Models.Home
     public class HomepageModel
     {
         public IEnumerable<ProductToken> ActiveSales { get; set; }
+
+        public IEnumerable<ProductToken> FavoriteProducts { get; set; }
     }
 }

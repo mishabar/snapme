@@ -81,7 +81,7 @@ else
                     <div class="product-box-actions">
                         <a class="btn-floating waves-effect waves-light @(Model.UserPreferences != null && Model.UserPreferences.favors ? "active" : string.Empty)" data-action="favor-product" data-id="@Model.id"><i class="mdi-action-favorite"></i></a>
                         <a class="btn-floating waves-effect waves-light @(Model.UserPreferences != null && Model.UserPreferences.likes ? "active" : string.Empty)" data-action="like-product" data-id="@Model.id"><i class="mdi-action-thumb-up"></i></a>
-                        <a class="btn-floating waves-effect waves-light btn-flip"><i class="mdi-social-group"></i></a>
+                        @*<a class="btn-floating waves-effect waves-light btn-flip"><i class="mdi-social-group"></i></a>*@
                     </div>
                 </div>
                 <div class="product-box-footer">
@@ -95,7 +95,7 @@ else
                     <div class="product-sale-time" role="countdown" data-value="23:22:21">23:22:21</div>
                 </div>
             </div>
-            <div class="back">
+            @*<div class="back">
                 <div class="social-header">
                     <a class="btn waves-effect waves-light grey btn-flip-back"><i class="mdi-navigation-close"></i></a>
                     <h6>Product Activity</h6>
@@ -123,7 +123,7 @@ else
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
         </div>
     </div>
 }

@@ -33,6 +33,7 @@ namespace SNAPME.Web
                       "~/Scripts/jquery.cookie.js",
                       "~/Scripts/jquery.flip.min.js",
                       "~/Scripts/jquery.slimscroll.min.js",
+                      "~/Scripts/jquery.bxslider.min.js",
                       "~/Scripts/snapme.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/retina.min.js"));
@@ -59,6 +60,7 @@ namespace SNAPME.Web
                       "~/Content/font-awesome.min.css",
                       "~/Content/themify-icons.css",
                       "~/Content/font-questrial.min.css",
+                      "~/Content/jquery.bxslider.css",
                       "~/Content/msite.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/admin_css").Include(
