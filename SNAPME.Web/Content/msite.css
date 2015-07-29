@@ -108,32 +108,33 @@ footer.page-footer li > a {
   height: 225px;
   background: transparent url(/Content/Images/header.jpg) no-repeat center center;
 }
+/*background-color: #f1f1f1;*/
 .tabs .indicator {
   background-color: #ffde00;
 }
-.nav-tabs {
-  /*background-color: #f1f1f1;*/
-}
-.nav-tabs .tabs.main-tabs {
+.tabs.main-tabs {
   border-radius: 4px;
   margin-top: -25px;
   margin-bottom: 40px;
 }
-.nav-tabs .tabs.main-tabs .tab a {
+.tabs .tab a {
   color: #cccccc;
   font-size: 1.2rem;
   border-left: 1px solid #F0F0F0;
   border-right: 1px solid #F0F0F0;
 }
-.nav-tabs .tabs.main-tabs .tab a.active {
+.tabs .tab a:hover {
+  color: #ffde00;
+}
+.tabs .tab a.active {
   color: #333333;
   /*background-color: #F1F1F1;*/
 }
-.nav-tabs .tabs.main-tabs .tab.first a {
+.tabs .tab.first a {
   border-top-left-radius: 4px;
   border-left: none;
 }
-.nav-tabs .tabs.main-tabs .tab.last a {
+.tabs .tab.last a {
   border-top-right-radius: 4px;
   border-right: none;
 }
@@ -300,22 +301,37 @@ footer.page-footer li > a {
 .btn-large.facebook {
   background-color: #0d47a1;
 }
-.product {
+.product.details {
   padding: 60px 0 40px 0;
 }
-.product .bx-wrapper {
+.product.details .bx-wrapper {
   margin-bottom: 0;
 }
-.product .bx-wrapper .bx-pager {
+.product.details .bx-wrapper .bx-pager {
   bottom: 5px;
 }
-.product .bx-wrapper .bx-pager.bx-default-pager a {
+.product.details .bx-wrapper .bx-pager.bx-default-pager a {
   background: rgba(255, 255, 255, 0.4);
 }
-.product .bx-wrapper .bx-pager.bx-default-pager a.active {
+.product.details .bx-wrapper .bx-pager.bx-default-pager a.active {
   background: #ffde00;
 }
-.product .drops-counter {
+.product.details .product-actions {
+  position: absolute;
+  margin: 20px 0 0 10px;
+  width: 37px;
+}
+.product.details .product-actions a {
+  margin-bottom: 5px;
+  background-color: rgba(158, 158, 158, 0.8);
+}
+.product.details .product-actions a.active i.mdi-action-favorite {
+  color: #EF3F6B;
+}
+.product.details .product-actions a.active i.mdi-action-thumb-up {
+  color: #41B4A9;
+}
+.product.details .drops-counter {
   background-color: #ffde00;
   padding: 5px 10px;
   color: #000000;
@@ -325,51 +341,47 @@ footer.page-footer li > a {
   z-index: 1;
   border-radius: 4px;
 }
-.product .row.no-padding > .col {
-  padding: 0;
-  position: relative;
-}
-.product nav {
+.product.details nav {
   box-shadow: none;
   border-bottom: 1px solid #CCC;
 }
-.product nav,
-.product nav .nav-wrapper i {
+.product.details nav,
+.product.details nav .nav-wrapper i {
   height: 48px;
   line-height: 48px;
   font-size: 1.5rem;
 }
-.product nav a.page-title {
+.product.details nav a.page-title {
   padding-left: 15px;
   font-size: 1.5rem;
 }
-.product .sale-container {
+.product.details .sale-container {
   padding: 10px 15px;
   position: relative;
   margin-left: -1px;
   background-color: #ffffff;
 }
-.product .sale-container hr {
+.product.details .sale-container hr {
   border: 1px solid #cccccc;
   position: absolute;
-  bottom: 70px;
+  bottom: 78px;
   left: 0;
   right: 0;
 }
-.product .price-range {
+.product.details .price-range {
   position: absolute;
-  bottom: 145px;
+  bottom: 153px;
   left: 15px;
   right: 15px;
 }
-.product .sale-actions {
+.product.details .sale-actions {
   height: 55px;
   position: absolute;
-  bottom: 85px;
+  bottom: 93px;
   left: 15px;
   right: 15px;
 }
-.product .sale-actions .current-price {
+.product.details .sale-actions .current-price {
   margin: 0;
   padding: 2px 20px;
   background-color: #363636;
@@ -379,10 +391,22 @@ footer.page-footer li > a {
   font-family: Ubuntu;
   border-radius: 12px;
 }
-.product .sale-actions .action .btn {
+.product.details .sale-actions .action .btn {
   margin-top: 6px;
 }
-.product .potential-points {
+.product.details .sale-actions .action .btn.checkout {
+  display: none;
+}
+.product.details .sale-actions .action.joined .join {
+  display: none;
+}
+.product.details .sale-actions .action.completed .checkout {
+  display: block;
+}
+.product.details .sale-actions .action.completed .join {
+  display: none;
+}
+.product.details .potential-points {
   height: 28px;
   line-height: 28px;
   font-size: 16px;
@@ -390,27 +414,69 @@ footer.page-footer li > a {
   background: rgba(0, 0, 0, 0) url(/Content/Images/sp-grey.png) no-repeat 100% 50%;
   padding-right: 24px;
   position: absolute;
-  bottom: 40px;
+  bottom: 48px;
   left: 15px;
 }
-.product .invite-friends {
+.product.details .invite-friends {
   width: 133px;
   height: 28px;
   background: transparent url(/Content/Images/invite.png) no-repeat 50% 50%;
   position: absolute;
-  bottom: 40px;
+  bottom: 48px;
   right: 15px;
 }
-.product .time-left {
+.product.details .time-left {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 32px;
+  height: 40px;
   color: #ffffff;
   text-align: center;
   line-height: 30px;
   letter-spacing: 4px;
+}
+.product.details .countdown.flip-clock-wrapper {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+}
+.product.details .countdown.flip-clock-wrapper .flip-clock-label {
+  display: none;
+}
+.product.details .countdown.flip-clock-wrapper ul.flip {
+  margin: 4px 2px;
+  width: 20px;
+  height: 30px;
+  font-size: 26px;
+  line-height: 28px;
+}
+.product.details .countdown.flip-clock-wrapper ul.flip li {
+  line-height: 34px;
+}
+.product.details .countdown.flip-clock-wrapper ul.flip li a div div.inn {
+  font-size: 20px;
+  padding-left: 3px;
+}
+.product.details .countdown.flip-clock-wrapper .flip-clock-divider {
+  height: 36px;
+  width: 10px;
+}
+.product.details .countdown.flip-clock-wrapper .flip-clock-divider .flip-clock-dot {
+  background: #F1F1F1;
+  width: 3px;
+  height: 3px;
+  left: 0;
+  margin: 0 3px;
+}
+.product.details .countdown.flip-clock-wrapper .flip-clock-divider .flip-clock-dot.top {
+  top: 15px;
+}
+.product.details .countdown.flip-clock-wrapper .flip-clock-divider .flip-clock-dot.bottom {
+  bottom: 8px;
+}
+.product #btnQuote {
+  margin-top: 10px;
 }
 a.ovr {
   position: absolute;
@@ -451,5 +517,9 @@ a.ovr.ovr-group.active {
 a.ovr.ovr-close {
   top: 0;
   right: 0;
+}
+.row.no-padding > .col {
+  padding: 0;
+  position: relative;
 }
 /*# sourceMappingURL=msite.css.map */

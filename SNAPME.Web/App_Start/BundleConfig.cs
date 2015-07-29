@@ -61,6 +61,7 @@ namespace SNAPME.Web
                       "~/Content/themify-icons.css",
                       "~/Content/font-questrial.min.css",
                       "~/Content/jquery.bxslider.css",
+                      "~/Content/flipclock.css",
                       "~/Content/msite.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/admin_css").Include(

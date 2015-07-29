@@ -5,14 +5,17 @@
     var firstImageIndex = int.MaxValue;
 }
 
-<div class="product grey lighten-4">
+<div class="product details grey lighten-4">
     <div class="container">
         <div class="row no-padding">
-            <div class="col l6 s12">
+            <div class="col m6 s12">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="#" data-action="favor-product" data-id="@Model.id" title="Add to favorites" class="ovr ovr-favorite @(Model.UserPreferences.favors ? "active" : string.Empty)"><i class="fa fa-heart"></i></a>
-                    <a href="#" data-action="like-product" data-id="@Model.id" title="Like" class="ovr ovr-like @(Model.UserPreferences.likes ? "active" : string.Empty)"><i class="fa fa-thumbs-o-up"></i></a>
+                    <div class="product-actions">
+                        <a class="btn-floating waves-effect waves-light @(Model.UserPreferences.favors ? "active" : string.Empty)" data-action="favor-product" title="Add to favorites" data-id="@Model.id"><i class="mdi-action-favorite"></i></a>
+                        <a class="btn-floating waves-effect waves-light @(Model.UserPreferences.likes ? "active" : string.Empty)" data-action="like-product" title="Like" data-id="552dc9a68e659a336c9a88b0"><i class="mdi-action-thumb-up"></i></a>
+
+                    </div>
                 }
                 @if (Model.Sale != null)
                 {
@@ -29,7 +32,7 @@
                     }
                 </div>
             </div>
-            <div class="col l6 s12">
+            <div class="col m6 s12">
                 <nav>
                     <ul id="dd-share" class="dropdown-content">
                         <li><a href="#!" class="center-align"><i class="ti-facebook"></i></a></li>
@@ -61,7 +64,8 @@
                         <div class="sale-actions">
                             <div class="current-price left">@(Model.Sale.current_price.ToString("C"))</div>
                             <div class="action right">
-                                <a class="waves-effectwaves-ligth btn green darken-2">Join Sale</a>
+                                <a class="waves-effectwaves-ligth btn green darken-2 join">Join Sale</a>
+                                <a class="waves-effectwaves-ligth btn yellow darken-2 checkout">Checkout</a>
                             </div>
                         </div>
                         <hr />
@@ -74,7 +78,7 @@
                         <div class="time-left grey darken-1">
                             @{
                         var v = Model.Sale.ends_on - DateTime.UtcNow;
-                        @((new TimeSpan(v.Hours, v.Minutes, v.Seconds)).ToString("c"))
+                        <div class="countdown" data-left="@v.TotalMinutes"></div>
                             }
                         </div>
                     }
@@ -89,6 +93,43 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row no-padding">
+        <div class="col m9 s12">
+            <ul class="tabs z-depth-1">
+                <li class="tab col s3"><a class="active" href="#details">Details</a></li>
+                <li class="tab col s3"><a href="#shipping">Shipping</a></li>
+                <li class="tab col s3"><a href="#comments">Comments</a></li>
+            </ul>
+            <div id="details" class="col s12">
+                <p>
+                    @Model.descritpion
+                </p>
+            </div>
+            <div id="shipping" class="col s12">
+                <p>
+                    <div class="row">
+                        <div class="col s4 l2">
+                            <input id="zip_code" type="text" class="validate" placeholder="Zip code" />
+                        </div>
+                        <div class="col l3 s6">
+                            <a id="btnQuote" class="waves-effect waves-light btn">Get Quote</a>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div id="comments" class="col s12">
+                <p>
+                    No comments yet, be the first to <a href="#!">leave a comment.</a>
+                </p>
+            </div>
+        </div>
+        <div class="col m3 s12">
+
+        </div>
+    </div>
+</div>
+
 
 <div id="mdl-points" class="modal">
     <div class="modal-content">
@@ -102,7 +143,9 @@
 
 @section scripts
 {
+    <script src="~/Scripts/flipclock.min.js"></script>
     <script type="text/javascript">
+        var sale = { id: '@Model.Sale.id', current_price: @Model.Sale.current_price, drops: 10, joined: false };
         var w = $('.product .images').width();
         var h = w / 16 * 9;
         $('.product .images > div').css('height', h + 'px').css('width', w + 'px').removeClass('hide');
@@ -118,7 +161,7 @@
         @if (Model.Sale != null)
         {
         @:$('.sale-container .short-description').toggleClass('hide', h < 240);
-                        }
+                                                                                                                                }
         $(document).ready(function () {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal({
@@ -127,16 +170,46 @@
                 in_duration: 300, // Transition in duration
                 out_duration: 200, // Transition out duration
             });
+
+            $('.countdown').FlipClock($('.countdown').data('left'), { countdown: true });
+
+            $('.btn.join').on('click', function(){
+                $(this).parent().addClass('joined');
+            });
         });
 
-        //$('.social-feed').scrollator();
-        //function prependListItem(listName, listItemHTML) {
-        //    $(listItemHTML)
-        //        .hide()
-        //        .css('opacity', 0.0)
-        //        .prependTo('#' + listName)
-        //        .slideDown('slow')
-        //        .animate({ opacity: 1.0 })
-        //}
+        // if demo
+
+        function dropPriceDemo() {
+            sale.current_price -= Math.random() / 10;
+            sale.drops++;
+            Materialize.toast('<span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just joined the sale.</span>', 2000);
+            $('.sale-actions .current-price').text('$ ' + sale.current_price.toFixed(2));
+            $('.drops-counter').text(sale.drops + ' Drops');
+            $pg = $('.price-range .progress .determinate');
+            var w = $pg.width() / $pg.parent().width() * 100 + 10;
+            $pg.width(Math.min(w, 100) + '%');
+            if (w >= 100) {
+                sale.completed = true;
+                $('.sale-actions .action').addClass('completed');
+            } 
+        }
+
+        function actDemo(){
+            var op = Math.floor(Math.random() * 1000 % 3);
+            switch (op) {
+                case 0:
+                case 2:
+                    dropPriceDemo();
+                    break;
+                case 1: Materialize.toast('<span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just favoured this product.</span>', 2000); break;
+            }
+
+            if (!sale.completed)
+                _demo = setTimeout(actDemo, Math.floor(Math.random() * 10000));
+        }
+
+        var names = ['Woodrow Barber',  'Roger Gill',  'Andre Neal',  'Nancy Castillo',  'Joanna Kelly',  'Randal Brady',  'Richard Lopez',  'Leah Lindsey',  'Dianna Mckenzie',  'Yvonne Walters',  'Johnnie Park',  'Danny Bailey',  'Ron Rivera',  'Kerry Freeman',  'Toby Wallace',  'Mike Gonzales',  'Bryan Murphy',  'Wanda Beck',  'Anthony Richards',  'Clay Rhodes',  'Alfredo Berry',  'Lynette Mathis',  'Elijah Christensen',  'Jan Kennedy',  'Greg Lambert',  'Enrique Curry',  'Ed Cooper',  'Judy Underwood',  'Fred Delgado',  'Nicole Jones',  'Elbert Fitzgerald',  'Edward Holmes',  'Dominic Salazar',  'Irma Wilkerson',  'Abel Gibbs',  'Gerardo Gardner',  'Arlene Griffin',  'Lana Ward',  'Wilson Chambers',  'Tami Andrews',  'Inez Clark',  'Delia Chapman',  'Armando Todd',  'Valerie Higgins',  'Jaime Yates',  'Bennie Bradley',  'Lorraine Estrada',  'Kendra Bowen',  'Christina Gregory',  'Kim Burgess'];
+        var _demo =setTimeout(actDemo, 4000);
     </script>
 }

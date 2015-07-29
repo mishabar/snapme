@@ -245,6 +245,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flipclock.css" />
     <Content Include="Content\fm.scrollator.jquery.css" />
     <Content Include="Content\font-questrial.min.css" />
     <Content Include="Content\Images\asterisk.png" />
@@ -394,6 +395,7 @@
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\fm.scrollator.jquery.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />

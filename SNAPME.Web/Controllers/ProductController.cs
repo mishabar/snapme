@@ -42,7 +42,8 @@ namespace SNAPME.Web.Controllers
                 {
                     product.UserPreferences = _productService.GetPreferences(id, User.Identity.GetUserId());
                 }
-                product.Sale = _saleService.GetActive(id); //SaleToken.Generate(1, 999).First();
+                //product.Sale = _saleService.GetActive(id);
+                product.Sale = SaleToken.Generate(1, (int)product.purchase_price).First();
 
                 return View(product);
             }
