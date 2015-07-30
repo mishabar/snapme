@@ -48,6 +48,10 @@ input[type=text]:focus:not([readonly]) + label, input[type=password]:focus:not([
     color: #ffde00;
 }
 
+.navbar-fixed {
+    z-index: 1000;
+}
+
 main {
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
@@ -421,6 +425,30 @@ footer.page-footer {
         nav a.page-title {
             padding-left: 15px;
             font-size: 1.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            display: inline-block;
+        }
+
+        #dd-share {
+            i.ti-facebook {
+                color: #3b5998;
+            }
+
+            i.ti-twitter {
+                color: #00aced;
+            }
+
+            i.ti-google {
+                color: #dd4b39;
+            }
+
+            i.ti-pinterest {
+                color: #cb2027;
+            }
         }
 
         .sale-container {
@@ -467,7 +495,7 @@ footer.page-footer {
                 .btn {
                     margin-top: 6px;
 
-                    &.checkout {
+                    &.checkout, &.buy {
                         display: none;
                     }
                 }
@@ -476,14 +504,29 @@ footer.page-footer {
                     .join {
                         display: none;
                     }
-                }
 
-                &.completed{
                     .checkout {
                         display: block;
                     }
-                    .join {
+
+                    &.completed {
+                        .checkout {
+                            display: block;
+                        }
+
+                        .join, .buy {
+                            display: none;
+                        }
+                    }
+                }
+
+                &.completed {
+                    .join, .checkout {
                         display: none;
+                    }
+
+                    .buy {
+                        display: block;
                     }
                 }
             }
@@ -624,6 +667,51 @@ a.ovr {
     &.ovr-close {
         top: 0;
         right: 0;
+    }
+}
+
+ul.snap-points-list {
+    li {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-top: 15px;
+
+        > .row {
+            margin-bottom: 0;
+
+            > .col.s3 {
+                height: 90px;
+                border-radius: 6px;
+                margin: -1px 0 -1px -1px;
+                background-color: #42b760;
+            }
+
+            > .col.s9 {
+                height: 88px;
+            }
+
+            .valign-wrapper {
+                height: 100%;
+
+                .valign {
+                    width: 100%;
+
+                    .btn {
+                        margin-top: 15px;
+                    }
+                }
+            }
+
+            .bonus {
+                color: #ffffff;
+                background-color: #42b760;
+                font-size: 1.1rem;
+
+                span {
+                    line-height: 36px;
+                }
+            }
+        }
     }
 }
 

@@ -294,6 +294,7 @@
     <Content Include="Content\Images\snaps-flag.png" />
     <Content Include="Content\Images\social-map.png" />
     <Content Include="Content\Images\sold.png" />
+    <Content Include="Content\Images\sp-bonus.png" />
     <Content Include="Content\Images\sp-grey.png" />
     <Content Include="Content\Images\step1.png" />
     <Content Include="Content\Images\step2.png" />

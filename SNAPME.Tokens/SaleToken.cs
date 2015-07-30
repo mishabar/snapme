@@ -37,7 +37,7 @@ namespace SNAPME.Tokens
                     started_on = DateTime.UtcNow.AddMinutes(-random.Next(400)),
                     current_price = target_price + (target_price - purchase_price) / 2F,
                     progress = random.Next(95),
-                    ends_on = DateTime.UtcNow.AddMinutes(random.Next(10000)),
+                    ends_on = DateTime.UtcNow.AddMinutes(random.Next(200)),
                     target_price = target_price,
                     ended_on = null,
                     potential_points = random.Next(150),

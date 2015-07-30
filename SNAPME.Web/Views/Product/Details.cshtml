@@ -65,7 +65,11 @@
                             <div class="current-price left">@(Model.Sale.current_price.ToString("C"))</div>
                             <div class="action right">
                                 <a class="waves-effectwaves-ligth btn green darken-2 join">Join Sale</a>
-                                <a class="waves-effectwaves-ligth btn yellow darken-2 checkout">Checkout</a>
+                                <a class="waves-effectwaves-ligth btn yellow darken-2 checkout disabled">
+                                    <div class="tooltipped" data-position="top" data-delay="50" data-tooltip="Please wait until the Sale reaches the Target Price or it is over. In the meanwhile invite more friends to join the Sale and Earn Snap Points."></div>
+                                    Checkout
+                                </a>
+                                <a class="waves-effectwaves-ligth btn yellow darken-2 buy">Buy Now</a>
                             </div>
                         </div>
                         <hr />
@@ -131,13 +135,72 @@
 </div>
 
 
-<div id="mdl-points" class="modal">
+<div id="mdl-points" class="modal" style="max-width: 600px;">
     <div class="modal-content">
         <h4>Snap Points for this sale</h4>
-        <p>A bunch of text</p>
+        <p>
+            <ul class="snap-points-list">
+                <li class="hoverable">
+                    <div class="row">
+                        <div class="col s3">
+                            <div class="valign-wrapper">
+                                <div class="valign center bonus">
+                                    <span>get +25</span><img class="right" src="~/Content/Images/sp-bonus.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s9">
+                            <div class="valign-wrapper">
+                                <div class="valign center">
+                                    <div>Invite your friends to join iiSnap</div>
+                                    <a class="btn waves-effect waves-effectwaves-ligth light-blue darken-4"><i class="material-icons left">supervisor_account</i> invite to join</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="hoverable">
+                    <div class="row">
+                        <div class="col s3">
+                            <div class="valign-wrapper">
+                                <div class="valign center bonus">
+                                    <span>get +50</span><img class="right" src="~/Content/Images/sp-bonus.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s9">
+                            <div class="valign-wrapper">
+                                <div class="valign center">
+                                    <div>Invite your friends to buy this Product</div>
+                                    <a class="btn waves-effect waves-effectwaves-ligth light-blue darken-4"><i class="material-icons left">shopping_cart</i> invite to buy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="hoverable">
+                    <div class="row">
+                        <div class="col s3">
+                            <div class="valign-wrapper">
+                                <div class="valign center bonus">
+                                    <span>get +150</span><img class="right" src="~/Content/Images/sp-bonus.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s9">
+                            <div class="valign-wrapper">
+                                <div class="valign center">
+                                    <div>Purchase this Products</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </p>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </div>
 
@@ -145,7 +208,7 @@
 {
     <script src="~/Scripts/flipclock.min.js"></script>
     <script type="text/javascript">
-        var sale = { id: '@Model.Sale.id', current_price: @Model.Sale.current_price, drops: 10, joined: false };
+        var sale = { id: '@Model.Sale.id', current_price: @Model.Sale.current_price, drops: 10, joined: false, ended: false, priceReached: false };
         var w = $('.product .images').width();
         var h = w / 16 * 9;
         $('.product .images > div').css('height', h + 'px').css('width', w + 'px').removeClass('hide');
@@ -153,7 +216,8 @@
             slideWidth: $('.product .images').width(),
             minSlides: 1,
             maxSlides: 1,
-            slideMargin: 0
+            slideMargin: 0,
+            responsive: true
         });
 
         var h = $('.product .bx-wrapper').height() - 68;
@@ -161,7 +225,10 @@
         @if (Model.Sale != null)
         {
         @:$('.sale-container .short-description').toggleClass('hide', h < 240);
-                                                                                                                                }
+                                                }
+        function r() {
+            $('.product.details .nav-wrapper .page-title').width($('.product.details .nav-wrapper').width() - $('.product.details .nav-wrapper ul').width() - 25 + 'px');
+        }
         $(document).ready(function () {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal({
@@ -171,12 +238,44 @@
                 out_duration: 200, // Transition out duration
             });
 
-            $('.countdown').FlipClock($('.countdown').data('left'), { countdown: true });
+            $('.countdown').FlipClock($('.countdown').data('left'),
+                {
+                    countdown: true,
+                    callbacks: {
+                        stop: function() {
+                            sale.ended = true;
+                            saleEnded();
+                        }
+                    }
+                });
 
             $('.btn.join').on('click', function(){
-                $(this).parent().addClass('joined');
+                $(this).closest('.action').addClass('joined');
+                sale.joined = true;
+                sendFBInvitation(null, 'http://www.iisnap.com/demo');
             });
+
+            setTimeout(r, 1000);
         });
+
+        $(window).on('resize', r);
+
+        function priceReached() {
+            $('.sale-actions .action').addClass('completed');
+            if (sale.joined){
+                $('.sale-actions .action').addClass('joined');
+                $('.btn.checkout').removeClass('disabled');
+            }
+
+            $('.current-price').addClass('green darken-2');
+        }
+
+        function saleEnded() {
+            clearTimeout(_demo);
+            $('.sale-container > *').addClass('hide');
+            $('.sale-container .time-left').html('The Sale has ended');
+            $('.sale-container .short-description, .sale-container .time-left').removeClass('hide');
+        }
 
         // if demo
 
@@ -192,7 +291,8 @@
             if (w >= 100) {
                 sale.completed = true;
                 $('.sale-actions .action').addClass('completed');
-            } 
+                priceReached();
+            }
         }
 
         function actDemo(){
@@ -210,6 +310,6 @@
         }
 
         var names = ['Woodrow Barber',  'Roger Gill',  'Andre Neal',  'Nancy Castillo',  'Joanna Kelly',  'Randal Brady',  'Richard Lopez',  'Leah Lindsey',  'Dianna Mckenzie',  'Yvonne Walters',  'Johnnie Park',  'Danny Bailey',  'Ron Rivera',  'Kerry Freeman',  'Toby Wallace',  'Mike Gonzales',  'Bryan Murphy',  'Wanda Beck',  'Anthony Richards',  'Clay Rhodes',  'Alfredo Berry',  'Lynette Mathis',  'Elijah Christensen',  'Jan Kennedy',  'Greg Lambert',  'Enrique Curry',  'Ed Cooper',  'Judy Underwood',  'Fred Delgado',  'Nicole Jones',  'Elbert Fitzgerald',  'Edward Holmes',  'Dominic Salazar',  'Irma Wilkerson',  'Abel Gibbs',  'Gerardo Gardner',  'Arlene Griffin',  'Lana Ward',  'Wilson Chambers',  'Tami Andrews',  'Inez Clark',  'Delia Chapman',  'Armando Todd',  'Valerie Higgins',  'Jaime Yates',  'Bennie Bradley',  'Lorraine Estrada',  'Kendra Bowen',  'Christina Gregory',  'Kim Burgess'];
-        var _demo =setTimeout(actDemo, 4000);
+        var _demo = setTimeout(actDemo, 4000);
     </script>
 }

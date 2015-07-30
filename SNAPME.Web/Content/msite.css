@@ -60,6 +60,9 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .input-field .prefix.active {
   color: #ffde00;
 }
+.navbar-fixed {
+  z-index: 1000;
+}
 main {
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
@@ -354,6 +357,24 @@ footer.page-footer li > a {
 .product.details nav a.page-title {
   padding-left: 15px;
   font-size: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.product.details #dd-share i.ti-facebook {
+  color: #3b5998;
+}
+.product.details #dd-share i.ti-twitter {
+  color: #00aced;
+}
+.product.details #dd-share i.ti-google {
+  color: #dd4b39;
+}
+.product.details #dd-share i.ti-pinterest {
+  color: #cb2027;
 }
 .product.details .sale-container {
   padding: 10px 15px;
@@ -394,17 +415,29 @@ footer.page-footer li > a {
 .product.details .sale-actions .action .btn {
   margin-top: 6px;
 }
-.product.details .sale-actions .action .btn.checkout {
+.product.details .sale-actions .action .btn.checkout,
+.product.details .sale-actions .action .btn.buy {
   display: none;
 }
 .product.details .sale-actions .action.joined .join {
   display: none;
 }
-.product.details .sale-actions .action.completed .checkout {
+.product.details .sale-actions .action.joined .checkout {
   display: block;
 }
-.product.details .sale-actions .action.completed .join {
+.product.details .sale-actions .action.joined.completed .checkout {
+  display: block;
+}
+.product.details .sale-actions .action.joined.completed .join,
+.product.details .sale-actions .action.joined.completed .buy {
   display: none;
+}
+.product.details .sale-actions .action.completed .join,
+.product.details .sale-actions .action.completed .checkout {
+  display: none;
+}
+.product.details .sale-actions .action.completed .buy {
+  display: block;
 }
 .product.details .potential-points {
   height: 28px;
@@ -517,6 +550,40 @@ a.ovr.ovr-group.active {
 a.ovr.ovr-close {
   top: 0;
   right: 0;
+}
+ul.snap-points-list li {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+ul.snap-points-list li > .row {
+  margin-bottom: 0;
+}
+ul.snap-points-list li > .row > .col.s3 {
+  height: 90px;
+  border-radius: 6px;
+  margin: -1px 0 -1px -1px;
+  background-color: #42b760;
+}
+ul.snap-points-list li > .row > .col.s9 {
+  height: 88px;
+}
+ul.snap-points-list li > .row .valign-wrapper {
+  height: 100%;
+}
+ul.snap-points-list li > .row .valign-wrapper .valign {
+  width: 100%;
+}
+ul.snap-points-list li > .row .valign-wrapper .valign .btn {
+  margin-top: 15px;
+}
+ul.snap-points-list li > .row .bonus {
+  color: #ffffff;
+  background-color: #42b760;
+  font-size: 1.1rem;
+}
+ul.snap-points-list li > .row .bonus span {
+  line-height: 36px;
 }
 .row.no-padding > .col {
   padding: 0;

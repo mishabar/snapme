@@ -30,13 +30,12 @@
 ===================================*/
 
 .bx-wrapper .bx-viewport {
-	/*-moz-box-shadow: 0 0 5px #ccc;
+	-moz-box-shadow: 0 0 5px #ccc;
 	-webkit-box-shadow: 0 0 5px #ccc;
 	box-shadow: 0 0 5px #ccc;
 	border:  5px solid #fff;
 	left: -5px;
 	background: #fff;
-        */
 	
 	/*fix other elements on the page moving (on Chrome)*/
 	-webkit-transform: translatez(0);
@@ -85,22 +84,21 @@
 }
 
 .bx-wrapper .bx-pager.bx-default-pager a {
-	background: transparent;
+	background: #666;
 	text-indent: -9999px;
 	display: block;
-	width: 16px;
-	height: 16px;
+	width: 10px;
+	height: 10px;
 	margin: 0 5px;
 	outline: 0;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
-    border: 1px solid #666;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 .bx-wrapper .bx-pager.bx-default-pager a:hover,
 .bx-wrapper .bx-pager.bx-default-pager a.active {
-	background: #ffde00;
+	background: #000;
 }
 
 /* DIRECTION CONTROLS (NEXT / PREV) */

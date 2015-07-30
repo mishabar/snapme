@@ -32,10 +32,16 @@ namespace SNAPME.Web.Controllers
 
         // GET: Product
         [Route("product/{id}", Name = "ProductDetails"), HttpGet, EnableCompression]
+        [Route("demo", Name = "Demo")]
         public ActionResult Details(string id)
         {
             try
             {
+#if DEBUG
+                if (string.IsNullOrEmpty(id)) { id = "55b817638e659b2438f1df4e"; }
+#else
+                if (string.IsNullOrEmpty(id)) { id = "552532f77ef776125096266c"; }
+#endif
                 id = id.ToProductId();
                 var product = _productService.GetById(id);
                 if (User.Identity.IsAuthenticated)

@@ -9,11 +9,11 @@ function shareOnFacebook(url) {
     });
 }
 
-function sendFBInvitation(refid) {
+function sendFBInvitation(refid, url) {
     FB.ui({
         method: 'send',
-        link: 'http://www.iisnap.com/welcome?ref=' + refid,
-        redirect_uri: 'http://www.iisnap.com/welcome'
+        link: (url || 'http://www.iisnap.com/welcome?ref=' + refid),
+        redirect_uri: (url ||'http://www.iisnap.com/welcome')
     });
 }
 
