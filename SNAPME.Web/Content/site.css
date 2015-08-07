@@ -1,7 +1,6 @@
 ﻿html {
   position: relative;
   min-height: 100%;
-  font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
 body {
   font-family: 'Questrial-Regular', sans-serif;
@@ -1895,6 +1894,12 @@ footer.landing-page ul li a {
   nav.navbar.landing-page .navbar-header .navbar-brand {
     float: none;
   }
+}
+#movie .modal-dialog {
+  width: 60%;
+  min-width: 280px;
+  max-width: 900px;
+  margin: 15% auto;
 }
 @media (max-width: 380px) {
   .header h3 {

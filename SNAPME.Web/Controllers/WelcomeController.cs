@@ -30,7 +30,7 @@ namespace SNAPME.Web.Controllers
                 Response.Cookies.Add(cookie);
             }
 
-            return View("LandingPage");
+            return View("LandingPage", (object)true);
         }
 
         // POST: Register
@@ -57,7 +57,7 @@ namespace SNAPME.Web.Controllers
                 return View("ThankYou", (object)newRef);
             }
 
-            return View();
+            return View("LandingPage", (object)false);
         }
 
         [HttpGet]

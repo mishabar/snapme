@@ -1,4 +1,5 @@
-﻿@{
+﻿@model bool
+@{
     ViewBag.Title = "Welcome";
     Layout = "~/Views/Shared/_LayoutLanding.cshtml";
 }
@@ -22,7 +23,11 @@
                             </div>
                             <form role="form" action="/Welcome/Register" method="post">
                                 <div class="form-group">
-                                    <input type="text" name="email" value="" placeholder="Leave your email address here" class="form-control input-lg" />
+                                    <input type="email" name="email" value="" autofocus autocomplete="off" placeholder="Leave your email address here" class="form-control input-lg" />
+                                    @if (!Model)
+                                    {
+                                        <em style="color: #FFF;font-size: 14px;font-weight: normal;">Please enter a valid email address</em>
+                                    }
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
@@ -32,6 +37,7 @@
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -96,7 +102,7 @@
                         <h3>Join iiSnap invitation list and unlock bonus of 100 Snap Points!</h3>
                         <form role="form" action="/Welcome/Register" method="post">
                             <div class="form-group">
-                                <input type="text" name="email" value="" placeholder="Leave your email address here" class="form-control input-lg" />
+                                <input type="email" name="email" value="" autocomplete="off" placeholder="Leave your email address here" class="form-control input-lg" />
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -133,12 +139,12 @@
 </div>
 
 @section scripts{
-<script>
-    $(function () {
-        $('#movie').on('hide.bs.modal', function () {
-            var $iframe = $('iframe', this);
-            $iframe.attr('src', $iframe.attr('src'));
-        });
-    })
-</script>
+    <script>
+        $(function () {
+            $('#movie').on('hide.bs.modal', function () {
+                var $iframe = $('iframe', this);
+                $iframe.attr('src', $iframe.attr('src'));
+            });
+        })
+    </script>
 }
