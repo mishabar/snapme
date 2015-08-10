@@ -20,6 +20,10 @@ namespace SNAPME.Web.Controllers
             _productService = productService;
         }
 
+        public ActionResult Index()
+        {
+            return RedirectPermanent("/MyAccount/Details");
+        }
 
         public ActionResult Details()
         {

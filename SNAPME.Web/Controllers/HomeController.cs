@@ -32,7 +32,8 @@ namespace SNAPME.Web.Controllers
             HomepageModel model = new HomepageModel
             {
                 ActiveSales = products,
-                FavoriteProducts = favoriteProducts
+                FavoriteProducts = favoriteProducts,
+                Categories = _productService.GetCategories()
             };
             return View(model);
         }

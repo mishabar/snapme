@@ -19,6 +19,7 @@ body {
   display: flex;
   min-height: 100vh;
   -ms-flex-direction: column;
+  -webkit-flex-direction: column;
   flex-direction: column;
   font-family: 'Open Sans', GillSans, Calibri, Trebuchet, sans-serif;
   font-weight: normal !important;
@@ -108,8 +109,8 @@ footer.page-footer li > a {
   color: #333333;
 }
 .header {
-  height: 225px;
-  background: transparent url(/Content/Images/header.jpg) no-repeat center center;
+  height: 160px;
+  background-color: #464646;
 }
 /*background-color: #f1f1f1;*/
 .tabs .indicator {
@@ -223,10 +224,10 @@ footer.page-footer li > a {
 }
 .product-box .product-box-image {
   position: relative;
-  padding-bottom: 120%;
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  background-position: 50% 40%;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -259,10 +260,10 @@ footer.page-footer li > a {
   color: #8FA4F4;
 }
 .product-box .product-box-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  /*position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;*/
   height: 70px;
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -319,6 +320,9 @@ footer.page-footer li > a {
 .product.details .bx-wrapper .bx-pager.bx-default-pager a.active {
   background: #ffde00;
 }
+.product.details .bx-wrapper .bx-next {
+  right: 20px;
+}
 .product.details .product-actions {
   position: absolute;
   margin: 20px 0 0 10px;
@@ -340,7 +344,7 @@ footer.page-footer li > a {
   color: #000000;
   position: absolute;
   top: 12px;
-  right: 12px;
+  right: 20px;
   z-index: 1;
   border-radius: 4px;
 }
@@ -588,5 +592,15 @@ ul.snap-points-list li > .row .bonus span {
 .row.no-padding > .col {
   padding: 0;
   position: relative;
+}
+.dropdown-content li > a,
+.dropdown-content li > span {
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem;
+  white-space: nowrap;
+}
+.toast img {
+  height: 80%;
+  margin-right: 10px;
 }
 /*# sourceMappingURL=msite.css.map */

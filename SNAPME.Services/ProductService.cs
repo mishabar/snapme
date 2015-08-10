@@ -92,5 +92,11 @@ namespace SNAPME.Services
         {
             return _socialFeedRepository.GetByProductId(productId, userId).Select(f => f.AsToken());
         }
+
+
+        public IEnumerable<CategoryToken> GetCategories()
+        {
+            return CategoryToken.Generate(5);
+        }
     }
 }

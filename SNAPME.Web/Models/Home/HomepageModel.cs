@@ -11,5 +11,7 @@ namespace SNAPME.Web.Models.Home
         public IEnumerable<ProductToken> ActiveSales { get; set; }
 
         public IEnumerable<ProductToken> FavoriteProducts { get; set; }
+
+        public IEnumerable<CategoryToken> Categories { get; set; }
     }
 }

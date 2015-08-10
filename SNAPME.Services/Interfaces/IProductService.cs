@@ -26,5 +26,7 @@ namespace SNAPME.Services.Interfaces
         IEnumerable<UserActionToken> GetFullSocialFeed(string productId);
 
         IEnumerable<UserActionToken> GetSocialFeed(string productId, string userId);
+
+        IEnumerable<CategoryToken> GetCategories();
     }
 }

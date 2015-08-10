@@ -21,6 +21,7 @@ body {
     display: flex;
     min-height: 100vh;
     -ms-flex-direction: column;
+    -webkit-flex-direction: column;
     flex-direction: column;
     font-family: 'Open Sans', GillSans, Calibri, Trebuchet, sans-serif;
     font-weight: normal !important;
@@ -115,8 +116,8 @@ footer.page-footer {
 }
 
 .header {
-    height: 225px;
-    background: transparent url(/Content/Images/header.jpg) no-repeat center center;
+    height: 160px;
+    background-color: #464646;
 }
 
 //.nav-tabs {
@@ -261,10 +262,10 @@ footer.page-footer {
 
     .product-box-image {
         position: relative;
-        padding-bottom: 120%;
+        padding-bottom: 56.25%;
         height: 0;
         overflow: hidden;
-        background-position: 50% 40%;
+        background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: contain;
 
@@ -306,10 +307,10 @@ footer.page-footer {
     }
 
     .product-box-footer {
-        position: absolute;
+        /*position: absolute;
         bottom: 0;
         left: 0;
-        right: 0;
+        right: 0;*/
         height: 70px;
         background-color: rgba(0,0,0,0.4);
 
@@ -377,6 +378,10 @@ footer.page-footer {
                     }
                 }
             }
+
+            .bx-next {
+                right: 20px;
+            }
         }
 
         .product-actions {
@@ -406,7 +411,7 @@ footer.page-footer {
             color: #000000;
             position: absolute;
             top: 12px;
-            right: 12px;
+            right: 20px;
             z-index: 1;
             border-radius: 4px;
         }
@@ -718,4 +723,18 @@ ul.snap-points-list {
 .row.no-padding > .col {
     padding: 0;
     position: relative;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    white-space: nowrap;
+}
+
+.toast {
+
+    img {
+        height: 80%;
+        margin-right: 10px;
+    }
 }
