@@ -292,6 +292,9 @@
     <Content Include="Content\Images\LandingPage\img4.png" />
     <Content Include="Content\Images\LandingPage\left_circles_faces.png" />
     <Content Include="Content\Images\LandingPage\right_circles_faces.png" />
+    <Content Include="Content\Images\LandingPage\step1.png" />
+    <Content Include="Content\Images\LandingPage\step2.png" />
+    <Content Include="Content\Images\LandingPage\step3.png" />
     <Content Include="Content\Images\LandingPage\top.jpg" />
     <Content Include="Content\Images\LandingPage\video-bg.png" />
     <Content Include="Content\Images\logo-footer.png" />

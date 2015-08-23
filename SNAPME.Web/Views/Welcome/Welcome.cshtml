@@ -54,13 +54,13 @@
             </div>
             <div class="row">
                 <div class="col l5 offset-l1">
-                    <form name="form" novalidate ng-app>
+                    <form name="form" novalidate ng-app action="/Welcome/Register">
                         <div class="row">
                             <div class="col l8">
-                                <input type="email" name="email" value="" placeholder="Email" />
+                                <input type="email" name="email" value="" placeholder="Email" ng-model="email" required />
                             </div>
                             <div class="col l4">
-                                <button class="btn waves-effect waves-light yellow darken-1 btn-large" type="submit">start now</button>
+                                <button class="btn waves-effect waves-light yellow darken-1 btn-large" type="submit" ng-disabled="form.$invalid" ng-click="submitted=true">start now</button>
                             </div>
                         </div>
                     </form>
@@ -146,6 +146,7 @@
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.4/angular.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.modal-trigger').leanModal({
