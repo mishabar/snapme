@@ -30,7 +30,7 @@ namespace SNAPME.Web.Controllers
                 Response.Cookies.Add(cookie);
             }
 
-            return View("LandingPage", (object)true);
+            return View("Welcome");
         }
 
         // POST: Register

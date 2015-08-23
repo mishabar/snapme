@@ -16,10 +16,10 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44302</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -290,6 +290,10 @@
     <Content Include="Content\Images\LandingPage\img3.png" />
     <Content Include="Content\Images\LandingPage\img4%402x.png" />
     <Content Include="Content\Images\LandingPage\img4.png" />
+    <Content Include="Content\Images\LandingPage\left_circles_faces.png" />
+    <Content Include="Content\Images\LandingPage\right_circles_faces.png" />
+    <Content Include="Content\Images\LandingPage\top.jpg" />
+    <Content Include="Content\Images\LandingPage\video-bg.png" />
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\navbar-bottom.png" />
     <Content Include="Content\Images\pre-launch-email-bg.jpg" />
@@ -336,6 +340,13 @@
     </Content>
     <Content Include="Content\style.css" />
     <Content Include="Content\themify-icons.css" />
+    <Content Include="Content\welcome.css">
+      <DependentUpon>welcome.less</DependentUpon>
+    </Content>
+    <Content Include="Content\welcome.less" />
+    <Content Include="Content\welcome.min.css">
+      <DependentUpon>welcome.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -398,6 +409,9 @@
     <Content Include="fonts\Questrial-Regular.woff" />
     <Content Include="Content\msite.css.map">
       <DependentUpon>msite.css</DependentUpon>
+    </Content>
+    <Content Include="Content\welcome.css.map">
+      <DependentUpon>welcome.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
@@ -505,6 +519,7 @@
     </Content>
     <Content Include="Views\Product\DetailsOld.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Welcome\Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
