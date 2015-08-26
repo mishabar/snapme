@@ -33,6 +33,15 @@ namespace SNAPME.Web.Controllers
             return View("Welcome");
         }
 
+        public ActionResult ComingSoon()
+        {
+            if (!string.IsNullOrWhiteSpace(Request["ReturnUrl"])) 
+            {
+                return Redirect("/ComingSoon");
+            }
+            return View();
+        }
+
         // POST: Register
         [HttpPost]
         public ActionResult Register(RegisterForInvitationModel model)

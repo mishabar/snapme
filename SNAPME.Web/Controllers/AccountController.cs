@@ -53,7 +53,7 @@ namespace SNAPME.Web.Controllers
             if (User.Identity.IsAuthenticated)
                 return Redirect("/");
 
-            ViewBag.ReturnUrl = returnUrl;
+            //ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 

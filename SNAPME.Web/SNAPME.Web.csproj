@@ -444,6 +444,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\retina.min.js" />
     <Content Include="Scripts\snapme.js" />
+    <Content Include="Scripts\welcome.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

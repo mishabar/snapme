@@ -26,7 +26,7 @@ namespace SNAPME.Web
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             // Configure the sign in cookie
-            string path = "/Welcome"; //ConfigurationManager.AppSettings["ComingSoon"] == null ? "/Account/Login" : "/";
+            string path = "/ComingSoon"; //ConfigurationManager.AppSettings["ComingSoon"] == null ? "/Account/Login" : "/";
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

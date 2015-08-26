@@ -10,8 +10,13 @@
 }
 @media only screen and (min-width: 993px) {
   .container {
-    width: 80%;
-    min-width: 1180px;
+    width: 100%;
+    max-width: 1180px;
+    min-width: 993px;
+  }
+  .container .row {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 nav {
@@ -46,14 +51,14 @@ nav ul a.facebook-blue {
   background-image: url(/content/images/landingpage/top.jpg);
   height: 480px;
   background-repeat: no-repeat;
-  background-position: 100% 50%;
+  background-position: 50% 50%;
 }
 .top-banner h1 {
   font-size: 3.2rem;
   color: #FFF;
   font-weight: 300;
   text-transform: uppercase;
-  margin-top: 80px;
+  margin-top: 100px;
   text-shadow: 1px 1px 1px #666;
   margin-bottom: 0;
 }
@@ -86,6 +91,10 @@ nav ul a.facebook-blue {
   bottom: -20px;
   margin-left: -10px;
   left: 50%;
+}
+.yellow-bar h3 {
+  margin: 5px 0 0 0;
+  font-weight: 300;
 }
 .video {
   background-image: url(/content/images/landingpage/video-bg.png);

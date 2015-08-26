@@ -1,110 +1,83 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
-    ViewBag.Title = "Coming Soon";
-    ViewBag.ComingSoon = true;
+    Layout = null;
 }
 
-<div class="coming-soon">
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="icon" href="/content/images/iisnap.ico">
+
+    <meta name="twitter:title" content="iiSnap - Now you can afford anything you want">
+    <meta name="twitter:description" content="Get the best prices with a little help from your friends">
+    <meta name="twitter:image" content="https://www.iisnap.com/content/images/iisnap_fb_share.png">
+    <meta property="og:title" content="iiSnap - Now you can afford anything you want">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.iisnap.com/">
+    <meta property="og:description" content="Get the best prices with a little help from your friends">
+    <meta property="og:image" content="https://www.iisnap.com/content/images/iisnap_fb_share.png">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
+
+    <link href="/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
+
+    <title>iiSnap - Coming Soon</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link href="/content/welcome.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo"><img src="/content/images/logo.png" /></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="https://www.facebook.com/iisnaps" target="_blank" class="btn-floating btn waves-effect waves-light facebook-blue"><i class="fa fa-facebook-f"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="top-banner">
         <div class="container">
-            <h2 class="text-center text-uppercase">How to save money shopping online?</h2>
-            <div class="col-md-10 col-md-offset-1">
-                <h4>iiSnap is a social shopping site that lets members drop the price of the products they like by raising the demand using their social network</h4>
-                <h4 class="yellow hidden-sm hidden-xs">we are launching very soon</h4>
-                <br class="hidden-sm hidden-xs" />
-                <h4>
-                    How does it work?<br />
-                    <a href="#"><i class="fa fa-play-circle"></i></a>
-                    <span class="yellow">Press play now</span>
-                </h4>
-            </div>
-        </div>
-    </div>
-    <div class="early-birds">
-        <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="stay-tuned text-center">
-                        <h2>Stay Tuned!</h2>
-                        <div>unlock awesome rewards</div>
-                        <div class="arrow"></div>
-                    </div>
-                    <h2>Early Birds Special</h2>
-                    <p>Get exclusive invitation to our pre-launch sales and get additional <span style="text-decoration: underline" data-toggle="popover" data-trigger="hover" data-placement="top">Snap Points</span> to get you started.</p>
-                    <div class="row">
-                        <form method="post" action="/Account/EarlyBird">
-                            <div class="form-group">
-                                <div class="col-sm-8">
-                                    <input type="email" name="email" class="form-control" placeholder="Email Address" />
-                                </div>
-                                <div class="col-sm-4">
-                                    <button class="btn btn-block btn-snapme">Let me know</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="col l6 offset-l1">
+                    <h1>Now you can afford anything you want</h1>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="sharing-saving">
-        <div class="container">
             <div class="row">
-                <div class="col-md-12 social-map">
-                    <h2>Sharing is Saving</h2>
-                    <h4>iiSnap is the world most rewarding social shopping experience</h4>
+                <div class="col l5 offset-l1">
+                    <h4>Get the best prices with a little help from your friends</h4>
                 </div>
             </div>
         </div>
     </div>
-    <div class="benefits">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 text-center">
-                    <i class="iisnap-drop"></i>
-                    <div>Drop the price and save on anything you buy</div>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <i class="iisnap-computeriisnap"></i>
-                    <div>A fun and rewarding way to shop online with your friends</div>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <i class="iisnap-letter"></i>
-                    <div>Invite your friends and earn Snap Points</div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
+    <div class="yellow-bar iisnap-yellow center-align">
+        <div>
+            <h3>Coming Soon</h3>
         </div>
     </div>
-    <div class="special-invite">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <h2>Pre-Launch Special Invite</h2>
-                    <p>Get exclusive invitation to our pre-launch sales and get additional <span style="text-decoration: underline" data-toggle="popover" data-trigger="hover" data-placement="top">Snap Points</span> to get you started.</p>
-                    <div class="row">
-                        <form method="post" action="/Account/EarlyBird">
-                            <div class="form-group">
-                                <div class="col-sm-8">
-                                    <input type="email" name="email" class="form-control" placeholder="Email Address" />
-                                </div>
-                                <div class="col-sm-4">
-                                    <button class="btn btn-block btn-snapme">Let me know</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-@section scripts{
-    <script>
-        $(function () {
-            $("[data-toggle=popover]").popover({ html: true, content: "<p class='text-center'>Snap Points are part of the iiSnap reward program.<br/>You can earn Snap Points when friends whom you invited to a sale buy the product.<br/>Snap Point can be used for discounts during any sale on the site." });
-            $("body").css("margin-bottom", $("footer").height() + 40 + "px");
-        });
-    </script>
-}
+    <p>&nbsp;</p>
+
+    <div class="footer">
+        <div class="row">
+            <div class="col l10 offset-l1 center-align">
+                <div style="display: inline-block">
+                    <ul>
+                        <li><a href="https://www.facebook.com/iisnaps" target="_blank">iiSnap on Facebook</a></li>
+                        <li><a href="mailto:ami@iisnap.com?subject=I%20would%20like%20to%20become%20a%20partner" target="_blank">Sell on iiSnap</a></li>
+                        <li><a href="mailto:michael@iisnap.com?subject=Question%20regarding%20iiSnap" target="_blank">Contact Us</a></li>
+                    </ul>
+                </div>
+                <hr />
+                <div class="center-align">&copy; 2015 iiSnap Corp LTD</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+</body>
+</html>
