@@ -24,7 +24,7 @@
 
     <title>Welcome to iiSnap</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/content/scss/materialize.min.css">
     <link href="/content/welcome.css" rel="stylesheet" />
 </head>
 <body ng-app="iisnapApp" ng-controller="welcomeController">
@@ -44,24 +44,24 @@
     <div class="top-banner">
         <div class="container">
             <div class="row">
-                <div class="col l6 offset-l1">
+                <div class="col l6 offset-l1 m8 offset-m1">
                     <h1>Now you can afford anything you want</h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col l5 offset-l1">
+                <div class="col l5 offset-l1 m8 offset-m1">
                     <h4>Get the best prices with a little help from your friends</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col l5 offset-l1">
-                    <form name="topForm" novalidate ng-submit="submitForm(topForm.$valid)">
+                <div class="col l5 offset-l1 m8 offset-m1 s12">
+                    <form name="topForm" novalidate ng-submit="submitForm($event)">
                         <div class="row">
-                            <div class="col l8">
-                                <input type="email" name="email" value="" placeholder="Email" ng-class="{invalid: submitted && topForm.email.$error}" ng-model="email" required />
+                            <div class="col l8 m8 s12">
+                                <input type="email" name="email" value="" placeholder="Email" ng-class="{invalid: topForm.email.$invalid && !topForm.email.$pristine}" ng-model="email" required />
                             </div>
-                            <div class="col l4">
-                                <button class="btn waves-effect waves-light yellow darken-1 btn-large" type="submit" ng-click="submitted=true">start now</button>
+                            <div class="col l4 m4 s12">
+                                <button class="btn waves-effect waves-light yellow darken-1 btn-large" type="submit">start now</button>
                             </div>
                         </div>
                     </form>
@@ -82,14 +82,16 @@
         <div class="yellow-arrow"></div>
     </div>
     <div class="row">
-        <div class="col m6">
+        <div class="col l6 m12 s12">
             <div class="video center-align">
-                <img src="~/Content/Images/logo.png" />
+                <img src="~/Content/Images/logo.png" class="hide-on-small-only" />
                 <h4>How does it work?</h4>
-                <iframe width="499" height="281" src="https://www.youtube.com/embed/QDlVWDBfPEE" frameborder="0" allowfullscreen></iframe>
+                <div class="video-bg">
+                    <a class="modal-trigger" href="#modal1"></a>
+                </div>
             </div>
         </div>
-        <div class="col m6">
+        <div class="col l6 m12 s12">
             <ul class="benefits">
                 <li><img src="/content/images/landingpage/step1.png" /><div class="valign-wrapper"><div class="valign"><h5>Choose Product</h5><div>Discover awesome collection of products handpicked from around the globe</div></div></div></li>
                 <li><img src="/content/images/landingpage/step2.png" /><div class="valign-wrapper"><div class="valign"><h5>Join Sale</h5><div>The more people join the sale, the lower the price everyone pay</div></div></div></li>
@@ -99,30 +101,30 @@
     </div>
     <div class="bottom-banner">
         <div class="row">
-            <div class="col l3">
+            <div class="col l3 m2 hide-on-small-only">
                 <div class="balloons left">&nbsp;</div>
             </div>
-            <div class="col l6">
+            <div class="col l6 m8 s12">
                 <h1 class="center-align">Power to the people</h1>
-                <form name="form" novalidate ng-app>
+                <form name="bottomForm" novalidate ng-submit="submitForm($event)">
                     <div class="row">
-                        <div class="col l8">
-                            <input type="email" name="email" value="" placeholder="Email" />
+                        <div class="col l8 m8 s12">
+                            <input type="email" name="email" value="" placeholder="Email" ng-class="{invalid: bottomForm.email.$invalid && !bottomForm.email.$pristine}" ng-model="email" required />
                         </div>
-                        <div class="col l4">
+                        <div class="col l4 m4 s12">
                             <button class="btn waves-effect waves-light yellow darken-1 btn-large" type="submit">start now</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col l3">
+            <div class="col l3 m2 hide-on-small-only">
                 <div class="balloons right">&nbsp;</div>
             </div>
         </div>
     </div>
     <div class="footer">
         <div class="row">
-            <div class="col l10 offset-l1 center-align">
+            <div class="col l10 offset-l1 center-align hide-on-small-only">
                 <div style="display: inline-block">
                     <ul>
                         <li><a href="#" target="_blank">iiSnap on Facebook</a></li>
@@ -132,15 +134,14 @@
                     </ul>
                 </div>
                 <hr />
-                <div class="center-align">&copy; 2015 iiSnap Corp LTD</div>
             </div>
+            <div class="col l12 m12 s12 center-align">&copy; 2015 iiSnap Corp LTD</div>
         </div>
     </div>
-
     <div id="modal1" class="modal">
         <div class="modal-content">
             <div class="video-container no-controls">
-                <iframe width="853" height="480" src="https://www.youtube.com/embed/QDlVWDBfPEE" frameborder="0" allowfullscreen></iframe>
+                <iframe width="853" height="480" src="https://www.youtube.com/embed/rJT4Pny1xI4" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>

@@ -19,11 +19,6 @@
     margin-right: 0;
   }
 }
-nav {
-  background-color: #ffffff;
-  color: #000;
-  box-shadow: none;
-}
 nav .nav-wrapper {
   padding: 0 30px;
 }
@@ -76,9 +71,9 @@ nav ul a.facebook-blue {
 }
 .yellow-bar ul li {
   float: left;
-  font-size: 1.3rem;
-  font-weight: 300;
-  padding: 0 10px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0 8px;
   text-transform: uppercase;
 }
 .yellow-bar .yellow-arrow {
@@ -97,19 +92,37 @@ nav ul a.facebook-blue {
   font-weight: 300;
 }
 .video {
-  background-image: url(/content/images/landingpage/video-bg.png);
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  padding-bottom: 54px;
-  padding-top: 50px;
+  padding-top: 70px;
+  margin: 0 30px 0 auto;
+  width: 480px;
 }
 .video h4 {
   margin-top: 0;
   font-weight: 300;
-  margin-bottom: 32px;
+  margin-bottom: 0;
+}
+.video .video-bg {
+  background-image: url(/content/images/landingpage/video-bg.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  width: 480px;
+  margin: 0 auto;
+  position: relative;
+  height: 325px;
+  margin-top: -30px;
+}
+.video .video-bg a {
+  position: absolute;
+  top: 55px;
+  right: 40px;
+  bottom: 44px;
+  left: 38px;
 }
 ul.benefits {
   margin-top: 110px;
+  max-width: 480px;
+  margin-left: 20px;
 }
 ul.benefits li {
   height: 150px;
@@ -153,7 +166,11 @@ ul.benefits li > div div {
   height: 350px;
 }
 .bottom-banner form {
-  margin: 0 65px;
+  max-width: 450px;
+  margin: 0 auto;
+}
+.bottom-banner .col.l3 {
+  padding: 0;
 }
 input[type=email] {
   background-color: #FFF;
@@ -161,9 +178,9 @@ input[type=email] {
   border-radius: 4px;
   height: auto;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1.3rem;
   margin: 0;
-  padding: 6px 10px;
+  padding: 14px 10px;
   box-shadow: none;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -190,6 +207,9 @@ button.btn-large {
   padding: 30px 0;
   font-size: 1rem;
 }
+.footer .row {
+  margin-bottom: 0;
+}
 .footer ul li {
   float: left;
   border-left: 1px solid #bababa;
@@ -206,5 +226,96 @@ button.btn-large {
   border: none;
   border-bottom: 1px solid #bababa;
   margin: 20px 0;
+}
+@media only screen and (min-width: 601px) {
+  .top-banner h1 {
+    margin-top: 80px;
+  }
+  .video {
+    margin: 0 auto;
+  }
+  ul.benefits {
+    margin: 50px auto 0;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .top-banner {
+    background-position: 65% 50%;
+    background-size: cover;
+  }
+  .top-banner h1 {
+    font-size: 1.9rem;
+    margin-top: 70px;
+    text-align: center;
+  }
+  .top-banner h4 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-align: center;
+    font-weight: normal;
+  }
+  .top-banner form {
+    margin-top: 50px;
+  }
+  .top-banner form .btn {
+    margin-top: 10px;
+  }
+  .yellow-bar {
+    display: none;
+  }
+  .video {
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 100%;
+  }
+  .video h4 {
+    font-size: 1.4rem;
+  }
+  .video .video-bg {
+    width: 320px;
+    height: 220px;
+    margin-top: -20px;
+  }
+  ul.benefits {
+    margin: 50px auto 0;
+  }
+  ul.benefits li {
+    height: 100px;
+  }
+  ul.benefits li img {
+    width: 75px;
+  }
+  ul.benefits li .valign-wrapper {
+    margin-left: 100px;
+  }
+  ul.benefits li .valign-wrapper h5 {
+    font-size: 1.2rem;
+    margin: 0 0 5px 0;
+  }
+  ul.benefits li > div div {
+    font-size: 0.8rem;
+  }
+  .bottom-banner {
+    height: auto;
+    padding-bottom: 20px;
+  }
+  .bottom-banner .row {
+    margin-bottom: 0;
+  }
+  .bottom-banner h1 {
+    margin: 20px 0;
+    font-size: 1.6rem;
+  }
+  .bottom-banner form {
+    margin-top: 10px;
+  }
+  .bottom-banner form .btn {
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .video .video-bg {
+    margin: -20px -0.75rem 0;
+  }
 }
 /*# sourceMappingURL=welcome.css.map */

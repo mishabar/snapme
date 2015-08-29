@@ -204,6 +204,7 @@
     <Compile Include="Areas\Seller\SellerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\EmailController.cs" />
+    <Compile Include="Controllers\Api\PreLaunchController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SellerController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Helpers\ViewRenderer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Account\MyAccountDetailsModel.cs" />
+    <Compile Include="Models\Api\PreLaunchRegisterToken.cs" />
     <Compile Include="Models\Emails\SellerWelcomeModel.cs" />
     <Compile Include="Models\Sale\DropPriceDialogModel.cs" />
     <Compile Include="Models\Dialog\LoginDialogModel.cs" />
@@ -334,6 +336,12 @@
     <Content Include="Content\msite.min.css">
       <DependentUpon>msite.css</DependentUpon>
     </Content>
+    <Content Include="Content\scss\materialize.css">
+      <DependentUpon>materialize.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\scss\materialize.min.css">
+      <DependentUpon>materialize.css</DependentUpon>
+    </Content>
     <Content Include="Content\site.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
@@ -415,6 +423,39 @@
     </Content>
     <Content Include="Content\welcome.css.map">
       <DependentUpon>welcome.css</DependentUpon>
+    </Content>
+    <Content Include="Content\scss\components\date_picker\_default.date.scss" />
+    <Content Include="Content\scss\components\date_picker\_default.scss" />
+    <Content Include="Content\scss\components\date_picker\_default.time.scss" />
+    <Content Include="Content\scss\components\_buttons.scss" />
+    <Content Include="Content\scss\components\_cards.scss" />
+    <Content Include="Content\scss\components\_collapsible.scss" />
+    <Content Include="Content\scss\components\_color.scss" />
+    <Content Include="Content\scss\components\_dropdown.scss" />
+    <Content Include="Content\scss\components\_form.scss" />
+    <Content Include="Content\scss\components\_global.scss" />
+    <Content Include="Content\scss\components\_grid.scss" />
+    <Content Include="Content\scss\components\_icons-material-design.scss" />
+    <Content Include="Content\scss\components\_materialbox.scss" />
+    <Content Include="Content\scss\components\_mixins.scss" />
+    <Content Include="Content\scss\components\_modal.scss" />
+    <Content Include="Content\scss\components\_navbar.scss" />
+    <Content Include="Content\scss\components\_normalize.scss" />
+    <Content Include="Content\scss\components\_prefixer.scss" />
+    <Content Include="Content\scss\components\_preloader.scss" />
+    <Content Include="Content\scss\components\_roboto.scss" />
+    <Content Include="Content\scss\components\_sideNav.scss" />
+    <Content Include="Content\scss\components\_slider.scss" />
+    <Content Include="Content\scss\components\_table_of_contents.scss" />
+    <Content Include="Content\scss\components\_tabs.scss" />
+    <Content Include="Content\scss\components\_toast.scss" />
+    <Content Include="Content\scss\components\_tooltip.scss" />
+    <Content Include="Content\scss\components\_typography.scss" />
+    <Content Include="Content\scss\components\_variables.scss" />
+    <Content Include="Content\scss\components\_waves.scss" />
+    <Content Include="Content\scss\materialize.scss" />
+    <Content Include="Content\scss\materialize.css.map">
+      <DependentUpon>materialize.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />

@@ -1,7 +1,9 @@
 ﻿var iisnapApp = angular.module('iisnapApp', []);
 
 // create angular controller
-iisnapApp.controller('welcomeController', function ($scope) {
+iisnapApp.controller('welcomeController', function ($scope, $http) {
+
+    $scope.submitted = false;
 
     $(document).ready(function () {
         $('.modal-trigger').leanModal({
@@ -13,13 +15,19 @@ iisnapApp.controller('welcomeController', function ($scope) {
     });
 
     // function to submit the form after all validation has occurred            
-    $scope.submitForm = function (isValid) {
+    $scope.submitForm = function ($event) {
 
-        // check to make sure the form is completely valid
-        if (isValid) {
-            alert('our form is amazing');
+        $scope.submitted = true;
+
+        if ($scope[$event.target.name].$valid) {
+            var response = $http.post('/api/v1/prelaunch/register', { email: $scope[$event.target.name].email });
+            response.success(function (data, status, errors, config) {
+                console.log(data);
+            });
+            response.error(function (data, status, errors, config) {
+                console.log(data);
+            });
         }
-
+        $event.preventDefault();
     };
-
 });
