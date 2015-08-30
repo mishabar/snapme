@@ -11,5 +11,7 @@ namespace SNAPME.Web.Models.Api
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        public string Referrer { get; set; }
     }
 }

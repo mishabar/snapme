@@ -5,6 +5,10 @@
 .facebook-blue:hover {
   background-color: #3b5998;
 }
+.google-plus-red,
+.google-plus-red:hover {
+  background-color: #dd4b39;
+}
 .iisnap-yellow {
   background-color: #fdd406;
 }
@@ -201,6 +205,18 @@ button.btn-large {
   padding: 0 1rem;
   width: 100%;
 }
+.invite .btn {
+  width: 100%;
+}
+.invite-link {
+  margin: 40px 0;
+}
+.invite-link span {
+  padding: 10px 20px;
+  margin: 20px 0;
+  display: inline-block;
+  font-size: 1.5rem;
+}
 .footer {
   background-color: #363636;
   color: #bababa;
@@ -311,6 +327,16 @@ button.btn-large {
   }
   .bottom-banner form .btn {
     margin-top: 10px;
+  }
+  .invite-link {
+    margin: 20px 0;
+  }
+  .invite-link h5 {
+    font-size: 1.4rem;
+  }
+  .invite-link span {
+    font-size: 1.2rem;
+    margin-top: 0;
   }
 }
 @media only screen and (max-width: 320px) {

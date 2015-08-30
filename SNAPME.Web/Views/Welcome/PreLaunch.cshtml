@@ -1,0 +1,94 @@
+﻿@model Object
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="icon" href="/content/images/iisnap.ico">
+
+    <meta name="robots" content="noindex">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
+
+    <link href="/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
+
+    <title>Welcome to iiSnap</title>
+
+    <link rel="stylesheet" href="/content/scss/materialize.min.css">
+    <link href="/content/welcome.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo"><img src="/content/images/logo.png" /></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="https://www.facebook.com/iisnaps" target="_blank" class="btn-floating btn waves-effect waves-light facebook-blue"><i class="fa fa-facebook-f"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="top-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 offset-l1 m8 offset-m1 s12">
+                    <h1>Thank you for your interest</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l5 offset-l1 m8 offset-m1 s12">
+                    <h4>Spread the word and get bonus Snap Points when we go live</h4>
+                </div>
+            </div>
+            <div class="row invite">
+                <div class="col l5 offset-l1 m8 offset-m1 s12">
+                    <div class="row">
+                        <div class="col l6 m6 s12">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.iisnap.com/welcome?ref=@Model" target="_blank" class="btn waves-effect waves-light facebook-blue btn-large" title="Facebook"><i class="fa fa-facebook-f"></i></a>
+                        </div>
+                        <p class="hide-on-med-and-up">&nbsp;</p>
+                        <div class="col l6 m6 s12">
+                            <a href="https://plus.google.com/share?url=http://www.iisnap.com/welcome?ref=@Model" target="_blank" class="btn waves-effect waves-light google-plus-red btn-large" title="Google+"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="invite-link center-align">
+        <div class="row">
+            <h5 class="col l8 offset-l2 m10 offset-m1 s12">If you prefer to send your invitation by any other means, just send the following url to your friends:</h5>
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <span class="iisnap-yellow">http://www.iisnap.com/welcome?ref=@Model</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="row">
+            <div class="col l10 offset-l1 center-align hide-on-small-only">
+                <div style="display: inline-block">
+                    <ul>
+                        <li><a href="#" target="_blank">iiSnap on Facebook</a></li>
+                        <li><a href="#" target="_blank">FAQ</a></li>
+                        <li><a href="#" target="_blank">Sell on iiSnap</a></li>
+                        <li><a href="#" target="_blank">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <hr />
+            </div>
+            <div class="col l12 m12 s12 center-align">&copy; 2015 iiSnap Corp LTD</div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</body>
+</html>

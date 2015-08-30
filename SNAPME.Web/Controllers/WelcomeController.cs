@@ -25,12 +25,23 @@ namespace SNAPME.Web.Controllers
         {
             if (!string.IsNullOrWhiteSpace(Request["ref"]))
             {
-                HttpCookie cookie = new HttpCookie ("ref", Request["ref"].Trim());
+                HttpCookie cookie = new HttpCookie ("iisref", Request["ref"].Trim());
                 cookie.Expires = DateTime.Now.AddMonths(6);
                 Response.Cookies.Add(cookie);
             }
 
             return View("Welcome");
+        }
+
+        [HttpPost]
+        public ActionResult PreLaunch()
+        {
+            if (string.IsNullOrEmpty(Request["key"]))
+            {
+                return Redirect("/Welcome");
+            }
+
+            return View("PreLaunch", (object)Request["key"]);
         }
 
         public ActionResult ComingSoon()
@@ -42,32 +53,32 @@ namespace SNAPME.Web.Controllers
             return View();
         }
 
-        // POST: Register
-        [HttpPost]
-        public ActionResult Register(RegisterForInvitationModel model)
-        {
-            if (ModelState.IsValid)
-            { 
-                string referer = null;
-                if (Request.Cookies["ref"] != null && !string.IsNullOrWhiteSpace(Request.Cookies["ref"].Value))
-                {
-                    referer = Request.Cookies["ref"].Value.Trim();
-                }
-                string newRef = _invitationService.AddToList(model.Email, referer);
-                HttpCookie cookie = new HttpCookie("ref");
-                cookie.Expires = new DateTime(1900, 1, 1);
-                Response.Cookies.Add(cookie);
+        //// POST: Register
+        //[HttpPost]
+        //public ActionResult Register(RegisterForInvitationModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    { 
+        //        string referer = null;
+        //        if (Request.Cookies["ref"] != null && !string.IsNullOrWhiteSpace(Request.Cookies["ref"].Value))
+        //        {
+        //            referer = Request.Cookies["ref"].Value.Trim();
+        //        }
+        //        string newRef = _invitationService.AddToList(model.Email, referer);
+        //        HttpCookie cookie = new HttpCookie("ref");
+        //        cookie.Expires = new DateTime(1900, 1, 1);
+        //        Response.Cookies.Add(cookie);
 
-                var renderer = new ViewRenderer();
-                var body = renderer.RenderViewToString("~/Views/Emails/_InvitationListWelcome.cshtml", (object)newRef);
+        //        var renderer = new ViewRenderer();
+        //        var body = renderer.RenderViewToString("~/Views/Emails/_InvitationListWelcome.cshtml", (object)newRef);
 
-                _emailService.Send(model.Email, "Welcome to iiSnap Invitation List", body, new string[] { "~/Content/Images/Emails/LandingPage/header.png" });
+        //        _emailService.Send(model.Email, "Welcome to iiSnap Invitation List", body, new string[] { "~/Content/Images/Emails/LandingPage/header.png" });
 
-                return View("ThankYou", (object)newRef);
-            }
+        //        return View("ThankYou", (object)newRef);
+        //    }
 
-            return View("LandingPage", (object)false);
-        }
+        //    return View("LandingPage", (object)false);
+        //}
 
         [HttpGet]
         public ActionResult FAQ()
