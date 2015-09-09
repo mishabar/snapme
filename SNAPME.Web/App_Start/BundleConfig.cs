@@ -46,29 +46,35 @@ namespace SNAPME.Web
                       "~/Scripts/admin.js",
                       "~/Areas/Seller/Scripts/seller.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/themify-icons.css",
-                      "~/Content/style.css", // icomoon
-                      "~/Content/font-questrial.min.css",
-                      "~/Content/jquery.bxslider.css",
-                      "~/Content/fm.scrollator.jquery.css",
-                      "~/Content/site.min.css"));
+            //bundles.Add(new StyleBundle("~/Content/css").Include(
+            //          "~/Content/bootstrap.css",
+            //          "~/Content/font-awesome.min.css",
+            //          "~/Content/themify-icons.css",
+            //          "~/Content/style.css", // icomoon
+            //          "~/Content/font-questrial.min.css",
+            //          "~/Content/jquery.bxslider.css",
+            //          "~/Content/fm.scrollator.jquery.css",
+            //          "~/Content/site.min.css"));
 
-            bundles.Add(new StyleBundle("~/Content/mcss").Include(
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/themify-icons.css",
-                      "~/Content/font-questrial.min.css",
-                      "~/Content/jquery.bxslider.css",
-                      "~/Content/flipclock.css",
-                      "~/Content/msite.min.css"));
+            //bundles.Add(new StyleBundle("~/Content/mcss").Include(
+            //          "~/Content/font-awesome.min.css",
+            //          "~/Content/themify-icons.css",
+            //          "~/Content/font-questrial.min.css",
+            //          "~/Content/jquery.bxslider.css",
+            //          "~/Content/flipclock.css",
+            //          "~/Content/msite.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/admin_css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/themify-icons.css",
                       "~/Content/admin.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/content/font-awesome.min.css",
+                "~/content/scss/materialize.min.css",
+                "~/content/materialize_site.min.css"
+                ));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

@@ -1,0 +1,17 @@
+﻿<nav>
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo"><img src="/content/images/logo.png" /></a>
+            <ul id="nav-mobile" class="right">
+                @if (Request.IsAuthenticated)
+                {
+                    <li><a href="#">@User.Identity.Name</a></li>
+                }
+                else
+                {
+                    <li><a class="modal-trigger" href="#loginModal">Sign In</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

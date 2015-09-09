@@ -243,9 +243,6 @@
     <Content Include="Content\admin.min.css">
       <DependentUpon>admin.css</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flipclock.css" />
     <Content Include="Content\fm.scrollator.jquery.css" />
@@ -329,6 +326,13 @@
     <Content Include="Content\Images\xxl-logo.png" />
     <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\Images\seller-header.jpg" />
+    <Content Include="Content\materialize_site.css">
+      <DependentUpon>materialize_site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\materialize_site.less" />
+    <Content Include="Content\materialize_site.min.css">
+      <DependentUpon>materialize_site.css</DependentUpon>
+    </Content>
     <Content Include="Content\msite.css">
       <DependentUpon>msite.less</DependentUpon>
     </Content>
@@ -360,7 +364,6 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\iisnap.svg" />
     <Content Include="fonts\Questrial-Regular.svg" />
     <Content Include="fonts\themify.svg" />
@@ -375,8 +378,6 @@
     <Content Include="fonts\themify.eot" />
     <Content Include="fonts\themify.ttf" />
     <Content Include="fonts\themify.woff" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="fonts\iisnap.eot" />
     <Content Include="fonts\iisnap.ttf" />
     <Content Include="fonts\iisnap.woff" />
@@ -399,10 +400,6 @@
     <Content Include="Areas\Admin\Views\Seller\_Products.cshtml" />
     <Content Include="Areas\Admin\Views\Seller\_Sales.cshtml" />
     <Content Include="Areas\Admin\Views\Seller\_Product.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Seller\Views\Home\_Details.cshtml" />
     <Content Include="Areas\Seller\Views\Home\Details.cshtml" />
     <Content Include="Areas\Seller\Views\Shared\_SellerLayout.cshtml" />
@@ -457,12 +454,13 @@
     <Content Include="Content\scss\materialize.css.map">
       <DependentUpon>materialize.css</DependentUpon>
     </Content>
+    <Content Include="Content\materialize_site.css.map">
+      <DependentUpon>materialize_site.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootbox.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\fm.scrollator.jquery.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
@@ -478,13 +476,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\retina.min.js" />
     <Content Include="Scripts\snapme.js" />
+    <Content Include="Scripts\index.js" />
     <Content Include="Scripts\welcome.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -567,6 +565,8 @@
     <Content Include="Views\Welcome\Welcome.cshtml" />
     <Content Include="Views\Welcome\PreLaunch.cshtml" />
     <Content Include="Views\Emails\_PreLaunch.cshtml" />
+    <Content Include="Views\Shared\_MFooter.cshtml" />
+    <Content Include="Views\Shared\_MNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

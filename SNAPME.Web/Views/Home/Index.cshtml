@@ -4,59 +4,181 @@
 @{
     Layout = "~/Views/Shared/_MLayout.cshtml";
     ViewBag.Title = "Welcome";
-    int maxActiveSales = Math.Min(3, Model.ActiveSales.Count());
 }
 
-<div class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col l5 offset-l1 white-text">
-                <h3>This shopping revolution that starts with you</h3>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col s12">
-            <h5 class="center-align">Active Sales</h5>
-        </div>
-        @for(int i = 0; i < 3 && i < maxActiveSales; i++)
-        {
-            Html.RenderPartial("_ProductBox", Model.ActiveSales.ElementAt(i));
-        }
-    </div>
-    <div class="row">
-        @foreach (var category in Model.Categories)
-        {
-            <div class="col s6 m4 l2">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="@string.Format("/content/images/categories/{0}.jpg", category.name)">
-                    </div>
-                    <div class="card-content">
-                        <a href="/Category/@category.name">@category.name</a>
+<div ng-app="iisnapApp" ng-controller="indexController">
+    <div class="featured-products">
+        <div class="product-bg">
+            <div class="container">
+                <div class="featured-sale">
+                    <div class="row">
+                        <div class="col l5">
+                            <div class="white-bg">
+                                <img class="product-image" src="http://worldwide.bose.com/axa/assets/images/products/soundlink_mini/soundlink_mini_si_lg_2.png" />
+                            </div>
+                        </div>
+                        <div class="col l7">
+                            <div class="white-bg">
+                                <div class="product-name">Bose SoundLink Mini II</div>
+                                <div class="product-slogan">Take the best sound wherever you go!</div>
+                                <div class="product-price">
+                                    <div class="start">$175.<span>00</span></div>
+                                    <div class="end">$129.<span>00</span></div>
+                                    <div class="range">
+                                        <div class="progress white">
+                                            <div class="determinate amber lighten-1" style="width: 70%;"></div>
+                                        </div>
+                                        <i class="fa fa-flag-checkered right"></i>
+                                        <div class="indicator amber lighten-1" style="left: 64%"></div>
+                                        <div class="current-tag">$137.<span>00</span></div>
+                                    </div>
+                                </div>
+                                <div class="current-price left">$137.00</div>
+                                <div class="current-action right">
+                                    <a class="waves-effect waves-light btn-large join">Join Sale</a>
+                                </div>
+                                <div class="points">
+                                    <div class="collect left">Collect +150 Snap Points upon checkout</div>
+                                    <div class="invite right"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        }
+        </div>
+    </div>
+    <div class="experience center-align">
+        Get experience with <strong>iiSnap</strong> and save even more <a class="modal-trigger" href="#about">Watch Video <i class="fa fa-play-circle"></i></a>
+    </div>
+
+    <div class="grey lighten-5">
+        <div class="container">
+            <div class="row sales-list">
+                <div class="col l4" ng-repeat="product in data">
+                    <div class="card product hoverable" ng-cloak ng-click="openProduct(product.name, product.id)">
+                        <div class="card-title">{{product.name}}</div>
+                        <div class="card-image">
+                            <div style="background-image:url({{product.image_url}})"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="product-price">
+                                <div class="start left">${{Math.floor(product.msrp)}}.<span>{{product.msrp.toFixed(2).toString().substr(-2)}}</span></div>
+                                <div class="end right">${{Math.floor(product.target)}}.<span>{{product.target.toFixed(2).toString().substr(-2)}}</span></div>
+                                <div class="range">
+                                    <div class="progress grey lighten-2">
+                                        <div class="determinate amber lighten-1" style="width: {{product.progress}}%;"></div>
+                                    </div>
+                                    <div class="indicator amber lighten-1" style="left: {{product.progress - 1}}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="drops-counter amber lighten-1">{{product.drops}} Drops</div>
+                            <div class="current-price right">${{Math.floor(product.price)}}.{{product.price.toFixed(2).toString().substr(-2)}}</div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col l4">
+                    <div class="card product hoverable">
+                        <div class="card-title">Intel NUC</div>
+                        <div class="card-image">
+                            <div style="background-image:url(http://www.pcper.com/files/imagecache/article_max_width/news/2015-01-06/nuc_01.png)"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="product-price">
+                                <div class="start left">$499.<span>00</span></div>
+                                <div class="end right">$320.<span>00</span></div>
+                                <div class="range">
+                                    <div class="progress grey lighten-2">
+                                        <div class="determinate amber lighten-1" style="width: 65%;"></div>
+                                    </div>
+                                    <div class="indicator amber lighten-1" style="left: 64%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="drops-counter amber lighten-1">58 Drops</div>
+                            <div class="current-price right">$ 390.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l4">
+                    <div class="card product hoverable">
+                        <div class="card-title">KitchenAid Stand Mixer</div>
+                        <div class="card-image">
+                            <div style="background-image:url(http://www.theproductpedia.com/wp-content/uploads/2013/11/kitchenaid-stand-mixer.jpg)"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="product-price">
+                                <div class="start left">$399.<span>00</span></div>
+                                <div class="end right">$220.<span>00</span></div>
+                                <div class="range">
+                                    <div class="progress grey lighten-2">
+                                        <div class="determinate amber lighten-1" style="width: 10%;"></div>
+                                    </div>
+                                    <div class="indicator amber lighten-1" style="left: 9%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="drops-counter amber lighten-1">5 Drops</div>
+                            <div class="current-price right">$ 370.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l4">
+                    <div class="card product hoverable">
+                        <div class="card-title">KitchenAid Ceramic 4.2 - Quart Casserole Dish with Lid</div>
+                        <div class="card-image">
+                            <div style="background-image:url(http://www.kitchenaid.com/digitalassets/KBLR42CRER/Standalone_1175X1290.jpg)"></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="product-price">
+                                <div class="start left">$99.<span>00</span></div>
+                                <div class="end right">$40.<span>00</span></div>
+                                <div class="range">
+                                    <div class="progress grey lighten-2">
+                                        <div class="determinate amber lighten-1" style="width: 25%;"></div>
+                                    </div>
+                                    <div class="indicator amber lighten-1" style="left: 24%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="drops-counter amber lighten-1">15 Drops</div>
+                            <div class="current-price right">$ 75.00</div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            <div class="row">
+                <div class="col l4 offset-l4 center-align">
+                    <a class="btn-large transparent"><i class="fa fa-plus"></i>&nbsp;More Sales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="modal">
+        <div class="modal-content">
+            <div class="video-container no-controls">
+                <iframe width="853" height="480" src="https://www.youtube.com/embed/rJT4Pny1xI4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </div>
-
-
 @section scripts{
+    <script src="~/Scripts/index.js"></script>
     <script>
         $(function () {
-            $('body').addClass('grey lighten-4');
-
             function actDemo() {
                 Materialize.toast('<img src="http://graph.facebook.com/10152299152237123/picture?type=square" class="circle" onerror="this.src = \'/Content/Images/default-avatar.png\'"><span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just favoured this product.</span>');
             }
 
             var names = ['Woodrow Barber', 'Roger Gill', 'Andre Neal', 'Nancy Castillo', 'Joanna Kelly', 'Randal Brady', 'Richard Lopez', 'Leah Lindsey', 'Dianna Mckenzie', 'Yvonne Walters', 'Johnnie Park', 'Danny Bailey', 'Ron Rivera', 'Kerry Freeman', 'Toby Wallace', 'Mike Gonzales', 'Bryan Murphy', 'Wanda Beck', 'Anthony Richards', 'Clay Rhodes', 'Alfredo Berry', 'Lynette Mathis', 'Elijah Christensen', 'Jan Kennedy', 'Greg Lambert', 'Enrique Curry', 'Ed Cooper', 'Judy Underwood', 'Fred Delgado', 'Nicole Jones', 'Elbert Fitzgerald', 'Edward Holmes', 'Dominic Salazar', 'Irma Wilkerson', 'Abel Gibbs', 'Gerardo Gardner', 'Arlene Griffin', 'Lana Ward', 'Wilson Chambers', 'Tami Andrews', 'Inez Clark', 'Delia Chapman', 'Armando Todd', 'Valerie Higgins', 'Jaime Yates', 'Bennie Bradley', 'Lorraine Estrada', 'Kendra Bowen', 'Christina Gregory', 'Kim Burgess'];
             //var _demo = setTimeout(actDemo, 4000);
-            actDemo();
+            //actDemo();
         });
     </script>
 }

@@ -8,7 +8,7 @@ iisnapApp.controller('welcomeController', function ($scope, $http, $cookies) {
     $(document).ready(function () {
         $('.modal-trigger').leanModal({
             complete: function () {
-                var $iframe = $('#modal1 iframe');
+                var $iframe = $('#about iframe');
                 $iframe.attr('src', $iframe.attr('src'));
             }
         });

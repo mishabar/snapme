@@ -1,117 +1,44 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="/content/images/iisnap.ico">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    @*<link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>*@
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+    <meta name="twitter:title" content="iiSnap - Now you can afford anything you want">
+    <meta name="twitter:description" content="Get the best prices with a little help from your friends">
+    <meta name="twitter:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
+    <meta property="og:title" content="iiSnap - Now you can afford anything you want">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.iisnap.com/">
+    <meta property="og:description" content="Get the best prices with a little help from your friends">
+    <meta property="og:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
 
-    @Styles.Render("~/Content/mcss")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
 
-    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
+
+    <title>iiSnap @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
 </head>
 <body>
-    @Html.Partial("_Facebook")
     <header>
-        <div class="navbar-fixed">
-            <nav>
-                <div class="container">
-                    <div class="nav-wrapper">
-                        <a href="/Home" class="brand-logo" title="iiSnap Home"></a>
-                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/About">About</a></li>
-                            <li><a href="/Contact">Contact Us</a></li>
-                            @Html.Partial("_MLoginPartial")
-                        </ul>
-                        <ul class="side-nav" id="mobile-demo">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/About">About</a></li>
-                            <li><a href="/Contact">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            @if (Request.IsAuthenticated)
-            {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-                {
-                    @Html.AntiForgeryToken()
-                }
-            }
-        </div>
+        @Html.Partial("_MNav")
     </header>
-
     <main>
         @RenderBody()
     </main>
-
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col s4 m3 l2">
-                    <h5 class="hide-on-small-only">&nbsp;</h5>
-                    <img class="responsive-img" src="~/Content/Images/logo-footer.png" />
-                </div>
-                <div class="col s4 m3 l2">
-                    <h5>Shop</h5>
-                    <ul>
-                        <li><a href="#!">Active Sales</a></li>
-                        <li><a href="#!">Upcoming Sales</a></li>
-                    </ul>
-                </div>
-                <div class="col s4 m3 l2">
-                    <h5>About Us</h5>
-                    <ul>
-                        <li><a href="#!">FAQ</a></li>
-                        <li><a href="#!">How does it work</a></li>
-                    </ul>
-                </div>
-                <div class="col s4 m3 l2">
-                    <h5>Support</h5><ul>
-                        <li><a href="#!">Orders &amp; Returns</a></li>
-                        <li><a href="#!">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col s4 m3 l2">
-                    <h5>Legal</h5><ul>
-                        <li><a href="#!">Terms &amp; Conditions</a></li>
-                        <li><a href="#!">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col s4 m3 l2">
-                    <h5>Sellers</h5>
-                    <ul>
-                        <li><a href="#!">Sell on iiSnap</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                © @DateTime.Now.Year iiSnap
-            </div>
-        </div>
+    <footer>
+        @Html.Partial("_MFooter")
     </footer>
-
-    <!-- Compiled and minified JavaScript -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-    @Scripts.Render("~/bundles/materialize")
-    <script>
-        $(document).ready(function () {
-            $(".button-collapse").sideNav();
-        })
-    </script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular-cookies.min.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

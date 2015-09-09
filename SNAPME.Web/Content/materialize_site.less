@@ -1,0 +1,319 @@
+﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+    .nav-wrapper {
+        padding: 0 30px;
+    }
+
+    a.brand-logo {
+        img {
+            margin-top: 7px;
+        }
+    }
+
+    ul {
+        li:hover {
+            background-color: transparent;
+        }
+
+        a {
+            color: #000;
+            font-size: 1.3rem;
+            font-weight: 300;
+            padding: 0 20px;
+
+            i.fa.fa-facebook-f {
+                height: 36px;
+                line-height: 36px;
+                font-size: 1.3rem;
+            }
+
+            &.facebook-blue {
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+footer {
+    background-color: #464646;
+    color: #bababa;
+    padding-top: 20px;
+
+    h6 {
+        color: #363636;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .logo {
+        margin-top: 36px;
+    }
+
+    hr {
+        border: none;
+        border-bottom: 1px solid #bababa;
+    }
+}
+
+.container .row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+
+/* Home page */
+.featured-products {
+    .product-bg {
+        background-image: url(https://turcomusa.com/media/product/470/turcom-ts-903-acoustoshock-rugged-bluetooth-speaker-water-resistant-dust-proof-dirt-proof-shockproof-fea.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        height: 592px;
+    }
+
+    .featured-sale {
+        height: 592px;
+        padding-top: 133px;
+        margin: 0 5%;
+
+        .col {
+            height: 326px;
+
+            &:first-child {
+                padding-right: 1px;
+            }
+
+            &:last-child {
+                padding-left: 1px;
+            }
+
+            .white-bg {
+                height: 100%;
+                background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.2) 100%);
+                padding: 20px 10px;
+            }
+
+            .product-image {
+                /*-moz-transform: rotate(40deg);
+                -ms-transform: rotate(40deg);
+                -o-transform: rotate(40deg);
+                -webkit-transform: rotate(40deg);
+                transform: rotate(40deg);*/
+                min-width: 100%;
+                margin-top: 5%;
+            }
+
+            .product-name, .product-slogan {
+                text-align: center;
+                font-size: 1.7rem;
+                white-space: nowrap;
+                overflow: hidden;
+                -ms-text-overflow: ellipsis;
+                -o-text-overflow: ellipsis;
+                text-overflow: ellipsis;
+            }
+
+            .product-slogan {
+                font-size: 1.2rem;
+            }
+
+            .product-price {
+                color: #ffffff;
+
+                .start, .end, .current-tag {
+                    font-size: 1.4rem;
+                    font-weight: 600;
+
+                    span {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .start {
+                    float: left;
+                    text-decoration: line-through;
+                }
+
+                .end {
+                    float: right;
+                }
+
+                .range {
+                    .progress {
+                        width: 95%;
+                    }
+                }
+            }
+
+            .current-price {
+                background-color: #383838;
+                padding: 5px 15px;
+                border-radius: 8px;
+                font-size: 2rem;
+                font-weight: bold;
+                margin-top: 40px;
+                color: #fff;
+            }
+
+            .current-action {
+                .btn-large {
+                    font-style: italic;
+                    border-radius: 8px;
+                    font-size: 1.6rem;
+                    margin-top: 40px;
+                    color: #fff;
+                    text-transform: capitalize;
+                    font-weight: bold;
+
+                    &.join, &.join:hover {
+                        background-color: #1EB045;
+                    }
+                }
+            }
+
+            .points {
+                clear: both;
+                padding-top: 25px;
+
+                .collect {
+                    line-height: 28px;
+                    color: #ccc;
+                }
+
+                .invite {
+                    width: 133px;
+                    height: 28px;
+                    background: rgba(0, 0, 0, 0) url(/Content/Images/invite.png) no-repeat top left;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
+
+.range {
+    position: relative;
+    clear: both;
+
+    .indicator {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        bottom: -6px;
+        border-radius: 16px;
+        border: 2px solid #fff;
+    }
+
+    .current-tag {
+        display: none;
+        background-color: #383838;
+        padding: 0 5px;
+        border-radius: 4px;
+        position: absolute;
+        top: 14px;
+    }
+
+    .fa.fa-flag-checkered {
+        position: absolute;
+        right: 4px;
+        top: -6px;
+        font-style: italic;
+    }
+}
+
+.experience {
+    background-color: #363636;
+    color: #fff;
+    padding: 20px 0;
+    font-size: 1.2rem;
+    font-weight: 300;
+
+    a {
+        color: #ffde00;
+        border: 1px solid #5d5d5d;
+        font-size: 1.5rem;
+        border-radius: 4px;
+        padding: 10px 15px;
+        margin-left: 10px;
+    }
+}
+
+.sales-list {
+    padding-top: 40px;
+}
+
+.product {
+    &.card {
+        margin-bottom: 2rem;
+        cursor: pointer;    
+    }
+
+    .card-title {
+        color: #3e3e3e;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        padding: 0 10px;
+    }
+
+    .card-image {
+        div {
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 270px;
+            width: 100%;
+        }
+    }
+
+    .product-price {
+        color: #cacaca;
+        font-size: 1.2rem;
+
+        .progress {
+            margin: 0;
+        }
+    }
+
+    .card-action {
+        padding: 15px 20px;
+
+        .drops-counter {
+            padding: 5px 10px;
+            border-radius: 0 8px 8px 0;
+            display: inline-block;
+            margin-left: -20px;
+            font-size: 1.2rem;
+        }
+
+        .current-price {
+            background-color: #363636;
+            width: 70%;
+            margin: 0 -20px -20px 0;
+            color: #fff;
+            height: 52px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            border-radius: 40px 0 0 0;
+        }
+    }
+}
+
+.btn-large.transparent {
+    color: #393939;
+    font-size: 1.3rem;
+
+    i {
+        font-size: 1.1rem;
+    }
+}
