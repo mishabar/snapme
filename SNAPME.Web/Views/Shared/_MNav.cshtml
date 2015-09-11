@@ -1,11 +1,11 @@
-﻿<nav>
+﻿<nav ng-controller="accountController">
     <div class="container">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo"><img src="/content/images/logo.png" /></a>
             <ul id="nav-mobile" class="right">
                 @if (Request.IsAuthenticated)
                 {
-                    <li><a href="#">@User.Identity.Name</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="accountMenu">@User.Identity.Name<i class="material-icons right">arrow_drop_down</i></a></li>
                 }
                 else
                 {
@@ -14,4 +14,16 @@
             </ul>
         </div>
     </div>
+    @if (Request.IsAuthenticated)
+    {
+        <ul id="accountMenu" class="dropdown-content">
+            <li><a href="#!">My Account</a></li>
+            <li class="divider"></li>
+            <li><a href="#!" ng-click="logoff($event)">Sign out</a></li>
+        </ul>
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "hide" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+    }
 </nav>

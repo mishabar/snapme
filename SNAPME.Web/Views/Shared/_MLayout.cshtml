@@ -19,13 +19,14 @@
 
     <meta name="viewport" content="width=device-width, maximum-scale=1">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
 
     <title>iiSnap @ViewBag.Title</title>
 
     @Styles.Render("~/Content/css")
 </head>
-<body>
+<body ng-app="iisnapApp">
     <header>
         @Html.Partial("_MNav")
     </header>
@@ -39,6 +40,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
     <script src="https://code.angularjs.org/1.4.4/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.4.4/angular-cookies.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/account.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

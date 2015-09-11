@@ -1,0 +1,1 @@
+﻿var iisnapApp = angular.module('iisnapApp', ['ngCookies']);

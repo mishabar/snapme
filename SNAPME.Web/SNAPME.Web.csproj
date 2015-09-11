@@ -206,6 +206,7 @@
     <Compile Include="Controllers\Api\EmailController.cs" />
     <Compile Include="Controllers\Api\PreLaunchController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
+    <Compile Include="Controllers\Api\SalesController.cs" />
     <Compile Include="Controllers\Api\SellerController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Account\MyAccountDetailsModel.cs" />
     <Compile Include="Models\Api\PreLaunchRegisterToken.cs" />
+    <Compile Include="Models\Api\Sales\ListProductsRequest.cs" />
     <Compile Include="Models\Emails\SellerWelcomeModel.cs" />
     <Compile Include="Models\Sale\DropPriceDialogModel.cs" />
     <Compile Include="Models\Dialog\LoginDialogModel.cs" />
@@ -460,9 +462,11 @@
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\fm.scrollator.jquery.js" />
+    <Content Include="Scripts\account.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
