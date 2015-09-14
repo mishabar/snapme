@@ -19,6 +19,32 @@ iisnapApp.controller('indexController', function ($scope, $http, $timeout, $cook
         document.location.href = '/product/' + parts.join('-');
     };
 
+    $scope.likeProduct = function ($event, product) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $http.post('/api/v1/like/product', { id: product.id })
+            .then(function (response) {
+                product.likes = response.data.liked;
+            }, function (response) {
+            })
+    };
+
+    $scope.favorProduct = function ($event, id) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $http.post('/api/v1/favorite/product', { id: product.id })
+            .then(function (response) {
+                product.favors = response.data.favored;
+            }, function (response) {
+            })
+    };
+
+    $scope.initTooltip = function ($event, product) {
+        if (!product.has_activity) {
+            $($event.target).tooltip({ delay: 50, position: 'left', tooltip: 'No friends\' activities yet.' });
+        }
+    }
+
     $scope.refresh = function () {
         $http.get('/api/v1/sales/active')
             .then(function(response) {

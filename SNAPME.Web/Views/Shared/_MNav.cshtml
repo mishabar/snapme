@@ -1,15 +1,23 @@
-﻿<nav ng-controller="accountController">
+﻿@using SNAPME.Web.Helpers;
+<nav ng-controller="accountController">
     <div class="container">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo"><img src="/content/images/logo.png" /></a>
+            <span>Discover your buying power</span>
             <ul id="nav-mobile" class="right">
                 @if (Request.IsAuthenticated)
                 {
-                    <li><a class="dropdown-button" href="#!" data-activates="accountMenu">@User.Identity.Name<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="accountMenu"><img src="@User.Identity.ProfileImage()" /> @User.Identity.DisplayName()<i class="material-icons right">arrow_drop_down</i></a></li>
                 }
                 else
                 {
-                    <li><a class="modal-trigger" href="#loginModal">Sign In</a></li>
+                    <li>
+                        @*<a class="modal-trigger" href="#loginModal">Sign In</a>*@
+                        <form action="/Account/ExternalLogin" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn waves-effect waves-light btn-facebook" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account"><i class="fa fa-facebook-f"></i>Sign in / Register</button>
+                        </form>
+                    </li>
                 }
             </ul>
         </div>

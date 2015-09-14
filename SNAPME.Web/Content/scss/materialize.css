@@ -1997,7 +1997,7 @@ ul {
 .z-depth-0 {
   box-shadow: none !important; }
 
-.z-depth-1, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1, .card-panel, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
 
 .z-depth-1-half, .btn:hover, .btn-large:hover, .btn-floating:hover {
@@ -5559,7 +5559,9 @@ small {
   margin: 0.5rem 0 1rem 0;
   background-color: #fff;
   transition: box-shadow 0.25s;
-  border-radius: 2px; }
+  border-radius: 0;
+  border: 1px solid #ccc;
+  /*@extend .z-depth-1;*/ }
   .card .card-title {
     color: #fff;
     font-size: 24px;

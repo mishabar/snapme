@@ -1,5 +1,19 @@
-﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+﻿body {
+    display: flex;
+    min-height: 100vh;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+main {
+    -ms-flex: 1 0 auto;
+    -webkit-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }
 
 body {
@@ -9,6 +23,12 @@ body {
 nav {
     .nav-wrapper {
         padding: 0 30px;
+
+        span {
+            margin-left: 150px;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
     }
 
     a.brand-logo {
@@ -36,6 +56,18 @@ nav {
 
             &.facebook-blue {
                 margin-left: 20px;
+            }
+
+            i.material-icons {
+                margin-left: 5px;
+            }
+
+            img {
+                height: 40px;
+                border-radius: 20px;
+                margin-top: 12px;
+                float: left;
+                margin-right: 5px;
             }
         }
     }
@@ -65,6 +97,18 @@ footer {
 .container .row:last-child {
     margin-bottom: 0;
     padding-bottom: 20px;
+}
+
+.btn.btn-facebook {
+    background-color: #0d47a1;
+    color: #fff;
+
+    i {
+        display: inline;
+        font-size: inherit;
+        line-height: inherit;
+        padding-right: 10px;
+    }
 }
 
 /* Home page */
@@ -200,6 +244,7 @@ footer {
 .range {
     position: relative;
     clear: both;
+    margin: 30px 0;
 
     .indicator {
         position: absolute;
@@ -225,6 +270,26 @@ footer {
         top: -6px;
         font-style: italic;
     }
+
+    .drops-counter, .current-price {
+        display: inline-block;
+        color: #000;
+        font-size: 1rem;
+        padding: 3px 6px;
+        position: absolute;
+        margin-top: 6px;
+        border-radius: 4px;
+        width: 100px;
+        text-align: center;
+        margin-left: -44px;
+    }
+
+    .current-price {
+        color: #fff;
+        top: -45px;
+        font-weight: 700;
+        font-size: 18px;
+    }
 }
 
 .experience {
@@ -240,7 +305,7 @@ footer {
         font-size: 1.5rem;
         border-radius: 4px;
         padding: 10px 15px;
-        margin-left: 10px;
+        margin: 0 10px;
     }
 }
 
@@ -251,33 +316,79 @@ footer {
 .product {
     &.card {
         margin-bottom: 2rem;
-        cursor: pointer;    
+        cursor: pointer;
+    }
+
+    .card-content {
+        margin-top: -35px;
+        padding: 15px 0 0 0;
+        background-color: rgba(255,255,255,0.5);
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 36px;
     }
 
     .card-title {
         color: #3e3e3e;
-        text-align: center;
         white-space: nowrap;
         overflow: hidden;
         -ms-text-overflow: ellipsis;
         -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
         padding: 0 10px;
+        font-size: 20px;
+        margin-top: 40px;
+    }
+
+    .card-sub-title {
+        color: #3e3e3e;
+        overflow: hidden;
+        padding: 0 10px;
+        font-size: 14px;
+        height: 40px;
+        line-height: 18px;
+        font-style: italic;
     }
 
     .card-image {
-        div {
+        .product-image {
             background-position: 50% 50%;
             background-repeat: no-repeat;
             background-size: contain;
-            height: 270px;
+            padding-bottom: 100%;
             width: 100%;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            a {
+                display: block;
+                font-size: 24px;
+                width: 36px;
+                text-align: center;
+                padding: 0 4px;
+                margin-bottom: 1px;
+                background-color: rgba(0,0,0,0.2);
+                color: #fff;
+
+                &:hover, &.active {
+                    color: #ffde00;
+                }
+            }
         }
     }
 
     .product-price {
-        color: #cacaca;
-        font-size: 1.2rem;
+        color: #000;
+        font-size: 1.1rem;
+        position: absolute;
+        left: 10px;
+        right: 7px;
+        top: 2px;
 
         .progress {
             margin: 0;
@@ -286,14 +397,6 @@ footer {
 
     .card-action {
         padding: 15px 20px;
-
-        .drops-counter {
-            padding: 5px 10px;
-            border-radius: 0 8px 8px 0;
-            display: inline-block;
-            margin-left: -20px;
-            font-size: 1.2rem;
-        }
 
         .current-price {
             background-color: #363636;

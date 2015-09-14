@@ -39,11 +39,13 @@ namespace SNAPME.Web.Controllers
             return View(model);
         }
 
+        [Route("About")]
         public ActionResult About()
         {
             return View();
         }
 
+        [Route("ContactUs")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -51,11 +53,13 @@ namespace SNAPME.Web.Controllers
             return View();
         }
 
+        [Route("FAQ")]
         public ActionResult FAQ()
         {
             return View();
         }
 
+        [Route("HowItWorks")]
         public ActionResult HowItWorks()
         {
             return View();

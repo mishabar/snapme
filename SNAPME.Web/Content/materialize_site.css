@@ -1,4 +1,16 @@
-﻿[ng\:cloak],
+﻿body {
+  display: flex;
+  min-height: 100vh;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+main {
+  -ms-flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+[ng\:cloak],
 [ng-cloak],
 [data-ng-cloak],
 [x-ng-cloak],
@@ -11,6 +23,11 @@ body {
 }
 nav .nav-wrapper {
   padding: 0 30px;
+}
+nav .nav-wrapper span {
+  margin-left: 150px;
+  font-size: 1.5rem;
+  font-style: italic;
 }
 nav a.brand-logo img {
   margin-top: 7px;
@@ -32,6 +49,16 @@ nav ul a i.fa.fa-facebook-f {
 nav ul a.facebook-blue {
   margin-left: 20px;
 }
+nav ul a i.material-icons {
+  margin-left: 5px;
+}
+nav ul a img {
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 12px;
+  float: left;
+  margin-right: 5px;
+}
 footer {
   background-color: #464646;
   color: #bababa;
@@ -52,6 +79,16 @@ footer hr {
 .container .row:last-child {
   margin-bottom: 0;
   padding-bottom: 20px;
+}
+.btn.btn-facebook {
+  background-color: #0d47a1;
+  color: #fff;
+}
+.btn.btn-facebook i {
+  display: inline;
+  font-size: inherit;
+  line-height: inherit;
+  padding-right: 10px;
 }
 /* Home page */
 .featured-products .product-bg {
@@ -165,6 +202,7 @@ footer hr {
 .range {
   position: relative;
   clear: both;
+  margin: 30px 0;
 }
 .range .indicator {
   position: absolute;
@@ -188,6 +226,25 @@ footer hr {
   top: -6px;
   font-style: italic;
 }
+.range .drops-counter,
+.range .current-price {
+  display: inline-block;
+  color: #000;
+  font-size: 1rem;
+  padding: 3px 6px;
+  position: absolute;
+  margin-top: 6px;
+  border-radius: 4px;
+  width: 100px;
+  text-align: center;
+  margin-left: -44px;
+}
+.range .current-price {
+  color: #fff;
+  top: -45px;
+  font-weight: 700;
+  font-size: 18px;
+}
 .experience {
   background-color: #363636;
   color: #fff;
@@ -201,7 +258,7 @@ footer hr {
   font-size: 1.5rem;
   border-radius: 4px;
   padding: 10px 15px;
-  margin-left: 10px;
+  margin: 0 10px;
 }
 .sales-list {
   padding-top: 40px;
@@ -210,39 +267,74 @@ footer hr {
   margin-bottom: 2rem;
   cursor: pointer;
 }
+.product .card-content {
+  margin-top: -35px;
+  padding: 15px 0 0 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 36px;
+}
 .product .card-title {
   color: #3e3e3e;
-  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   -ms-text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   padding: 0 10px;
+  font-size: 20px;
+  margin-top: 40px;
 }
-.product .card-image div {
+.product .card-sub-title {
+  color: #3e3e3e;
+  overflow: hidden;
+  padding: 0 10px;
+  font-size: 14px;
+  height: 40px;
+  line-height: 18px;
+  font-style: italic;
+}
+.product .card-image .product-image {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 270px;
+  padding-bottom: 100%;
   width: 100%;
 }
+.product .card-image .product-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.product .card-image .product-actions a {
+  display: block;
+  font-size: 24px;
+  width: 36px;
+  text-align: center;
+  padding: 0 4px;
+  margin-bottom: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+.product .card-image .product-actions a:hover,
+.product .card-image .product-actions a.active {
+  color: #ffde00;
+}
 .product .product-price {
-  color: #cacaca;
-  font-size: 1.2rem;
+  color: #000;
+  font-size: 1.1rem;
+  position: absolute;
+  left: 10px;
+  right: 7px;
+  top: 2px;
 }
 .product .product-price .progress {
   margin: 0;
 }
 .product .card-action {
   padding: 15px 20px;
-}
-.product .card-action .drops-counter {
-  padding: 5px 10px;
-  border-radius: 0 8px 8px 0;
-  display: inline-block;
-  margin-left: -20px;
-  font-size: 1.2rem;
 }
 .product .card-action .current-price {
   background-color: #363636;
