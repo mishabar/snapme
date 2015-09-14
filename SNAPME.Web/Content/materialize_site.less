@@ -4,6 +4,7 @@
     -ms-flex-direction: column;
     -webkit-flex-direction: column;
     flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
 }
 
 main {
@@ -14,10 +15,6 @@ main {
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
-}
-
-body {
-    font-family: 'Open Sans', sans-serif;
 }
 
 nav {
@@ -71,6 +68,17 @@ nav {
             }
         }
     }
+
+    #accountMenu {
+        top: 64px !important;
+
+        li {
+            a {
+                padding: 0.3rem 1rem;
+                font-size: 1rem;
+            }
+        }
+    }
 }
 
 footer {
@@ -113,14 +121,26 @@ footer {
 
 /* Home page */
 .featured-products {
-    .product-bg {
+    height: 592px;
+
+    .slides {
+        height: 592px;
+
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+    /*.product-bg {
         background-image: url(https://turcomusa.com/media/product/470/turcom-ts-903-acoustoshock-rugged-bluetooth-speaker-water-resistant-dust-proof-dirt-proof-shockproof-fea.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50% 50%;
         height: 592px;
-    }
-
+    }*/
     .featured-sale {
         height: 592px;
         padding-top: 133px;
@@ -144,13 +164,10 @@ footer {
             }
 
             .product-image {
-                /*-moz-transform: rotate(40deg);
-                -ms-transform: rotate(40deg);
-                -o-transform: rotate(40deg);
-                -webkit-transform: rotate(40deg);
-                transform: rotate(40deg);*/
-                min-width: 100%;
-                margin-top: 5%;
+                background-repeat: no-repeat;
+                background-size: contain;
+                height: 100%;
+                background-position: 50% 50%;
             }
 
             .product-name, .product-slogan {
@@ -168,7 +185,7 @@ footer {
             }
 
             .product-price {
-                color: #ffffff;
+                color: rgba(0,0,0,.87);
 
                 .start, .end, .current-tag {
                     font-size: 1.4rem;
@@ -227,14 +244,34 @@ footer {
 
                 .collect {
                     line-height: 28px;
-                    color: #ccc;
+                    color: rgba(0,0,0,.87);
                 }
 
                 .invite {
                     width: 133px;
                     height: 28px;
-                    background: rgba(0, 0, 0, 0) url(/Content/Images/invite.png) no-repeat top left;
                     border-radius: 5px;
+                    background-color: #0d47a1;
+                    color: #fff;
+                    line-height: 26px;
+
+                    i {
+                        color: #6383B4;
+                        margin: 0 5px;
+                    }
+
+                    .amount {
+                        width: 67px;
+                        float: right;
+                        background-color: #d8dfea;
+                        color: #0d47a1;
+                        height: 26px;
+                        line-height: 26px;
+                        padding: 0 5px;
+                        border-radius: 0 5px 5px 0;
+                        margin: 1px;
+                        font-weight: bold;
+                    }
                 }
             }
         }

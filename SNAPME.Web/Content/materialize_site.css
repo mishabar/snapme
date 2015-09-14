@@ -4,6 +4,7 @@
   -ms-flex-direction: column;
   -webkit-flex-direction: column;
   flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
 }
 main {
   -ms-flex: 1 0 auto;
@@ -17,9 +18,6 @@ main {
 .ng-cloak,
 .x-ng-cloak {
   display: none !important;
-}
-body {
-  font-family: 'Open Sans', sans-serif;
 }
 nav .nav-wrapper {
   padding: 0 30px;
@@ -59,6 +57,13 @@ nav ul a img {
   float: left;
   margin-right: 5px;
 }
+nav #accountMenu {
+  top: 64px !important;
+}
+nav #accountMenu li a {
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+}
 footer {
   background-color: #464646;
   color: #bababa;
@@ -91,12 +96,25 @@ footer hr {
   padding-right: 10px;
 }
 /* Home page */
-.featured-products .product-bg {
-  background-image: url(https://turcomusa.com/media/product/470/turcom-ts-903-acoustoshock-rugged-bluetooth-speaker-water-resistant-dust-proof-dirt-proof-shockproof-fea.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
+.featured-products {
   height: 592px;
+  /*.product-bg {
+        background-image: url(https://turcomusa.com/media/product/470/turcom-ts-903-acoustoshock-rugged-bluetooth-speaker-water-resistant-dust-proof-dirt-proof-shockproof-fea.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        height: 592px;
+    }*/
+}
+.featured-products .slides {
+  height: 592px;
+}
+.featured-products .slides .container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .featured-products .featured-sale {
   height: 592px;
@@ -118,13 +136,10 @@ footer hr {
   padding: 20px 10px;
 }
 .featured-products .featured-sale .col .product-image {
-  /*-moz-transform: rotate(40deg);
-                -ms-transform: rotate(40deg);
-                -o-transform: rotate(40deg);
-                -webkit-transform: rotate(40deg);
-                transform: rotate(40deg);*/
-  min-width: 100%;
-  margin-top: 5%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  background-position: 50% 50%;
 }
 .featured-products .featured-sale .col .product-name,
 .featured-products .featured-sale .col .product-slogan {
@@ -140,7 +155,7 @@ footer hr {
   font-size: 1.2rem;
 }
 .featured-products .featured-sale .col .product-price {
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 .featured-products .featured-sale .col .product-price .start,
 .featured-products .featured-sale .col .product-price .end,
@@ -191,13 +206,31 @@ footer hr {
 }
 .featured-products .featured-sale .col .points .collect {
   line-height: 28px;
-  color: #ccc;
+  color: rgba(0, 0, 0, 0.87);
 }
 .featured-products .featured-sale .col .points .invite {
   width: 133px;
   height: 28px;
-  background: rgba(0, 0, 0, 0) url(/Content/Images/invite.png) no-repeat top left;
   border-radius: 5px;
+  background-color: #0d47a1;
+  color: #fff;
+  line-height: 26px;
+}
+.featured-products .featured-sale .col .points .invite i {
+  color: #6383B4;
+  margin: 0 5px;
+}
+.featured-products .featured-sale .col .points .invite .amount {
+  width: 67px;
+  float: right;
+  background-color: #d8dfea;
+  color: #0d47a1;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 5px;
+  border-radius: 0 5px 5px 0;
+  margin: 1px;
+  font-weight: bold;
 }
 .range {
   position: relative;

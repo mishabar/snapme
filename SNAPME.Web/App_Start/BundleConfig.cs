@@ -72,6 +72,7 @@ namespace SNAPME.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/content/font-awesome.min.css",
+                "~/content/jquery.bxslider.css",
                 "~/content/scss/materialize.min.css",
                 "~/content/materialize_site.min.css"
                 ));

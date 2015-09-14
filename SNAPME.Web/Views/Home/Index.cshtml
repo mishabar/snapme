@@ -8,44 +8,93 @@
 
 <div ng-app="iisnapApp" ng-controller="indexController">
     <div class="featured-products">
-        <div class="product-bg">
-            <div class="container">
-                <div class="featured-sale">
-                    <div class="row">
-                        <div class="col l5">
-                            <div class="white-bg">
-                                <img class="product-image" src="http://worldwide.bose.com/axa/assets/images/products/soundlink_mini/soundlink_mini_si_lg_2.png" />
-                            </div>
-                        </div>
-                        <div class="col l7">
-                            <div class="white-bg">
-                                <div class="product-name">Bose SoundLink Mini II</div>
-                                <div class="product-slogan">Take the best sound wherever you go!</div>
-                                <div class="product-price">
-                                    <div class="start">$175.<span>00</span></div>
-                                    <div class="end">$129.<span>00</span></div>
-                                    <div class="range">
-                                        <div class="progress white">
-                                            <div class="determinate amber lighten-1" style="width: 70%;"></div>
-                                        </div>
-                                        <i class="fa fa-flag-checkered right"></i>
-                                        <div class="indicator amber lighten-1" style="left: 64%"></div>
-                                        <div class="current-tag">$137.<span>00</span></div>
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img src="https://media.timeout.com/images/101659821/image.jpg" />
+                    <div class="container">
+                        <div class="featured-sale">
+                            <div class="row">
+                                <div class="col l5">
+                                    <div class="white-bg">
+                                        <img class="product-image" src="http://worldwide.bose.com/axa/assets/images/products/soundlink_mini/soundlink_mini_si_lg_2.png" />
                                     </div>
                                 </div>
-                                <div class="current-price left">$137.00</div>
-                                <div class="current-action right">
-                                    <a class="waves-effect waves-light btn-large join">Join Sale</a>
-                                </div>
-                                <div class="points">
-                                    <div class="collect left">Collect +150 Snap Points upon checkout</div>
-                                    <div class="invite right"></div>
+                                <div class="col l7">
+                                    <div class="white-bg">
+                                        <div class="product-name">Bose SoundLink Mini II</div>
+                                        <div class="product-slogan">Take the best sound wherever you go!</div>
+                                        <div class="product-price">
+                                            <div class="start">$175.<span>00</span></div>
+                                            <div class="end">$129.<span>00</span></div>
+                                            <div class="range">
+                                                <div class="progress white">
+                                                    <div class="determinate amber lighten-1" style="width: 70%;"></div>
+                                                </div>
+                                                <i class="fa fa-flag-checkered right"></i>
+                                                <div class="indicator amber lighten-1" style="left: 64%"></div>
+                                                <div class="current-tag">$137.<span>00</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="current-price left">$137.00</div>
+                                        <div class="current-action right">
+                                            <a class="waves-effect waves-light btn-large join modal-trigger" href="#payment">Join Sale</a>
+                                        </div>
+                                        <div class="points">
+                                            <div class="collect left">Collect +150 Snap Points upon checkout</div>
+                                            <div class="invite right">
+                                                <i class="fa fa-facebook-f"></i>invite<span class="amount">+ 25 SP</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <img src="http://www.gadgetreview.com/wp-content/uploads/2013/09/TV-Watching.jpg" />
+                    <div class="container">
+                        <div class="featured-sale">
+                            <div class="row">
+                                <div class="col l5">
+                                    <div class="white-bg">
+                                        <div class="product-image" style="background-image: url(http://www.techzone.lk/wp-content/uploads/2014/11/up18.png)"></div>
+                                    </div>
+                                </div>
+                                <div class="col l7">
+                                    <div class="white-bg">
+                                        <div class="product-name">Intel NUC</div>
+                                        <div class="product-slogan">Stunning visuals and edge-of-your-seat performance in an ultra-small package.</div>
+                                        <div class="product-price">
+                                            <div class="start">$499.<span>99</span></div>
+                                            <div class="end">$129.<span>99</span></div>
+                                            <div class="range">
+                                                <div class="progress white">
+                                                    <div class="determinate amber lighten-1" style="width: 70%;"></div>
+                                                </div>
+                                                <i class="fa fa-flag-checkered right"></i>
+                                                <div class="indicator amber lighten-1" style="left: 64%"></div>
+                                                <div class="current-tag">$180.<span>00</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="current-price left">$180.00</div>
+                                        <div class="current-action right">
+                                            <a class="waves-effect waves-light btn-large join">Join Sale</a>
+                                        </div>
+                                        <div class="points">
+                                            <div class="collect left">Collect +150 Snap Points upon checkout</div>
+                                            <div class="invite right">
+                                                <i class="fa fa-facebook-f"></i>invite<span class="amount">+ 25 SP</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="experience center-align">
@@ -59,10 +108,10 @@
                     <div class="card product hoverable" title="{{product.name}}" ng-cloak ng-click="openProduct(product.name, product.id)">
                         <div class="card-image">
                             <div class="product-image" style="background-image:url({{product.image_url}})"></div>
-                            <div class="product-actions">
+                            <div class="product-actions" ng-show="authenticated">
                                 <a href="#" ng-class="{active: product.likes}" ng-click="likeProduct($event, product)"><i class="fa fa-thumbs-o-up"></i></a>
                                 <a href="#" ng-class="{active: product.favors}" ng-click="favorProduct($event, product)"><i class="fa fa-heart-o"></i></a>
-                                <a href="#" ng-class="{active: product.has_activity}" ng-mouseenter="initTooltip($event, product)" ng-click="favorProduct($event, product)"><i class="fa fa-users"></i></a>
+                                <a href="#" ng-class="{active: product.has_activity}" ng-show="product.has_activity" ng-click="showSocialActivity($event, product)"><i class="fa fa-users"></i></a>
                             </div>
                         </div>
                         <div class="card-content">
@@ -99,16 +148,35 @@
             </div>
         </div>
     </div>
+
+    <div id="payment" class="modal">
+        <div class="modal-content">
+            <form action="/charge" method="POST">
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_zg8Be3jZqF7vBNEI20vvBVSX"
+                        data-image="https://s3.amazonaws.com/stripe-uploads/acct_16l2EVB0fmmxLkFSmerchant-icon-1442257503736-iisnap_fb_logo.png"
+                        data-name="iiSnap"
+                        data-description="2 widgets"
+                        data-currency="aud"
+                        data-amount="2000"
+                        data-billing-address="true"
+                        data-shipping-address="true"
+                        data-locale="auto">
+                </script>
+            </form>
+        </div>
+    </div>
 </div>
 @section scripts{
     <script src="~/Scripts/index.js"></script>
     <script>
         $(function () {
-            function actDemo() {
-                Materialize.toast('<img src="http://graph.facebook.com/10152299152237123/picture?type=square" class="circle" onerror="this.src = \'/Content/Images/default-avatar.png\'"><span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just favoured this product.</span>');
-            }
+            $('.slider').slider({ full_width: true, indicators: false, height: 592 });
+            //function actDemo() {
+            //    Materialize.toast('<img src="http://graph.facebook.com/10152299152237123/picture?type=square" class="circle" onerror="this.src = \'/Content/Images/default-avatar.png\'"><span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just favoured this product.</span>');
+            //}
 
-            var names = ['Woodrow Barber', 'Roger Gill', 'Andre Neal', 'Nancy Castillo', 'Joanna Kelly', 'Randal Brady', 'Richard Lopez', 'Leah Lindsey', 'Dianna Mckenzie', 'Yvonne Walters', 'Johnnie Park', 'Danny Bailey', 'Ron Rivera', 'Kerry Freeman', 'Toby Wallace', 'Mike Gonzales', 'Bryan Murphy', 'Wanda Beck', 'Anthony Richards', 'Clay Rhodes', 'Alfredo Berry', 'Lynette Mathis', 'Elijah Christensen', 'Jan Kennedy', 'Greg Lambert', 'Enrique Curry', 'Ed Cooper', 'Judy Underwood', 'Fred Delgado', 'Nicole Jones', 'Elbert Fitzgerald', 'Edward Holmes', 'Dominic Salazar', 'Irma Wilkerson', 'Abel Gibbs', 'Gerardo Gardner', 'Arlene Griffin', 'Lana Ward', 'Wilson Chambers', 'Tami Andrews', 'Inez Clark', 'Delia Chapman', 'Armando Todd', 'Valerie Higgins', 'Jaime Yates', 'Bennie Bradley', 'Lorraine Estrada', 'Kendra Bowen', 'Christina Gregory', 'Kim Burgess'];
+            //var names = ['Woodrow Barber', 'Roger Gill', 'Andre Neal', 'Nancy Castillo', 'Joanna Kelly', 'Randal Brady', 'Richard Lopez', 'Leah Lindsey', 'Dianna Mckenzie', 'Yvonne Walters', 'Johnnie Park', 'Danny Bailey', 'Ron Rivera', 'Kerry Freeman', 'Toby Wallace', 'Mike Gonzales', 'Bryan Murphy', 'Wanda Beck', 'Anthony Richards', 'Clay Rhodes', 'Alfredo Berry', 'Lynette Mathis', 'Elijah Christensen', 'Jan Kennedy', 'Greg Lambert', 'Enrique Curry', 'Ed Cooper', 'Judy Underwood', 'Fred Delgado', 'Nicole Jones', 'Elbert Fitzgerald', 'Edward Holmes', 'Dominic Salazar', 'Irma Wilkerson', 'Abel Gibbs', 'Gerardo Gardner', 'Arlene Griffin', 'Lana Ward', 'Wilson Chambers', 'Tami Andrews', 'Inez Clark', 'Delia Chapman', 'Armando Todd', 'Valerie Higgins', 'Jaime Yates', 'Bennie Bradley', 'Lorraine Estrada', 'Kendra Bowen', 'Christina Gregory', 'Kim Burgess'];
             //var _demo = setTimeout(actDemo, 4000);
             //actDemo();
         });

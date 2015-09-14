@@ -9,7 +9,8 @@
 .google-plus-red:hover {
   background-color: #dd4b39;
 }
-.iisnap-yellow {
+.iisnap-yellow,
+.iisnap-yellow:hover {
   background-color: #fdd406;
 }
 @media only screen and (min-width: 993px) {
@@ -209,13 +210,21 @@ button.btn-large {
   width: 100%;
 }
 .invite-link {
-  margin: 40px 0;
+  padding: 10px 0;
+  background-color: #ffde00;
+}
+.invite-link h5 {
+  font-weight: 300;
 }
 .invite-link span {
   padding: 10px 20px;
-  margin: 20px 0;
   display: inline-block;
   font-size: 1.5rem;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.invite-link span:hover {
+  background-color: #fff;
 }
 .footer {
   background-color: #363636;
@@ -276,6 +285,9 @@ button.btn-large {
   .top-banner form .btn {
     margin-top: 10px;
   }
+  .top-banner .invite .btn-large {
+    margin-bottom: 10px;
+  }
   .yellow-bar {
     display: none;
   }
@@ -329,7 +341,8 @@ button.btn-large {
     margin-top: 10px;
   }
   .invite-link {
-    margin: 20px 0;
+    padding: 10px 0;
+    background-color: #ffde00;
   }
   .invite-link h5 {
     font-size: 1.4rem;

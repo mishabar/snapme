@@ -12,7 +12,6 @@
                 else
                 {
                     <li>
-                        @*<a class="modal-trigger" href="#loginModal">Sign In</a>*@
                         <form action="/Account/ExternalLogin" method="post">
                             @Html.AntiForgeryToken()
                             <button type="submit" class="btn waves-effect waves-light btn-facebook" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account"><i class="fa fa-facebook-f"></i>Sign in / Register</button>
@@ -25,7 +24,10 @@
     @if (Request.IsAuthenticated)
     {
         <ul id="accountMenu" class="dropdown-content">
-            <li><a href="#!">My Account</a></li>
+            <li><a href="/Account">My Account</a></li>
+            <li><a href="/Account/Dashborad">Dashboard</a></li>
+            <li><a href="/Account/Rewards">Reward Center</a></li>
+            <li><a href="/Account/Friends">Friends on iiSnap</a></li>
             <li class="divider"></li>
             <li><a href="#!" ng-click="logoff($event)">Sign out</a></li>
         </ul>

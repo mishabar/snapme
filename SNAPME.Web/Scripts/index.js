@@ -2,6 +2,7 @@
 iisnapApp.controller('indexController', function ($scope, $http, $timeout, $cookies) {
 
     $scope.data = [];
+    $scope.authenticated = false;
     $scope.Math = window.Math;
 
     $(document).ready(function () {
@@ -48,7 +49,8 @@ iisnapApp.controller('indexController', function ($scope, $http, $timeout, $cook
     $scope.refresh = function () {
         $http.get('/api/v1/sales/active')
             .then(function(response) {
-                $scope.data = response.data;
+                $scope.data = response.data.sales;
+                $scope.authenticated = response.data.a;
             }, function(response) {
                 console.log(response.statusText);
             });
