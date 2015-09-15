@@ -317,6 +317,7 @@
     <Content Include="Content\Images\step2.png" />
     <Content Include="Content\Images\step3.png" />
     <Content Include="Content\Images\step4.png" />
+    <Content Include="Content\Images\stripe.png" />
     <Content Include="Content\Images\timer.png" />
     <Content Include="Content\Images\top-banner-bg.png" />
     <Content Include="Content\Images\top-banner-hand.png" />
@@ -547,7 +548,6 @@
     <Content Include="Views\Dialog\_PrivacyPolicy.cshtml" />
     <Content Include="Views\Shared\_LayoutLanding.cshtml" />
     <Content Include="Views\Shared\_NavbarLanding.cshtml" />
-    <Content Include="Views\Welcome\LaunchingSoon.cshtml" />
     <Content Include="Views\Account\EarlyBird.cshtml" />
     <Content Include="Views\Emails\_SellerWelcome.cshtml" />
     <Content Include="Views\Home\HowItWorks.cshtml" />
@@ -555,7 +555,6 @@
     <Content Include="Views\Shared\_ProductBox.cshtml" />
     <Content Include="Views\Welcome\LandingPage.cshtml" />
     <Content Include="Views\Shared\_FooterLanding.cshtml" />
-    <Content Include="Views\Welcome\ThankYou.cshtml" />
     <Content Include="Views\Emails\_InvitationListWelcome.cshtml" />
     <Content Include="Views\Welcome\FAQ.cshtml" />
     <Content Include="Views\Shared\_MLayout.cshtml" />
