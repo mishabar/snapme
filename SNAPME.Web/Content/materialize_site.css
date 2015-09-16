@@ -98,13 +98,6 @@ footer hr {
 /* Home page */
 .featured-products {
   height: 592px;
-  /*.product-bg {
-        background-image: url(https://turcomusa.com/media/product/470/turcom-ts-903-acoustoshock-rugged-bluetooth-speaker-water-resistant-dust-proof-dirt-proof-shockproof-fea.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50% 50%;
-        height: 592px;
-    }*/
 }
 .featured-products .slides {
   height: 592px;
@@ -120,6 +113,7 @@ footer hr {
   height: 592px;
   padding-top: 133px;
   margin: 0 5%;
+  cursor: pointer;
 }
 .featured-products .featured-sale .col {
   height: 326px;
@@ -175,8 +169,9 @@ footer hr {
 .featured-products .featured-sale .col .product-price .end {
   float: right;
 }
-.featured-products .featured-sale .col .product-price .range .progress {
-  width: 95%;
+.featured-products .featured-sale .col .product-price .range {
+  margin-right: 30px;
+  margin-top: 0!important;
 }
 .featured-products .featured-sale .col .current-price {
   background-color: #383838;
@@ -234,7 +229,6 @@ footer hr {
 }
 .range {
   position: relative;
-  clear: both;
   margin: 30px 0;
 }
 .range .indicator {
@@ -326,7 +320,7 @@ footer hr {
   padding: 0 10px;
   font-size: 14px;
   height: 40px;
-  line-height: 18px;
+  line-height: 19px;
   font-style: italic;
 }
 .product .card-image .product-image {

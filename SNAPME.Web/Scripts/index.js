@@ -1,7 +1,8 @@
 ﻿// create angular controller
-iisnapApp.controller('indexController', function ($scope, $http, $timeout, $cookies) {
+iisnapApp.controller('salesController', function ($scope, $http, $timeout, $cookies) {
 
-    $scope.data = [];
+    $scope.sales = [];
+    $scope.featured_sales = [];
     $scope.authenticated = false;
     $scope.Math = window.Math;
 
@@ -40,17 +41,18 @@ iisnapApp.controller('indexController', function ($scope, $http, $timeout, $cook
             })
     };
 
-    $scope.initTooltip = function ($event, product) {
-        if (!product.has_activity) {
-            $($event.target).tooltip({ delay: 50, position: 'left', tooltip: 'No friends\' activities yet.' });
-        }
-    }
-
     $scope.refresh = function () {
         $http.get('/api/v1/sales/active')
             .then(function(response) {
-                $scope.data = response.data.sales;
+                $scope.sales = response.data.sales;
+                $scope.featured_sales = $.grep($scope.sales, function (el, i) { return el.is_featured; });
                 $scope.authenticated = response.data.a;
+                $timeout(function () {
+                    if (($('.slider').data('i') || false) == false){
+                        $('.slider').slider({ full_width: true, indicators: false, height: 592 });
+                        $('.slider').data('i', true);
+                    }
+                }, 100);
             }, function(response) {
                 console.log(response.statusText);
             });

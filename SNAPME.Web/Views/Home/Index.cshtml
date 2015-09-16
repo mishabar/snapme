@@ -6,84 +6,42 @@
     ViewBag.Title = "Welcome";
 }
 
-<div ng-app="iisnapApp" ng-controller="indexController">
+<div ng-app="iisnapApp" ng-controller="salesController">
     <div class="featured-products">
         <div class="slider">
             <ul class="slides">
-                <li>
-                    <img src="https://media.timeout.com/images/101659821/image.jpg" />
+                <li ng-repeat="featured_product in featured_sales track by featured_product.id">
+                    <img src="{{featured_product.banner_url}}" ng-cloak />
                     <div class="container">
-                        <div class="featured-sale">
+                        <div class="featured-sale" ng-click="openProduct(featured_product.name, featured_product.id)">
                             <div class="row">
                                 <div class="col l5">
                                     <div class="white-bg">
-                                        <img class="product-image" src="http://worldwide.bose.com/axa/assets/images/products/soundlink_mini/soundlink_mini_si_lg_2.png" />
+                                        <div class="product-image" style="background-image: url({{featured_product.banner_image_url}})"></div>
                                     </div>
                                 </div>
                                 <div class="col l7">
                                     <div class="white-bg">
-                                        <div class="product-name">Bose SoundLink Mini II</div>
-                                        <div class="product-slogan">Take the best sound wherever you go!</div>
+                                        <div class="product-name">{{featured_product.name}}</div>
+                                        <div class="product-slogan">{{featured_product.summary}}</div>
                                         <div class="product-price">
-                                            <div class="start">$175.<span>00</span></div>
-                                            <div class="end">$129.<span>00</span></div>
+                                            <div class="start">${{Math.floor(featured_product.msrp)}}.<span>{{featured_product.msrp.toFixed(2).toString().substr(-2)}}</span></div>
+                                            <div class="end">${{Math.floor(featured_product.target)}}.<span>{{featured_product.target.toFixed(2).toString().substr(-2)}}</span></div>
+                                            <div style="clear: both;"></div>
+                                            <i class="fa fa-flag-checkered right"></i>
                                             <div class="range">
                                                 <div class="progress white">
-                                                    <div class="determinate amber lighten-1" style="width: 70%;"></div>
+                                                    <div class="determinate amber lighten-1" style="width: {{featured_product.progress}}%;"></div>
                                                 </div>
-                                                <i class="fa fa-flag-checkered right"></i>
-                                                <div class="indicator amber lighten-1" style="left: 64%"></div>
-                                                <div class="current-tag">$137.<span>00</span></div>
+                                                <div class="indicator amber lighten-1" style="left: {{featured_product.progress - 1}}%"></div>
                                             </div>
                                         </div>
-                                        <div class="current-price left">$137.00</div>
+                                        <div class="current-price left">${{Math.floor(featured_product.price)}}.<span>{{featured_product.price.toFixed(2).toString().substr(-2)}}</span></div>
                                         <div class="current-action right">
                                             <a class="waves-effect waves-light btn-large join modal-trigger" href="#payment">Join Sale</a>
                                         </div>
                                         <div class="points">
-                                            <div class="collect left">Collect +150 Snap Points upon checkout</div>
-                                            <div class="invite right">
-                                                <i class="fa fa-facebook-f"></i>invite<span class="amount">+ 25 SP</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://www.gadgetreview.com/wp-content/uploads/2013/09/TV-Watching.jpg" />
-                    <div class="container">
-                        <div class="featured-sale">
-                            <div class="row">
-                                <div class="col l5">
-                                    <div class="white-bg">
-                                        <div class="product-image" style="background-image: url(http://www.techzone.lk/wp-content/uploads/2014/11/up18.png)"></div>
-                                    </div>
-                                </div>
-                                <div class="col l7">
-                                    <div class="white-bg">
-                                        <div class="product-name">Intel NUC</div>
-                                        <div class="product-slogan">Stunning visuals and edge-of-your-seat performance in an ultra-small package.</div>
-                                        <div class="product-price">
-                                            <div class="start">$499.<span>99</span></div>
-                                            <div class="end">$129.<span>99</span></div>
-                                            <div class="range">
-                                                <div class="progress white">
-                                                    <div class="determinate amber lighten-1" style="width: 70%;"></div>
-                                                </div>
-                                                <i class="fa fa-flag-checkered right"></i>
-                                                <div class="indicator amber lighten-1" style="left: 64%"></div>
-                                                <div class="current-tag">$180.<span>00</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="current-price left">$180.00</div>
-                                        <div class="current-action right">
-                                            <a class="waves-effect waves-light btn-large join">Join Sale</a>
-                                        </div>
-                                        <div class="points">
-                                            <div class="collect left">Collect +150 Snap Points upon checkout</div>
+                                            <div class="collect left">Collect +{{featured_product.points}} Snap Points upon checkout</div>
                                             <div class="invite right">
                                                 <i class="fa fa-facebook-f"></i>invite<span class="amount">+ 25 SP</span>
                                             </div>
@@ -104,7 +62,7 @@
     <div class="grey lighten-5">
         <div class="container">
             <div class="row sales-list">
-                <div class="col l4 m6 s12" ng-repeat="product in data">
+                <div class="col l4 m6 s12" ng-repeat="product in sales track by product.id">
                     <div class="card product hoverable" title="{{product.name}}" ng-cloak ng-click="openProduct(product.name, product.id)">
                         <div class="card-image">
                             <div class="product-image" style="background-image:url({{product.image_url}})"></div>
@@ -171,7 +129,6 @@
     <script src="~/Scripts/index.js"></script>
     <script>
         $(function () {
-            $('.slider').slider({ full_width: true, indicators: false, height: 592 });
             //function actDemo() {
             //    Materialize.toast('<img src="http://graph.facebook.com/10152299152237123/picture?type=square" class="circle" onerror="this.src = \'/Content/Images/default-avatar.png\'"><span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just favoured this product.</span>');
             //}
