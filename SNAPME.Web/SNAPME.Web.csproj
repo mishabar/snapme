@@ -198,9 +198,6 @@
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SellerController.cs" />
     <Compile Include="Areas\Admin\Models\ProductImageModel.cs" />
-    <Compile Include="Areas\Seller\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Seller\Models\SellerRegistrationModel.cs" />
-    <Compile Include="Areas\Seller\SellerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\EmailController.cs" />
     <Compile Include="Controllers\Api\PreLaunchController.cs" />
@@ -240,7 +237,6 @@
     <Content Include="Areas\Admin\Scripts\product.js" />
     <Content Include="Areas\Admin\Scripts\products.js" />
     <Content Include="Areas\Admin\Scripts\seller.js" />
-    <Content Include="Areas\Seller\Scripts\seller.js" />
     <Content Include="Content\admin.css">
       <DependentUpon>admin.less</DependentUpon>
     </Content>
@@ -387,10 +383,6 @@
     <Content Include="fonts\iisnap.eot" />
     <Content Include="fonts\iisnap.ttf" />
     <Content Include="fonts\iisnap.woff" />
-    <Content Include="Areas\Seller\Views\web.config" />
-    <Content Include="Areas\Seller\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\Register.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\Registered.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Content\admin.css.map">
@@ -398,25 +390,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Shared\_Navbar.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Footer.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\_Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\_Products.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\_Sales.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\_Product.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\_Details.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\Details.cshtml" />
-    <Content Include="Areas\Seller\Views\Shared\_SellerLayout.cshtml" />
-    <Content Include="Areas\Seller\Views\Shared\_Footer.cshtml" />
-    <Content Include="Areas\Seller\Views\Shared\_Navbar.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\_Product.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\_Products.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\FAQ.cshtml" />
-    <Content Include="Areas\Seller\Views\Home\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\_Accounts.cshtml" />
-    <Content Include="Areas\Admin\Views\Seller\_ResetPassword.cshtml" />
     <Content Include="fonts\Questrial-Regular.eot" />
     <Content Include="fonts\Questrial-Regular.ttf" />
     <Content Include="fonts\Questrial-Regular.woff" />
