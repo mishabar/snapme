@@ -543,7 +543,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js.map">
       <DependentUpon>jquery.validate.unobtrusive.min.js</DependentUpon>
     </Content>
-    <Content Include="Views\Product\DetailsOld.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Welcome\Welcome.cshtml" />
     <Content Include="Views\Welcome\PreLaunch.cshtml" />
