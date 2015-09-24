@@ -33,7 +33,7 @@ namespace SNAPME.Web.Areas.Seller.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                if (User.IsInRole("Administrator")) { return Redirect("/Admin"); }
+                //if (User.IsInRole("Administrator")) { return Redirect("/Admin/Products"); }
                 return View("Details", _sellerService.GetById((User.Identity as ClaimsIdentity).FindFirst("urn:iisnap:seller_id").Value));
             }
             
