@@ -1,10 +1,11 @@
 ﻿// create angular controller
-iisnapApp.controller('salesController', function ($scope, $http, $timeout, $cookies) {
+iisnapApp.controller('salesController', function ($scope, $http, $timeout, $cookies, salesService, productsService) {
 
-    $scope.sales = [];
-    $scope.featured_sales = [];
+    $scope.sales = null;
+    $scope.featured_sales = null;
     $scope.authenticated = false;
     $scope.Math = window.Math;
+    $scope.pages = 1;
 
     $(document).ready(function () {
         $('.modal-trigger').leanModal({
@@ -24,38 +25,37 @@ iisnapApp.controller('salesController', function ($scope, $http, $timeout, $cook
     $scope.likeProduct = function ($event, product) {
         $event.preventDefault();
         $event.stopPropagation();
-        $http.post('/api/v1/like/product', { id: product.id })
-            .then(function (response) {
-                product.likes = response.data.liked;
-            }, function (response) {
+        productsService.likeProduct(product.id)
+            .success(function (data) {
+                product.likes = data.liked;
             })
+            .error(function (error) { console.log(error.message) });
     };
 
-    $scope.favorProduct = function ($event, id) {
+    $scope.favorProduct = function ($event, product) {
         $event.preventDefault();
         $event.stopPropagation();
-        $http.post('/api/v1/favorite/product', { id: product.id })
-            .then(function (response) {
-                product.favors = response.data.favored;
-            }, function (response) {
+        productsService.favorProduct(product.id)
+            .success(function (data) {
+                product.favors = data.favored;
             })
+            .error(function (error) { console.log(error.message) });
     };
 
     $scope.refresh = function () {
-        $http.get('/api/v1/sales/active')
-            .then(function(response) {
-                $scope.sales = response.data.sales;
+        salesService.getActiveSales($scope.pages)
+            .success(function (data) {
+                $scope.sales = data.sales;
                 $scope.featured_sales = $.grep($scope.sales, function (el, i) { return el.is_featured; });
-                $scope.authenticated = response.data.a;
+                $scope.authenticated = data.a;
                 $timeout(function () {
-                    if (($('.slider').data('i') || false) == false){
+                    if (($('.slider').data('i') || false) == false) {
                         $('.slider').slider({ full_width: true, indicators: false, height: 592 });
                         $('.slider').data('i', true);
                     }
                 }, 100);
-            }, function(response) {
-                console.log(response.statusText);
-            });
+            })
+            .error(function (error) { console.log(error.message) });
     }
 
     $scope.intervalFunction = function () {

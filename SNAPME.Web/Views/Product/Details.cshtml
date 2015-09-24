@@ -2,314 +2,70 @@
 @{
     ViewBag.Title = Model.name;
     Layout = "~/Views/Shared/_MLayout.cshtml";
-    var firstImageIndex = int.MaxValue;
 }
 
-<div class="product details grey lighten-4">
-    <div class="container">
-        <div class="row no-padding">
-            <div class="col m6 s12">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div class="product-actions">
-                        <a class="btn-floating waves-effect waves-light @(Model.UserPreferences.favors ? "active" : string.Empty)" data-action="favor-product" title="Add to favorites" data-id="@Model.id"><i class="mdi-action-favorite"></i></a>
-                        <a class="btn-floating waves-effect waves-light @(Model.UserPreferences.likes ? "active" : string.Empty)" data-action="like-product" title="Like" data-id="552dc9a68e659a336c9a88b0"><i class="mdi-action-thumb-up"></i></a>
-
-                    </div>
-                }
-                @if (Model.Sale != null)
-                {
-                    <div class="drops-counter">@Model.Sale.drops.Count() Drops</div>
-                }
-                <div class="images" style="overflow: hidden;">
-                    @for (int i = 0; i < Model.images.Length; i++)
-                    {
-                        if (!string.IsNullOrEmpty(Model.images[i]))
-                        {
-                            firstImageIndex = Math.Min(firstImageIndex, i);
-                            <div style="background: url(/Image/@Model.id/@i) no-repeat 50% 50%; background-size: cover;" class="hide"></div>
-                        }
-                    }
-                </div>
-            </div>
-            <div class="col m6 s12">
-                <nav>
-                    <ul id="dd-share" class="dropdown-content">
-                        <li><a href="#!" class="center-align"><i class="ti-facebook"></i></a></li>
-                        <li><a href="#!" class="center-align"><i class="ti-twitter"></i></a></li>
-                        <li><a href="#!" class="center-align"><i class="ti-google"></i></a></li>
-                        <li><a href="#!" class="center-align"><i class="ti-pinterest"></i></a></li>
-                    </ul>
-                    <div class="nav-wrapper">
-                        <a class="page-title">@Model.name</a>
-                        <ul class="right">
-                            <li><a href="#!" title="Share" class="dropdown-button" data-activates="dd-share"><i class="ti-sharethis"></i></a></li>
-                            <li><a href="#mdl-points" class="modal-trigger" title="Snap Points"><i class="ti-medall-alt"></i></a></li>
+<div ng-app="iisnapApp" ng-controller="saleController" ng-init="init('@Model.id')">
+    <div>
+        <div class="container sale">
+            <div class="row">
+                <div class="col l5">
+                    <div class="slider" ng-cloak>
+                        <ul class="slides">
+                            <li ng-repeat="idx in product.image_indexes">
+                                <img src="/image/{{product.id}}/{{idx}}" class="materialboxed" />
+                            </li>
                         </ul>
                     </div>
-                </nav>
-                <div class="sale-container">
-                    <div class="center-align short-description">
-                        @Model.short_descritpion
-                    </div>
-                    @if (Model.Sale != null)
-                    {
-                        <div class="price-range">
-                            <div class="pull-left">@Model.retail_price.ToString("C")</div>
-                            <div class="pull-right"><i class="fa fa-flag-checkered"></i></div>
-                            <div class="progress grey lighten-1">
-                                <div class="determinate yellow darken-1" style="width: @string.Format("{0}%", Model.Sale.progress);"></div>
+                </div>
+                <div class="col l7" ng-cloak>
+                    <div class="title">{{product.name}}</div>
+                    <div class="sub-title">{{product.short_descritpion}}</div>
+                    <div class="product-price" ng-show="product.sale != null">
+                        <div class="start left">${{Math.floor(product.sale.msrp)}}.<span>{{product.sale.msrp.toFixed(2).toString().substr(-2)}}</span></div>
+                        <div class="end right">${{Math.floor(product.sale.target)}}.<span>{{product.sale.target.toFixed(2).toString().substr(-2)}}</span></div>
+                        <div class="range">
+                            <div class="progress grey lighten-2">
+                                <div class="determinate amber lighten-1" style="width: {{product.sale.progress}}%;"></div>
                             </div>
+                            <div class="indicator amber lighten-1" style="left: {{product.sale.progress - 1}}%"></div>
+                            <div class="drops-counter amber lighten-1" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">{{product.sale.drops}} Drops</div>
+                            <div class="current-price grey darken-4" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">${{Math.floor(product.sale.price)}}.{{product.sale.price.toFixed(2).toString().substr(-2)}}</div>
                         </div>
                         <div class="sale-actions">
-                            <div class="current-price left">@(Model.Sale.current_price.ToString("C"))</div>
-                            <div class="action right">
-                                <a class="waves-effectwaves-ligth btn green darken-2 join">Join Sale</a>
-                                <a class="waves-effectwaves-ligth btn yellow darken-2 checkout disabled">
-                                    <div class="tooltipped" data-position="top" data-delay="50" data-tooltip="Please wait until the Sale reaches the Target Price or it is over. In the meanwhile invite more friends to join the Sale and Earn Snap Points."></div>
-                                    Checkout
-                                </a>
-                                <a class="waves-effectwaves-ligth btn yellow darken-2 buy">Buy Now</a>
-                            </div>
+                            <button type="button" class="waves-effect waves-light btn-large join" ng-disabled="{{product.sale.joined}}">Join Sale</button>
                         </div>
-                        <hr />
+                    </div>
+                    <div class="no-active-sale" ng-show="product.sale == null">
+                        Currently, there item is not on sale. <br />Want to know when it goes on sale?
                         <div>
-                            <div class="potential-points left">
-                                Collect: +@Model.Sale.potential_points
-                            </div>
-                            <div class="invite-friends right"></div>
+                            <button type="button" class="btn waves-effect yellow">Let me know</button>
                         </div>
-                        <div class="time-left grey darken-1">
-                            @{
-                        var v = Model.Sale.ends_on - DateTime.UtcNow;
-                        <div class="countdown" data-left="@v.TotalMinutes"></div>
-                            }
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="time-left grey darken-1">
-                            No active sale
-                        </div>
-                    }
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row no-padding">
-        <div class="col m9 s12">
-            <ul class="tabs z-depth-1">
-                <li class="tab col s3"><a class="active" href="#details">Details</a></li>
-                <li class="tab col s3"><a href="#shipping">Shipping</a></li>
-                <li class="tab col s3"><a href="#comments">Comments</a></li>
-            </ul>
-            <div id="details" class="col s12">
-                <p>
-                    @Model.descritpion
-                </p>
+            <div class="row" ng-cloak>
+                <div class="col l10">
+                    <div class="section-header">Descripion</div>
+                    <p>
+                        {{product.descritpion}}
+                    </p>
+                    <div class="section-header">Comments</div>
+                    <p class="comment" ng-repeat="comment in product.comments">
+                        <img src="/account/image/{{comment.user_id}}" /><span class="username">{{comment.username}}</span> <span><i class="tiny material-icons" ng-repeat="n in [] | range:comment.rating">star</i></span><br />
+                        <em>{{comment.comment}}</em>
+                    </p>
+                    <p ng-if="product.comments.length == 0">
+                        No comments yet! Be the first to comment on {{product.name}}.
+                    </p>
+                </div>
+                <div class="col l2"></div>
             </div>
-            <div id="shipping" class="col s12">
-                <p>
-                    <div class="row">
-                        <div class="col s4 l2">
-                            <input id="zip_code" type="text" class="validate" placeholder="Zip code" />
-                        </div>
-                        <div class="col l3 s6">
-                            <a id="btnQuote" class="waves-effect waves-light btn">Get Quote</a>
-                        </div>
-                    </div>
-                </p>
-            </div>
-            <div id="comments" class="col s12">
-                <p>
-                    No comments yet, be the first to <a href="#!">leave a comment.</a>
-                </p>
-            </div>
-        </div>
-        <div class="col m3 s12">
-
         </div>
     </div>
 </div>
 
-
-<div id="mdl-points" class="modal" style="max-width: 600px;">
-    <div class="modal-content">
-        <h4>Snap Points for this sale</h4>
-        <p>
-            <ul class="snap-points-list">
-                <li class="hoverable">
-                    <div class="row">
-                        <div class="col s3">
-                            <div class="valign-wrapper">
-                                <div class="valign center bonus">
-                                    <span>get +25</span><img class="right" src="~/Content/Images/sp-bonus.png" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s9">
-                            <div class="valign-wrapper">
-                                <div class="valign center">
-                                    <div>Invite your friends to join iiSnap</div>
-                                    <a class="btn waves-effect waves-effectwaves-ligth light-blue darken-4"><i class="material-icons left">supervisor_account</i> invite to join</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="hoverable">
-                    <div class="row">
-                        <div class="col s3">
-                            <div class="valign-wrapper">
-                                <div class="valign center bonus">
-                                    <span>get +50</span><img class="right" src="~/Content/Images/sp-bonus.png" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s9">
-                            <div class="valign-wrapper">
-                                <div class="valign center">
-                                    <div>Invite your friends to buy this Product</div>
-                                    <a class="btn waves-effect waves-effectwaves-ligth light-blue darken-4"><i class="material-icons left">shopping_cart</i> invite to buy</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="hoverable">
-                    <div class="row">
-                        <div class="col s3">
-                            <div class="valign-wrapper">
-                                <div class="valign center bonus">
-                                    <span>get +150</span><img class="right" src="~/Content/Images/sp-bonus.png" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col s9">
-                            <div class="valign-wrapper">
-                                <div class="valign center">
-                                    <div>Purchase this Products</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </p>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
-</div>
 
 @section scripts
 {
-    <script src="~/Scripts/flipclock.min.js"></script>
-    <script type="text/javascript">
-        var sale = { id: '@Model.Sale.id', current_price: @Model.Sale.current_price, drops: 10, joined: false, ended: false, priceReached: false };
-        var w = $('.product .images').width();
-        var h = w / 16 * 9;
-        $('.product .images > div').css('height', h + 'px').css('width', w + 'px').removeClass('hide');
-        $('.product .images').bxSlider({
-            slideWidth: $('.product .images').width(),
-            minSlides: 1,
-            maxSlides: 1,
-            slideMargin: 0,
-            responsive: true
-        });
-
-        var h = $('.product .bx-wrapper').height() - 68;
-        $('.sale-container').height(h + 'px');
-        @if (Model.Sale != null)
-        {
-        @:$('.sale-container .short-description').toggleClass('hide', h < 240);
-                                                }
-        function r() {
-            $('.product.details .nav-wrapper .page-title').width($('.product.details .nav-wrapper').width() - $('.product.details .nav-wrapper ul').width() - 25 + 'px');
-        }
-        $(document).ready(function () {
-            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-            $('.modal-trigger').leanModal({
-                dismissible: true, // Modal can be dismissed by clicking outside of the modal
-                opacity: .5, // Opacity of modal background
-                in_duration: 300, // Transition in duration
-                out_duration: 200, // Transition out duration
-            });
-
-            $('.countdown').FlipClock($('.countdown').data('left'),
-                {
-                    countdown: true,
-                    callbacks: {
-                        stop: function() {
-                            sale.ended = true;
-                            saleEnded();
-                        }
-                    }
-                });
-
-            $('.btn.join').on('click', function(){
-                $(this).closest('.action').addClass('joined');
-                sale.joined = true;
-                sendFBInvitation(null, 'http://www.iisnap.com/demo');
-            });
-
-            setTimeout(r, 1000);
-        });
-
-        $(window).on('resize', r);
-
-        function priceReached() {
-            $('.sale-actions .action').addClass('completed');
-            if (sale.joined){
-                $('.sale-actions .action').addClass('joined');
-                $('.btn.checkout').removeClass('disabled');
-            }
-
-            $('.current-price').addClass('green darken-2');
-        }
-
-        function saleEnded() {
-            clearTimeout(_demo);
-            $('.sale-container > *').addClass('hide');
-            $('.sale-container .time-left').html('The Sale has ended');
-            $('.sale-container .short-description, .sale-container .time-left').removeClass('hide');
-        }
-
-        // if demo
-
-        function dropPriceDemo() {
-            sale.current_price -= Math.random() / 10;
-            sale.drops++;
-            Materialize.toast('<span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just joined the sale.</span>', 2000);
-            $('.sale-actions .current-price').text('$ ' + sale.current_price.toFixed(2));
-            $('.drops-counter').text(sale.drops + ' Drops');
-            $pg = $('.price-range .progress .determinate');
-            var w = $pg.width() / $pg.parent().width() * 100 + 10;
-            $pg.width(Math.min(w, 100) + '%');
-            if (w >= 100) {
-                sale.completed = true;
-                $('.sale-actions .action').addClass('completed');
-                priceReached();
-            }
-        }
-
-        function actDemo(){
-            var op = Math.floor(Math.random() * 1000 % 3);
-            switch (op) {
-                case 0:
-                case 2:
-                    dropPriceDemo();
-                    break;
-                case 1: Materialize.toast('<span>' + names[Math.floor(Math.random() * 1000 % 50)] + ' has just favoured this product.</span>', 2000); break;
-            }
-
-            if (!sale.completed)
-                _demo = setTimeout(actDemo, Math.floor(Math.random() * 15000));
-        }
-
-        var names = ['Woodrow Barber',  'Roger Gill',  'Andre Neal',  'Nancy Castillo',  'Joanna Kelly',  'Randal Brady',  'Richard Lopez',  'Leah Lindsey',  'Dianna Mckenzie',  'Yvonne Walters',  'Johnnie Park',  'Danny Bailey',  'Ron Rivera',  'Kerry Freeman',  'Toby Wallace',  'Mike Gonzales',  'Bryan Murphy',  'Wanda Beck',  'Anthony Richards',  'Clay Rhodes',  'Alfredo Berry',  'Lynette Mathis',  'Elijah Christensen',  'Jan Kennedy',  'Greg Lambert',  'Enrique Curry',  'Ed Cooper',  'Judy Underwood',  'Fred Delgado',  'Nicole Jones',  'Elbert Fitzgerald',  'Edward Holmes',  'Dominic Salazar',  'Irma Wilkerson',  'Abel Gibbs',  'Gerardo Gardner',  'Arlene Griffin',  'Lana Ward',  'Wilson Chambers',  'Tami Andrews',  'Inez Clark',  'Delia Chapman',  'Armando Todd',  'Valerie Higgins',  'Jaime Yates',  'Bennie Bradley',  'Lorraine Estrada',  'Kendra Bowen',  'Christina Gregory',  'Kim Burgess'];
-        var _demo = setTimeout(actDemo, 4000);
-    </script>
+    <script src="~/Scripts/product.js"></script>
 }

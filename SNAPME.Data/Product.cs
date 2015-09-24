@@ -16,21 +16,17 @@ namespace SNAPME.Data
         public string short_descritpion { get; set; }
         public string descritpion { get; set; }
         public int retail_price { get; set; }
-        public int purchase_price { get; set; }
-        public int suggested_sell_price { get; set; }
         public string[] images { get; set; }
         public string size { get; set; }
         public string weight { get; set; }
-        public int lead_time { get; set; }
         public bool is_draft { get; set; }
-        public bool is_dropship { get; set; }
-        public bool is_oem { get; set; }
-        public string stock_model { get; set; }
-        public int min_quantity { get; set; }
+        public IEnumerable<Comment> comments { get; set; }
 
         public string[] likes { get; set; }
         public long likes_count { get; set; }
 
         public UserAction[] feed { get; set; }
+
+        public string sale_id { get; set; }
     }
 }

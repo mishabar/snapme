@@ -43,14 +43,7 @@ namespace SNAPME.Web.Controllers
                 if (string.IsNullOrEmpty(id)) { id = "552532f77ef776125096266c"; }
 #endif
                 id = id.ToProductId();
-                var product = _productService.GetById(id);
-                if (User.Identity.IsAuthenticated)
-                {
-                    product.UserPreferences = _productService.GetPreferences(id, User.Identity.GetUserId());
-                }
-                //product.Sale = _saleService.GetActive(id);
-                product.Sale = SaleToken.Generate(1, (int)product.purchase_price).First();
-
+                var product = _productService.GetById(id);                
                 return View(product);
             }
             catch
@@ -67,9 +60,9 @@ namespace SNAPME.Web.Controllers
             try
             {
 
-                var product = _productService.GetById(id);
+                var imageb64 = _productService.GetImageById(id, idx);
                 MemoryStream stream = new MemoryStream();
-                string[] imageParts = product.images[idx].Split(';');
+                string[] imageParts = imageb64.Split(';');
 
                 string contentType = imageParts[0].Substring(5);
                 byte[] image = Convert.FromBase64String(imageParts[1].Substring(7));

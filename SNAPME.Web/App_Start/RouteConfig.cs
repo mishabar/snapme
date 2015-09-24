@@ -13,7 +13,7 @@ namespace SNAPME.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
-
+            
             //routes.MapRoute(
             //    name: "SaleDetails",
             //    url: "sale/{id}",
@@ -21,24 +21,24 @@ namespace SNAPME.Web
             //    namespaces: new string[] { "SNAPME.Web.Controllers" }
             //);
 
-            routes.MapRoute(
-                name: "AccountRoutes",
-                url: "Account/{action}/{id}",
-                defaults: new { controller = "Account", action = "Details", id = UrlParameter.Optional },
-                namespaces: new string[] { "SNAPME.Web.Controllers" }
-            );
+            //routes.MapRoute(
+            //    name: "AccountRoutes",
+            //    url: "Account/{action}/{id}",
+            //    defaults: new { controller = "Account", action = "Details", id = UrlParameter.Optional },
+            //    namespaces: new string[] { "SNAPME.Web.Controllers" }
+            //);
 
-            routes.MapRoute(
-                name: "ComingSoon",
-                url: "ComingSoon",
-                defaults: new { controller = "Welcome", action = "ComingSoon", id = UrlParameter.Optional },
-                namespaces: new string[] { "SNAPME.Web.Controllers" }
-            );
+            //routes.MapRoute(
+            //    name: "ComingSoon",
+            //    url: "ComingSoon",
+            //    defaults: new { controller = "Welcome", action = "ComingSoon", id = UrlParameter.Optional },
+            //    namespaces: new string[] { "SNAPME.Web.Controllers" }
+            //);
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Welcome", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "SNAPME.Web.Controllers" }
             );
         }

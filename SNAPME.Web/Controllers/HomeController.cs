@@ -64,5 +64,17 @@ namespace SNAPME.Web.Controllers
         {
             return View();
         }
+
+        [Route("Terms")]
+        public ActionResult Terms()
+        {
+            return View();
+        }
+
+        [Route("Privacy")]
+        public ActionResult Privacy()
+        {
+            return View();
+        }
     }
 }

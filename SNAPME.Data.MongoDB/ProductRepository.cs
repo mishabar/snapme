@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using SNAPME.Data.Repositories;
@@ -41,16 +42,9 @@ namespace SNAPME.Data.MongoDB
                         .Set(p => p.sku, product.sku)
                         .Set(p => p.descritpion, product.descritpion)
                         .Set(p => p.short_descritpion, product.short_descritpion)
-                        .Set(p => p.lead_time, product.lead_time)
                         .Set(p => p.retail_price, product.retail_price)
-                        .Set(p => p.purchase_price, product.purchase_price)
-                        .Set(p => p.suggested_sell_price, product.suggested_sell_price)
-                        .Set(p => p.stock_model, product.stock_model)
-                        .Set(p => p.min_quantity, product.min_quantity)
                         .Set(p => p.size, product.size)
                         .Set(p => p.weight, product.weight)
-                        .Set(p => p.is_dropship, product.is_dropship)
-                        .Set(p => p.is_oem, product.is_oem)
                         .SetOnInsert(p => p.images, new string[6])
                         .SetOnInsert(p => p.likes, new string[0])
                         .SetOnInsert(p => p.is_draft, true),
@@ -114,6 +108,28 @@ namespace SNAPME.Data.MongoDB
             {
                 _collection.Remove(Query<Product>.EQ(p => p.id, id));
             }
+        }
+
+
+        public string GetImageById(string id, int idx)
+        {
+            return _collection.Find(Query<Product>.EQ(p => p.id, id)).SetFields(Fields<Product>.Slice(p => p.images, idx, 1)).First().images[0];
+        }
+
+
+        public IEnumerable<Product> GetFiltered(string query, int page, out bool hasData)
+        {
+            var queries = new List<IMongoQuery>();
+            queries.Add(Query<Product>.Exists(p => p.id));
+            if (!string.IsNullOrWhiteSpace(query)) 
+            {
+                queries.Add(Query<Product>.Matches(p => p.name, new BsonRegularExpression(query, "i")));
+            }
+
+            var products = _collection.Find(Query.And(queries)).SetSkip(20 * (page - 1)).SetLimit(20).ToArray();
+            hasData = products.Length > 0;
+
+            return products;
         }
     }
 }

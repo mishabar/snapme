@@ -9,7 +9,9 @@ namespace SNAPME.Data
     public class Drop
     {
         public DateTime date { get; set; }
-        public int from_price { get; set; }
-        public int to_price { get; set; }
+        public string user_id { get; set; }
+        public int current_price { get; set; }
+        public bool backed_out { get; set; }
+        public bool checked_out { get; set; }
     }
 }

@@ -98,5 +98,17 @@ namespace SNAPME.Services
         {
             return CategoryToken.Generate(5);
         }
+
+
+        public string GetImageById(string id, int idx)
+        {
+            return _productRepository.GetImageById(id, idx);
+        }
+
+
+        public IEnumerable<ProductToken> GetFiltered(string query, int page, out bool hasData)
+        {
+            return _productRepository.GetFiltered(query, page, out hasData).Select(f => f.AsSimpleToken());
+        }
     }
 }

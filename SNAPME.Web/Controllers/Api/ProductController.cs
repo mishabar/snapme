@@ -10,6 +10,7 @@ using SNAPME.Tokens;
 using SNAPME.Tokens.Api;
 using SNAPME.Web.Areas.Admin.Models;
 using SNAPME.Web.Helpers;
+using SNAPME.Web.Models.Api;
 
 namespace SNAPME.Web.Controllers.Api
 {
@@ -126,6 +127,26 @@ namespace SNAPME.Web.Controllers.Api
             }
 
             return BadRequest(ModelState);
+        }
+
+        [Route("product/{id}/{saleData?}"), HttpGet, AllowAnonymous]
+        public IHttpActionResult GetProduct(string id, bool saleData)
+        {
+            var product = _productService.GetById(id.ToProductId());
+            if (saleData)
+            {
+                product.sale = Sales.sales.FirstOrDefault(s => s.id == id);
+            }
+            return Ok(product);
+        }
+
+        [Route("products"), HttpPost, Authorize(Roles = "Administrator")]
+        public IHttpActionResult GetProducts(ListQueryToken token)
+        {
+            bool hasData = true;
+            var products = _productService.GetFiltered(token.query, token.page, out hasData);
+
+            return Ok(new { hasData = hasData, data = products });
         }
     }
 }

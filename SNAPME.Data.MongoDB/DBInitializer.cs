@@ -49,6 +49,7 @@ namespace SNAPME.Data.MongoDB
                 cm.SetIdMember(cm.GetMemberMap(c => c.id));
                 cm.IdMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance);
                 cm.GetMemberMap(c => c.id).SetRepresentation(BsonType.ObjectId);
+                cm.SetIgnoreExtraElements(true);
             });
 
             BsonClassMap.RegisterClassMap<Sale>(cm =>

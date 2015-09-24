@@ -10,17 +10,34 @@ namespace SNAPME.Tokens
     public class SaleToken
     {
         public string id { get; set; }
-        public string product_id { get; set; }
-        public string product_name { get; set; }
+        public string name { get; set; }
+        public string image_url { get; set; }
+        public string banner_url { get; set; }
+        public string banner_image_url { get; set; }
+        public double msrp { get; set; }
+        public double target { get; set; }
+        public double price { get; set; }
+        public int drops { get; set; }
+        public int progress { get; set; }
+        public string summary { get; set; }
+        public bool likes { get; set; }
+        public bool favors { get; set; }
+        public bool has_activity { get; set; }
+        public bool is_featured { get; set; }
+        public int points { get; set; }
+
+        
         public DateTime? started_on { get; set; }
         public DateTime ends_on { get; set; }
-        public double current_price { get; set; }
-        public int progress { get; set; }
         public DateTime? ended_on { get; set; }
-        public int target_price { get; set; }
-        public int potential_points { get; set; }
-        public bool active { get; set; }
-        public Dictionary<string, Drop> drops { get; set; }
+
+
+        public void Reset()
+        {
+            price = msrp;
+            drops = 0;
+            progress = 0;
+        }
 
         #region Mocks
         public static IEnumerable<SaleToken> Generate(int count, int purchase_price)
@@ -33,15 +50,15 @@ namespace SNAPME.Tokens
             {
                 list.Add(new SaleToken
                 {
-                    id = Guid.NewGuid().ToString(),
-                    started_on = DateTime.UtcNow.AddMinutes(-random.Next(400)),
-                    current_price = target_price + (target_price - purchase_price) / 2F,
-                    progress = random.Next(95),
-                    ends_on = DateTime.UtcNow.AddMinutes(random.Next(200)),
-                    target_price = target_price,
-                    ended_on = null,
-                    potential_points = random.Next(150),
-                    drops = new Dictionary<string,Drop>()
+                    //id = Guid.NewGuid().ToString(),
+                    //started_on = DateTime.UtcNow.AddMinutes(-random.Next(400)),
+                    //current_price = target_price + (target_price - purchase_price) / 2F,
+                    //progress = random.Next(95),
+                    //ends_on = DateTime.UtcNow.AddMinutes(random.Next(200)),
+                    //target_price = target_price,
+                    //ended_on = null,
+                    //potential_points = random.Next(150),
+                    //drops = new Dictionary<string,Drop>()
                 });
             }
 
@@ -56,12 +73,12 @@ namespace SNAPME.Tokens
                 DateTime ends_on = DateTime.UtcNow.AddMinutes(random.Next(200) - 400);
                 list.Add(new SaleToken
                 {
-                    id = Guid.NewGuid().ToString(),
-                    started_on = DateTime.UtcNow.AddMinutes(-random.Next(400)),
-                    current_price = random.Next(2000) + 8000,
-                    //target_price = -random.Next(2000) + 8000,
-                    ends_on = ends_on,
-                    ended_on = ends_on
+                    //id = Guid.NewGuid().ToString(),
+                    //started_on = DateTime.UtcNow.AddMinutes(-random.Next(400)),
+                    //current_price = random.Next(2000) + 8000,
+                    ////target_price = -random.Next(2000) + 8000,
+                    //ends_on = ends_on,
+                    //ended_on = ends_on
                 });
             }
 
@@ -76,17 +93,17 @@ namespace SNAPME.Tokens
         {
             return new SaleToken 
             {
-                id = sale.id,
-                product_id = sale.product_id,
-                product_name = sale.product_name,
-                started_on = sale.started_on,
-                ends_on = sale.ends_on,
-                ended_on = sale.ended_on,
-                current_price = sale.current_price / 100F,
-                target_price = sale.target_price,
-                progress = sale.progress,
-                active = sale.active,
-                potential_points = sale.potential_points
+                //id = sale.id,
+                //product_id = sale.product_id,
+                //product_name = sale.product_name,
+                //started_on = sale.started_on,
+                //ends_on = sale.ends_on,
+                //ended_on = sale.ended_on,
+                //current_price = sale.current_price / 100F,
+                //target_price = sale.target_price,
+                //progress = sale.progress,
+                //active = sale.active,
+                //potential_points = sale.potential_points
             };
         }
     }

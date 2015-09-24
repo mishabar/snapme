@@ -1,26 +1,35 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/content/images/iisnap.ico">
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
+
     <title>iiSnap - Administration</title>
-    <link rel="icon" type="image/x-icon" href="~/Content/Images/iisnap.ico">
-    <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
 
-    @Styles.Render("~/Content/admin_css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
 </head>
-<body>
-    @Html.Partial("_Facebook")
-    @Html.Partial("_Navbar")
-    @RenderBody()
-    <div class="clearfix"></div>
-    @Html.Partial("_Footer")
+<body ng-app="iisnapApp" class="admin">
+    <header>
+        @Html.Partial("_MAdminNav")
+    </header>
+    <main class="grey lighten-5">
+        @RenderBody()
+    </main>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular-cookies.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/account.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

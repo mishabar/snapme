@@ -20,5 +20,8 @@ namespace SNAPME.Data
         public DateTime? ended_on { get; set; }
         public bool active { get; set; }
         public int potential_points { get; set; }
+        public bool is_featured { get; set; }
+        public string banner_image { get; set; }
+        public string product_image { get; set; }
     }
 }

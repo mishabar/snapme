@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs" />
     <Compile Include="Drop.cs" />
     <Compile Include="Friend.cs" />
     <Compile Include="Invitation.cs" />

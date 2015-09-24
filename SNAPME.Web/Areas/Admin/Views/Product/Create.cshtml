@@ -1,0 +1,95 @@
+﻿@model SNAPME.Tokens.ProductToken
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div ng-app="iisnapApp" class="container" ng-controller="adminProductController" ng-init="init('@Model.id')">
+    <h4 ng-show="product.id == null" ng-cloak>Create Product</h4>
+    <div class="right-align" ng-show="product.id != null" ng-cloak>
+        <a class="btn waves-effect waves-light blue" href="/Admin/Products">Back to list</a>
+    </div>
+    <form name="productForm" ng-submit="submitForm(productForm.$valid)" novalidate ng-cloak>
+        <div class="row">
+            <div class="input-field col m4">
+                <input placeholder="Name" name="name" ng-model="product.name" type="text" class="validate" ng-class="{invalid : productForm.$submitted && productForm.name.$invalid}" required>
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s4">
+                <input placeholder="SKU" name="sku" ng-model="product.sku" type="text" class="validate" ng-class="{invalid : productForm.$submitted && productForm.sku.$invalid}" required>
+                <label for="sku">SKU</label>
+            </div>
+            <div class="col s4">
+                <label for="category">Category</label>
+                <select name="category" ng-model="product.category" class="browser-default validate" ng-class="{invalid : productForm.$submitted && productForm.category.$invalid}" required>
+                    <option value="" disabled>Select Category</option>
+                    <option>Electronics</option>
+                    <option>Kitchen Appliances</option>
+                    <option>Homeware</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="short_description" ng-model="product.short_description" placeholder="Short Description" class="validate" length="120" ng-class="{invalid : productForm.$submitted && productForm.short_description.$invalid}" required></input>
+                <label for="short_description">Short Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea name="description" ng-model="product.description" placeholder="Description" rows="5" class="validate materialize-textarea" ng-class="{invalid : productForm.$submitted && productForm.description.$invalid}" required></textarea>
+                <label for="description">Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col m3">
+                <input placeholder="Retail Price" name="retail_price" ng-model="product.retail_price" type="number" step="0.01" min="0" class="validate" ng-class="{invalid : productForm.$submitted && productForm.retail_price.$invalid}" required>
+                <label for="retail_price">Retail Price ($)</label>
+            </div>
+            <div class="input-field col s3">
+                <input placeholder="Weight" name="weight" ng-model="product.weight" type="number" class="validate" ng-class="{invalid : productForm.$submitted && productForm.weight.$invalid}" required>
+                <label for="weight">Weight (gr)</label>
+            </div>
+            <div class="input-field col s2">
+                <input placeholder="Width" name="width" ng-model="product.width" type="number" step="0.5" class="validate" ng-class="{invalid : productForm.$submitted && productForm.width.$invalid}" required>
+                <label for="width">Width (cm)</label>
+            </div>
+            <div class="input-field col s2">
+                <input placeholder="Length" name="length" ng-model="product.length" type="number" step="0.5" class="validate" ng-class="{invalid : productForm.$submitted && productForm.length.$invalid}" required>
+                <label for="length">Length (cm)</label>
+            </div>
+            <div class="input-field col s2">
+                <input placeholder="Height" name="height" ng-model="product.height" type="number" step="0.01" class="validate" ng-class="{invalid : productForm.$submitted && productForm.height.$invalid}" required>
+                <label for="height">Height (cm)</label>
+            </div>
+        </div>
+        @for (int i = 0; i < 5; i++)
+        {
+            <div class="row" ng-show="product.id != null">
+                <div class="col s10">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Add / Change Image</span>
+                            <input type="file" onchange="angular.element(this).scope().previewImage(this)">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2">
+                    <img height="63" src="/image/@Model.id/@i" class="materialboxed" />
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col s12">
+                <button type="submit" class="btn btn-large waves-effect waves-light blue">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="~/Areas/Admin/Scripts/product.js"></script>
+}

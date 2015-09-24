@@ -6,10 +6,20 @@
   flex-direction: column;
   font-family: 'Open Sans', sans-serif;
 }
+select {
+  height: 2.6rem;
+}
+select.invalid {
+  border-bottom: 1px solid #f44336;
+  box-shadow: 0 1px 0 0 #f44336;
+}
 main {
   -ms-flex: 1 0 auto;
   -webkit-flex: 1 0 auto;
   flex: 1 0 auto;
+}
+.admin main {
+  padding-top: 10px;
 }
 [ng\:cloak],
 [ng-cloak],
@@ -171,7 +181,7 @@ footer hr {
 }
 .featured-products .featured-sale .col .product-price .range {
   margin-right: 30px;
-  margin-top: 0!important;
+  margin-top: 0 !important;
 }
 .featured-products .featured-sale .col .current-price {
   background-color: #383838;
@@ -380,5 +390,96 @@ footer hr {
 }
 .btn-large.transparent i {
   font-size: 1.1rem;
+}
+.sale {
+  padding-top: 20px;
+}
+.sale .slider .slides {
+  background-color: transparent;
+}
+.sale .slider .slides img {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border: 1px solid #ccc;
+}
+.sale .slider .indicators .indicator-item.active {
+  background-color: #ffde00;
+}
+.sale .title {
+  color: #3e3e3e;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 300;
+}
+.sale .sub-title {
+  color: #3e3e3e;
+  overflow: hidden;
+  padding: 0 10px;
+  font-size: 14px;
+  height: 40px;
+  line-height: 19px;
+  font-style: italic;
+}
+.sale .product-price {
+  font-size: 1.3rem;
+}
+.sale .range {
+  margin-top: 50px;
+}
+.sale .range .current-price {
+  top: -20px;
+}
+.sale .range .drops-counter {
+  margin-top: -5px;
+}
+.sale .no-active-sale {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+.sale .no-active-sale button {
+  margin-top: 10px;
+  color: #3e3e3e;
+}
+.sale .sale-actions {
+  text-align: center;
+  margin-top: 80px;
+}
+.sale .sale-actions .join,
+.sale .sale-actions .join:hover {
+  background-color: #1EB045;
+  font-style: italic;
+  font-size: 24px;
+}
+.sale .section-header {
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ccc;
+}
+.sale .comment {
+  margin-bottom: 15px;
+}
+.sale .comment img {
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 5px;
+  float: left;
+}
+.sale .comment .username {
+  font-weight: bold;
+  line-height: 40px;
+  display: inline-block;
+}
+.sale .comment .tiny.material-icons {
+  color: #ffca28;
+}
+.sale .comment em {
+  font-size: 90%;
+  margin-left: 45px;
 }
 /*# sourceMappingURL=materialize_site.css.map */

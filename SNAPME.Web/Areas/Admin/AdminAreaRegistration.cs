@@ -14,11 +14,13 @@ namespace SNAPME.Web.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-            context.MapRoute(
-                "Admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            //context.Routes.MapMvcAttributeRoutes();
+
+            //context.MapRoute(
+            //    "Admin_Products",
+            //    "Admin/Products",
+            //    new { controller = "Product", action = "Index", id = UrlParameter.Optional }
+            //);
         }
     }
 }

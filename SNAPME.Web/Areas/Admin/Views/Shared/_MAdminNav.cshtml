@@ -3,7 +3,7 @@
     <div class="container">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo"><img src="/content/images/logo.png" /></a>
-            <span>Discover your buying power</span>
+            <span>Management</span>
             <ul id="nav-mobile" class="right">
                 @if (Request.IsAuthenticated)
                 {
@@ -31,7 +31,7 @@
             <li class="divider"></li>
             @if (User.IsInRole("Administrator"))
             {
-                <li><a href="/Admin/Products">Products</a></li>
+                <li><a href="/Admin/Product">Products</a></li>
                 <li class="divider"></li>
             }
             <li><a href="#!" ng-click="logoff($event)">Sign out</a></li>
