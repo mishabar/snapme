@@ -31,6 +31,12 @@ namespace SNAPME.Data.MongoDB
         }
 
 
+        public void Create(Product product)
+        {
+            _collection.Save(product);
+        }
+
+
         public void Save(Product product)
         {
             _collection.FindAndModify(new FindAndModifyArgs {
@@ -126,7 +132,7 @@ namespace SNAPME.Data.MongoDB
                 queries.Add(Query<Product>.Matches(p => p.name, new BsonRegularExpression(query, "i")));
             }
 
-            var products = _collection.Find(Query.And(queries)).SetSkip(20 * (page - 1)).SetLimit(20).ToArray();
+            var products = _collection.Find(Query.And(queries)).SetSkip(200 * (page - 1)).SetLimit(200).ToArray();
             hasData = products.Length > 0;
 
             return products;

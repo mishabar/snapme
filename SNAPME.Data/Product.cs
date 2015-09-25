@@ -18,7 +18,7 @@ namespace SNAPME.Data
         public int retail_price { get; set; }
         public string[] images { get; set; }
         public string size { get; set; }
-        public string weight { get; set; }
+        public int weight { get; set; }
         public bool is_draft { get; set; }
         public IEnumerable<Comment> comments { get; set; }
 

@@ -26,6 +26,10 @@ var ProductsService = angular.module('ProductsService', [])
             return $http.post('/api/v1/products', { query: query, page: page});
         };
 
+        this.saveProduct = function (product) {
+            return $http.post('/api/v1/product', product);
+        };
+
         this.uploadImage = function (id, idx, stream) {
             return $http.post('/api/v1/product/image', { id: id, idx: idx, stream: stream });
         };

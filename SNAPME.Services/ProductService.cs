@@ -116,5 +116,22 @@ namespace SNAPME.Services
         {
             _productRepository.SaveImage(id, stream, idx);
         }
+
+
+        public void SaveProduct(ProductToken token)
+        {
+            if (string.IsNullOrWhiteSpace(token.id))
+            {
+                var product = token.AsProduct();
+                product.images = new string[6];
+                product.likes = new string[0];
+                _productRepository.Create(product);
+                token.id = product.id;
+            }
+            else
+            {
+                _productRepository.Save(token.AsProduct());
+            }
+        }
     }
 }

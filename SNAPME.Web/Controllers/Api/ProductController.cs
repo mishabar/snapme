@@ -87,26 +87,7 @@ namespace SNAPME.Web.Controllers.Api
             return Ok();
         }
 
-        [Route("product/image"), HttpPost, Authorize(Roles = "Administrator, Seller")]
-        public IHttpActionResult AddImage(ProductImageModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _sellerService.SaveProductImage(model.id, model.image, model.idx);
-                    return Ok();
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError(string.Empty, ex.Message);
-                    return BadRequest(ModelState);
-                }
-            }
-
-            return BadRequest(ModelState);
-        }
-
+        
         [Route("product/feed"), HttpPost, AllowAnonymous]
         public IHttpActionResult FullSocialFeed(ProductBaseToken product)
         {
@@ -147,6 +128,14 @@ namespace SNAPME.Web.Controllers.Api
             var products = _productService.GetFiltered(token.query, token.page, out hasData);
 
             return Ok(new { hasData = hasData, data = products });
+        }
+
+        [Route("product"), HttpPost, Authorize(Roles = "Administrator")]
+        public IHttpActionResult GetProducts(ProductToken token)
+        {
+            _productService.SaveProduct(token);
+
+            return Ok(token);
         }
 
         [Route("product/image"), HttpPost, Authorize(Roles = "Administrator")]

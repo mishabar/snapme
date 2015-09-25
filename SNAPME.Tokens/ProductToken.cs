@@ -19,15 +19,15 @@ namespace SNAPME.Tokens
         public string id { get; set; }
         [Required]
         public string sku { get; set; }
-        [Required]
         public string seller_id { get; set; }
         [Required]
         public string category { get; set; }
         [Required]
         public string name { get; set; }
         [Required]
-        public string short_descritpion { get; set; }
-        public string descritpion { get; set; }
+        public string short_description { get; set; }
+        [Required]
+        public string description { get; set; }
         [Required]
         [Range(0.01F, Double.MaxValue)]
         public double retail_price { get; set; }
@@ -44,7 +44,7 @@ namespace SNAPME.Tokens
         public double height { get; set; }
         public string size { get; set; }
         [Required]
-        public string weight { get; set; }
+        public int weight { get; set; }
         public bool is_draft { get; set; }
         
         public IEnumerable<CommentToken> comments { get; set; }
@@ -97,8 +97,8 @@ namespace SNAPME.Tokens
                 seller_id = product.seller_id,
                 category = product.category,
                 name = product.name,
-                short_descritpion = product.short_descritpion,
-                descritpion = product.descritpion,
+                short_description = product.short_descritpion,
+                description = product.descritpion,
                 retail_price = product.retail_price / 100F,
                 //purchase_price = product.purchase_price / 100F,
                 //suggested_sell_price = product.suggested_sell_price / 100F,
@@ -118,7 +118,7 @@ namespace SNAPME.Tokens
             };
 
             List<int> indexes = new List<int>();
-            for (int i = 0; i < product.images.Length; i++)
+            for (int i = 0; product.images != null && i < product.images.Length; i++)
             {
                 if (!string.IsNullOrWhiteSpace(product.images[i]))
                 {
@@ -145,12 +145,12 @@ namespace SNAPME.Tokens
                 id = product.id,
                 name = product.name,
                 category = product.category,
-                short_descritpion = product.short_descritpion,
+                short_description = product.short_descritpion,
                 sale_id = product.sale_id
             };
 
             List<int> indexes = new List<int>();
-            for (int i = 0; i < product.images.Length; i++)
+            for (int i = 0; product.images != null && i < product.images.Length; i++)
             {
                 if (!string.IsNullOrWhiteSpace(product.images[i]))
                 {
@@ -171,8 +171,8 @@ namespace SNAPME.Tokens
                 seller_id = product.seller_id,
                 name = product.name,
                 category = product.category,
-                short_descritpion = product.short_descritpion,
-                descritpion = product.descritpion,
+                short_descritpion = product.short_description,
+                descritpion = product.description,
                 retail_price = (int)Math.Floor(product.retail_price * 100F),
                 size = string.Join("x", product.length, product.width, product.height),
                 weight = product.weight,

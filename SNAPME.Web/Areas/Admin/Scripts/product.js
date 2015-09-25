@@ -21,16 +21,22 @@
             var img = $(file).closest('.row').find('img');
             var idx = $(file).data('idx');
             reader.onload = function () {
-                //$.post("/api/v1/product/image", { id: $('#id').val(), image: reader.result, idx: idx }, function (response) {
-                //    $that.parent().css('background-image', 'url(' + reader.result + ')');
-                //});
-                img.attr('src', reader.result);
+                productsService.uploadImage($scope.product.id, idx, reader.result)
+                    .success(function (data) {
+                        img.attr('src', reader.result);
+                    })
+                    .error(function (data) { console.log(data) })
             };
             reader.readAsDataURL(file.files[0]);
         }
     };
 
     $scope.submitForm = function (valid) {
+        if (valid) {
+            productsService.saveProduct($scope.product)
+                .success(function (data) { $scope.product = data })
+                .error(function (data) { console.log(data) });
+        }
     };
 
     $(function () {

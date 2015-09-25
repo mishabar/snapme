@@ -27,5 +27,7 @@ namespace SNAPME.Data.Repositories
         string GetImageById(string id, int idx);
 
         IEnumerable<Product> GetFiltered(string query, int page, out bool hasData);
+
+        void Create(Product product);
     }
 }
