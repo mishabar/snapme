@@ -97,8 +97,8 @@ namespace SNAPME.Tokens
                 seller_id = product.seller_id,
                 category = product.category,
                 name = product.name,
-                short_description = product.short_descritpion,
-                description = product.descritpion,
+                short_description = product.short_description,
+                description = product.description,
                 retail_price = product.retail_price / 100F,
                 //purchase_price = product.purchase_price / 100F,
                 //suggested_sell_price = product.suggested_sell_price / 100F,
@@ -145,7 +145,7 @@ namespace SNAPME.Tokens
                 id = product.id,
                 name = product.name,
                 category = product.category,
-                short_description = product.short_descritpion,
+                short_description = product.short_description,
                 sale_id = product.sale_id
             };
 
@@ -171,8 +171,8 @@ namespace SNAPME.Tokens
                 seller_id = product.seller_id,
                 name = product.name,
                 category = product.category,
-                short_descritpion = product.short_description,
-                descritpion = product.description,
+                short_description = product.short_description,
+                description = product.description,
                 retail_price = (int)Math.Floor(product.retail_price * 100F),
                 size = string.Join("x", product.length, product.width, product.height),
                 weight = product.weight,

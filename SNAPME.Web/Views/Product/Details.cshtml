@@ -19,7 +19,7 @@
                 </div>
                 <div class="col l7" ng-cloak>
                     <div class="title">{{product.name}}</div>
-                    <div class="sub-title">{{product.short_descritpion}}</div>
+                    <div class="sub-title">{{product.short_description}}</div>
                     <div class="product-price" ng-show="product.sale != null">
                         <div class="start left">${{Math.floor(product.sale.msrp)}}.<span>{{product.sale.msrp.toFixed(2).toString().substr(-2)}}</span></div>
                         <div class="end right">${{Math.floor(product.sale.target)}}.<span>{{product.sale.target.toFixed(2).toString().substr(-2)}}</span></div>
@@ -47,7 +47,7 @@
                 <div class="col l10">
                     <div class="section-header">Descripion</div>
                     <p>
-                        {{product.descritpion}}
+                        {{product.description}}
                     </p>
                     <div class="section-header">Comments</div>
                     <p class="comment" ng-repeat="comment in product.comments">
