@@ -199,6 +199,7 @@
     <Compile Include="Areas\Admin\Controllers\SellerController.cs" />
     <Compile Include="Areas\Admin\Models\ProductImageModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\ContactController.cs" />
     <Compile Include="Controllers\Api\EmailController.cs" />
     <Compile Include="Controllers\Api\PreLaunchController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
@@ -220,9 +221,11 @@
     <Compile Include="Helpers\ViewRenderer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Account\MyAccountDetailsModel.cs" />
+    <Compile Include="Models\Api\ContactRequestToken.cs" />
     <Compile Include="Models\Api\ListQueryToken.cs" />
     <Compile Include="Models\Api\PreLaunchRegisterToken.cs" />
     <Compile Include="Models\Api\Sales\ListProductsRequest.cs" />
+    <Compile Include="Models\Api\UploadImageToken.cs" />
     <Compile Include="Models\Emails\SellerWelcomeModel.cs" />
     <Compile Include="Models\Sale\DropPriceDialogModel.cs" />
     <Compile Include="Models\Dialog\LoginDialogModel.cs" />
@@ -443,6 +446,7 @@
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\contact.js" />
     <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\fm.scrollator.jquery.js" />
     <Content Include="Scripts\account.js" />
@@ -482,7 +486,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -531,7 +534,6 @@
     <Content Include="Views\Emails\_SellerWelcome.cshtml" />
     <Content Include="Views\Home\HowItWorks.cshtml" />
     <Content Include="Views\Errors\FileNotFound.cshtml" />
-    <Content Include="Views\Welcome\LandingPage.cshtml" />
     <Content Include="Views\Shared\_FooterLanding.cshtml" />
     <Content Include="Views\Emails\_InvitationListWelcome.cshtml" />
     <Content Include="Views\Welcome\FAQ.cshtml" />
@@ -549,6 +551,9 @@
     <Content Include="Views\Shared\_MNav.cshtml" />
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Welcome\Seller.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Seller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

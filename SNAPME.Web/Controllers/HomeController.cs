@@ -76,5 +76,11 @@ namespace SNAPME.Web.Controllers
         {
             return View();
         }
+
+        [Route("Seller")]
+        public ActionResult Seller()
+        {
+            return View();
+        }
     }
 }

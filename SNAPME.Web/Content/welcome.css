@@ -1,5 +1,15 @@
 ﻿body {
   font-family: 'Open Sans', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+main {
+  -ms-flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 .facebook-blue,
 .facebook-blue:hover {
@@ -12,6 +22,11 @@
 .iisnap-yellow,
 .iisnap-yellow:hover {
   background-color: #fdd406;
+}
+nav .nav-wrapper span {
+  margin-left: 150px;
+  font-size: 1.5rem;
+  font-style: italic;
 }
 @media only screen and (min-width: 993px) {
   .container {
@@ -177,7 +192,8 @@ ul.benefits li > div div {
 .bottom-banner .col.l3 {
   padding: 0;
 }
-input[type=email] {
+.top-banner input[type=email],
+.bottom-banner input[type=email] {
   background-color: #FFF;
   border: 1px solid #9E9E9E;
   border-radius: 4px;
@@ -196,11 +212,13 @@ input[type=email] {
   transition: all .3s;
   font-weight: 300;
 }
-input[type=email]:focus {
+.top-banner input[type=email]:focus,
+.bottom-banner input[type=email]:focus {
   border-bottom: 1px solid #9E9E9E !important;
   box-shadow: none !important;
 }
-button.btn-large {
+.top-banner button.btn-large,
+.bottom-banner button.btn-large {
   color: #000;
   font-size: 1.3rem;
   padding: 0 1rem;
@@ -251,6 +269,9 @@ button.btn-large {
   border: none;
   border-bottom: 1px solid #bababa;
   margin: 20px 0;
+}
+.btn.yellow.darken-1 {
+  color: #000;
 }
 @media only screen and (min-width: 601px) {
   .top-banner h1 {

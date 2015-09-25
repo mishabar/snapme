@@ -110,5 +110,11 @@ namespace SNAPME.Services
         {
             return _productRepository.GetFiltered(query, page, out hasData).Select(f => f.AsSimpleToken());
         }
+
+
+        public void SaveImage(string id, int idx, string stream)
+        {
+            _productRepository.SaveImage(id, stream, idx);
+        }
     }
 }

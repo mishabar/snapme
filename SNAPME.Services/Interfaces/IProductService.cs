@@ -32,5 +32,7 @@ namespace SNAPME.Services.Interfaces
         string GetImageById(string id, int idx);
 
         IEnumerable<ProductToken> GetFiltered(string query, int page, out bool hasData);
+
+        void SaveImage(string id, int idx, string stream);
     }
 }

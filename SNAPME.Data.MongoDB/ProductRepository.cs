@@ -55,7 +55,7 @@ namespace SNAPME.Data.MongoDB
 
         public void SaveImage(string id, string image, int idx)
         {
-            if (idx >= 6) return;
+            if (idx > 6) return;
 
             var product = _collection.FindAndModify(new FindAndModifyArgs {
                 Query = Query<Product>.EQ(p => p.id, id),

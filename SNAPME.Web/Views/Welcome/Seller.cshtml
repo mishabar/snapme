@@ -1,13 +1,13 @@
 ﻿@{
-    ViewBag.Title = "Contact Us";
-    Layout = "~/Views/Shared/_MLayout.cshtml";
+    ViewBag.Title = "Sell on iiSnap";
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
 }
 
-<div class="container" ng-app="iisnapApp" ng-controller="contactController" ng-init="init('user')" ng-cloak>
-    <h3 class="center-align">Want to drop us a line or something is not clear?</h3>
+<div class="container" ng-app="iisnapApp" ng-controller="contactController" ng-init="init('seller')" ng-cloak>
+    <h3 class="center-align">Sell your products on iiSnap</h3>
     <div class="center-align">
-        Please feel free to send us anything regarding our platform! <br />
-        Fill in the following form and we will try to solve it asap.
+        Have some great, high-quality products? Want to sell them for masses while offering competitive prices?<br />
+        Fill ou the following form and we will contact you for further details and ways to collaborate!
     </div>
     <div ng-hide="sent">
         <form name="contactForm" ng-submit="submitForm($event, contactForm.$valid)" novalidate>
@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 offset-m3">
-                    <textarea placeholder="What's on your mind?" name="details" ng-model="data.details" class="materialize-textarea validate" ng-class="{invalid : contactForm.$submitted && contactForm.details.$invalid}" required></textarea>
+                    <textarea placeholder="Tell us about your business" name="details" ng-model="data.details" class="materialize-textarea validate" ng-class="{invalid : contactForm.$submitted && contactForm.details.$invalid}" required></textarea>
                 </div>
             </div>
             <div class="row">

@@ -25,6 +25,10 @@ var ProductsService = angular.module('ProductsService', [])
         this.getProducts = function (query, page) {
             return $http.post('/api/v1/products', { query: query, page: page});
         };
+
+        this.uploadImage = function (id, idx, stream) {
+            return $http.post('/api/v1/product/image', { id: id, idx: idx, stream: stream });
+        };
     });
 
 var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'SalesService', 'ProductsService']);

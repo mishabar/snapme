@@ -6,27 +6,54 @@
     <title>@ViewBag.Title - iiSnap</title>
     <link rel="icon" type="image/x-icon" href="~/Content/Images/iisnap.ico">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800,400italic,600italic,700italic,800italic" rel="stylesheet" type="text/css">
+    <link href="/Content/font-awesome.min.css" rel="stylesheet">
     <meta property="og:title" content="I just joined iiSnap invitstion list!" />
     <meta property="og:site_name" content="iiSnap" />
     <meta property="og:description" content="Join iiSnap invitation list and unlock a bonus of 100 snap points." />
     <meta property="og:image" content="http://www.iisnap.com/content/images/iisnap_fb_logo.png" />
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="/content/scss/materialize.min.css">
+    <link href="/content/welcome.css" rel="stylesheet" />
 
 </head>
 <body>
-    @Html.Partial("_Facebook")
-    @Html.Partial("_NavbarLanding")
-    @RenderBody()
-    <div class="clearfix"></div>
-    @Html.Partial("_FooterLanding")
+    <header>
+        @Html.Partial("_NavbarLanding")
+    </header>
+    <main class="grey lighten-5">
+        @RenderBody()
+    </main>
+    <footer>
+        @Html.Partial("_FooterLanding")
+    </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    <div id="about" class="modal">
+        <div class="modal-content">
+            <div class="video-container no-controls">
+                <iframe width="853" height="480" src="https://www.youtube.com/embed/rJT4Pny1xI4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular-cookies.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         window.dns = { au: @User.Identity.IsAuthenticated.ToString().ToLower() };
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal({
+                complete: function () {
+                    var $iframe = $('#about iframe');
+                    $iframe.attr('src', $iframe.attr('src'));
+                }
+            });
+        });
     </script>
 </body>
 </html>

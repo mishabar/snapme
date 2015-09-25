@@ -19,8 +19,7 @@
         if ($(file).val() !== '') {
             var reader = new FileReader();
             var img = $(file).closest('.row').find('img');
-            //var idx = $(this).data('idx');
-            //var $that = $(this);
+            var idx = $(file).data('idx');
             reader.onload = function () {
                 //$.post("/api/v1/product/image", { id: $('#id').val(), image: reader.result, idx: idx }, function (response) {
                 //    $that.parent().css('background-image', 'url(' + reader.result + ')');

@@ -69,7 +69,7 @@
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>Add / Change Image</span>
-                            <input type="file" onchange="angular.element(this).scope().previewImage(this)">
+                            <input type="file" data-idx="@i" onchange="angular.element(this).scope().previewImage(this)">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">

@@ -148,5 +148,13 @@ namespace SNAPME.Web.Controllers.Api
 
             return Ok(new { hasData = hasData, data = products });
         }
+
+        [Route("product/image"), HttpPost, Authorize(Roles = "Administrator")]
+        public IHttpActionResult GetProducts(UploadImageToken token)
+        {
+            _productService.SaveImage(token.id, token.idx, token.stream);
+
+            return Ok();
+        }
     }
 }
