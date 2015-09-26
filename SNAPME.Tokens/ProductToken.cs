@@ -100,20 +100,10 @@ namespace SNAPME.Tokens
                 short_description = product.short_description,
                 description = product.description,
                 retail_price = product.retail_price / 100F,
-                //purchase_price = product.purchase_price / 100F,
-                //suggested_sell_price = product.suggested_sell_price / 100F,
-                //images = product.images,
                 length = double.Parse(sizes[0]),
                 width = double.Parse(sizes[1]),
                 height = double.Parse(sizes[2]),
-                //size = product.size,
                 weight = product.weight,
-                //lead_time = product.lead_time,
-                //is_draft = product.is_draft,
-                //is_dropship = product.is_dropship,
-                //is_oem = product.is_oem,
-                //stock_model = product.stock_model,
-                //min_quantity = product.min_quantity
                 comments = product.comments == null ? Enumerable.Empty<CommentToken>() : product.comments.Take(5).Select(c => c.AsToken())
             };
 

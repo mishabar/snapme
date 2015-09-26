@@ -28,7 +28,14 @@ namespace SNAPME.Web.Areas.Admin.Controllers
 
         // GET: Admin/Product/{id}
         [Route("Product/{id?}")]
-        public ActionResult Create(string id)
+        public ActionResult Product(string id)
+        {
+            return View(new ProductToken { id = id });
+        }
+
+        // GET: Admin/Product/{id}/Sale
+        [Route("Product/{id}/Sale")]
+        public ActionResult Sale(string id)
         {
             return View(new ProductToken { id = id });
         }

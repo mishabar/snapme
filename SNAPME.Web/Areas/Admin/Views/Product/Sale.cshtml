@@ -1,0 +1,96 @@
+﻿@model SNAPME.Tokens.ProductToken
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" ng-controller="adminSaleController" ng-init="init('@Model.id')">
+    <a class="btn waves-effect waves-light blue right" href="/Admin/Products">Back to list</a>
+    <h4>Schedule / Configure Sale</h4>
+    <div class="row" ng-cloak>
+        <div class="col m6 s12">
+            <h5>{{product.name}}</h5>
+            <img src="/image/{{product.id}}/0" width="300" />
+            <h5>Retail Price: ${{product.retail_price.toFixed(2)}}</h5>
+        </div>
+        <div class="col m6 s12">
+            <form name="saleForm" novalidate ng-submit="submitForm(saleForm.$valid)">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" name="starts_on" ng-focus="showDatepicker()" ng-model="product.sale.starts_on" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.starts_on.$invalid}" required />
+                        <label for="starts_on">Starts On</label>
+                        <input type="date" class="hide datepicker" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="number" name="duration" ng-model="product.sale.duration" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.duration.$invalid}" required min="24" max="72" />
+                        <label for="duration">Duration</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="number" name="target_price" ng-model="product.sale.target_price" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.target_price.$invalid}" required min="0" step="0.01" />
+                        <label for="target_price">Target Price</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="number" name="stock_quantity" ng-model="product.sale.stock_quantity" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.stock_quantity.$invalid}" required min="0" />
+                        <label for="stock_quantity">Stock Quantity</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <div class="switch">
+                            <label>
+                                No
+                                <input type="checkbox" name="is_featured" ng-model="product.sale.is_featured">
+                                <span class="lever"></span>
+                                Yes
+                            </label>
+                        </div>
+                        <label for="is_featured" class="active">Featured Sale</label>
+                    </div>
+                </div>
+                <div class="row" ng-show="product.sale.is_featured === true">
+                    <div class="col s8">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Banner Image</span>
+                                <input type="file" data-idx="5" onchange="angular.element(this).scope().previewImage(this)">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <img height="63" src="/image/{{product.id}}/5" class="materialboxed" />
+                    </div>
+                </div>
+                <div class="row" ng-show="product.sale.is_featured === true">
+                    <div class="col s8">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Featured Image</span>
+                                <input type="file" data-idx="6" onchange="angular.element(this).scope().previewImage(this)">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <img height="63" src="/image/{{product.id}}/6" class="materialboxed" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <button type="submit" class="btn btn-large waves-effect waves-light blue">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Areas/Admin/Scripts/sale.js"></script>
+}

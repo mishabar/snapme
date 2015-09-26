@@ -24,8 +24,9 @@
                 productsService.uploadImage($scope.product.id, idx, reader.result)
                     .success(function (data) {
                         img.attr('src', reader.result);
+                        Materialize.toast('Image Saved', 3000, 'green darken-1');
                     })
-                    .error(function (data) { console.log(data) })
+                    .error(function (data) { Materialize.toast('Something went wrong :(', 3000, ' red darken-2') })
             };
             reader.readAsDataURL(file.files[0]);
         }
@@ -34,8 +35,11 @@
     $scope.submitForm = function (valid) {
         if (valid) {
             productsService.saveProduct($scope.product)
-                .success(function (data) { $scope.product = data })
-                .error(function (data) { console.log(data) });
+                .success(function (data) {
+                    $scope.product = data;
+                    Materialize.toast('Product Saved', 3000, 'green darken-1');
+                })
+                .error(function (data) { Materialize.toast('Something went wrong :(', 3000, ' red darken-2') });
         }
     };
 

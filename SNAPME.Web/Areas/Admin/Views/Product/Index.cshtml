@@ -4,9 +4,8 @@
 }
 
 <div class="container" ng-controller="adminProductsController">
-    <div class="right-align">
-        <a class="waves-effect waves-light btn blue" href="/Admin/Product">Add Product</a>
-    </div>
+    <a class="waves-effect waves-light btn blue right" href="/Admin/Product">Add Product</a>
+    <h4>Products List</h4>
     <table class="responsive-table bordered">
         <thead>
             <tr>
@@ -28,7 +27,7 @@
                     </span>
                 </td>
                 <td>
-                    <a href="#!">
+                    <a href="/admin/product/{{product.id}}/sale">
                         <i class="material-icons" ng-if="product.sale == null">schedule</i>
                         <i class="material-icons" ng-if="product.sale != null">settings</i>
                     </a>
