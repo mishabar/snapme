@@ -54,7 +54,7 @@ namespace SNAPME.Data.MongoDB
                         .SetOnInsert(p => p.images, new string[6])
                         .SetOnInsert(p => p.likes, new string[0])
                         .SetOnInsert(p => p.is_draft, true),
-                Upsert = true
+                Upsert = false
             });
         }
 

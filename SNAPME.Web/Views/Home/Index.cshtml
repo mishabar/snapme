@@ -11,13 +11,13 @@
         <div class="slider">
             <ul class="slides">
                 <li ng-repeat="featured_product in featured_sales track by featured_product.id">
-                    <img src="{{featured_product.banner_url}}" ng-cloak />
+                    <img src="/image/{{featured_product.product_id}}/5" ng-cloak />
                     <div class="container">
-                        <div class="featured-sale" ng-click="openProduct(featured_product.name, featured_product.id)">
+                        <div class="featured-sale" ng-click="openProduct(featured_product.name, featured_product.product_id)">
                             <div class="row">
                                 <div class="col l5">
                                     <div class="white-bg">
-                                        <div class="product-image" style="background-image: url({{featured_product.banner_image_url}})"></div>
+                                        <div class="product-image" style="background-image: url(/image/{{featured_product.product_id}}/6)"></div>
                                     </div>
                                 </div>
                                 <div class="col l7">
@@ -25,7 +25,7 @@
                                         <div class="product-name">{{featured_product.name}}</div>
                                         <div class="product-slogan">{{featured_product.summary}}</div>
                                         <div class="product-price">
-                                            <div class="start">${{Math.floor(featured_product.msrp)}}.<span>{{featured_product.msrp.toFixed(2).toString().substr(-2)}}</span></div>
+                                            <div class="start">${{Math.floor(featured_product.retail_price)}}.<span>{{featured_product.retail_price.toFixed(2).toString().substr(-2)}}</span></div>
                                             <div class="end">${{Math.floor(featured_product.target)}}.<span>{{featured_product.target.toFixed(2).toString().substr(-2)}}</span></div>
                                             <div style="clear: both;"></div>
                                             <i class="fa fa-flag-checkered right"></i>
@@ -63,9 +63,9 @@
         <div class="container">
             <div class="row sales-list">
                 <div class="col l4 m6 s12" ng-repeat="product in sales track by product.id">
-                    <div class="card product hoverable" title="{{product.name}}" ng-cloak ng-click="openProduct(product.name, product.id)">
+                    <div class="card product hoverable" title="{{product.name}}" ng-cloak ng-click="openProduct(product.name, product.product_id)">
                         <div class="card-image">
-                            <div class="product-image" style="background-image:url({{product.image_url}})"></div>
+                            <div class="product-image" style="background-image:url(/image/{{product.product_id}}/0)"></div>
                             <div class="product-actions" ng-show="authenticated">
                                 <a href="#" ng-class="{active: product.likes}" ng-click="likeProduct($event, product)"><i class="fa fa-thumbs-o-up"></i></a>
                                 <a href="#" ng-class="{active: product.favors}" ng-click="favorProduct($event, product)"><i class="fa fa-heart-o"></i></a>

@@ -9,5 +9,15 @@ namespace SNAPME.Data.Repositories
     public interface ISaleRepository
     {
         Sale GetById(string id, bool active);
+
+        IEnumerable<Sale> GetActive();
+
+        void Save(Sale sale);
+
+        void Create(Sale sale);
+
+        Sale GetScheduledSale(string productId);
+
+        void AdjustSalesStatus();
     }
 }

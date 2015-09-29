@@ -10,5 +10,13 @@ namespace SNAPME.Services.Interfaces
     public interface ISaleService
     {
         SaleToken GetActive(string id);
+
+        IEnumerable<SaleToken> GetActive();
+
+        void SaveSale(SaleToken token);
+
+        SaleToken GetScheduledSale(string productId);
+
+        void AdjustSalesStatus();
     }
 }

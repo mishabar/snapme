@@ -2,10 +2,15 @@
     .service('salesService', function ($http) {
         this.getActiveSales = function (pages) {
             return $http.get('/api/v1/sales/active');
-        }
+        };
+
         this.getSale = function (productId) {
             return $http.get('/api/v1/sale/' + productId);
-        }
+        };
+
+        this.saveSale = function (sale) {
+            return $http.post('/api/v1/sale', sale);
+        };
     });
 
 var ProductsService = angular.module('ProductsService', [])

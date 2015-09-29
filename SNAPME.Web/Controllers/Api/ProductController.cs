@@ -19,12 +19,14 @@ namespace SNAPME.Web.Controllers.Api
     public class ProductController : ApiController
     {
         private IProductService _productService;
+        private ISaleService _saleService;
         private ISellerService _sellerService;
 
-        public ProductController(IProductService productService, ISellerService sellerService)
+        public ProductController(IProductService productService, ISellerService sellerService, ISaleService saleService)
         {
             _productService = productService;
             _sellerService = sellerService;
+            _saleService = saleService;
         }
 
         [Route("like/product"), HttpPost]
@@ -116,7 +118,7 @@ namespace SNAPME.Web.Controllers.Api
             var product = _productService.GetById(id.ToProductId());
             if (saleData)
             {
-                product.sale = Sales.sales.FirstOrDefault(s => s.id == id);
+                product.sale = _saleService.GetScheduledSale(id);
             }
             return Ok(product);
         }

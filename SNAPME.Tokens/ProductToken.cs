@@ -108,7 +108,7 @@ namespace SNAPME.Tokens
             };
 
             List<int> indexes = new List<int>();
-            for (int i = 0; product.images != null && i < product.images.Length; i++)
+            for (int i = 0; product.images != null && i < Math.Min(5, product.images.Length); i++)
             {
                 if (!string.IsNullOrWhiteSpace(product.images[i]))
                 {
@@ -140,7 +140,7 @@ namespace SNAPME.Tokens
             };
 
             List<int> indexes = new List<int>();
-            for (int i = 0; product.images != null && i < product.images.Length; i++)
+            for (int i = 0; product.images != null && i < Math.Min(5, product.images.Length); i++)
             {
                 if (!string.IsNullOrWhiteSpace(product.images[i]))
                 {

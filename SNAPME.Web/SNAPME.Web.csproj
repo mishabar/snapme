@@ -203,7 +203,6 @@
     <Compile Include="Controllers\Api\EmailController.cs" />
     <Compile Include="Controllers\Api\PreLaunchController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
-    <Compile Include="Controllers\Api\Sales.cs" />
     <Compile Include="Controllers\Api\SalesController.cs" />
     <Compile Include="Controllers\Api\SellerController.cs" />
     <Compile Include="Controllers\DialogController.cs" />

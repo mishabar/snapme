@@ -22,7 +22,7 @@ namespace SNAPME.Web.Controllers
         [Route("sale/{id}", Name = "SaleDetails"), HttpGet, EnableCompression]
         public ActionResult Details(string id)
         {
-            return View(SaleToken.Generate(1, 1000).First());
+            return View(new SaleToken { id = id });
         }
     }
 }

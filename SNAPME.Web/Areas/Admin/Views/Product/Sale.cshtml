@@ -15,26 +15,30 @@
         <div class="col m6 s12">
             <form name="saleForm" novalidate ng-submit="submitForm(saleForm.$valid)">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <input type="text" name="starts_on" ng-focus="showDatepicker()" ng-model="product.sale.starts_on" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.starts_on.$invalid}" required />
-                        <label for="starts_on">Starts On</label>
+                        <label for="starts_on" class="active">Starts On</label>
                         <input type="date" class="hide datepicker" />
                     </div>
-                </div>
-                <div class="row">
                     <div class="input-field col s6">
                         <input type="number" name="duration" ng-model="product.sale.duration" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.duration.$invalid}" required min="24" max="72" />
-                        <label for="duration">Duration</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input type="number" name="target_price" ng-model="product.sale.target_price" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.target_price.$invalid}" required min="0" step="0.01" />
-                        <label for="target_price">Target Price</label>
+                        <label for="duration active">Duration</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input type="number" name="stock_quantity" ng-model="product.sale.stock_quantity" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.stock_quantity.$invalid}" required min="0" />
-                        <label for="stock_quantity">Stock Quantity</label>
+                        <input type="number" name="target" ng-model="product.sale.target" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.target.$invalid}" required min="0" step="0.01" />
+                        <label for="target" class="active">Target Price</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="number" name="quantity" ng-model="product.sale.quantity" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.quantity.$invalid}" required min="0" />
+                        <label for="quantity" class="active">Stock Quantity</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="number" name="points" ng-model="product.sale.points" class="validate" ng-class="{invalid : saleForm.$submitted && saleForm.points.$invalid}" required min="0" />
+                        <label for="points" class="active">Potential Points</label>
                     </div>
                     <div class="input-field col s6">
                         <div class="switch">
@@ -48,6 +52,7 @@
                         <label for="is_featured" class="active">Featured Sale</label>
                     </div>
                 </div>
+                <div style="clear:both;">&nbsp;</div>
                 <div class="row" ng-show="product.sale.is_featured === true">
                     <div class="col s8">
                         <div class="file-field input-field">
