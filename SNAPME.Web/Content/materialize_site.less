@@ -22,7 +22,7 @@ main {
     flex: 1 0 auto;
 }
 
-.admin main{
+.admin main {
     padding-top: 10px;
 }
 
@@ -120,15 +120,32 @@ footer {
     padding-bottom: 20px;
 }
 
-.btn.btn-facebook {
-    background-color: #0d47a1;
-    color: #fff;
+.btn {
+    &.btn-facebook {
+        background-color: #0d47a1;
+        color: #fff;
 
-    i {
-        display: inline;
-        font-size: inherit;
-        line-height: inherit;
-        padding-right: 10px;
+        i {
+            display: inline;
+            font-size: inherit;
+            line-height: inherit;
+            padding-right: 10px;
+        }
+    }
+
+    &.btn-twitter {
+        background-color: #00aced;
+        color: #fff;
+    }
+
+    &.btn-google-plus {
+        background-color: #dd4b39;
+        color: #fff;
+    }
+
+    &.btn-pinterest {
+        background-color: #cb2027;
+        color: #fff;
     }
 }
 
@@ -253,33 +270,6 @@ footer {
                     line-height: 28px;
                     color: rgba(0,0,0,.87);
                 }
-
-                .invite {
-                    width: 133px;
-                    height: 28px;
-                    border-radius: 5px;
-                    background-color: #0d47a1;
-                    color: #fff;
-                    line-height: 26px;
-
-                    i {
-                        color: #6383B4;
-                        margin: 0 5px;
-                    }
-
-                    .amount {
-                        width: 67px;
-                        float: right;
-                        background-color: #d8dfea;
-                        color: #0d47a1;
-                        height: 26px;
-                        line-height: 26px;
-                        padding: 0 5px;
-                        border-radius: 0 5px 5px 0;
-                        margin: 1px;
-                        font-weight: bold;
-                    }
-                }
             }
         }
     }
@@ -332,6 +322,36 @@ footer {
         top: -45px;
         font-weight: 700;
         font-size: 18px;
+    }
+}
+
+.points {
+    .invite {
+        width: 133px;
+        height: 28px;
+        border-radius: 5px;
+        background-color: #0d47a1;
+        color: #fff;
+        line-height: 26px;
+        cursor: pointer;
+
+        i {
+            color: #6383B4;
+            margin: 0 5px;
+        }
+
+        .amount {
+            width: 67px;
+            float: right;
+            background-color: #d8dfea;
+            color: #0d47a1;
+            height: 26px;
+            line-height: 26px;
+            padding: 0 5px;
+            border-radius: 0 5px 5px 0;
+            margin: 1px;
+            font-weight: bold;
+        }
     }
 }
 
@@ -545,6 +565,29 @@ footer {
             font-style: italic;
             font-size: 24px;
         }
+
+        .potential-points {
+            margin-top: 5px;
+            font-size: smaller;
+        }
+    }
+
+    .share-buttons {
+        margin-top: 20px;
+
+        .btn-facebook, .btn-google-plus, .btn-twitter, .btn-pinterest {
+            width: 40px;
+            text-align: center;
+            padding: 0;
+
+            i {
+                padding-right: 0;
+            }
+        }
+    }
+
+    .points {
+        margin-top: 24px;
     }
 
     .section-header {

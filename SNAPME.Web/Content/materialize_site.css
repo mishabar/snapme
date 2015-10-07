@@ -105,6 +105,18 @@ footer hr {
   line-height: inherit;
   padding-right: 10px;
 }
+.btn.btn-twitter {
+  background-color: #00aced;
+  color: #fff;
+}
+.btn.btn-google-plus {
+  background-color: #dd4b39;
+  color: #fff;
+}
+.btn.btn-pinterest {
+  background-color: #cb2027;
+  color: #fff;
+}
 /* Home page */
 .featured-products {
   height: 592px;
@@ -213,30 +225,6 @@ footer hr {
   line-height: 28px;
   color: rgba(0, 0, 0, 0.87);
 }
-.featured-products .featured-sale .col .points .invite {
-  width: 133px;
-  height: 28px;
-  border-radius: 5px;
-  background-color: #0d47a1;
-  color: #fff;
-  line-height: 26px;
-}
-.featured-products .featured-sale .col .points .invite i {
-  color: #6383B4;
-  margin: 0 5px;
-}
-.featured-products .featured-sale .col .points .invite .amount {
-  width: 67px;
-  float: right;
-  background-color: #d8dfea;
-  color: #0d47a1;
-  height: 26px;
-  line-height: 26px;
-  padding: 0 5px;
-  border-radius: 0 5px 5px 0;
-  margin: 1px;
-  font-weight: bold;
-}
 .range {
   position: relative;
   margin: 30px 0;
@@ -281,6 +269,31 @@ footer hr {
   top: -45px;
   font-weight: 700;
   font-size: 18px;
+}
+.points .invite {
+  width: 133px;
+  height: 28px;
+  border-radius: 5px;
+  background-color: #0d47a1;
+  color: #fff;
+  line-height: 26px;
+  cursor: pointer;
+}
+.points .invite i {
+  color: #6383B4;
+  margin: 0 5px;
+}
+.points .invite .amount {
+  width: 67px;
+  float: right;
+  background-color: #d8dfea;
+  color: #0d47a1;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 5px;
+  border-radius: 0 5px 5px 0;
+  margin: 1px;
+  font-weight: bold;
 }
 .experience {
   background-color: #363636;
@@ -457,6 +470,30 @@ footer hr {
   background-color: #1EB045;
   font-style: italic;
   font-size: 24px;
+}
+.sale .sale-actions .potential-points {
+  margin-top: 5px;
+  font-size: smaller;
+}
+.sale .share-buttons {
+  margin-top: 20px;
+}
+.sale .share-buttons .btn-facebook,
+.sale .share-buttons .btn-google-plus,
+.sale .share-buttons .btn-twitter,
+.sale .share-buttons .btn-pinterest {
+  width: 40px;
+  text-align: center;
+  padding: 0;
+}
+.sale .share-buttons .btn-facebook i,
+.sale .share-buttons .btn-google-plus i,
+.sale .share-buttons .btn-twitter i,
+.sale .share-buttons .btn-pinterest i {
+  padding-right: 0;
+}
+.sale .points {
+  margin-top: 24px;
 }
 .sale .section-header {
   font-size: 1.2rem;

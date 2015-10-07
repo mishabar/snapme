@@ -6,43 +6,60 @@
 
 <div ng-app="iisnapApp" ng-controller="saleController" ng-init="init('@Model.id')">
     <div>
-        <div class="container sale">
-            <div class="row">
-                <div class="col l5">
-                    <div class="slider" ng-cloak>
-                        <ul class="slides">
-                            <li ng-repeat="idx in product.image_indexes">
-                                <img src="/image/{{product.id}}/{{idx}}" class="materialboxed" />
-                            </li>
-                        </ul>
+        <div class="white">
+            <div class="container sale">
+                <div class="row">
+                    <div class="col l5">
+                        <div class="slider" ng-cloak>
+                            <ul class="slides">
+                                <li ng-repeat="idx in product.image_indexes">
+                                    <img src="/image/{{product.id}}/{{idx}}" class="materialboxed" />
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col l7" ng-cloak>
-                    <div class="title">{{product.name}}</div>
-                    <div class="sub-title">{{product.short_description}}</div>
-                    <div class="product-price" ng-show="product.sale != null">
-                        <div class="start left">${{Math.floor(product.sale.msrp)}}.<span>{{product.sale.msrp.toFixed(2).toString().substr(-2)}}</span></div>
-                        <div class="end right">${{Math.floor(product.sale.target)}}.<span>{{product.sale.target.toFixed(2).toString().substr(-2)}}</span></div>
-                        <div class="range">
-                            <div class="progress grey lighten-2">
-                                <div class="determinate amber lighten-1" style="width: {{product.sale.progress}}%;"></div>
+                    <div class="col l7" ng-cloak>
+                        <div class="title">{{product.name}}</div>
+                        <div class="sub-title">{{product.short_description}}</div>
+                        <div class="product-price" ng-show="product.sale != null">
+                            <div class="start left">${{Math.floor(product.sale.msrp)}}.<span>{{product.sale.msrp.toFixed(2).toString().substr(-2)}}</span></div>
+                            <div class="end right">${{Math.floor(product.sale.target)}}.<span>{{product.sale.target.toFixed(2).toString().substr(-2)}}</span></div>
+                            <div class="range">
+                                <div class="progress grey lighten-2">
+                                    <div class="determinate amber lighten-1" style="width: {{product.sale.progress}}%;"></div>
+                                </div>
+                                <div class="indicator amber lighten-1" style="left: {{product.sale.progress - 1}}%"></div>
+                                <div class="drops-counter amber lighten-1" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">{{product.sale.drops}} Drops</div>
+                                <div class="current-price grey darken-4" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">${{Math.floor(product.sale.price)}}.{{product.sale.price.toFixed(2).toString().substr(-2)}}</div>
                             </div>
-                            <div class="indicator amber lighten-1" style="left: {{product.sale.progress - 1}}%"></div>
-                            <div class="drops-counter amber lighten-1" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">{{product.sale.drops}} Drops</div>
-                            <div class="current-price grey darken-4" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">${{Math.floor(product.sale.price)}}.{{product.sale.price.toFixed(2).toString().substr(-2)}}</div>
+                            <div class="sale-actions">
+                                <button type="button" class="waves-effect waves-light btn-large join" ng-disabled="{{product.sale.joined}}">Join Sale</button>
+                                <br />
+                                <div class="potential-points tooltipped" data-position="bottom" data-delay="50" data-tooltip="Upon successful checkout your account will be credited with the earned Snap Points.">Get {{product.sale.points}} Snap Points</div>
+                            </div>
                         </div>
-                        <div class="sale-actions">
-                            <button type="button" class="waves-effect waves-light btn-large join" ng-disabled="{{product.sale.joined}}">Join Sale</button>
+                        <div class="no-active-sale" ng-show="product.sale == null">
+                            Currently, there item is not on sale. <br />Want to know when it goes on sale?
+                            <div>
+                                <button type="button" class="btn waves-effect yellow">Let me know</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="no-active-sale" ng-show="product.sale == null">
-                        Currently, there item is not on sale. <br />Want to know when it goes on sale?
-                        <div>
-                            <button type="button" class="btn waves-effect yellow">Let me know</button>
+                        <div class="share-buttons left">
+                            <a class="btn btn-facebook"><i class="fa fa-facebook-f"></i></a>
+                            <a class="btn btn-google-plus"><i class="fa fa-google-plus"></i></a>
+                            <a class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+                            <a class="btn btn-pinterest"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                        <div class="points right">
+                            <div class="invite">
+                                <i class="fa fa-facebook-f"></i>invite<span class="amount">+ 25 SP</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container sale">
             <div class="row" ng-cloak>
                 <div class="col l10">
                     <div class="section-header">Descripion</div>
