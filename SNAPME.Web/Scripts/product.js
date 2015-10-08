@@ -6,6 +6,10 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
     $scope.authenticated = false;
     $scope.Math = window.Math;
 
+    $(document).ready(function () {
+        $('.modal-trigger').leanModal();
+    });
+
     $scope.init = function (productId) {
         $scope.productId = productId;
         productsService.getProduct($scope.productId)

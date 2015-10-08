@@ -472,11 +472,15 @@ footer hr {
   font-size: 24px;
 }
 .sale .sale-actions .potential-points {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: smaller;
+  background: rgba(0, 0, 0, 0) url(/Content/images/sp-grey.png) no-repeat 100% 50%;
+  display: inline-block;
+  padding-right: 27px;
+  line-height: 1.3;
 }
 .sale .share-buttons {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .sale .share-buttons .btn-facebook,
 .sale .share-buttons .btn-google-plus,
@@ -493,11 +497,32 @@ footer hr {
   padding-right: 0;
 }
 .sale .points {
-  margin-top: 24px;
+  margin-top: 14px;
+}
+.sale .time-left {
+  display: inline-block;
+  margin-top: 8px;
 }
 .sale .section-header {
   font-size: 1.2rem;
   border-bottom: 1px solid #ccc;
+}
+.sale .section-header a.right {
+  font-size: small;
+  padding-top: 5px;
+}
+.sale .social-activity {
+  font-size: smaller;
+  margin: 0;
+}
+.sale .social-activity li {
+  border-bottom: 1px solid #eee;
+}
+.sale .social-activity li:last-child {
+  border-bottom: none;
+}
+.sale .social-activity li .row {
+  padding: 10px 0;
 }
 .sale .comment {
   margin-bottom: 15px;

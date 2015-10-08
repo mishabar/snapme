@@ -30,12 +30,21 @@ namespace SNAPME.Tokens
         public bool is_featured { get; set; }
         [Required]
         public int points { get; set; }
+        public string ends_in { get; set; }
     }
 
     public static class SaleTokenExtensions
     {
         public static SaleToken AsToken(this Sale sale)
         {
+            string endsIn = string.Empty;
+            if (sale.active)
+            {
+                TimeSpan ts = sale.starts_on.AddHours(sale.duration) - DateTime.Now;
+                if (ts.Days > 0) { endsIn = string.Format("{0} day{1} and {2} hour{3}", ts.Days, ts.Days == 1 ? string.Empty : "s", ts.Hours, ts.Hours == 1 ? string.Empty : "s"); }
+                else if (ts.Hours > 0) { endsIn = string.Format("{0} hours and {1} minutes", ts.Hours, ts.Minutes); }
+                else { endsIn = string.Format("{0} minutes", ts.Minutes); }
+            }
             return new SaleToken 
             {
                 id = sale.id, 
@@ -51,7 +60,8 @@ namespace SNAPME.Tokens
                 is_featured = sale.is_featured,
                 points = sale.points,
                 name = sale.name,
-                summary = sale.summary
+                summary = sale.summary,
+                ends_in = endsIn
             };
         }
 

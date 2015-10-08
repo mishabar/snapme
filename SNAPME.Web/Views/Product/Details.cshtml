@@ -35,7 +35,7 @@
                             <div class="sale-actions">
                                 <button type="button" class="waves-effect waves-light btn-large join" ng-disabled="{{product.sale.joined}}">Join Sale</button>
                                 <br />
-                                <div class="potential-points tooltipped" data-position="bottom" data-delay="50" data-tooltip="Upon successful checkout your account will be credited with the earned Snap Points.">Get {{product.sale.points}} Snap Points</div>
+                                <div class="potential-points tooltipped" data-position="bottom" data-delay="50" data-tooltip="Upon successful checkout your account will be credited with the earned Snap Points.">Collect {{product.sale.points}}</div>
                             </div>
                         </div>
                         <div class="no-active-sale" ng-show="product.sale == null">
@@ -55,18 +55,24 @@
                                 <i class="fa fa-facebook-f"></i>invite<span class="amount">+ 25 SP</span>
                             </div>
                         </div>
+                        <div class="clearfix"></div>
+                        <div class="center-align" ng-show="product.sale != null">
+                            <div class="time-left">
+                                <i class="material-icons left">av_timer</i> Sale ends in {{product.sale.ends_in}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container sale">
             <div class="row" ng-cloak>
-                <div class="col l10">
+                <div class="col l9">
                     <div class="section-header">Descripion</div>
                     <p>
                         {{product.description}}
                     </p>
-                    <div class="section-header">Comments</div>
+                    <div class="section-header">Comments<a class="right modal-trigger" href="#comment"><i class="fa fa-pencil"></i> Write a comment</a></div>
                     <p class="comment" ng-repeat="comment in product.comments">
                         <img src="/account/image/{{comment.user_id}}" /><span class="username">{{comment.username}}</span> <span><i class="tiny material-icons" ng-repeat="n in [] | range:comment.rating">star</i></span><br />
                         <em>{{comment.comment}}</em>
@@ -75,12 +81,52 @@
                         No comments yet! Be the first to comment on {{product.name}}.
                     </p>
                 </div>
-                <div class="col l2"></div>
+                <div class="col l3">
+                    <div class="section-header">Activity</div>
+                    <div>
+                        <ul class="social-activity">
+                            <li class="grey lighten-5">
+                                <div class="row valign-wrapper">
+                                    <div class="col s3">
+                                        <img src="http://graph.facebook.com/10152299152237123/picture?type=square" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                    </div>
+                                    <div class="col s9">
+                                        <span class="black-text">
+                                            Michael joined the sale.
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="grey lighten-5">
+                                <div class="row valign-wrapper">
+                                    <div class="col s3">
+                                        <img src="http://graph.facebook.com/10152686035091417/picture?type=square" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                    </div>
+                                    <div class="col s9">
+                                        <span class="black-text">
+                                            Ami joined the sale.
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<div id="comment" class="modal">
+    <div class="modal-content">
+        <h4>Leave a comment</h4>
+        <p>text and all</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Post</a>
+    </div>
+</div>
 
 @section scripts
 {
