@@ -6,6 +6,17 @@
     ViewBag.Title = "Welcome";
 }
 
+@section openGraph{
+    <meta name="twitter:title" content="iiSnap - Now you can afford anything you want">
+    <meta name="twitter:description" content="Get the best prices with a little help from your friends">
+    <meta name="twitter:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
+    <meta property="og:title" content="iiSnap - Now you can afford anything you want">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.iisnap.com/">
+    <meta property="og:description" content="Get the best prices with a little help from your friends">
+    <meta property="og:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
+}
+
 <div ng-app="iisnapApp" ng-controller="salesController">
     <div class="featured-products">
         <div class="slider">

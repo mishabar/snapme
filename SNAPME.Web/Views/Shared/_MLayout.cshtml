@@ -8,14 +8,7 @@
 <head>
     <link rel="icon" href="/content/images/iisnap.ico">
 
-    <meta name="twitter:title" content="iiSnap - Now you can afford anything you want">
-    <meta name="twitter:description" content="Get the best prices with a little help from your friends">
-    <meta name="twitter:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
-    <meta property="og:title" content="iiSnap - Now you can afford anything you want">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://www.iisnap.com/">
-    <meta property="og:description" content="Get the best prices with a little help from your friends">
-    <meta property="og:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
+    @RenderSection("openGraph", false)
 
     <meta name="viewport" content="width=device-width, maximum-scale=1">
 
@@ -27,6 +20,23 @@
     @Styles.Render("~/Content/css")
 </head>
 <body ng-app="iisnapApp">
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]',
+                xfbml: true,
+                version: 'v2.4'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <header>
         @Html.Partial("_MNav")
     </header>

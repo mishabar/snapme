@@ -545,4 +545,13 @@ footer hr {
   font-size: 90%;
   margin-left: 45px;
 }
+#mdlComment.modal .rating i {
+  cursor: pointer;
+}
+#mdlComment.modal .rating i.active {
+  color: #ffca28;
+}
+#mdlComment.modal .rating.invalid i {
+  color: #f44336;
+}
 /*# sourceMappingURL=materialize_site.css.map */

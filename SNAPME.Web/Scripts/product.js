@@ -25,6 +25,18 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
             .error(function (error) { console.log(error.message) });
     };
 
+    $scope.joinSale = function () {
+        $('#mdlAfterJoined').openModal();
+    };
+
+    $scope.inviteFriends = function () {
+        $('#mdlAfterJoined').closeModal();
+        window.FB.ui({
+            method: 'send',
+            link: 'http://www.nytimes.com/interactive/2015/04/15/travel/europe-favorite-streets.html',
+        });
+    };
+
     $scope.refresh = function () {
         salesService.getSale($scope.productId)
             .success(function (data) {
@@ -44,4 +56,39 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
 
     // Kick off the interval
     $scope.intervalFunction();
+});
+
+iisnapApp.controller('commentController', function ($scope, $http, $timeout, productsService) {
+
+    $scope.productId = null;
+    $scope.$rating = null;
+
+    $scope.init = function (productId) {
+        $scope.productId = productId;
+        $scope.$rating = $('#mdlComment .rating').addRating();
+    };
+
+    $scope.postComment = function () {
+        // check rating set (1<>5) and has comments
+        $('#mdlComment .invlid').removeClass('invalid');
+        var rval = $('#mdlComment #rating').val();
+        if (rval === '' || rval === '0') {
+            $('#mdlComment .rating').addClass('invalid');
+        }
+
+        if ($('#mdlComment textarea').val().trim() === '') {
+            $('#mdlComment textarea').addClass('invalid');
+        }
+
+        if ($('#mdlComment .invalid').length == 0) {
+            // post and close
+            $('#mdlComment').closeModal();
+        }
+    };
+
+    $scope.cancelComment = function () {
+        $scope.$rating.setRating(0);
+        $('#mdlComment textarea').val('');
+        $('#mdlComment').closeModal();
+    };
 });

@@ -4,6 +4,17 @@
     Layout = "~/Views/Shared/_MLayout.cshtml";
 }
 
+@section openGraph{
+    <meta name="twitter:title" content="iiSnap - @Model.name">
+    <meta name="twitter:description" content="@Model.short_description">
+    <meta name="twitter:image" content="http://www.iisnap.com/image/@Model.id/0">
+    <meta property="og:title" content="iiSnap - @Model.name">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@Request.Url.AbsoluteUri">
+    <meta property="og:description" content="@Model.short_description">
+    <meta property="og:image" content="http://www.iisnap.com/image/@Model.id/0">
+}
+
 <div ng-app="iisnapApp" ng-controller="saleController" ng-init="init('@Model.id')">
     <div>
         <div class="white">
@@ -33,7 +44,7 @@
                                 <div class="current-price grey darken-4" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">${{Math.floor(product.sale.price)}}.{{product.sale.price.toFixed(2).toString().substr(-2)}}</div>
                             </div>
                             <div class="sale-actions">
-                                <button type="button" class="waves-effect waves-light btn-large join" ng-disabled="{{product.sale.joined}}">Join Sale</button>
+                                <button type="button" class="waves-effect waves-light btn-large join" ng-click="joinSale()" ng-disabled="{{product.sale.joined}}">Join Sale</button>
                                 <br />
                                 <div class="potential-points tooltipped" data-position="bottom" data-delay="50" data-tooltip="Upon successful checkout your account will be credited with the earned Snap Points.">Collect {{product.sale.points}}</div>
                             </div>
@@ -72,7 +83,7 @@
                     <p>
                         {{product.description}}
                     </p>
-                    <div class="section-header">Comments<a class="right modal-trigger" href="#comment"><i class="fa fa-pencil"></i> Write a comment</a></div>
+                    <div class="section-header">Comments<a class="right modal-trigger" href="#mdlComment"><i class="fa fa-pencil"></i> Write a comment</a></div>
                     <p class="comment" ng-repeat="comment in product.comments">
                         <img src="/account/image/{{comment.user_id}}" /><span class="username">{{comment.username}}</span> <span><i class="tiny material-icons" ng-repeat="n in [] | range:comment.rating">star</i></span><br />
                         <em>{{comment.comment}}</em>
@@ -115,20 +126,50 @@
             </div>
         </div>
     </div>
+
+    <div id="mdlAfterJoined" class="modal">
+        <div class="modal-content">
+            <h4>Thanks for joining!</h4>
+            <div class="center-align">
+                <div class="row">
+                    <div class="col s12">
+                        Would you consider sharing this oportunity with your friends?<br />Spread the word and earn more Bonus Snap Point when your friends purchase the product!
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <button type="button" class="btn waves-effect waves-light blue" ng-click="inviteFriends()">Invite Friends</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+        </div>
+    </div>
 </div>
 
-<div id="comment" class="modal">
+<div id="mdlComment" class="modal" ng-app="iisnapApp" ng-controller="commentController" ng-init="init('@Model.id')">
     <div class="modal-content">
         <h4>Leave a comment</h4>
-        <p>text and all</p>
+        <p>
+            <div class="rating"></div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea placeholder="Leave your comment" id="comment" rows="5" class="validate materialize-textarea"></textarea>
+                </div>
+            </div>
+        </p>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Post</a>
+        <a href="#!" class="waves-effect waves-red btn-flat" ng-click="cancelComment()">Cancel</a>
+        <a href="#!" class="waves-effect waves-green btn-flat" ng-click="postComment()">Post</a>
     </div>
 </div>
 
 @section scripts
 {
+    <script src="~/Scripts/jquery.star.rating.js"></script>
     <script src="~/Scripts/product.js"></script>
 }

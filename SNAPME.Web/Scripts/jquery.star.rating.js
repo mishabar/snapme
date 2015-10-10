@@ -1,4 +1,14 @@
-﻿(function ($) {
+﻿/**
+ * jQuery Star Rating plugin
+ * Joost van Velzen - http://joost.in
+ *
+ * v 1.0.3
+ *
+ * cc - attribution + share alike
+ * http://creativecommons.org/licenses/by-sa/4.0/
+ */
+
+(function ($) {
     $.fn.addRating = function (options) {
         var obj = this;
         var settings = $.extend({
@@ -6,8 +16,7 @@
             half: true,
             fieldName: 'rating',
             fieldId: 'rating',
-            icon: 'star',
-            color: '#ffde00'
+            icon: 'star'
 
         }, options);
         this.settings = settings;
@@ -20,6 +29,7 @@
 				}
 			).hover(
 				function (e) {
+				    obj.removeClass('invalid');
 				    obj.showRating($(this).data('rating'), false);
 				}, function () {
 				    obj.showRating(0, false);
@@ -27,6 +37,8 @@
 			);
         }
         $(this).append('<input type="hidden" name="' + settings.fieldName + '" id="' + settings.fieldId + '" />');
+
+        return this;
     };
 
     $.fn.setRating = function (numRating) {
@@ -40,12 +52,10 @@
         if ($('#' + obj.settings.fieldId).val() == '' || force) {
             $(obj).find('i').each(function () {
                 var icon = obj.settings.icon + '_border';
-                $(this).css('color', 'inherit');
                 if ($(this).data('rating') <= numRating) {
                     icon = obj.settings.icon;
-                    $(this).css('color', obj.settings.color);
                 }
-                $(this).html(icon);
+                $(this).html(icon).toggleClass('active', $(this).data('rating') <= numRating);
             })
         }
     }
