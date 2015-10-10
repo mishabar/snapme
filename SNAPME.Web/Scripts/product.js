@@ -33,7 +33,7 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
         $('#mdlAfterJoined').closeModal();
         window.FB.ui({
             method: 'send',
-            link: 'http://www.nytimes.com/interactive/2015/04/15/travel/europe-favorite-streets.html',
+            link: document.location.href
         });
     };
 
