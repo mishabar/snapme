@@ -1,6 +1,7 @@
-﻿iisnapApp.controller('adminProductController', function ($scope, $http, $timeout, $cookies, salesService, productsService) {
+﻿iisnapApp.controller('adminProductController', function ($scope, $http, $timeout, $cookies, salesService, productsService, sellerService) {
 
-    $scope.product = {"id": null};// "id": null, "name": "Bose Soudlink Mini II", "sku": "BOSESLMII", "category": "Electronics", "retail_price": 199, "weight": 900, "width": 25, "length": 16, "height": 16 };
+    $scope.product = { "id": null };// "id": null, "name": "Bose Soudlink Mini II", "sku": "BOSESLMII", "category": "Electronics", "retail_price": 199, "weight": 900, "width": 25, "length": 16, "height": 16 };
+    $scope.seller = null;
     $scope.Math = window.Math;
 
     $scope.init = function (productId) {
@@ -10,6 +11,8 @@
             productsService.getProduct(productId, false)
             .success(function (data) {
                 $scope.product = data;
+                sellerService.getSeller(data.seller_id)
+                    .success(function (sdata) { $scope.seller = sdata })
             })
             .error(function (error) { console.log(error.message) });
         }

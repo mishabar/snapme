@@ -1,4 +1,11 @@
-﻿var SalesService = angular.module('SalesService', [])
+﻿var SellerService = angular.module('SellerService', [])
+    .service('sellerService', function ($http) {
+        this.getSeller = function (id) {
+            return $http.get('/api/v1/seller/' + id);
+        }
+    });
+
+var SalesService = angular.module('SalesService', [])
     .service('salesService', function ($http) {
         this.getActiveSales = function (pages) {
             return $http.get('/api/v1/sales/active');
@@ -40,7 +47,7 @@ var ProductsService = angular.module('ProductsService', [])
         };
     });
 
-var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'SalesService', 'ProductsService']);
+var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'SalesService', 'ProductsService', 'SellerService']);
 
 iisnapApp.filter('range', function () {
     return function (val, range) {

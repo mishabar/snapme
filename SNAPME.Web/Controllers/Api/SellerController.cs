@@ -10,6 +10,7 @@ using SNAPME.Tokens.Admin;
 namespace SNAPME.Web.Controllers.Api
 {
     [RoutePrefix("api/v1")]
+    [Authorize]
     public class SellerController : ApiController
     {
         private ISellerService _sellerService;
@@ -17,6 +18,12 @@ namespace SNAPME.Web.Controllers.Api
         public SellerController(ISellerService sellerService)
         {
             _sellerService = sellerService;
+        }
+
+        [Route("seller/{id}"), HttpGet, Authorize]
+        public IHttpActionResult Get(string id)
+        {
+            return Ok(_sellerService.GetById(id));
         }
 
         [Route("save/seller")]
