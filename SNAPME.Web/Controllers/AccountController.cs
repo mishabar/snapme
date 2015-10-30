@@ -90,19 +90,19 @@ namespace SNAPME.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = await UserManager.FindByEmailAsync(model.Email.Trim());
-                    if (user.Roles.Contains("Administrator"))
-                    {
-                        return Redirect("/Admin");
-                    }
-                    else if (user.Roles.Contains("Seller"))
-                    {
-                        return Redirect("/Seller");
-                    }
-                    else
-                    {
+                    //var user = await UserManager.FindByEmailAsync(model.Email.Trim());
+                    //if (user.Roles.Contains("Administrator"))
+                    //{
+                    //    return Redirect("/Admin");
+                    //}
+                    //else if (user.Roles.Contains("Seller"))
+                    //{
+                    //    return Redirect("/Seller");
+                    //}
+                    //else
+                    //{
                         return RedirectToLocal(returnUrl);
-                    }
+                    //}
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
