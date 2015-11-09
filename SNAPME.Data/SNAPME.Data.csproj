@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Drop.cs" />
     <Compile Include="Friend.cs" />
@@ -51,11 +52,13 @@
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\ISaleRepository.cs" />
     <Compile Include="Repositories\ISellerRepository.cs" />
+    <Compile Include="Repositories\IUserDetailsRepository.cs" />
     <Compile Include="Repositories\IUserPreferencesRepository.cs" />
     <Compile Include="Repositories\ISocialFeedRepository.cs" />
     <Compile Include="Sale.cs" />
     <Compile Include="Seller.cs" />
     <Compile Include="UserAction.cs" />
+    <Compile Include="UserDetails.cs" />
     <Compile Include="UserPreferences.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

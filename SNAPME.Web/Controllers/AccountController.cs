@@ -21,7 +21,6 @@ namespace SNAPME.Web.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
-        private IFriendsService _friendsService;
 
         public AccountController()
         {
@@ -477,14 +476,14 @@ namespace SNAPME.Web.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<RedirectResult> Image(string id)
+        public async Task<RedirectResult> Image(string id, string width)
         {
             try
             {
                 var user = await UserManager.FindByIdAsync(id);
                 if (user != null && !string.IsNullOrWhiteSpace(user.ImageUrl))
                 {
-                    return Redirect(user.ImageUrl);
+                    return Redirect(user.ImageUrl + (string.IsNullOrWhiteSpace(width) ? string.Empty : "&width=" + width));
                 }
             }
             catch
@@ -561,5 +560,11 @@ namespace SNAPME.Web.Controllers
             }
         }
         #endregion
+
+        public ActionResult Index() 
+        {
+            //var service = (IAccountService)System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IAccountService));
+            return View();
+        }
     }
 }

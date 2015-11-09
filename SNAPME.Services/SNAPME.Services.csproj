@@ -45,9 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="FriendsService.cs" />
     <Compile Include="IDService.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IEmailService.cs" />
     <Compile Include="Interfaces\IFriendsService.cs" />
     <Compile Include="Interfaces\IIDService.cs" />

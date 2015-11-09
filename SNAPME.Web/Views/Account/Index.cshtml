@@ -1,0 +1,135 @@
+﻿@using SNAPME.Web.Helpers;
+@using Microsoft.AspNet.Identity;
+@{
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    ViewBag.Title = "Account Details";
+}
+
+<div class="container" ng-controller="userDetailsController" ng-init="init('@User.Identity.GetUserId()', '@User.Identity.DisplayName()')">
+    <div class="row">
+        <div class="col m3">
+            <div class="card profile">
+                <img class="card-image" src="{{profile_image}}" ng-cloak />
+                <div class="card-content" ng-cloak>
+                    <span class="card-title black-text">{{details.name}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col m9">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title black-text">Contact and Basic Info</div>
+                    <form name="detailsForm" novalidate>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input placeholder="First name" name="first_name" ng-blur="saveDetails()" type="text" class="validate" maxlength="25" ng-model="details.first_name" required ng-class="{invalid : detailsForm.first_name.$invalid}" />
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input placeholder="Last name" name="last_name" ng-blur="saveDetails()" type="text" class="validate" maxlength="35" ng-model="details.last_name" required ng-class="{invalid : detailsForm.last_name.$invalid}" />
+                                <label for="last_name">Last Name</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Email" name="email" ng-blur="saveDetails()" type="email" class="validate" ng-model="details.email" />
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title black-text">Addresses</div>
+                    <ul class="collapsible" data-collapsible="accordion" ng-cloak>
+                        <li ng-repeat="address in details.addresses" class="address">
+                            <div class="collapsible-header"><i class="material-icons">location_on</i>{{address.name + ' (' + address.city + ')'}}</div>
+                            <div class="collapsible-body">
+                                <form name="addressForm{{$index}}" id="addressForm{{$index}}" ng-submit="updateAddress(address, $index)" novalidate>
+                                    <input type="hidden" ng-model="address.idx" value="{{$index}}" />
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input placeholder="Name" name="name" type="text" class="validate" ng-model="address.name" required ng-class="{invalid : $scope['addressForm' + $index].$submitted && $scope['addressForm' + $index].name.$invalid}" />
+                                            <label for="name" class="active">Name</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Address" name="line1" type="text" class="validate" maxlength="125" ng-model="address.line1" required ng-class="{invalid : $scope['addressForm' + $index].$submitted && $scope['addressForm' + $index].line1.$invalid}" />
+                                            <label for="line1" class="active">Address</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Additional Address Details" name="line2" type="text" class="validate" maxlength="125" ng-model="address.line2" />
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <input placeholder="City" name="city" type="text" class="validate" ng-model="address.city" required ng-class="{invalid : $scope['addressForm' + $index].$submitted && $scope['addressForm' + $index].city.$invalid}" />
+                                            <label for="city" class="active">City</label>
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <select name="state" ng-options="key as value for (key, value) in states" class="browser-default validate" ng-model="address.state" required ng-class="{invalid : $scope['addressForm' + $index].$submitted && $scope['addressForm' + $index].state.$invalid}">
+                                                <option value="">Select State...</option>
+                                            </select>
+                                            <label for="state" class="active">State</label>
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <input placeholder="Zip Code" class="no-spinner" name="zip" type="number" class="validate" ng-model="address.zip_code" required ng-class="{invalid : $scope['addressForm' + $index].$submitted && $scope['addressForm' + $index].zip.$invalid}" />
+                                            <label for="zip" class="active">Zip Code</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 right-align">
+                                            <button type="button" class="btn red" ng-click="removeAddress($index)">Remove</button>
+                                            <button type="submit" class="btn iisnap-orange">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="address">
+                            <div class="collapsible-header"><i class="material-icons">location_on</i>Add new address...</div>
+                            <div class="collapsible-body">
+                                <form name="addressForm" id="addressForm" ng-submit="addAddress(addressForm.$valid)" novalidate>
+                                    <input type="hidden" ng-model="address.idx" value="-1" />
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input placeholder="Name" name="name" type="text" class="validate" ng-model="address.name" required ng-class="{invalid : addressForm.$submitted && addressForm.name.$invalid}" />
+                                            <label for="name">Name</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Address" name="line1" type="text" class="validate" maxlength="125" ng-model="address.line1" required ng-class="{invalid : addressForm.$submitted && addressForm.line1.$invalid}" />
+                                            <label for="line1">Address</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Additional Address Details" name="line2" type="text" class="validate" maxlength="125" ng-model="address.line2" />
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <input placeholder="City" name="city" type="text" class="validate" ng-model="address.city" required ng-class="{invalid : addressForm.$submitted && addressForm.city.$invalid}" />
+                                            <label for="city">City</label>
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <select name="state" ng-options="key as value for (key, value) in states" class="browser-default validate" ng-model="address.state" required ng-class="{invalid : addressForm.$submitted && addressForm.state.$invalid}">
+                                                <option value="">Select State...</option>
+                                            </select>
+                                            <label for="state" class="active">State</label>
+                                        </div>
+                                        <div class="input-field col s4">
+                                            <input placeholder="Zip Code" class="no-spinner" name="zip" type="number" class="validate" ng-model="address.zip_code" required ng-class="{invalid : addressForm.$submitted && addressForm.zip.$invalid}" />
+                                            <label for="zip">Zip Code</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 right-align">
+                                            <button type="submit" class="btn iisnap-orange" id="addAddressBtn">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/controllers/userdetails.js"></script>
+}

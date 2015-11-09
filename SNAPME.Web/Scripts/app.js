@@ -1,4 +1,23 @@
-﻿var SellerService = angular.module('SellerService', [])
+﻿var AccountService = angular.module('AccountService', [])
+    .service('accountService', function ($http) {
+        this.getDetails = function (id) {
+            return $http.get('/api/v1/user/' + id);
+        }
+
+        this.saveDetails = function (details) {
+            return $http.post('/api/v1/user/', details);
+        }
+
+        this.saveAddress = function (address) {
+            return $http.post('/api/v1/user/address', address);
+        }
+
+        this.deleteAddress = function (idx) {
+            return $http.delete('/api/v1/user/address/' + idx);
+        }
+    });
+
+var SellerService = angular.module('SellerService', [])
     .service('sellerService', function ($http) {
         this.getSeller = function (id) {
             return $http.get('/api/v1/seller/' + id);
@@ -47,7 +66,7 @@ var ProductsService = angular.module('ProductsService', [])
         };
     });
 
-var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'SalesService', 'ProductsService', 'SellerService']);
+var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'SalesService', 'ProductsService', 'SellerService', 'AccountService']);
 
 iisnapApp.filter('range', function () {
     return function (val, range) {

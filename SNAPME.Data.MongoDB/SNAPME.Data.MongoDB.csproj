@@ -63,6 +63,7 @@
     <Compile Include="SellerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocialFeedRepository.cs" />
+    <Compile Include="UserDetailsRepository.cs" />
     <Compile Include="UserPreferencesRepository.cs" />
   </ItemGroup>
   <ItemGroup>

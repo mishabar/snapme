@@ -7,6 +7,12 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+input[type=number].no-spinner::-webkit-inner-spin-button,
+input[type=number].no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 select {
     height: 2.6rem;
 
@@ -14,6 +20,23 @@ select {
         border-bottom: 1px solid #f44336;
         box-shadow: 0 1px 0 0 #f44336;
     }
+}
+
+.input-field {
+    select.browser-default {
+        margin-top: 7px;
+    }
+}
+
+.select-wrapper.invalid {
+    .select-dropdown {
+        border-bottom: 1px solid #f44336;
+        box-shadow: 0 1px 0 0 #f44336;
+    }
+}
+
+.iisnap-orange {
+    background-color: #ffde00;
 }
 
 main {
@@ -663,10 +686,23 @@ footer {
             }
         }
 
-        &.invalid{
-            i{
+        &.invalid {
+            i {
                 color: #f44336;
             }
         }
     }
+}
+
+
+.profile {
+    &.card {
+        img.card-image {
+            width: 100%;
+        }
+    }
+}
+
+li.address .collapsible-body {
+    padding: 10px 20px;
 }

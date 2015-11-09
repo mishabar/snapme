@@ -199,6 +199,7 @@
     <Compile Include="Areas\Admin\Controllers\SellerController.cs" />
     <Compile Include="Areas\Admin\Models\ProductImageModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\ContactController.cs" />
     <Compile Include="Controllers\Api\EmailController.cs" />
     <Compile Include="Controllers\Api\PreLaunchController.cs" />
@@ -219,7 +220,9 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\ViewRenderer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Account\AccountBaseModel.cs" />
     <Compile Include="Models\Account\MyAccountDetailsModel.cs" />
+    <Compile Include="Models\Api\Account\AddressToken.cs" />
     <Compile Include="Models\Api\ContactRequestToken.cs" />
     <Compile Include="Models\Api\ListQueryToken.cs" />
     <Compile Include="Models\Api\PreLaunchRegisterToken.cs" />
@@ -450,6 +453,7 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\contact.js" />
+    <Content Include="Scripts\controllers\userdetails.js" />
     <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\fm.scrollator.jquery.js" />
     <Content Include="Scripts\account.js" />
@@ -557,6 +561,7 @@
     <Content Include="Views\Welcome\Seller.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Seller.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
