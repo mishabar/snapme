@@ -1,0 +1,14 @@
+﻿@model SNAPME.Web.Models.Account.MyAccountBaseModel
+
+<div class="card profile">
+    <img class="card-image" src="{{profile_image}}" ng-cloak />
+    <div class="card-content" ng-cloak>
+        <span class="card-title black-text">{{details.name}}</span>
+    </div>
+</div>
+
+<div class="collection profile">
+    <a href="/MyAccount/Details" class="collection-item" ng-class="{active: menu == 'details'}">Account Details</a>
+    <a href="/MyAccount/Favorites" class="collection-item" ng-class="{active: menu == 'favorites'}">Favorite Products</a>
+    <a href="/MyAccount/Snaps" class="collection-item" ng-class="{active: menu == 'snaps'}">Snaps</a>
+</div>
