@@ -55,11 +55,13 @@
     <Compile Include="Repositories\IUserDetailsRepository.cs" />
     <Compile Include="Repositories\IUserPreferencesRepository.cs" />
     <Compile Include="Repositories\ISocialFeedRepository.cs" />
+    <Compile Include="Repositories\IUserSnapsRepository.cs" />
     <Compile Include="Sale.cs" />
     <Compile Include="Seller.cs" />
     <Compile Include="UserAction.cs" />
     <Compile Include="UserDetails.cs" />
     <Compile Include="UserPreferences.cs" />
+    <Compile Include="UserSnap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

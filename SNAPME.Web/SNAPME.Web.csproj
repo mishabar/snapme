@@ -453,6 +453,8 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\contact.js" />
+    <Content Include="Scripts\controllers\usersnaps.js" />
+    <Content Include="Scripts\controllers\userfavorites.js" />
     <Content Include="Scripts\controllers\userdetails.js" />
     <Content Include="Scripts\flipclock.min.js" />
     <Content Include="Scripts\fm.scrollator.jquery.js" />
@@ -526,8 +528,7 @@
     <Content Include="Views\Dialog\_Login.cshtml" />
     <Content Include="Views\Sale\_Drop.cshtml" />
     <Content Include="Views\Sale\Details.cshtml" />
-    <Content Include="Views\MyAccount\Details.cshtml" />
-    <Content Include="Views\MyAccount\_AccountMenu.cshtml" />
+    <Content Include="Views\MyAccount\_MyAccountMenu.cshtml" />
     <Content Include="Views\MyAccount\Points.cshtml" />
     <Content Include="Views\MyAccount\Drops.cshtml" />
     <Content Include="Views\MyAccount\Snaps.cshtml" />
@@ -561,7 +562,7 @@
     <Content Include="Views\Welcome\Seller.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Seller.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\MyAccount\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

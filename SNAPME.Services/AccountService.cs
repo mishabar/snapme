@@ -12,10 +12,14 @@ namespace SNAPME.Services
     public class AccountService : IAccountService
     {
         private IUserDetailsRepository _userDetailsRepository;
+        private IUserPreferencesRepository _userPreferencesRepository;
+        private IUserSnapsRepository _userSnapsRepository;
 
-        public AccountService(IUserDetailsRepository userDetailsRepository)
+        public AccountService(IUserDetailsRepository userDetailsRepository, IUserPreferencesRepository userPreferencesRepository, IUserSnapsRepository userSnapsRepository)
         {
             _userDetailsRepository = userDetailsRepository;
+            _userPreferencesRepository = userPreferencesRepository;
+            _userSnapsRepository = userSnapsRepository;
         }
 
         public UserDetailsToken Get(string id)
@@ -51,6 +55,18 @@ namespace SNAPME.Services
         public bool DeleteAddress(string id, int idx)
         {
             return _userDetailsRepository.DeleteAddress(id, idx);
+        }
+
+
+        public IEnumerable<ProductInfoToken> GetFavorites(string id)
+        {
+            return _userPreferencesRepository.AllFavorites(id).Select(c => new ProductInfoToken{ id = c.Key, name = c.Value });
+        }
+
+
+        public IEnumerable<UserSnapToken> GetSnaps(string id)
+        {
+            return _userSnapsRepository.GetSnaps(id).Select(s => s.AsToken());
         }
     }
 }

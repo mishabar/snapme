@@ -19,7 +19,7 @@ namespace SNAPME.Services
             builder.Register(c => new EmailService()).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new InvitationService(c.Resolve<IInvitationRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new FriendsService(c.Resolve<IFriendRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.Register(c => new AccountService(c.Resolve<IUserDetailsRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(c => new AccountService(c.Resolve<IUserDetailsRepository>(), c.Resolve<IUserPreferencesRepository>(), c.Resolve<IUserSnapsRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

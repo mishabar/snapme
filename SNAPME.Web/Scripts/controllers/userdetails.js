@@ -2,6 +2,7 @@
 iisnapApp.controller('userDetailsController', function ($scope, $timeout, accountService) {
 
     $scope.details = {};
+    $scope.menu = 'details';
     $scope.address = { idx: -1 };
     $scope.profile_image = '/Content/Images/iisnap.ico';
     $scope.states = { "ACT": "Australian Capital Territory", "NSW": "New South Wales", "VIC": "Victoria", "QLD": "Queensland", "SA": "South Australia", "WA": "Western Australia", "TAS": "Tasmania", "NT": "Northern Territory" };
@@ -9,7 +10,7 @@ iisnapApp.controller('userDetailsController', function ($scope, $timeout, accoun
     $scope.init = function (id, name) {
         $scope.profile_image = '/Account/Image/' + id + '?width=' + 300;
         $scope.details.name = name;
-        accountService.getDetails(id)
+        accountService.getDetails()
             .then(function (response) {
                 $scope.details = response.data;
                 $scope.details.name = response.data.first_name + ' ' + response.data.last_name;

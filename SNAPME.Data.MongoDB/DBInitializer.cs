@@ -31,12 +31,21 @@ namespace SNAPME.Data.MongoDB
             builder.Register(c => new FriendRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new SocialFeedRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.Register(c => new UserDetailsRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(c => new UserSnapsRepository(c.Resolve<MongoDatabase>())).AsImplementedInterfaces().InstancePerLifetimeScope();
             
             #endregion
 
             #region MongoDB Related classes settings
 
             BsonClassMap.RegisterClassMap<UserDetails>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIdMember(cm.GetMemberMap(c => c.id));
+                cm.IdMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance);
+                cm.GetMemberMap(c => c.id).SetRepresentation(BsonType.ObjectId);
+            });
+
+            BsonClassMap.RegisterClassMap<UserSnap>(cm =>
             {
                 cm.AutoMap();
                 cm.SetIdMember(cm.GetMemberMap(c => c.id));

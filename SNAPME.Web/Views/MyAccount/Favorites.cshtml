@@ -1,41 +1,38 @@
-﻿@model SNAPME.Web.Models.Account.MyAccountFavoritesModel
+﻿@using SNAPME.Web.Helpers;
+@using Microsoft.AspNet.Identity;
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Favorites";
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    ViewBag.Title = "My Favorite Products";
 }
 
-<div class="container-fluid white-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                @Html.Partial("_AccountMenu", Model)
-            </div>
-            <div class="col-md-9">
-                <h3 class="text-center">FAVORITES</h3>
-                <hr />
-                @if (!Model.Favorites.Any())
-                {
-                    <div class="text-center">
-                        <h4>Hi @((User.Identity as System.Security.Claims.ClaimsIdentity).Name)! You've yet to add a product to your Favorites list!</h4>
-                        <h5>Check out our <a href="/">Sales Page</a> and choose the products you want! We will let you know each time a sale will start on one of them.</h5>
-                        <div>
-                            Not sure how it works? Check out our <a href="/Home/FAQ">FAQ</a>?
-                        </div>
-                    </div>
-                }
-                <div class="row">
-                    @foreach (var product in Model.Favorites)
-                    {
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="product-sm">
-                                <h4 class="text-center">@product.name</h4>
-                                <div class="embed-responsive embed-responsive-16by9" style="background: url(@product.images.FirstOrDefault(i => !string.IsNullOrWhiteSpace(i))) no-repeat 50% 50%; background-size: cover;"></div>
+<div class="container" ng-controller="userFavoritesController" ng-init="init('@User.Identity.GetUserId()', '@User.Identity.DisplayName()')">
+    <div class="row">
+        <div class="col m3">
+            @Html.Partial("_MyAccountMenu")
+        </div>
+        <div class="col m9">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title black-text">Favorite Products</div>
+                    <div class="row">
+                        <div class="col m4" ng-repeat="product in favorites" ng-cloak>
+                            <div class="card product-simple-card" ng-click="openProduct(product.name, product.id)">
+                                <div class="card-image">
+                                    <div style="background-image: url(/image/{{product.id}}/0)"></div>
+                                </div>
+                                <div class="card-content">
+                                    {{product.name}}
+                                </div>
                             </div>
                         </div>
-                    }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+@section scripts
+{
+    <script src="~/Scripts/controllers/userfavorites.js"></script>
+}

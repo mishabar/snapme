@@ -1,7 +1,15 @@
 ﻿var AccountService = angular.module('AccountService', [])
     .service('accountService', function ($http) {
-        this.getDetails = function (id) {
-            return $http.get('/api/v1/user/' + id);
+        this.getDetails = function () {
+            return $http.get('/api/v1/user');
+        }
+
+        this.getFavorites = function () {
+            return $http.get('/api/v1/user/favorites');
+        }
+
+        this.getSnaps = function () {
+            return $http.get('/api/v1/user/snaps');
         }
 
         this.saveDetails = function (details) {

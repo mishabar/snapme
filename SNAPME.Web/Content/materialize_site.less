@@ -706,3 +706,45 @@ footer {
 li.address .collapsible-body {
     padding: 10px 20px;
 }
+
+.collection.profile .collection-item {
+    &.active {
+        background-color: #ffca28;
+        color: #000;
+    }
+
+    &:not(.active):hover {
+        background-color: #ffee58;
+    }
+}
+
+.card.product-simple-card {
+    cursor: pointer;
+
+    .card-image > div {
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.col.m4 {
+    .card.product-simple-card {
+        .card-image > div {
+            height: 140px;
+        }
+    }
+}
+
+.col.m6 {
+    .card.product-simple-card {
+        .card-image > div {
+            height: 360px;
+        }
+    }
+}

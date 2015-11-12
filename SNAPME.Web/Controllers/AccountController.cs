@@ -560,11 +560,5 @@ namespace SNAPME.Web.Controllers
             }
         }
         #endregion
-
-        public ActionResult Index() 
-        {
-            //var service = (IAccountService)System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IAccountService));
-            return View();
-        }
     }
 }

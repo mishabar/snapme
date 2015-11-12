@@ -12,16 +12,18 @@ namespace SNAPME.Data.MongoDB
     public class UserPreferencesRepository : IUserPreferencesRepository
     {
         private MongoCollection<UserPreferences> _collection;
+        private MongoCollection<Product> _productsCollection;
 
         public UserPreferencesRepository(MongoDatabase db)
         {
             _collection = db.GetCollection<UserPreferences>("user_preferences");
+            _productsCollection = db.GetCollection<Product>("products");
         }
 
         public bool Likes(string userId, string productId)
         {
             var preferences = _collection.FindOne(Query<UserPreferences>.EQ(u => u.id, userId));
-            if (preferences == null) 
+            if (preferences == null)
             {
                 preferences = new UserPreferences(userId);
                 preferences.likes = new[] { productId };
@@ -75,6 +77,18 @@ namespace SNAPME.Data.MongoDB
         {
             var prefs = _collection.FindOne(Query<UserPreferences>.EQ(u => u.id, userId));
             return prefs ?? new UserPreferences(userId);
+        }
+
+
+        public Dictionary<string, string> AllFavorites(string id)
+        {
+            var prefs = _collection.FindOne(Query<UserPreferences>.EQ(u => u.id, id));
+            if (prefs.favorites != null && prefs.favorites.Length > 0)
+            {
+                return _productsCollection.Find(Query<Product>.In(p => p.id, prefs.favorites)).SetFields(Fields<Product>.Include(p => p.name)).ToDictionary(p => p.id, p => p.name);
+            }
+
+            return new Dictionary<string, string>();
         }
     }
 }

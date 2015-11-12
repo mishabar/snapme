@@ -22,12 +22,17 @@ namespace SNAPME.Web.Controllers
 
         public ActionResult Index()
         {
-            return RedirectPermanent("/MyAccount/Details");
+            return RedirectToActionPermanent("Details");
         }
 
         public ActionResult Details()
         {
-            return View(new MyAccountDetailsModel { ActiveSection = AccountMenuSection.Details });
+            return View();
+        }
+
+        public ActionResult Favorites()
+        {
+            return View();
         }
 
         public ActionResult Address()
@@ -59,15 +64,6 @@ namespace SNAPME.Web.Controllers
                 ActiveSection = AccountMenuSection.Snaps,
                 SnapsCount = snaps,
                 //Snaps = SaleToken.GenerateEnded(snaps)
-            });
-        }
-
-        public ActionResult Favorites()
-        {
-            return View(new MyAccountFavoritesModel
-            {
-                ActiveSection = AccountMenuSection.Favorites,
-                Favorites = _productService.GetFavorites(User.Identity.GetUserId())
             });
         }
     }

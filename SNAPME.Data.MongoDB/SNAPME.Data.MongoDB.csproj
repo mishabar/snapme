@@ -65,6 +65,7 @@
     <Compile Include="SocialFeedRepository.cs" />
     <Compile Include="UserDetailsRepository.cs" />
     <Compile Include="UserPreferencesRepository.cs" />
+    <Compile Include="UserSnapsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MongoDB.AspNet.Identity\MongoDB.AspNet.Identity.csproj">

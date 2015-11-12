@@ -18,5 +18,9 @@ namespace SNAPME.Services.Interfaces
         UserDetailsToken Save(UserDetailsToken token);
 
         bool DeleteAddress(string id, int idx);
+
+        IEnumerable<ProductInfoToken> GetFavorites(string id);
+
+        IEnumerable<UserSnapToken> GetSnaps(string id);
     }
 }

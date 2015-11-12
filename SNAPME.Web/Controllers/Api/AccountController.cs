@@ -23,10 +23,10 @@ namespace SNAPME.Web.Controllers.Api
         }
 
 
-        [Route("user/{id}"), HttpGet]
-        public IHttpActionResult UserDetails(string id)
+        [Route("user"), HttpGet]
+        public IHttpActionResult UserDetails()
         {
-            var details = _accountService.Get(id);
+            var details = _accountService.Get(User.Identity.GetUserId());
             if (string.IsNullOrWhiteSpace(details.first_name))
             {
                 var nameParts = User.Identity.DisplayName().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -73,6 +73,18 @@ namespace SNAPME.Web.Controllers.Api
         public IHttpActionResult DeleteAddress(int idx)
         {
             return Ok(_accountService.DeleteAddress(User.Identity.GetUserId(), idx));
+        }
+
+        [Route("user/favorites"), HttpGet]
+        public IHttpActionResult ListFavorites()
+        {
+            return Ok(_accountService.GetFavorites(User.Identity.GetUserId()));
+        }
+
+        [Route("user/snaps"), HttpGet]
+        public IHttpActionResult ListSnaps()
+        {
+            return Ok(_accountService.GetSnaps(User.Identity.GetUserId()));
         }
     }
 }

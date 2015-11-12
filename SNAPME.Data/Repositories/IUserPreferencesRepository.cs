@@ -13,5 +13,7 @@ namespace SNAPME.Data.Repositories
         bool Favors(string userId, string productId);
 
         UserPreferences GetById(string userId, string id);
+
+        Dictionary<string, string> AllFavorites(string id);
     }
 }

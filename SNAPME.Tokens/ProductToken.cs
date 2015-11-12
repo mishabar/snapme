@@ -14,6 +14,11 @@ namespace SNAPME.Tokens
         public string id { get; set; }
     }
 
+    public class ProductInfoToken : ProductBaseToken
+    {
+        public string name { get; set; }
+    }
+
     public class ProductToken
     {
         public string id { get; set; }
