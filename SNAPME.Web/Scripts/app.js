@@ -12,6 +12,14 @@
             return $http.get('/api/v1/user/snaps');
         }
 
+        this.getRewards = function () {
+            return $http.get('/api/v1/user/rewards');
+        }
+
+        this.getFriends = function () {
+            return $http.get('/api/v1/user/friends');
+        }
+
         this.saveDetails = function (details) {
             return $http.post('/api/v1/user/', details);
         }

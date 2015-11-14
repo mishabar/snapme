@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Models;
@@ -369,6 +370,7 @@ namespace SNAPME.Web.Controllers
                 case SignInStatus.Success:
                     // Get friends list
                     var user = await UserManager.FindAsync(loginInfo.Login);
+                    await EnsureUserDetails(loginInfo, user);
                     await SyncFacebookFriends(loginInfo, user);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -382,6 +384,28 @@ namespace SNAPME.Web.Controllers
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
+        }
+
+        private async Task EnsureUserDetails(ExternalLoginInfo loginInfo, ApplicationUser user)
+        {
+            string url = string.Format("https://graph.facebook.com/v2.3/me?access_token={0}",
+                        loginInfo.ExternalIdentity.Claims.First(c => c.Type == "FacebookAccessToken").Value);
+            string json = null;
+
+            using (WebClient wc = new WebClient())
+            { 
+                json = await Task.Run(() => wc.DownloadString(url));
+            }
+            var userDetails = (JToken)JsonConvert.DeserializeObject(json);
+            DependencyResolver.Current.GetService<IAccountService>().EnsureRecord(
+                new UserDetailsToken
+                {
+                    id = user.Id,
+                    email = userDetails.Value<string>("email"),
+                    first_name = userDetails.Value<string>("first_name"),
+                    last_name = userDetails.Value<string>("last_name"),
+                    gender = userDetails.Value<string>("gender")
+                });
         }
 
         private async Task SyncFacebookFriends(ExternalLoginInfo loginInfo, ApplicationUser user)

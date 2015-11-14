@@ -86,5 +86,17 @@ namespace SNAPME.Web.Controllers.Api
         {
             return Ok(_accountService.GetSnaps(User.Identity.GetUserId()));
         }
+
+        [Route("user/rewards"), HttpGet]
+        public IHttpActionResult ListRewards()
+        {
+            return Ok(_accountService.GetRewards(User.Identity.GetUserId()));
+        }
+
+        [Route("user/friends"), HttpGet]
+        public IHttpActionResult ListFriends() 
+        {
+            return Ok(_accountService.GetFriends(User.Identity.GetUserId()));
+        }
     }
 }

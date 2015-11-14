@@ -1,4 +1,11 @@
-﻿body {
+﻿@media only screen and (min-width: 993px) {
+  .container {
+    width: 100%;
+    padding: 0 15px;
+    max-width: 1200px;
+  }
+}
+body {
   display: flex;
   min-height: 100vh;
   -ms-flex-direction: column;
@@ -600,5 +607,8 @@ li.address .collapsible-body {
 }
 .col.m6 .card.product-simple-card .card-image > div {
   height: 360px;
+}
+.points-balance .collapsible-header {
+  background-color: #f1f1f1;
 }
 /*# sourceMappingURL=materialize_site.css.map */

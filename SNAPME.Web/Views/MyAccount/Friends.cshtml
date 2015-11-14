@@ -1,0 +1,41 @@
+﻿@using SNAPME.Web.Helpers;
+@using Microsoft.AspNet.Identity;
+@{
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    ViewBag.Title = "Friends on iiSnap";
+}
+
+<div class="container" ng-controller="userFriendsController" ng-init="init('@User.Identity.GetUserId()', '@User.Identity.DisplayName()')">
+    <div class="row">
+        <div class="col m3">
+            @Html.Partial("_MyAccountMenu")
+        </div>
+        <div class="col m9">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title black-text">
+                        Friends on iiSnap
+                        <button class="right btn btn-facebook waves-effect waves-light" ng-click="inviteFriends()" style="text-transform: capitalize;">Invite Friends</button>
+                    </div>
+                    <p>
+                        <div class="row">
+                            <div class="col m3" ng-repeat="friend in friends" ng-cloak>
+                                <div class="card">
+                                    <img src="{{friend.image_url}}" />
+                                    <div class="card-content">
+                                        {{friend.name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/controllers/userfriends.js"></script>
+}

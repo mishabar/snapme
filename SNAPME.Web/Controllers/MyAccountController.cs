@@ -35,36 +35,19 @@ namespace SNAPME.Web.Controllers
             return View();
         }
 
-        public ActionResult Address()
+        public ActionResult RewardsCenter()
         {
-            return View(new MyAccountAddressModel { ActiveSection = AccountMenuSection.Address });
-        }
-
-        public ActionResult Points()
-        {
-            return View(new MyAccountPointsModel { ActiveSection = AccountMenuSection.Points });
-        }
-
-        public ActionResult Drops()
-        {
-            int drops = new Random().Next(10);
-            return View(new MyAccountDropsModel
-            {
-                ActiveSection = AccountMenuSection.Drops,
-                DropsCount = drops,
-                //Drops = SaleToken.Generate(drops, 1000)
-            });
+            return View();
         }
 
         public ActionResult Snaps()
         {
-            int snaps = new Random().Next(10);
-            return View(new MyAccountSnapsModel
-            {
-                ActiveSection = AccountMenuSection.Snaps,
-                SnapsCount = snaps,
-                //Snaps = SaleToken.GenerateEnded(snaps)
-            });
+            return View();
+        }
+
+        public ActionResult Friends()
+        {
+            return View();
         }
     }
 }

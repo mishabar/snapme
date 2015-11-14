@@ -65,5 +65,16 @@ namespace SNAPME.Data.MongoDB
 
             return true;
         }
+
+
+        public void EnsureRecord(UserDetails userDetails)
+        {
+            var details = _collection.FindOne(Query<UserDetails>.EQ(d => d.id, userDetails.id));
+            if (details == null)
+            {
+                userDetails.addresses = new Address[0];
+                _collection.Insert(userDetails);
+            }
+        }
     }
 }

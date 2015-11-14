@@ -9,5 +9,7 @@ namespace SNAPME.Data.Repositories
     public interface IFriendRepository
     {
         void StoreFriends(long me, string name, string iisnap_id, Dictionary<long, string> friends);
+
+        Dictionary<long, string> GetFriends(string id);
     }
 }

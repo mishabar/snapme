@@ -14,6 +14,7 @@ namespace SNAPME.Tokens
         public string middle_name { get; set; }
         public string last_name { get; set; }
         public string email { get; set; }
+        public string gender { get; set; }
 
         public AddressToken[] addresses { get; set; }
     }
@@ -29,6 +30,7 @@ namespace SNAPME.Tokens
                 middle_name = details.middle_name,
                 last_name = details.last_name,
                 email = details.email,
+                gender = details.gender,
                 addresses = details.addresses.Select(a => a.AsToken()).ToArray()
             };
         }
@@ -42,6 +44,7 @@ namespace SNAPME.Tokens
                 middle_name = details.middle_name,
                 last_name = details.last_name,
                 email = details.email,
+                gender = details.gender,
                 addresses = details.addresses != null ? details.addresses.Select(a => a.AsAddress()).ToArray() : new Address[0]
             };
         }

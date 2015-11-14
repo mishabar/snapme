@@ -17,5 +17,7 @@ namespace SNAPME.Data.Repositories
         UserDetails Save(UserDetails userDetails);
 
         bool DeleteAddress(string id, int idx);
+
+        void EnsureRecord(UserDetails userDetails);
     }
 }

@@ -22,5 +22,11 @@ namespace SNAPME.Services.Interfaces
         IEnumerable<ProductInfoToken> GetFavorites(string id);
 
         IEnumerable<UserSnapToken> GetSnaps(string id);
+
+        void EnsureRecord(UserDetailsToken userDetailsToken);
+
+        IEnumerable<RewardToken> GetRewards(string id);
+
+        IEnumerable<FriendToken> GetFriends(string id);
     }
 }

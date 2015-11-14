@@ -60,5 +60,15 @@ namespace SNAPME.Data.MongoDB
                 }
             }
         }
+
+
+        public Dictionary<long, string> GetFriends(string id)
+        {
+            var me = _collection.FindOne(Query<Friend>.EQ(f => f.iisnap_id, id));
+            if (me == null)
+                return new Dictionary<long, string>();
+
+            return me.friends;
+        }
     }
 }
