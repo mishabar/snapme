@@ -1,0 +1,55 @@
+﻿@using SNAPME.Web.Helpers;
+@using Microsoft.AspNet.Identity;
+@{
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    ViewBag.Title = "Rewards Center";
+}
+
+<div class="container" ng-controller="userRewardsController" ng-init="init('@User.Identity.GetUserId()', '@User.Identity.DisplayName()')">
+    <div class="row">
+        <div class="col m3">
+            @Html.Partial("_MyAccountMenu")
+        </div>
+        <div class="col m9">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title black-text">iiSnap Rewards Center</div>
+                    <p>
+                        Welcome to iiSnap Rewards Center! Here you can keep track of your Snap Points balance and see how exactly you've earned your points.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col m9">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-title black-text">Snap Points Balance</div>
+                            <p>
+                                <ul class="collapsible points-balance" data-collapsible="expandable" ng-cloak>
+                                    <li ng-repeat="reward in rewards">
+                                        <div class="collapsible-header">{{types[reward.type].title}} <span class="right" style="font-weight: bold">{{reward.points}}</span></div>
+                                        <div class="collapsible-body"><p>{{types[reward.type].description}}</p></div>
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <div class="card amber lighten-1">
+                        <div class="card-content center-align" ng-cloak>
+                            <div>Total Balance</div>
+                            <h3 style="font-weight: bold;">{{totalBalance}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/controllers/userrewards.js"></script>
+}
