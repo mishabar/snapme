@@ -33,7 +33,7 @@ select.invalid {
   box-shadow: 0 1px 0 0 #f44336;
 }
 .iisnap-orange {
-  background-color: #ffde00;
+  background-color: #ffde00 !important;
 }
 main {
   -ms-flex: 1 0 auto;
@@ -610,5 +610,29 @@ li.address .collapsible-body {
 }
 .points-balance .collapsible-header {
   background-color: #f1f1f1;
+}
+.collection.products .collection-item {
+  padding-left: 190px;
+  min-height: 140px;
+}
+.collection.products .collection-item .image {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  width: 160px;
+  height: 120px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+.collection.products .collection-item .title {
+  font-size: large;
+}
+.collection.products .collection-item .secondary-content {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+#checkoutModal .checkout-summary {
+  font-weight: bold;
 }
 /*# sourceMappingURL=materialize_site.css.map */

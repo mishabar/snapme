@@ -47,6 +47,12 @@ namespace SNAPME.Web.Controllers.Api
             return Ok(token);
         }
 
+        [Route("user/address"), HttpGet]
+        public IHttpActionResult ListAddresses()
+        {
+            return Ok(_accountService.GetAddresses(User.Identity.GetUserId()));
+        }
+
         [Route("user/address"), HttpPost]
         public IHttpActionResult SaveAddress(SNAPME.Web.Models.Api.Account.AddressToken address)
         {

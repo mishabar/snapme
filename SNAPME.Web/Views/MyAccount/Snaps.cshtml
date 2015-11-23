@@ -14,24 +14,131 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-title black-text">Snaps</div>
-                    <div class="row">
-                        <div class="col m6" ng-repeat="product in snaps" ng-cloak>
-                            <div class="card product-simple-card">
-                                <div class="card-image waves-effect waves-block waves-light" ng-click="openProduct($event, product.name, product.product_id)">
-                                    <div style="background-image: url(/image/{{product.product_id}}/0)"></div>
+                    <p>
+                        <ul class="collection products">
+                            <li class="collection-item" ng-repeat="product in snaps" ng-cloak>
+                                <div class="image" style="background-image: url(/image/{{product.product_id}}/0)"></div>
+                                <span class="title">{{product.name}}</span>
+                                <div>
+                                    MSRP: $ <span style="text-decoration: line-through">{{product.msrp.toFixed(2).toLocaleString()}}</span><br />
+                                    You Pay: $ <span style="font-weight: bold">{{product.close_price.toFixed(2).toLocaleString()}}</span><br />
+                                    You Saved: <span style="color:green">${{(product.msrp - product.close_price).toFixed(2).toLocaleString()}}</span>
                                 </div>
-                                <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4">{{product.name}}<i class="material-icons right">more_vert</i></span>
+                                <button class="secondary-content btn waves-effect waves-light iisnap-orange" ng-click="checkout(product)">Checkout</button>
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <h5>Checkout - {{current_product.name}}</h5>
+            <div class="row">
+                <div class="col s12">
+                    <div>
+                        <span style="display: inline-block; width: 33%; text-align: left">Shipping</span>
+                        <span style="display: inline-block; width: 32%; text-align: center">Billing</span>
+                        <span style="display: inline-block; width: 33%; text-align: right">Summary</span>
+                    </div>
+                    <div class="progress yellow accent-1">
+                        <div class="determinate iisnap-orange" style="width: 0%"></div>
+                    </div>
+                    <div ng-show="checkout_step == 1">
+                        <div class="card" style="overflow: visible">
+                            <div class="card-content">
+                                <div class="card-title black-text center-align">Shipping Address</div>
+                                <div>
+                                    <i class="material-icons" style="font-size: 64px; float: left;">local_shipping</i>
+                                    <div style="margin-left: 80px">
+                                        <div class="input-field col s12">
+                                            <select ng-model="checkout.address" ng-options="address.address_name for address in addresses">
+                                                <option value="" disabled selected>Choose Shipping Address</option>
+                                            </select>
+                                        </div>
+                                        <ul style="padding-left: 0.75rem">
+                                            <li>{{checkout.address.name}}</li>
+                                            <li>{{checkout.address.line1}}</li>
+                                            <li>{{checkout.address.line2}}</li>
+                                            <li>{{checkout.address.city}} {{checkout.address.state}}</li>
+                                            <li>{{checkout.address.zip_code}}</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                <div style="clear: both"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="checkout_step == 2">
+                        <div class="card" style="overflow: visible">
+                            <div class="card-content">
+                                <div class="card-title black-text center-align">Billing Address</div>
+                                <div>
+                                    <i class="material-icons" style="font-size: 64px; float: left;">local_atm</i>
+                                    <div style="margin-left: 80px">
+                                        <div class="input-field col s12">
+                                            <select ng-model="checkout.billing_address" ng-options="address.address_name for address in addresses">
+                                                <option value="" disabled selected>Choose Billing Address</option>
+                                            </select>
+                                        </div>
+                                        <ul style="padding-left: 0.75rem">
+                                            <li>{{checkout.billing_address.name}}</li>
+                                            <li>{{checkout.billing_address.line1}}</li>
+                                            <li>{{checkout.billing_address.line2}}</li>
+                                            <li>{{checkout.billing_address.city}} {{checkout.billing_address.state}}</li>
+                                            <li>{{checkout.billing_address.zip_code}}</li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <div style="clear: both"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="checkout_step == 3">
+                        <div class="card" style="overflow: visible">
+                            <div class="card-content">
+                                <div class="card-title black-text center-align">Summary</div>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <h6>Ship to</h6>
+                                        <ul style="padding-left: 0.75rem">
+                                            <li>{{checkout.address.name}}</li>
+                                            <li>{{checkout.address.line1}}</li>
+                                            <li>{{checkout.address.line2}}</li>
+                                            <li>{{checkout.address.city}} {{checkout.address.state}}</li>
+                                            <li>{{checkout.address.zip_code}}</li>
+                                            <li>via {{checkout.shipping_method.carrier}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col m6">
+                                        <h6>Bill to</h6>
+                                        <ul style="padding-left: 0.75rem">
+                                            <li>{{checkout.billing_address.name}}</li>
+                                            <li>{{checkout.billing_address.line1}}</li>
+                                            <li>{{checkout.billing_address.line2}}</li>
+                                            <li>{{checkout.billing_address.city}} {{checkout.billing_address.state}}</li>
+                                            <li>{{checkout.billing_address.zip_code}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row checkout-summary">
+                                    <div>{{current_product.name}}<span class="right">$ {{current_product.close_price.toFixed(2).toLocaleString()}}</span></div>
+                                    <div>{{checkout.shipping_method.carrier}}<span class="right">$ {{checkout.shipping_method.price.toFixed(2).toLocaleString()}}</span></div>
+                                    <div>Bonus Snap Points earned<span class="right">{{current_product.bonus_points}}</span></div>
+                                </div>
+                                <div style="clear: both"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-flat left modal-action modal-close">Cancel</button>
+            <button type="button" ng-click="checkoutClose()" class="btn-flat" ng-if="checkout_step == 3">Pay</button>
+            <button type="button" ng-click="checkoutMoveNext()" class="btn-flat" ng-disabled="!canAdvance()" ng-if="checkout_step < 3">Next</button>
+            <button type="button" ng-click="checkoutMoveBack()" class="btn-flat" ng-if="checkout_step > 1">Back</button>
         </div>
     </div>
 </div>

@@ -28,5 +28,7 @@ namespace SNAPME.Services.Interfaces
         IEnumerable<RewardToken> GetRewards(string id);
 
         IEnumerable<FriendToken> GetFriends(string id);
+
+        IEnumerable<AddressToken> GetAddresses(string id);
     }
 }

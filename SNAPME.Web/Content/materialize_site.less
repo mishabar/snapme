@@ -44,7 +44,7 @@ select {
 }
 
 .iisnap-orange {
-    background-color: #ffde00;
+    background-color: #ffde00 !important;
 }
 
 main {
@@ -761,5 +761,38 @@ li.address .collapsible-body {
 .points-balance {
     .collapsible-header {
         background-color: #f1f1f1;
+    }
+}
+
+.collection.products {
+    .collection-item {
+        padding-left: 190px;
+        min-height: 140px;
+
+        .image {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            width: 160px;
+            height: 120px;
+            background-size: cover;
+            background-position: 50% 50%;
+        }
+
+        .title {
+            font-size: large;
+        }
+
+        .secondary-content{
+            position: absolute;
+            top: 16px;
+            right: 16px;
+        }
+    }
+}
+
+#checkoutModal{
+    .checkout-summary{
+        font-weight: bold;
     }
 }

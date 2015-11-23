@@ -31,6 +31,10 @@
         this.deleteAddress = function (idx) {
             return $http.delete('/api/v1/user/address/' + idx);
         }
+
+        this.getAddresses = function () {
+            return $http.get('/api/v1/user/address');
+        }
     });
 
 var SellerService = angular.module('SellerService', [])

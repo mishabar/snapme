@@ -15,6 +15,7 @@ namespace SNAPME.Tokens
         public string state { get; set; }
         public string country { get; set; }
         public int zip_code { get; set; }
+        public string address_name { get; set; }
     }
 
     public static class AddressTokenExtensions
@@ -29,7 +30,8 @@ namespace SNAPME.Tokens
                 city = address.city,
                 state = address.state,
                 country = address.country,
-                zip_code = address.zip_code
+                zip_code = address.zip_code,
+                address_name = string.Format("{0} ({1})", address.name, address.city)
             };
         }
 

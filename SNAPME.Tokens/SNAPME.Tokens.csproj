@@ -50,6 +50,7 @@
     <Compile Include="FriendToken.cs" />
     <Compile Include="ProductCondition.cs" />
     <Compile Include="RewardToken.cs" />
+    <Compile Include="SaleState.cs" />
     <Compile Include="UserSnapToken.cs" />
     <Compile Include="ProductToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

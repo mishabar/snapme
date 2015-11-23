@@ -1,4 +1,5 @@
 ﻿@using SNAPME.Web.Helpers;
+@using Microsoft.AspNet.Identity;
 <nav ng-controller="accountController">
     <div class="container">
         <div class="nav-wrapper">
@@ -7,6 +8,7 @@
             <ul id="nav-mobile" class="right">
                 @if (Request.IsAuthenticated)
                 {
+                    <li><a href="#!" style="color:#0d47a1;" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Invite Friends" ng-click="inviteFriends('@User.Identity.GetUserId()')"><i class="material-icons">record_voice_over</i></a></li>
                     <li><a class="dropdown-button" href="#!" data-activates="accountMenu"><img src="@User.Identity.ProfileImage()" /> @User.Identity.DisplayName()<i class="material-icons right">arrow_drop_down</i></a></li>
                 }
                 else
@@ -25,7 +27,7 @@
     {
         <ul id="accountMenu" class="dropdown-content">
             <li><a href="/MyAccount">My Account</a></li>
-            <li><a href="/MyAccount/Dashboard">Dashboard</a></li>
+            @*<li><a href="/MyAccount/Dashboard">Dashboard</a></li>*@
             <li><a href="/MyAccount/RewardsCenter">Reward Center</a></li>
             <li><a href="/MyAccount/Friends">Friends on iiSnap</a></li>
             <li class="divider"></li>

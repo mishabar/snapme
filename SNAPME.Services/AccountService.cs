@@ -38,6 +38,14 @@ namespace SNAPME.Services
         }
 
 
+        public IEnumerable<AddressToken> GetAddresses(string id)
+        {
+            var userDetails = Get(id);
+
+            return userDetails.addresses;
+        }
+
+        
         public AddressToken AddAddress(string id, AddressToken addressToken)
         {
             return _userDetailsRepository.AddAddress(id, addressToken.AsAddress()).AsToken();
@@ -94,5 +102,6 @@ namespace SNAPME.Services
         {
             return _friendsRepository.GetFriends(id).Select(f => new FriendToken { fb_id = f.Key, name = f.Value, image_url = string.Format("http://graph.facebook.com/{0}/picture?type=square&width=200&height=200", f.Key) });
         }
+
     }
 }
