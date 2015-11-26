@@ -25,6 +25,12 @@ select.invalid {
   border-bottom: 1px solid #f44336;
   box-shadow: 0 1px 0 0 #f44336;
 }
+.card img {
+  max-width: 100%;
+}
+.collection a.collection-item {
+  color: #000;
+}
 .input-field select.browser-default {
   margin-top: 7px;
 }
