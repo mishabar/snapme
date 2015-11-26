@@ -33,14 +33,14 @@
                         <div class="title">{{product.name}}</div>
                         <div class="sub-title">{{product.short_description}}</div>
                         <div class="product-price" ng-show="product.sale != null">
-                            <div class="start left">${{Math.floor(product.sale.msrp)}}.<span>{{product.sale.msrp.toFixed(2).toString().substr(-2)}}</span></div>
+                            <div class="start left">${{Math.floor(product.sale.retail_price)}}.<span>{{product.sale.retail_price.toFixed(2).toString().substr(-2)}}</span></div>
                             <div class="end right">${{Math.floor(product.sale.target)}}.<span>{{product.sale.target.toFixed(2).toString().substr(-2)}}</span></div>
                             <div class="range">
                                 <div class="progress grey lighten-2">
                                     <div class="determinate amber lighten-1" style="width: {{product.sale.progress}}%;"></div>
                                 </div>
                                 <div class="indicator amber lighten-1" style="left: {{product.sale.progress - 1}}%"></div>
-                                <div class="drops-counter amber lighten-1" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">{{product.sale.drops}} Drops</div>
+                                <div class="drops-counter amber lighten-1" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">{{product.sale.drops}} Snaps</div>
                                 <div class="current-price grey darken-4" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">${{Math.floor(product.sale.price)}}.{{product.sale.price.toFixed(2).toString().substr(-2)}}</div>
                             </div>
                             <div class="sale-actions">
@@ -55,23 +55,25 @@
                                 <button type="button" class="btn waves-effect yellow">Let me know</button>
                             </div>
                         </div>
-                        <div class="share-buttons left">
-                            <a class="btn btn-facebook"><i class="fa fa-facebook-f"></i></a>
-                            <a class="btn btn-google-plus"><i class="fa fa-google-plus"></i></a>
-                            <a class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
-                            <a class="btn btn-pinterest"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                        <div class="points right">
-                            <div class="invite">
-                                <i class="fa fa-facebook-f"></i>invite<span class="amount">+ 25 SP</span>
+                        <div class="share-buttons right">
+                            <div class="fixed-action-btn horizontal" style="right: 0;bottom: -35px;">
+                                <a class="btn-floating iisnap-orange">
+                                    <i class="material-icons text-black">share</i>
+                                </a>
+                                <ul>
+                                    <li><a class="btn-floating btn-facebook"><i class="fa fa-facebook-f"></i></a></li>
+                                    <li><a class="btn-floating btn-google-plus"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="btn-floating btn-twitter"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="btn-floating btn-pinterest"><i class="fa fa-pinterest"></i></a></li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="center-align" ng-show="product.sale != null">
+                        <div class="left" ng-show="product.sale != null">
                             <div class="time-left">
                                 <i class="material-icons left">av_timer</i> Sale ends in {{product.sale.ends_in}}
                             </div>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>

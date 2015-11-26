@@ -8,7 +8,7 @@ iisnapApp.controller('userRewardsController', function ($scope, $timeout, accoun
     $scope.types = [
         { title: 'Points earned from purchases', description: 'Every time your complete a purchase on iiSnap you are awarded a certain amount of Snap Points (vary with each sale). You can see the amount of Snap Points you will earn on each sale on the sale page.' },
         { title: 'Points earned from friends invitations', description: 'Every time a friend joins iiSnap using your invitation link, you are awarded additional 25 Snap Points.' },
-        { title: 'Points earned from firends\' purchases', description: 'Every time a friend completes a purchase after being invited by you to a sale, you get bonus Snap Points.' },
+        { title: 'Points earned from friends\' purchases', description: 'Every time a friend completes a purchase after being invited by you to a sale, you get bonus Snap Points.' },
         { title: 'Points earned from special offers', description: 'Special offers will be presented by iiSnap from time to time and you will be awarded for participation.' }
     ];
     $scope.totalBalance = 0;

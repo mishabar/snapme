@@ -14,23 +14,35 @@ namespace SNAPME.Services
     {
         private ISaleRepository _saleRepository;
         private IProductRepository _productRepository;
+        private IUserPreferencesRepository _userPreferencesRepository;
 
-        public SaleService(ISaleRepository saleRepository, IProductRepository productRepository)
+        public SaleService(ISaleRepository saleRepository, IProductRepository productRepository, IUserPreferencesRepository userPreferencesRepository)
         {
             _saleRepository = saleRepository;
             _productRepository = productRepository;
+            _userPreferencesRepository = userPreferencesRepository;
         }
 
-        public Tokens.SaleToken GetActive(string id)
+        public Tokens.SaleToken GetActive(string id, string userId)
         {
+            UserPreferences userPreferences = new UserPreferences(userId);
+            if (!string.IsNullOrWhiteSpace(userId))
+            {
+                userPreferences = _userPreferencesRepository.GetById(userId, null);
+            }
             var sale = _saleRepository.GetById(id, true);
-            return sale != null ? sale.AsToken() : null;
+            return sale != null ? sale.AsToken(userPreferences) : null;
         }
 
 
-        public IEnumerable<SaleToken> GetActive()
+        public IEnumerable<SaleToken> GetAllActive(string userId)
         {
-            return _saleRepository.GetActive().Select(s => s.AsToken());
+            UserPreferences userPreferences = new UserPreferences(userId);
+            if (!string.IsNullOrWhiteSpace(userId))
+            {
+                userPreferences = _userPreferencesRepository.GetById(userId, null);
+            }
+            return _saleRepository.GetActive().Select(s => s.AsToken(userPreferences));
         }
 
 
@@ -61,7 +73,7 @@ namespace SNAPME.Services
         {
             var sale = _saleRepository.GetScheduledSale(productId);
 
-            return sale == null ? null : sale.AsToken();
+            return sale == null ? null : sale.AsToken(null);
         }
 
 

@@ -25,7 +25,7 @@ iisnapApp.controller('salesController', function ($scope, $http, $timeout, $cook
     $scope.likeProduct = function ($event, product) {
         $event.preventDefault();
         $event.stopPropagation();
-        productsService.likeProduct(product.id)
+        productsService.likeProduct(product.product_id)
             .success(function (data) {
                 product.likes = data.liked;
             })
@@ -35,7 +35,7 @@ iisnapApp.controller('salesController', function ($scope, $http, $timeout, $cook
     $scope.favorProduct = function ($event, product) {
         $event.preventDefault();
         $event.stopPropagation();
-        productsService.favorProduct(product.id)
+        productsService.favorProduct(product.product_id)
             .success(function (data) {
                 product.favors = data.favored;
             })

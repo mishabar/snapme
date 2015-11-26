@@ -62,6 +62,9 @@ main {
 }
 
 nav {
+    color: #000;
+    background-color: #fff;
+
     .nav-wrapper {
         padding: 0 30px;
 
@@ -100,7 +103,8 @@ nav {
             }
 
             i.material-icons {
-                margin-left: 5px;
+                float: left;
+                margin-right: 10px;
             }
 
             img {
@@ -117,9 +121,12 @@ nav {
         top: 64px !important;
 
         li {
+            min-height: 0;
+
             a {
-                padding: 0.3rem 1rem;
+                padding: 0.5rem 1rem;
                 font-size: 1rem;
+                color: #000;
             }
         }
     }
@@ -151,7 +158,7 @@ footer {
     padding-bottom: 20px;
 }
 
-.btn {
+.btn, .btn-floating {
     &.btn-facebook {
         background-color: #0d47a1;
         color: #fff;
@@ -161,6 +168,7 @@ footer {
             font-size: inherit;
             line-height: inherit;
             padding-right: 10px;
+            font-size: 1.3rem;
         }
     }
 
@@ -215,7 +223,7 @@ footer {
 
             .white-bg {
                 height: 100%;
-                background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.2) 100%);
+                background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0, rgba(255,255,255,0.5) 100%);
                 padding: 20px 10px;
             }
 
@@ -564,14 +572,29 @@ footer {
     }
 
     .range {
-        margin-top: 50px;
+        margin: 50px 90px 0 90px;
+        height: 34px;
+
+        .progress {
+            position: absolute;
+            margin-top: 14px;
+        }
+
+        .indicator {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            bottom: 10px;
+            border-radius: 16px;
+            border: 2px solid #fff;
+        }
 
         .current-price {
-            top: -20px;
+            top: -33px;
         }
 
         .drops-counter {
-            margin-top: -5px;
+            margin-top: 26px;
         }
     }
 
@@ -608,7 +631,20 @@ footer {
     }
 
     .share-buttons {
-        margin-top: 10px;
+        margin-top: 30px;
+        position: relative;
+
+        .fixed-action-btn {
+            position: absolute;
+
+            ul {
+                right: 40px;
+
+                li {
+                    margin-top: 2px;
+                }
+            }
+        }
 
         .btn-facebook, .btn-google-plus, .btn-twitter, .btn-pinterest {
             width: 40px;
@@ -627,7 +663,7 @@ footer {
 
     .time-left {
         display: inline-block;
-        margin-top: 8px;
+        margin-top: 38px;
     }
 
     .section-header {
@@ -783,7 +819,7 @@ li.address .collapsible-body {
             font-size: large;
         }
 
-        .secondary-content{
+        .secondary-content {
             position: absolute;
             top: 16px;
             right: 16px;
@@ -791,8 +827,8 @@ li.address .collapsible-body {
     }
 }
 
-#checkoutModal{
-    .checkout-summary{
+#checkoutModal {
+    .checkout-summary {
         font-weight: bold;
     }
 }

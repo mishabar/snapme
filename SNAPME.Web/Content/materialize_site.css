@@ -51,6 +51,10 @@ main {
 .x-ng-cloak {
   display: none !important;
 }
+nav {
+  color: #000;
+  background-color: #fff;
+}
 nav .nav-wrapper {
   padding: 0 30px;
 }
@@ -80,7 +84,8 @@ nav ul a.facebook-blue {
   margin-left: 20px;
 }
 nav ul a i.material-icons {
-  margin-left: 5px;
+  float: left;
+  margin-right: 10px;
 }
 nav ul a img {
   height: 40px;
@@ -92,9 +97,13 @@ nav ul a img {
 nav #accountMenu {
   top: 64px !important;
 }
+nav #accountMenu li {
+  min-height: 0;
+}
 nav #accountMenu li a {
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
+  color: #000;
 }
 footer {
   background-color: #464646;
@@ -117,25 +126,31 @@ footer hr {
   margin-bottom: 0;
   padding-bottom: 20px;
 }
-.btn.btn-facebook {
+.btn.btn-facebook,
+.btn-floating.btn-facebook {
   background-color: #0d47a1;
   color: #fff;
 }
-.btn.btn-facebook i {
+.btn.btn-facebook i,
+.btn-floating.btn-facebook i {
   display: inline;
   font-size: inherit;
   line-height: inherit;
   padding-right: 10px;
+  font-size: 1.3rem;
 }
-.btn.btn-twitter {
+.btn.btn-twitter,
+.btn-floating.btn-twitter {
   background-color: #00aced;
   color: #fff;
 }
-.btn.btn-google-plus {
+.btn.btn-google-plus,
+.btn-floating.btn-google-plus {
   background-color: #dd4b39;
   color: #fff;
 }
-.btn.btn-pinterest {
+.btn.btn-pinterest,
+.btn-floating.btn-pinterest {
   background-color: #cb2027;
   color: #fff;
 }
@@ -170,7 +185,7 @@ footer hr {
 }
 .featured-products .featured-sale .col .white-bg {
   height: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0, rgba(255, 255, 255, 0.2) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0, rgba(255, 255, 255, 0.5) 100%);
   padding: 20px 10px;
 }
 .featured-products .featured-sale .col .product-image {
@@ -465,13 +480,26 @@ footer hr {
   font-size: 1.3rem;
 }
 .sale .range {
-  margin-top: 50px;
+  margin: 50px 90px 0 90px;
+  height: 34px;
+}
+.sale .range .progress {
+  position: absolute;
+  margin-top: 14px;
+}
+.sale .range .indicator {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  bottom: 10px;
+  border-radius: 16px;
+  border: 2px solid #fff;
 }
 .sale .range .current-price {
-  top: -20px;
+  top: -33px;
 }
 .sale .range .drops-counter {
-  margin-top: -5px;
+  margin-top: 26px;
 }
 .sale .no-active-sale {
   margin-top: 40px;
@@ -502,7 +530,17 @@ footer hr {
   line-height: 1.3;
 }
 .sale .share-buttons {
-  margin-top: 10px;
+  margin-top: 30px;
+  position: relative;
+}
+.sale .share-buttons .fixed-action-btn {
+  position: absolute;
+}
+.sale .share-buttons .fixed-action-btn ul {
+  right: 40px;
+}
+.sale .share-buttons .fixed-action-btn ul li {
+  margin-top: 2px;
 }
 .sale .share-buttons .btn-facebook,
 .sale .share-buttons .btn-google-plus,
@@ -523,7 +561,7 @@ footer hr {
 }
 .sale .time-left {
   display: inline-block;
-  margin-top: 8px;
+  margin-top: 38px;
 }
 .sale .section-header {
   font-size: 1.2rem;

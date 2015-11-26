@@ -7,6 +7,7 @@ using System.Web.Http;
 using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Models.Api.Sales;
+using Microsoft.AspNet.Identity;
 
 namespace SNAPME.Web.Controllers.Api
 {
@@ -23,7 +24,7 @@ namespace SNAPME.Web.Controllers.Api
         [Route("sales/active"), HttpGet]
         public IHttpActionResult ListActive(ListProductsRequest request)
         {
-            return Ok(new { a = User.Identity.IsAuthenticated, sales = _saleService.GetActive() });
+            return Ok(new { a = User.Identity.IsAuthenticated, sales = _saleService.GetAllActive(User.Identity.IsAuthenticated ? User.Identity.GetUserId() : string.Empty) });
         }
 
         [Route("sale/{productId}"), HttpGet]

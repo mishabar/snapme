@@ -31,11 +31,13 @@ namespace SNAPME.Tokens
         [Required]
         public int points { get; set; }
         public string ends_in { get; set; }
+        public bool likes { get; set; }
+        public bool favors { get; set; }
     }
 
     public static class SaleTokenExtensions
     {
-        public static SaleToken AsToken(this Sale sale)
+        public static SaleToken AsToken(this Sale sale, UserPreferences prefs)
         {
             string endsIn = string.Empty;
             if (sale.active)
@@ -61,7 +63,9 @@ namespace SNAPME.Tokens
                 points = sale.points,
                 name = sale.name,
                 summary = sale.summary,
-                ends_in = endsIn
+                ends_in = endsIn,
+                likes = prefs == null ? false : prefs.likes.Contains(sale.product_id),
+                favors = prefs == null ? false : prefs.favorites.Contains(sale.product_id)
             };
         }
 

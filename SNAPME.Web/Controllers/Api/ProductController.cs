@@ -45,7 +45,7 @@ namespace SNAPME.Web.Controllers.Api
             return Json(new { liked = liked, id = token.id });
         }
 
-        [Route("favorite/product"), HttpPost]
+        [Route("favor/product"), HttpPost]
         public IHttpActionResult FavorProduct(BaseProductToken token)
         {
             var favored = true;

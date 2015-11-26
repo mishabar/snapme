@@ -9,9 +9,9 @@ namespace SNAPME.Services.Interfaces
 {
     public interface ISaleService
     {
-        SaleToken GetActive(string id);
+        SaleToken GetActive(string id, string userId);
 
-        IEnumerable<SaleToken> GetActive();
+        IEnumerable<SaleToken> GetAllActive(string userId);
 
         void SaveSale(SaleToken token);
 

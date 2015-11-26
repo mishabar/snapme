@@ -4,11 +4,11 @@
     <div class="container">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo"><img src="/content/images/logo.png" /></a>
-            <span>Discover your buying power</span>
+            <span class="hide-on-small-and-down">Discover your buying power</span>
             <ul id="nav-mobile" class="right">
                 @if (Request.IsAuthenticated)
                 {
-                    <li><a href="#!" style="color:#0d47a1;" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Invite Friends" ng-click="inviteFriends('@User.Identity.GetUserId()')"><i class="material-icons">record_voice_over</i></a></li>
+                    <li><a href="#!" style="color:#0d47a1;" class="tooltipped" data-position="left" data-delay="10" data-tooltip="Invite Friends" ng-click="inviteFriends('@User.Identity.GetUserId()')"><i class="material-icons">record_voice_over</i></a></li>
                     <li><a class="dropdown-button" href="#!" data-activates="accountMenu"><img src="@User.Identity.ProfileImage()" /> @User.Identity.DisplayName()<i class="material-icons right">arrow_drop_down</i></a></li>
                 }
                 else
@@ -26,10 +26,10 @@
     @if (Request.IsAuthenticated)
     {
         <ul id="accountMenu" class="dropdown-content">
-            <li><a href="/MyAccount">My Account</a></li>
+            <li><a href="/MyAccount"><i class="material-icons" style="color: #ffde00;">account_circle</i> My Account</a></li>
             @*<li><a href="/MyAccount/Dashboard">Dashboard</a></li>*@
-            <li><a href="/MyAccount/RewardsCenter">Reward Center</a></li>
-            <li><a href="/MyAccount/Friends">Friends on iiSnap</a></li>
+            <li><a href="/MyAccount/RewardsCenter"><i class="material-icons" style="color: #1eb045;">redeem</i> Reward Center</a></li>
+            <li><a href="/MyAccount/Friends"><i class="material-icons" style="color: #0d47a1;">supervisor_account</i> Friends on iiSnap</a></li>
             <li class="divider"></li>
             @if (User.IsInRole("Administrator"))
             {
@@ -37,7 +37,7 @@
                 <li><a href="/Admin/Sellers">Sellers</a></li>
                 <li class="divider"></li>
             }
-            <li><a href="#!" ng-click="logoff($event)">Sign out</a></li>
+            <li><a href="#!" ng-click="logoff($event)"><i class="material-icons" style="color: #666;">exit_to_app</i> Sign out</a></li>
         </ul>
         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "hide" }))
         {
