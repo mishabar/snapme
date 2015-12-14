@@ -1,8 +1,8 @@
 ﻿// create angular controller
 iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cookies, salesService, productsService) {
-
-    $scope.product = null;
-    $scope.sale = null;
+    $scope.loading = true;
+    $scope.product = {};
+    $scope.sale = {};
     $scope.authenticated = false;
     $scope.Math = window.Math;
 
@@ -15,6 +15,7 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
         productsService.getProduct($scope.productId)
             .success(function (data) {
                 $scope.product = data;
+                $scope.loading = false;
                 $timeout(function () {
                     if (($('.slider').data('i') || false) == false) {
                         $('.slider').slider({ full_width: true, indicators: true, height: 400 });
@@ -29,12 +30,18 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
         $('#mdlAfterJoined').openModal();
     };
 
-    $scope.inviteFriends = function () {
-        $('#mdlAfterJoined').closeModal();
-        window.FB.ui({
-            method: 'send',
-            link: document.location.href
-        });
+    $scope.inviteFriends = function (sn) {
+
+        //$('#mdlAfterJoined').closeModal();
+        if (sn == 'facebook') {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.location.href));
+        } else if (sn == 'google') {
+            window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.location.href));
+        } else if (sn == 'twitter') {
+            window.open('https://twitter.com/home?status=' + encodeURIComponent(document.location.href));
+        } else if (sn == 'pinterest') {
+            window.open('https://pinterest.com/pin/create/button/?url=' + encodeURIComponent(document.location.href) + '&media=' + encodeURIComponent(document.location.origin + '/image/' + $scope.product.id + '/' + $('.slides li:eq(0) img').data('idx')));
+        }
     };
 
     $scope.refresh = function () {

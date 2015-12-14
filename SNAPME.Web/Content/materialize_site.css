@@ -13,6 +13,9 @@ body {
   flex-direction: column;
   font-family: 'Open Sans', sans-serif;
 }
+header {
+  border-bottom: 1px solid #eee;
+}
 input[type=number].no-spinner::-webkit-inner-spin-button,
 input[type=number].no-spinner::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -40,6 +43,9 @@ select.invalid {
 }
 .iisnap-orange {
   background-color: #ffde00 !important;
+}
+.iisnap-orange.btn {
+  color: #333;
 }
 main {
   -ms-flex: 1 0 auto;
@@ -132,18 +138,16 @@ footer hr {
   margin-bottom: 0;
   padding-bottom: 20px;
 }
+.btn.btn-facebook i {
+  display: inline;
+  line-height: inherit;
+  padding-right: 10px;
+  font-size: 1.3rem;
+}
 .btn.btn-facebook,
 .btn-floating.btn-facebook {
   background-color: #0d47a1;
   color: #fff;
-}
-.btn.btn-facebook i,
-.btn-floating.btn-facebook i {
-  display: inline;
-  font-size: inherit;
-  line-height: inherit;
-  padding-right: 10px;
-  font-size: 1.3rem;
 }
 .btn.btn-twitter,
 .btn-floating.btn-twitter {
@@ -213,31 +217,6 @@ footer hr {
 .featured-products .featured-sale .col .product-slogan {
   font-size: 1.2rem;
 }
-.featured-products .featured-sale .col .product-price {
-  color: rgba(0, 0, 0, 0.87);
-}
-.featured-products .featured-sale .col .product-price .start,
-.featured-products .featured-sale .col .product-price .end,
-.featured-products .featured-sale .col .product-price .current-tag {
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-.featured-products .featured-sale .col .product-price .start span,
-.featured-products .featured-sale .col .product-price .end span,
-.featured-products .featured-sale .col .product-price .current-tag span {
-  font-size: 1.2rem;
-}
-.featured-products .featured-sale .col .product-price .start {
-  float: left;
-  text-decoration: line-through;
-}
-.featured-products .featured-sale .col .product-price .end {
-  float: right;
-}
-.featured-products .featured-sale .col .product-price .range {
-  margin-right: 30px;
-  margin-top: 0 !important;
-}
 .featured-products .featured-sale .col .current-price {
   background-color: #383838;
   padding: 5px 15px;
@@ -268,17 +247,41 @@ footer hr {
   line-height: 28px;
   color: rgba(0, 0, 0, 0.87);
 }
+.product-price {
+  color: rgba(0, 0, 0, 0.87);
+  padding: 0 10px;
+}
+.product-price .start,
+.product-price .end,
+.product-price .current-tag {
+  font-size: 1.4rem;
+}
+.product-price .start span,
+.product-price .end span,
+.product-price .current-tag span {
+  font-size: 1.2rem;
+}
+.product-price .end {
+  margin-right: 35px;
+}
+.product-price .start {
+  float: left;
+  text-decoration: line-through;
+}
 .range {
   position: relative;
   margin: 30px 0;
 }
 .range .indicator {
+  position: relative;
+}
+.range .indicator i {
+  color: #ffca28 !important;
+  text-shadow: 1px 1px 1px #666;
   position: absolute;
-  width: 16px;
-  height: 16px;
-  bottom: -6px;
-  border-radius: 16px;
-  border: 2px solid #fff;
+  top: -27px;
+  margin-left: -11px;
+  z-index: 1;
 }
 .range .current-tag {
   display: none;
@@ -291,8 +294,9 @@ footer hr {
 .range .fa.fa-flag-checkered {
   position: absolute;
   right: 4px;
-  top: -6px;
-  font-style: italic;
+  top: -23px;
+  font-size: 1.9rem;
+  color: #ccc;
 }
 .range .drops-counter,
 .range .current-price {
@@ -355,6 +359,9 @@ footer hr {
 }
 .sales-list {
   padding-top: 40px;
+}
+.sales-list .product .product-price .end {
+  margin-right: 0;
 }
 .product.card {
   margin-bottom: 2rem;
@@ -450,6 +457,13 @@ footer hr {
 .sale {
   padding-top: 20px;
 }
+.sale .product-box {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 20px;
+  min-height: 400px;
+  position: relative;
+}
 .sale .slider .slides {
   background-color: transparent;
 }
@@ -469,14 +483,12 @@ footer hr {
   -ms-text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  padding: 0 10px;
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 .sale .sub-title {
   color: #3e3e3e;
   overflow: hidden;
-  padding: 0 10px;
   font-size: 14px;
   height: 40px;
   line-height: 19px;
@@ -486,23 +498,11 @@ footer hr {
   font-size: 1.3rem;
 }
 .sale .range {
-  margin: 50px 90px 0 90px;
-  height: 34px;
-}
-.sale .range .progress {
-  position: absolute;
-  margin-top: 14px;
-}
-.sale .range .indicator {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  bottom: 10px;
-  border-radius: 16px;
-  border: 2px solid #fff;
+  clear: both;
+  padding: 0 30px;
 }
 .sale .range .current-price {
-  top: -33px;
+  top: 5px;
 }
 .sale .range .drops-counter {
   margin-top: 26px;
@@ -518,8 +518,9 @@ footer hr {
   color: #3e3e3e;
 }
 .sale .sale-actions {
-  text-align: center;
-  margin-top: 80px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 .sale .sale-actions .join,
 .sale .sale-actions .join:hover {
@@ -528,31 +529,33 @@ footer hr {
   font-size: 24px;
 }
 .sale .sale-actions .potential-points {
-  margin-top: 10px;
   font-size: smaller;
   background: rgba(0, 0, 0, 0) url(/Content/images/sp-grey.png) no-repeat 100% 50%;
-  display: inline-block;
+  display: block;
   padding-right: 27px;
   line-height: 1.3;
+  text-align: right;
+  margin-bottom: 10px;
 }
 .sale .share-buttons {
-  margin-top: 30px;
-  position: relative;
+  float: right;
+  margin: 0 0 5px 0;
 }
-.sale .share-buttons .fixed-action-btn {
-  position: absolute;
+.sale .share-buttons li {
+  float: left;
+  margin-left: 5px;
 }
-.sale .share-buttons .fixed-action-btn ul {
-  right: 40px;
-}
-.sale .share-buttons .fixed-action-btn ul li {
-  margin-top: 2px;
+.sale .share-buttons li .btn-floating {
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 30px;
 }
 .sale .share-buttons .btn-facebook,
 .sale .share-buttons .btn-google-plus,
 .sale .share-buttons .btn-twitter,
 .sale .share-buttons .btn-pinterest {
-  width: 40px;
   text-align: center;
   padding: 0;
 }
@@ -561,6 +564,8 @@ footer hr {
 .sale .share-buttons .btn-twitter i,
 .sale .share-buttons .btn-pinterest i {
   padding-right: 0;
+  font-size: inherit;
+  line-height: inherit;
 }
 .sale .points {
   margin-top: 14px;
@@ -570,25 +575,48 @@ footer hr {
   margin-top: 38px;
 }
 .sale .section-header {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   border-bottom: 1px solid #ccc;
 }
 .sale .section-header a.right {
   font-size: small;
   padding-top: 5px;
+  background-color: #eee;
+  border-radius: 4px;
+  padding: 5px 10px;
+  color: #333;
+  cursor: pointer;
+}
+.sale .section-header a.right span {
+  margin-left: 5px;
 }
 .sale .social-activity {
   font-size: smaller;
   margin: 0;
 }
 .sale .social-activity li {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ccc;
 }
 .sale .social-activity li:last-child {
   border-bottom: none;
 }
 .sale .social-activity li .row {
-  padding: 10px 0;
+  padding: 10px 0 0 0;
+}
+.sale .social-activity li span.black-text {
+  display: inline-block;
+  margin-top: 5px;
+}
+.sale .social-activity li .price-drop > div {
+  background-color: #eee;
+  padding: 5px;
+}
+.sale .social-activity li .price-drop > div i.left {
+  margin-right: 60px;
+  color: #1eb045;
+}
+.sale .social-activity li .price-drop > div span.right {
+  font-weight: bold;
 }
 .sale .comment {
   margin-bottom: 15px;
@@ -678,5 +706,8 @@ li.address .collapsible-body {
 }
 #checkoutModal .checkout-summary {
   font-weight: bold;
+}
+#mdlAfterJoined .btn-large {
+  width: 85px;
 }
 /*# sourceMappingURL=materialize_site.css.map */
