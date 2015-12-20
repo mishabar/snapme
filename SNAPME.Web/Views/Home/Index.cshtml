@@ -75,9 +75,8 @@
                         <div class="card-image">
                             <div class="product-image" style="background-image:url(/image/{{product.product_id}}/0)"></div>
                             <div class="product-actions" ng-show="authenticated">
-                                <a href="#" ng-class="{active: product.likes}" ng-click="likeProduct($event, product)"><i class="fa fa-thumbs-o-up"></i></a>
+                                <a href="#" class="tooltipped" data-position="left" data-delay="50" data-tooltip="{{product.likes_count}} likes" ng-class="{active: product.likes}" ng-click="likeProduct($event, product)"><i class="fa fa-thumbs-o-up"></i></a>
                                 <a href="#" ng-class="{active: product.favors}" ng-click="favorProduct($event, product)"><i class="fa fa-heart-o"></i></a>
-                                <a href="#" ng-class="{active: product.has_activity}" ng-show="product.has_activity" ng-click="showSocialActivity($event, product)"><i class="fa fa-users"></i></a>
                             </div>
                         </div>
                         <div class="card-content">
@@ -89,7 +88,7 @@
                                         <div class="determinate amber lighten-1" style="width: {{product.progress}}%;"></div>
                                     </div>
                                     <div class="indicator amber lighten-1" style="left: {{product.progress - 1}}%"></div>
-                                    <div class="drops-counter amber lighten-1" style="left:{{Math.min(83, Math.max(13, product.progress - 1))}}%">{{product.drops}} Drops</div>
+                                    <div class="drops-counter amber lighten-1" style="left:{{Math.min(83, Math.max(13, product.progress - 1))}}%">{{product.drops}} Snaps</div>
                                     <div class="current-price grey darken-4" style="left:{{Math.min(83, Math.max(13, product.progress - 1))}}%">${{Math.floor(product.price)}}.{{product.price.toFixed(2).toString().substr(-2)}}</div>
                                 </div>
                             </div>

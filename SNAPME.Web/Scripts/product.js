@@ -1,8 +1,9 @@
 ﻿// create angular controller
-iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cookies, salesService, productsService) {
+iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cookies, salesService, productsService, sharedDataService) {
     $scope.loading = true;
-    $scope.product = {};
-    $scope.sale = {};
+    $scope.joining = false;
+    $scope.product = { sale: { joined: false } };
+    $scope.user = {};
     $scope.authenticated = false;
     $scope.Math = window.Math;
 
@@ -12,6 +13,7 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
 
     $scope.init = function (productId) {
         $scope.productId = productId;
+        $scope.user = sharedDataService.get('user');
         productsService.getProduct($scope.productId)
             .success(function (data) {
                 $scope.product = data;
@@ -27,7 +29,14 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
     };
 
     $scope.joinSale = function () {
-        $('#mdlAfterJoined').openModal();
+        $scope.joining = true;
+        salesService.joinSale($scope.product.id)
+            .then(function (response) {
+                $scope.joining = false;
+                $scope.product.sale = response.data;
+                $('#mdlAfterJoined').openModal();
+            },
+            function (response) { });
     };
 
     $scope.inviteFriends = function (sn) {

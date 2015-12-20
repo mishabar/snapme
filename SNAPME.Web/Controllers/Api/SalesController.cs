@@ -30,10 +30,11 @@ namespace SNAPME.Web.Controllers.Api
         [Route("sale/{productId}"), HttpGet]
         public IHttpActionResult GetSale(string productId)
         {
-            return Ok(new { a = User.Identity.IsAuthenticated, sale = _saleService.GetScheduledSale(productId) });
+            return Ok(new { a = User.Identity.IsAuthenticated, sale = _saleService.GetScheduledSale(productId, User.Identity.IsAuthenticated ? User.Identity.GetUserId() : string.Empty) });
         }
 
         [Route("sale"), HttpPost]
+        [Authorize(Roles = "Administrator")]
         public IHttpActionResult SaveSale(SaleToken token)
         {
             if (ModelState.IsValid)
@@ -41,6 +42,18 @@ namespace SNAPME.Web.Controllers.Api
                 _saleService.SaveSale(token);
 
                 return Ok(token);
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [Route("sale/join"), HttpPost]
+        [Authorize]
+        public IHttpActionResult JoinSale(BaseSaleToken token)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(_saleService.JoinSale(User.Identity.GetUserId(), token.id));
             }
 
             return BadRequest(ModelState);

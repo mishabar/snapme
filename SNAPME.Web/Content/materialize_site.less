@@ -25,6 +25,12 @@ input[type=number].no-spinner::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.slider .indicators .indicator-item {
+    height: 10px;
+    width: 10px;
+    margin: 0 6px;
+}
+
 select {
     height: 2.6rem;
 
@@ -166,6 +172,15 @@ footer {
     hr {
         border: none;
         border-bottom: 1px solid #bababa;
+    }
+}
+
+.progress.top {
+    margin-top: 0;
+    background-color: #eee;
+
+    .indeterminate {
+        background-color: #ffde00;
     }
 }
 
@@ -446,6 +461,12 @@ footer {
     &.card {
         margin-bottom: 2rem;
         cursor: pointer;
+
+        &:hover {
+            .actions {
+                display: block !important;
+            }
+        }
     }
 
     .card-content {
@@ -480,6 +501,38 @@ footer {
         font-style: italic;
     }
 
+    .actions {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: none;
+
+        ul {
+            margin: 0;
+
+            li.action {
+                a {
+                    width: 36px;
+                    height: 36px;
+                    text-align: center;
+                    display: inline-block;
+                    background-color: rgba(0,0,0,0.2);
+                    border-radius: 2px;
+                    color: #fff;
+                    margin-bottom: 5px;
+
+                    &.active {
+                        color: #ffde00;
+                    }
+
+                    i {
+                        margin: 5px auto;
+                    }
+                }
+            }
+        }
+    }
+
     .card-image {
         .product-image {
             background-position: 50% 50%;
@@ -491,8 +544,8 @@ footer {
 
         .product-actions {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 10px;
+            right: 10px;
 
             a {
                 display: block;
@@ -500,7 +553,7 @@ footer {
                 width: 36px;
                 text-align: center;
                 padding: 0 4px;
-                margin-bottom: 1px;
+                margin-bottom: 5px;
                 background-color: rgba(0,0,0,0.2);
                 color: #fff;
 
@@ -559,6 +612,15 @@ footer {
         padding: 20px;
         min-height: 400px;
         position: relative;
+
+        &.description {
+            padding-bottom: 50px;
+        }
+
+        &.promo-box {
+            min-height: 0;
+            margin-top: 30px;
+        }
     }
 
     .slider {
@@ -629,6 +691,11 @@ footer {
         }
     }
 
+    .sale-timer{
+        position: absolute;
+        bottom: 15px;
+    }
+
     .sale-actions {
         position: absolute;
         bottom: 20px;
@@ -684,11 +751,6 @@ footer {
         margin-top: 14px;
     }
 
-    .time-left {
-        display: inline-block;
-        margin-top: 38px;
-    }
-
     .section-header {
         font-size: 1.6rem;
         border-bottom: 1px solid #ccc;
@@ -699,7 +761,6 @@ footer {
             background-color: #eee;
             border-radius: 4px;
             padding: 5px 10px;
-            color: #333;
             cursor: pointer;
 
             span {
@@ -889,5 +950,51 @@ li.address .collapsible-body {
 #mdlAfterJoined {
     .btn-large {
         width: 85px;
+        height: 85px;
+        line-height: 85px;
+        margin-right: 10px;
+        border-radius: 4px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        i {
+            font-size: 3rem;
+            margin-left: -5px;
+        }
+    }
+
+    .modal-content {
+        font-size: 1.2rem;
+
+        strong{
+            font-weight: bold;
+        }
+
+        .double-line {
+            line-height: 2;
+        }
+
+        h3.call-to-action {
+            color: #ffde00;
+            font-weight: bold;
+            margin: 25px 50px;
+            text-shadow: 1px 1px 1px #999;
+            text-transform: uppercase;
+        }
+
+        .modal-header {
+            background-color: #000;
+            color: #fff;
+            margin: -24px -24px 10px -24px;
+            padding: 24px 24px 5px 24px;
+
+            h4 {
+                font-size: 1.8rem;
+                margin-right: 50px;
+                margin-left: 50px;
+            }
+        }
     }
 }

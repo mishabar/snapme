@@ -19,5 +19,7 @@ namespace SNAPME.Data.Repositories
         Sale GetScheduledSale(string productId);
 
         void AdjustSalesStatus();
+
+        Sale JoinSale(string userId, string productId);
     }
 }

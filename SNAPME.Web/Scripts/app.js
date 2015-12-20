@@ -57,6 +57,10 @@ var SalesService = angular.module('SalesService', [])
         this.saveSale = function (sale) {
             return $http.post('/api/v1/sale', sale);
         };
+
+        this.joinSale = function (id) {
+            return $http.post('/api/v1/sale/join', { id: id });
+        }
     });
 
 var ProductsService = angular.module('ProductsService', [])
@@ -86,7 +90,20 @@ var ProductsService = angular.module('ProductsService', [])
         };
     });
 
-var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'SalesService', 'ProductsService', 'SellerService', 'AccountService']);
+var SharedDataService = angular.module('SharedDataService', [])
+    .service('sharedDataService', function () {
+        var data = {};
+
+        this.set = function (name, value) {
+            data[name] = value;
+        }
+
+        this.get = function (name) {
+            return data[name];
+        }
+    });
+
+var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'ngSanitize', 'SalesService', 'ProductsService', 'SellerService', 'AccountService', 'SharedDataService']);
 
 iisnapApp.filter('range', function () {
     return function (val, range) {

@@ -118,7 +118,7 @@ namespace SNAPME.Web.Controllers.Api
             var product = _productService.GetById(id.ToProductId());
             if (saleData)
             {
-                product.sale = _saleService.GetScheduledSale(id);
+                product.sale = _saleService.GetScheduledSale(id, User.Identity.IsAuthenticated ? User.Identity.GetUserId() : null);
             }
             return Ok(product);
         }

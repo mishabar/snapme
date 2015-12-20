@@ -15,8 +15,10 @@ namespace SNAPME.Services.Interfaces
 
         void SaveSale(SaleToken token);
 
-        SaleToken GetScheduledSale(string productId);
+        SaleToken GetScheduledSale(string productId, string userId);
 
         void AdjustSalesStatus();
+
+        SaleToken JoinSale(string userId, string productId);
     }
 }

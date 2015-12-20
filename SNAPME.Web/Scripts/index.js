@@ -53,6 +53,8 @@ iisnapApp.controller('salesController', function ($scope, $http, $timeout, $cook
                         $('.slider').slider({ full_width: true, indicators: false, height: 592 });
                         $('.slider').data('i', true);
                     }
+                    $('.tooltipped').tooltip('remove');
+                    $('.tooltipped').tooltip();
                 }, 100);
             })
             .error(function (error) { console.log(error.message) });

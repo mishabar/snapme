@@ -31,7 +31,7 @@ namespace SNAPME.Services
                 userPreferences = _userPreferencesRepository.GetById(userId, null);
             }
             var sale = _saleRepository.GetById(id, true);
-            return sale != null ? sale.AsToken(userPreferences) : null;
+            return sale != null ? sale.AsToken(userPreferences, _productRepository.GetById(sale.product_id)) : null;
         }
 
 
@@ -42,7 +42,7 @@ namespace SNAPME.Services
             {
                 userPreferences = _userPreferencesRepository.GetById(userId, null);
             }
-            return _saleRepository.GetActive().Select(s => s.AsToken(userPreferences));
+            return _saleRepository.GetActive().Select(s => s.AsToken(userPreferences, _productRepository.GetById(s.product_id)));
         }
 
 
@@ -69,17 +69,24 @@ namespace SNAPME.Services
         }
 
 
-        public SaleToken GetScheduledSale(string productId)
+        public SaleToken GetScheduledSale(string productId, string userId)
         {
             var sale = _saleRepository.GetScheduledSale(productId);
 
-            return sale == null ? null : sale.AsToken(null);
+            return sale == null ? null : sale.AsToken(string.IsNullOrWhiteSpace(userId) ? null : _userPreferencesRepository.GetById(userId, productId), null);
         }
 
 
         public void AdjustSalesStatus()
         {
             _saleRepository.AdjustSalesStatus();
+        }
+
+
+        public SaleToken JoinSale(string userId, string productId)
+        {
+            var sale = _saleRepository.JoinSale(userId, productId);
+            return sale == null ? null : sale.AsToken(null, null);
         }
     }
 }

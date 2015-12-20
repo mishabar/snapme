@@ -1,6 +1,6 @@
 ﻿@using SNAPME.Web.Helpers;
 @using Microsoft.AspNet.Identity;
-<nav ng-controller="accountController">
+<nav ng-controller="accountController" ng-init="init('@User.Identity.DisplayName()')">
     <div class="container">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo"><img src="/content/images/logo.png" /></a>

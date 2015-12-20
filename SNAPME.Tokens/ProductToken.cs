@@ -53,8 +53,10 @@ namespace SNAPME.Tokens
         public bool is_draft { get; set; }
         
         public IEnumerable<CommentToken> comments { get; set; }
+
         // User Preferences
         public UserPreferencesToken UserPreferences { get; set; }
+        public long likes_count { get; set; }
 
         // Social Feed
         public UserActionToken[] SocialFeed { get; set; }
@@ -109,6 +111,7 @@ namespace SNAPME.Tokens
                 width = double.Parse(sizes[1]),
                 height = double.Parse(sizes[2]),
                 weight = product.weight,
+                likes_count = product.likes_count,
                 comments = product.comments == null ? Enumerable.Empty<CommentToken>() : product.comments.Take(5).Select(c => c.AsToken())
             };
 

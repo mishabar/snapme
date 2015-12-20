@@ -1,5 +1,9 @@
 ﻿// create angular controller
-iisnapApp.controller('accountController', function ($scope, $http, $cookies) {
+iisnapApp.controller('accountController', function ($scope, $http, $cookies, sharedDataService) {
+
+    $scope.init = function (name) {
+        sharedDataService.set('user', { name: name });
+    }
 
     $scope.logoff = function ($event) {
         $event.preventDefault();

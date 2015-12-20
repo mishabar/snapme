@@ -31,7 +31,8 @@ namespace SNAPME.Data.MongoDB
 
         public void Save(Sale sale)
         {
-            _collection.FindAndModify(new FindAndModifyArgs {
+            _collection.FindAndModify(new FindAndModifyArgs
+            {
                 Query = Query<Sale>.EQ(s => s.id, sale.id),
                 Update = Update<Sale>
                     .Set(s => s.product_id, sale.product_id)
@@ -80,5 +81,43 @@ namespace SNAPME.Data.MongoDB
                 }
             }
         }
+
+
+        public Sale JoinSale(string userId, string productId)
+        {
+            var sale = _collection.FindOne(Query.And(Query<Sale>.EQ(s => s.product_id, productId), Query<Sale>.EQ(s => s.ended, false)));
+
+            if (sale != null && !sale.ended && sale.price > sale.target)
+            {
+                var additionalPercentage = 1F;
+                if (sale.drops.Count() > 0)
+                {
+                    Random random = new Random((int)DateTime.UtcNow.Ticks);
+                    additionalPercentage = Math.Abs(1F - (float)sale.quantity / (float)sale.drops.Count());
+                    additionalPercentage = 1F + Math.Min((float)random.NextDouble(), additionalPercentage);
+                }
+                sale.price -= (int)Math.Floor((sale.retail_price - sale.target) / sale.quantity /*consider intoducing additional property*/ * additionalPercentage);
+                if (sale.price < sale.target)
+                {
+                    sale.price = sale.target;
+                }
+
+                sale = _collection.FindAndModify(
+                    new FindAndModifyArgs
+                    {
+                        Query = Query.And(Query<Sale>.EQ(s => s.product_id, productId), Query<Sale>.EQ(s => s.ended, false)),
+                        Update = Update<Sale>
+                            .Push<Drop>(s => s.drops, new Drop { current_price = sale.price, user_id = userId, date = DateTime.UtcNow, checked_out = false, backed_out = false })
+                            .Set(s => s.price, sale.price)
+                            .Set(s => s.progress, Math.Floor(((float)sale.retail_price - (float)sale.price) / ((float)sale.retail_price - (float)sale.target) * 100)),
+                            //.Set(s => s.ended, sale.price == sale.target),
+                        Upsert = false,
+                        VersionReturned = FindAndModifyDocumentVersion.Modified
+                    }).GetModifiedDocumentAs<Sale>();
+            }
+
+            return sale;
+        }
     }
 }
+ 

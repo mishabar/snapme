@@ -8,6 +8,12 @@ using SNAPME.Data;
 
 namespace SNAPME.Tokens
 {
+    public class BaseSaleToken
+    {
+        [Required]
+        public string id { get; set; }
+    }
+
     public class SaleToken
     {
         public string id { get; set; }
@@ -25,6 +31,7 @@ namespace SNAPME.Tokens
         public int duration { get; set; }
         public double price { get; set; }
         public int drops { get; set; }
+        public bool joined { get; set; }
         public int progress { get; set; }
         [Required]
         public bool is_featured { get; set; }
@@ -33,11 +40,13 @@ namespace SNAPME.Tokens
         public string ends_in { get; set; }
         public bool likes { get; set; }
         public bool favors { get; set; }
+
+        public long likes_count { get; set; }
     }
 
     public static class SaleTokenExtensions
     {
-        public static SaleToken AsToken(this Sale sale, UserPreferences prefs)
+        public static SaleToken AsToken(this Sale sale, UserPreferences prefs, Product product)
         {
             string endsIn = string.Empty;
             if (sale.active)
@@ -47,6 +56,7 @@ namespace SNAPME.Tokens
                 else if (ts.Hours > 0) { endsIn = string.Format("{0} hours and {1} minutes", ts.Hours, ts.Minutes); }
                 else { endsIn = string.Format("{0} minutes", ts.Minutes); }
             }
+
             return new SaleToken 
             {
                 id = sale.id, 
@@ -58,6 +68,7 @@ namespace SNAPME.Tokens
                 quantity = sale.quantity,
                 duration = sale.duration,
                 drops = sale.drops.Count(),
+                joined = prefs == null ? false : sale.drops.Any(d => d.user_id == prefs.id),
                 progress = sale.progress,
                 is_featured = sale.is_featured,
                 points = sale.points,
@@ -65,7 +76,8 @@ namespace SNAPME.Tokens
                 summary = sale.summary,
                 ends_in = endsIn,
                 likes = prefs == null ? false : prefs.likes.Contains(sale.product_id),
-                favors = prefs == null ? false : prefs.favorites.Contains(sale.product_id)
+                favors = prefs == null ? false : prefs.favorites.Contains(sale.product_id),
+                likes_count = product == null ? 0 : product.likes_count
             };
         }
 
