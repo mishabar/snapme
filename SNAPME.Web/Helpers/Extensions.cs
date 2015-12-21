@@ -16,7 +16,14 @@ namespace SNAPME.Web.Helpers
 
         public static string DisplayName(this IIdentity identity)
         {
-            return (identity as ClaimsIdentity).FindFirst("urn:iisnap:name").Value;
+            try
+            {
+                return (identity as ClaimsIdentity).FindFirst("urn:iisnap:name").Value;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
 
         public static string ProfileImage(this IIdentity identity)
