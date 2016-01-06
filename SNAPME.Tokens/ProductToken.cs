@@ -112,7 +112,7 @@ namespace SNAPME.Tokens
                 height = double.Parse(sizes[2]),
                 weight = product.weight,
                 likes_count = product.likes_count,
-                comments = product.comments == null ? Enumerable.Empty<CommentToken>() : product.comments.Take(5).Select(c => c.AsToken())
+                comments = product.comments == null ? Enumerable.Empty<CommentToken>() : product.comments.Reverse().Take(5).Select(c => c.AsToken())
             };
 
             List<int> indexes = new List<int>();

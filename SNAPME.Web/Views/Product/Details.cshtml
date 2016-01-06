@@ -128,13 +128,16 @@
                                     </div>
                                 </form>
                             }
-                            <ul class="collection">
+                            <ul class="comments collection" ng-show="product.comments.length > 0">
                                 <li class="collection-item avatar comment" ng-repeat="comment in product.comments">
                                     <img src="/MyAccount/Image/{{comment.user_id}}" alt="" class="circle">
                                     <span class="title">{{comment.username}}</span>
                                     <p>{{comment.comment}}</p>
                                 </li>
                             </ul>
+                            <div ng-hide="product.comments.length > 0">
+                                There are no comments yet. Be the first one to comment.
+                            </div>
                         </div>
                         <div style="clear: both">&nbsp;</div>
                     </div>

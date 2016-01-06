@@ -146,7 +146,7 @@ namespace SNAPME.Data.MongoDB
             _collection.FindAndModify(new FindAndModifyArgs
             {
                 Query = Query<Product>.EQ(p => p.id, id),
-                Update = Update.PushEachWrapped<Comment>("comments", new PushEachOptions { Position = 0 }, new Comment[] { comment }),
+                Update = Update.PushWrapped<Comment>("comments", comment),
                 Fields = Fields<Product>.Include(p => p.id)
             });
 

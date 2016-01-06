@@ -23,6 +23,7 @@ namespace SNAPME.Web.Controllers
         }
 
         [AllowAnonymous]
+        [Route("Start")]
         public async Task<ActionResult> Index()
         {
             IEnumerable<ProductToken> products = await Task.Run( () => _productService.GetAllWithPreferences(User.Identity.GetUserId()).Where(p => p.images.Any(i => !string.IsNullOrWhiteSpace(i))).Take(10));
