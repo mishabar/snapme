@@ -1,4 +1,5 @@
-﻿@model SNAPME.Tokens.ProductToken
+﻿@using SNAPME.Web.Helpers;
+@model SNAPME.Tokens.ProductToken
 @{
     ViewBag.Title = Model.name;
     Layout = "~/Views/Shared/_MLayout.cshtml";
@@ -85,18 +86,57 @@
             <div class="row" ng-show="product.name || false">
                 <div class="col l8">
                     <div class="product-box description">
-                        <div class="section-header">
-                            <a class="comments-link right">Comments<span class="right">{{product.comments.length}}</span></a>
-                            {{product.name}}
-                        </div>
-                        <p ng-bind-html="product.description" style="white-space: pre-wrap"></p>
-
-                        <ul class="share-buttons">
-                            <li><a class="btn btn-floating btn-facebook" ng-click="inviteFriends('facebook')"><i class="fa fa-facebook-f"></i></a></li>
-                            <li><a class="btn btn-floating btn-google-plus" ng-click="inviteFriends('google')"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a class="btn btn-floating btn-twitter" ng-click="inviteFriends('twitter')"><i class="fa fa-twitter"></i></a></li>
-                            <li><a class="btn btn-floating btn-pinterest" ng-click="inviteFriends('pinterest')"><i class="fa fa-pinterest"></i></a></li>
+                        <ul class="tabs hide" id="productTabs">
+                            <li class="tab col s6"><a href="#tabDescription"></a></li>
+                            <li class="tab col s6"><a href="#tabComments"></a></li>
                         </ul>
+                        <div id="tabDescription" class="col s12">
+                            <div class="section-header">
+                                <a class="comments-link right" ng-click="showComments()">Comments<span class="right">{{product.comments.length}}</span></a>
+                                {{product.name}}
+                            </div>
+                            <p ng-bind-html="product.description" style="white-space: pre-wrap"></p>
+
+                            <ul class="share-buttons">
+                                <li><a class="btn btn-floating btn-facebook" ng-click="inviteFriends('facebook')"><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a class="btn btn-floating btn-google-plus" ng-click="inviteFriends('google')"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a class="btn btn-floating btn-twitter" ng-click="inviteFriends('twitter')"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="btn btn-floating btn-pinterest" ng-click="inviteFriends('pinterest')"><i class="fa fa-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                        <div id="tabComments" class="col s12">
+                            <div class="section-header">
+                                <a class="description-link right" ng-click="showDescription()">Product Details<span class="right"></span></a>
+                                {{product.name}}
+                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form name="commentForm" novalidate ng-submit="submitComment()">
+                                    <div class="col s12 comment-wrapper grey lighten-5">
+                                        <img class="left profile-image" src="@User.Identity.ProfileImage()" />
+                                        <div style="margin: 0 10px 0 80px;">
+                                            <div class="input-field">
+                                                <textarea class="materialize-textarea" placeholder="Share you thoughts on the product" ng-model="productComment" name="productComment" required></textarea>
+                                            </div>
+                                            <div class="right-align">
+                                                <button class="btn waves-effect waves-light light-blue" type="submit" style="margin-right: -20px;">
+                                                    Submit
+                                                    <i class="material-icons right">send</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            }
+                            <ul class="collection">
+                                <li class="collection-item avatar comment" ng-repeat="comment in product.comments">
+                                    <img src="/MyAccount/Image/{{comment.user_id}}" alt="" class="circle">
+                                    <span class="title">{{comment.username}}</span>
+                                    <p>{{comment.comment}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="clear: both">&nbsp;</div>
                     </div>
                 </div>
                 <div class="col l4">

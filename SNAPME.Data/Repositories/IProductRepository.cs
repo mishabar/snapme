@@ -29,5 +29,7 @@ namespace SNAPME.Data.Repositories
         IEnumerable<Product> GetFiltered(string query, int page, out bool hasData);
 
         void Create(Product product);
+
+        Comment AddComment(string id, Comment comment);
     }
 }

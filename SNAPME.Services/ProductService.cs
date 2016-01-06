@@ -133,5 +133,11 @@ namespace SNAPME.Services
                 _productRepository.Save(token.AsProduct());
             }
         }
+
+
+        public CommentToken AddComment(string userId, string username, string id, string comment)
+        {
+            return _productRepository.AddComment(id, new Comment { comment = comment, user_id = userId, username = username, rating = 0 }).AsToken();
+        }
     }
 }

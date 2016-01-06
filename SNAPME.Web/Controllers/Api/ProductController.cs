@@ -123,6 +123,12 @@ namespace SNAPME.Web.Controllers.Api
             return Ok(product);
         }
 
+        [Route("product/comment"), HttpPost, Authorize]
+        public IHttpActionResult SaveComment(ProductCommentToken token)
+        {
+            return Ok(_productService.AddComment(User.Identity.GetUserId(), User.Identity.GetUserName(), token.id, token.comment));
+        }
+
         [Route("products"), HttpPost, Authorize(Roles = "Administrator")]
         public IHttpActionResult GetProducts(ListQueryToken token)
         {

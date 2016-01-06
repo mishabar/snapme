@@ -39,7 +39,8 @@ namespace SNAPME.Data.MongoDB
 
         public void Save(Product product)
         {
-            _collection.FindAndModify(new FindAndModifyArgs {
+            _collection.FindAndModify(new FindAndModifyArgs
+            {
                 Query = Query<Product>.EQ(p => p.id, product.id),
                 Update = Update<Product>
                         .Set(p => p.seller_id, product.seller_id)
@@ -63,14 +64,15 @@ namespace SNAPME.Data.MongoDB
         {
             if (idx > 6) return;
 
-            var product = _collection.FindAndModify(new FindAndModifyArgs {
+            var product = _collection.FindAndModify(new FindAndModifyArgs
+            {
                 Query = Query<Product>.EQ(p => p.id, id),
                 Update = Update.Set(string.Format("images.{0}", idx), image),
                 Upsert = false,
                 VersionReturned = FindAndModifyDocumentVersion.Modified
             }).GetModifiedDocumentAs<Product>();
 
-            if (product == null) 
+            if (product == null)
             {
                 product = new Product { id = id, images = new string[6], is_draft = true };
                 product.images[idx] = image;
@@ -110,7 +112,7 @@ namespace SNAPME.Data.MongoDB
         {
             var product = _collection.FindOne(Query<Product>.EQ(p => p.id, id));
 
-            if (product != null && product.size == null) 
+            if (product != null && product.size == null)
             {
                 _collection.Remove(Query<Product>.EQ(p => p.id, id));
             }
@@ -127,7 +129,7 @@ namespace SNAPME.Data.MongoDB
         {
             var queries = new List<IMongoQuery>();
             queries.Add(Query<Product>.Exists(p => p.id));
-            if (!string.IsNullOrWhiteSpace(query)) 
+            if (!string.IsNullOrWhiteSpace(query))
             {
                 queries.Add(Query<Product>.Matches(p => p.name, new BsonRegularExpression(query, "i")));
             }
@@ -136,6 +138,19 @@ namespace SNAPME.Data.MongoDB
             hasData = products.Length > 0;
 
             return products;
+        }
+
+
+        public Comment AddComment(string id, Comment comment)
+        {
+            _collection.FindAndModify(new FindAndModifyArgs
+            {
+                Query = Query<Product>.EQ(p => p.id, id),
+                Update = Update.PushEachWrapped<Comment>("comments", new PushEachOptions { Position = 0 }, new Comment[] { comment }),
+                Fields = Fields<Product>.Include(p => p.id)
+            });
+
+            return comment;
         }
     }
 }

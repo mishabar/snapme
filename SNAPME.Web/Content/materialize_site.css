@@ -794,4 +794,41 @@ li.address .collapsible-body {
   margin-right: 50px;
   margin-left: 50px;
 }
+#tabComments .comment-wrapper {
+  padding: 1.5rem;
+  margin-top: 5px;
+  background-color: #eee;
+}
+#tabComments .comment-wrapper .profile-image {
+  border-radius: 50%;
+}
+#tabComments .comment-wrapper .input-field {
+  margin-top: 0;
+}
+#tabComments .comment-wrapper .input-field:after {
+  clear: both;
+  content: '';
+  display: block;
+}
+#tabComments .comment-wrapper .input-field textarea {
+  padding: 10px;
+  max-height: 250px;
+  background-color: #fff;
+  min-height: 100px;
+  border-bottom: 0;
+}
+#tabComments .comment-wrapper .input-field textarea:focus {
+  border: 0;
+  box-shadow: none;
+}
+.collection-item.comment {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  min-height: 55px !important;
+  font-size: smaller;
+  margin-bottom: 0;
+}
+.collection-item.comment:nth-child(n+6) {
+  display: none;
+}
 /*# sourceMappingURL=materialize_site.css.map */

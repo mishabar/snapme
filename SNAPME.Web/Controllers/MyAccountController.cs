@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using SNAPME.Services.Interfaces;
 using SNAPME.Tokens;
 using SNAPME.Web.Models.Account;
@@ -48,6 +49,12 @@ namespace SNAPME.Web.Controllers
         public ActionResult Friends()
         {
             return View();
+        }
+
+        public RedirectResult Image(string id)
+        {
+            var user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(id);
+            return Redirect(user.ImageUrl ?? "http://graph.facebook.com/2/picture?type=square");
         }
     }
 }

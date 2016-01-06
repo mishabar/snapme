@@ -102,6 +102,5 @@ namespace SNAPME.Services
         {
             return _friendsRepository.GetFriends(id).Select(f => new FriendToken { fb_id = f.Key, name = f.Value, image_url = string.Format("http://graph.facebook.com/{0}/picture?type=square&width=200&height=200", f.Key) });
         }
-
     }
 }

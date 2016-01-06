@@ -36,5 +36,7 @@ namespace SNAPME.Services.Interfaces
         void SaveImage(string id, int idx, string stream);
 
         void SaveProduct(ProductToken token);
+
+        CommentToken AddComment(string userId, string username, string id, string comment);
     }
 }

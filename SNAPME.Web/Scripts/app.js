@@ -88,6 +88,10 @@ var ProductsService = angular.module('ProductsService', [])
         this.uploadImage = function (id, idx, stream) {
             return $http.post('/api/v1/product/image', { id: id, idx: idx, stream: stream });
         };
+
+        this.saveComment = function (id, comment) {
+            return $http.post('/api/v1/product/comment', { id: id, comment: comment });
+        };
     });
 
 var SharedDataService = angular.module('SharedDataService', [])

@@ -691,7 +691,7 @@ footer {
         }
     }
 
-    .sale-timer{
+    .sale-timer {
         position: absolute;
         bottom: 15px;
     }
@@ -968,7 +968,7 @@ li.address .collapsible-body {
     .modal-content {
         font-size: 1.2rem;
 
-        strong{
+        strong {
             font-weight: bold;
         }
 
@@ -997,4 +997,51 @@ li.address .collapsible-body {
             }
         }
     }
+}
+
+#tabComments {
+    .comment-wrapper {
+        padding: 1.5rem;
+        margin-top: 5px;
+        background-color: #eee;
+
+        .profile-image {
+            border-radius: 50%;
+        }
+
+        .input-field {
+            margin-top: 0;
+
+            &:after {
+                clear: both;
+                content: '';
+                display: block;
+            }
+
+            textarea {
+                padding: 10px;
+                max-height: 250px;
+                background-color: #fff;
+                min-height: 100px;
+                border-bottom: 0;
+
+                &:focus {
+                    border: 0;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+.collection-item.comment {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-height: 55px !important;
+    font-size: smaller;
+    margin-bottom: 0;
+}
+
+.collection-item.comment:nth-child(n+6){
+    display: none;
 }

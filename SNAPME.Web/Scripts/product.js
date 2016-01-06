@@ -9,6 +9,7 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
 
     $(document).ready(function () {
         $('.modal-trigger').leanModal();
+        $('#productTabs').tabs();
     });
 
     $scope.init = function (productId) {
@@ -39,9 +40,25 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
             function (response) { });
     };
 
-    $scope.inviteFriends = function (sn) {
+    $scope.showComments = function () {
+        $('#productTabs').tabs('select_tab', 'tabComments');
+    }
 
-        //$('#mdlAfterJoined').closeModal();
+    $scope.showDescription = function () {
+        $('#productTabs').tabs('select_tab', 'tabDescription');
+    }
+
+    $scope.submitComment = function () {
+        if (!$scope.commentForm.$invalid) {
+            productsService.saveComment($scope.product.id, $scope.productComment)
+                .then(function (response) {
+                    $scope.product.comments.unshift(response.data);
+                    $scope.productComment = null;
+                }, function (response) { });
+        }
+    }
+
+    $scope.inviteFriends = function (sn) {
         if (sn == 'facebook') {
             window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.location.href));
         } else if (sn == 'google') {
