@@ -51,6 +51,7 @@ namespace SNAPME.Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public RedirectResult Image(string id)
         {
             var user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(id);
