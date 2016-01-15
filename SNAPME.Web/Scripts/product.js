@@ -4,6 +4,7 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
     $scope.joining = false;
     $scope.product = { sale: { joined: false } };
     $scope.user = {};
+    $scope.activities = [];
     $scope.authenticated = false;
     $scope.Math = window.Math;
 
@@ -37,7 +38,11 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
                 $scope.product.sale = response.data;
                 $('#mdlAfterJoined').openModal();
             },
-            function (response) { });
+            function (response) {
+                if (response.status == 401) {
+                    $('#mustLoginModal').openModal();
+                }
+            });
     };
 
     $scope.showComments = function () {
@@ -76,6 +81,9 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
                 $scope.product.sale = data.sale;
             })
             .error(function (error) { console.log(error.message) });
+        productsService.getActivities($scope.productId)
+            .success(function (data) { $scope.activities = data })
+            .error(function (error) { console.log(error.message) })
     }
 
     $scope.intervalFunction = function () {

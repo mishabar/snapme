@@ -754,6 +754,33 @@ li.address .collapsible-body {
   top: 16px;
   right: 16px;
 }
+.modal-content {
+  font-size: 1.2rem;
+}
+.modal-content strong {
+  font-weight: bold;
+}
+.modal-content .double-line {
+  line-height: 2;
+}
+.modal-content h3.call-to-action {
+  color: #ffde00;
+  font-weight: bold;
+  margin: 25px 50px;
+  text-shadow: 1px 1px 1px #999;
+  text-transform: uppercase;
+}
+.modal-content .modal-header {
+  background-color: #000;
+  color: #fff;
+  margin: -24px -24px 10px -24px;
+  padding: 24px 24px 5px 24px;
+}
+.modal-content .modal-header h4 {
+  font-size: 1.8rem;
+  margin-right: 50px;
+  margin-left: 50px;
+}
 #checkoutModal .checkout-summary {
   font-weight: bold;
 }
@@ -770,33 +797,6 @@ li.address .collapsible-body {
 #mdlAfterJoined .btn-large i {
   font-size: 3rem;
   margin-left: -5px;
-}
-#mdlAfterJoined .modal-content {
-  font-size: 1.2rem;
-}
-#mdlAfterJoined .modal-content strong {
-  font-weight: bold;
-}
-#mdlAfterJoined .modal-content .double-line {
-  line-height: 2;
-}
-#mdlAfterJoined .modal-content h3.call-to-action {
-  color: #ffde00;
-  font-weight: bold;
-  margin: 25px 50px;
-  text-shadow: 1px 1px 1px #999;
-  text-transform: uppercase;
-}
-#mdlAfterJoined .modal-content .modal-header {
-  background-color: #000;
-  color: #fff;
-  margin: -24px -24px 10px -24px;
-  padding: 24px 24px 5px 24px;
-}
-#mdlAfterJoined .modal-content .modal-header h4 {
-  font-size: 1.8rem;
-  margin-right: 50px;
-  margin-left: 50px;
 }
 #tabComments .comment-wrapper {
   padding: 1.5rem;

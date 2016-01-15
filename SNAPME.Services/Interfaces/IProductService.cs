@@ -38,5 +38,7 @@ namespace SNAPME.Services.Interfaces
         void SaveProduct(ProductToken token);
 
         CommentToken AddComment(string userId, string username, string id, string comment);
+
+        IEnumerable<ProductActivityToken> GetActivities(string product_id);
     }
 }

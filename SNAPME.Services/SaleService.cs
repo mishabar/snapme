@@ -83,9 +83,9 @@ namespace SNAPME.Services
         }
 
 
-        public SaleToken JoinSale(string userId, string productId)
+        public SaleToken JoinSale(string userId, string userName, string productId)
         {
-            var sale = _saleRepository.JoinSale(userId, productId);
+            var sale = _saleRepository.JoinSale(userId, userName, productId);
             return sale == null ? null : sale.AsToken(null, null);
         }
     }

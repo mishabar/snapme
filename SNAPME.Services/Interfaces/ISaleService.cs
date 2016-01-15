@@ -19,6 +19,6 @@ namespace SNAPME.Services.Interfaces
 
         void AdjustSalesStatus();
 
-        SaleToken JoinSale(string userId, string productId);
+        SaleToken JoinSale(string userId, string userName, string productId);
     }
 }

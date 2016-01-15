@@ -53,7 +53,7 @@ namespace SNAPME.Web.Controllers.Api
         {
             if (ModelState.IsValid)
             {
-                return Ok(_saleService.JoinSale(User.Identity.GetUserId(), token.id));
+                return Ok(_saleService.JoinSale(User.Identity.GetUserId(), User.Identity.GetUserName(), token.id));
             }
 
             return BadRequest(ModelState);

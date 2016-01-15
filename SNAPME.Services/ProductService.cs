@@ -138,6 +138,13 @@ namespace SNAPME.Services
         public CommentToken AddComment(string userId, string username, string id, string comment)
         {
             return _productRepository.AddComment(id, new Comment { comment = comment, user_id = userId, username = username, rating = 0 }).AsToken();
+
+        }
+
+
+        public IEnumerable<ProductActivityToken> GetActivities(string product_id)
+        {
+            return _productRepository.GetActivities(product_id).Select(a => a.AsToken());
         }
     }
 }

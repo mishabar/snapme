@@ -10,11 +10,19 @@ using Owin;
 using SNAPME.Services.Interfaces;
 using SNAPME.Web.App_Start;
 using SNAPME.Web.Models;
+using System.Web;
 
 namespace SNAPME.Web
 {
     public partial class Startup
     {
+
+        private static bool IsApiRequest(IOwinRequest request)
+        {
+            string apiPath = VirtualPathUtility.ToAbsolute("~/api/");
+            return request.Uri.LocalPath.StartsWith(apiPath);
+        }
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -37,7 +45,14 @@ namespace SNAPME.Web
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager)),
+                    OnApplyRedirect = ctx =>
+                    {
+                        if (!IsApiRequest(ctx.Request))
+                        {
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                        }
+                    }
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

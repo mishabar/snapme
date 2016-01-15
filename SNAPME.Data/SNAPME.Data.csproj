@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs" />
     <Compile Include="Address.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Drop.cs" />

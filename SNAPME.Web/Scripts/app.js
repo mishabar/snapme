@@ -77,6 +77,10 @@ var ProductsService = angular.module('ProductsService', [])
             return $http.get('/api/v1/product/' + id + '/' + (loadSale || 'true'));
         };
 
+        this.getActivities = function (id) {
+            return $http.get('/api/v1/product/' + id + '/activities');
+        };
+
         this.getProducts = function (query, page) {
             return $http.post('/api/v1/products', { query: query, page: page});
         };

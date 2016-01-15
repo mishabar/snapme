@@ -48,6 +48,7 @@
     <Compile Include="Facebook\UserToken.cs" />
     <Compile Include="FeedEntryToken.cs" />
     <Compile Include="FriendToken.cs" />
+    <Compile Include="ProductActivityToken.cs" />
     <Compile Include="ProductCommentToken.cs" />
     <Compile Include="ProductCondition.cs" />
     <Compile Include="RewardToken.cs" />

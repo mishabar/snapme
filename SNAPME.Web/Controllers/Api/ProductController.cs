@@ -101,6 +101,12 @@ namespace SNAPME.Web.Controllers.Api
             return BadRequest(ModelState);
         }
 
+        [Route("product/{product_id}/activities"), HttpGet, AllowAnonymous]
+        public IHttpActionResult GetProductActivities(string product_id)
+        {
+            return Ok(_productService.GetActivities(product_id).Reverse());
+        }
+
         [Route("product/feed/friends"), HttpPost, AllowAnonymous]
         public IHttpActionResult SocialFeed(ProductBaseToken product)
         {

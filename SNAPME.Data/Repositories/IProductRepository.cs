@@ -31,5 +31,7 @@ namespace SNAPME.Data.Repositories
         void Create(Product product);
 
         Comment AddComment(string id, Comment comment);
+
+        IEnumerable<Activity> GetActivities(string product_id);
     }
 }

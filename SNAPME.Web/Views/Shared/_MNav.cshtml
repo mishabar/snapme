@@ -45,3 +45,19 @@
         }
     }
 </nav>
+<div id="mustLoginModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>iiSnap</h4>
+        </div>
+        <div class="center-align">
+            <p>Please Login/Register to Join Sale</p>
+            <form action="/Account/ExternalLogin" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn waves-effect waves-light btn-facebook" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account"><i class="fa fa-facebook-f"></i>Sign in / Register</button>
+            </form>
+        </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>

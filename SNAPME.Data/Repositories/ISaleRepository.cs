@@ -20,6 +20,6 @@ namespace SNAPME.Data.Repositories
 
         void AdjustSalesStatus();
 
-        Sale JoinSale(string userId, string productId);
+        Sale JoinSale(string userId, string userName, string productId);
     }
 }

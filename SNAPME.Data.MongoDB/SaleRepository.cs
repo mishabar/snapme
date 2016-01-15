@@ -12,10 +12,12 @@ namespace SNAPME.Data.MongoDB
     public class SaleRepository : ISaleRepository
     {
         private MongoCollection<Sale> _collection;
+        private MongoCollection<ProductActivity> _activitiesCollection;
 
         public SaleRepository(MongoDatabase db)
         {
             _collection = db.GetCollection<Sale>("sales");
+            _activitiesCollection = db.GetCollection<ProductActivity>("activities");
         }
 
         public Sale GetById(string id, bool active)
@@ -83,7 +85,7 @@ namespace SNAPME.Data.MongoDB
         }
 
 
-        public Sale JoinSale(string userId, string productId)
+        public Sale JoinSale(string userId, string userName, string productId)
         {
             var sale = _collection.FindOne(Query.And(Query<Sale>.EQ(s => s.product_id, productId), Query<Sale>.EQ(s => s.ended, false)));
 
@@ -114,6 +116,15 @@ namespace SNAPME.Data.MongoDB
                         Upsert = false,
                         VersionReturned = FindAndModifyDocumentVersion.Modified
                     }).GetModifiedDocumentAs<Sale>();
+
+                Activity activity = new Activity { created_on = DateTime.UtcNow, type = ActivityType.JoinSale, user_id = userId, user_name = userName, data = new Dictionary<string, object> { { "price", sale.price } } };
+                _activitiesCollection.FindAndModify(
+                    new FindAndModifyArgs
+                    {
+                        Query = Query<ProductActivity>.EQ(p => p.product_id, productId),
+                        Update = Update<ProductActivity>.Push<Activity>(p => p.activities, activity),
+                        Upsert = true
+                    });
             }
 
             return sale;

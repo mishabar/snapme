@@ -105,6 +105,14 @@ namespace SNAPME.Data.MongoDB
                 cm.IdMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance);
                 cm.GetMemberMap(c => c.id).SetRepresentation(BsonType.ObjectId);
             });
+
+            BsonClassMap.RegisterClassMap<ProductActivity>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIdMember(cm.GetMemberMap(c => c.id));
+                cm.IdMemberMap.SetIdGenerator(StringObjectIdGenerator.Instance);
+                cm.GetMemberMap(c => c.id).SetRepresentation(BsonType.ObjectId);
+            });
             #endregion
         }
     }

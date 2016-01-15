@@ -147,6 +147,25 @@
                         <div class="section-header">Activity</div>
                         <div>
                             <ul class="social-activity">
+                                <li ng-repeat="activity in activities">
+                                    <div class="row">
+                                        <div class="col s3">
+                                            <img src="/MyAccount/Image/{{activity.user_id}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                        </div>
+                                        <div class="col s9">
+                                            <span class="black-text">
+                                                {{activity.text}}<br />
+                                                {{activity.created_on}}
+                                            </span>
+                                        </div>
+                                        <div class="col s12 clearfix price-drop" ng-if="activity.type == 3">
+                                            <div>
+                                                <i class="material-icons left">file_download</i>
+                                                Price dropped to: <span class="right new-price">$ {{(activity.data.price / 100).toFixed(2).toLocaleString()}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                                 <li>
                                     <div class="row">
                                         <div class="col s3">

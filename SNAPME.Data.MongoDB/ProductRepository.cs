@@ -13,10 +13,12 @@ namespace SNAPME.Data.MongoDB
     public class ProductRepository : IProductRepository
     {
         private MongoCollection<Product> _collection;
+        private MongoCollection<ProductActivity> _activitiesCollection;
 
         public ProductRepository(MongoDatabase db)
         {
             _collection = db.GetCollection<Product>("products");
+            _activitiesCollection = db.GetCollection<ProductActivity>("activities");
         }
 
         public IEnumerable<Product> GetAllForSeller(string id)
@@ -150,7 +152,27 @@ namespace SNAPME.Data.MongoDB
                 Fields = Fields<Product>.Include(p => p.id)
             });
 
+            Activity activity = new Activity { created_on = DateTime.UtcNow, type = ActivityType.Comment, user_id = comment.user_id, user_name = comment.username, data = null };
+            _activitiesCollection.FindAndModify(
+                new FindAndModifyArgs
+                {
+                    Query = Query<ProductActivity>.EQ(p => p.product_id, id),
+                    Update = Update<ProductActivity>.Push<Activity>(p => p.activities, activity),
+                    Upsert = true
+                });
+
             return comment;
+        }
+
+
+        public IEnumerable<Activity> GetActivities(string product_id)
+        {
+            var product = _activitiesCollection.Find(
+                Query<ProductActivity>.EQ(p => p.product_id, product_id)).SetFields(Fields<ProductActivity>.Slice(a => a.activities, -10));
+            if (product.Any())
+                return product.First().activities;
+
+            return Enumerable.Empty<Activity>();
         }
     }
 }
