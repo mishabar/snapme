@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Mobile Skeleton</title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.amber-blue.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="~/Content/mobile.min.css">
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title"><img src="~/Content/Images/logo.png" /></span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                @*<nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                    </nav>*@
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">iiSnap</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-card iis-product">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Rechargeable Pressure Washer With Lithium Battery GFS-CL2</h2>
+                </div>
+                <div class="mdl-card__media">
+                    <div class="img"></div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Portable pressure washer to be applied for the outdoor cleaning purpose, its own battery pack can be served as power bank, LED torch for emergency.
+                </div>
+                <div class="mdl-card__actions">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored iis-button-join-sale">
+                        join sale
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

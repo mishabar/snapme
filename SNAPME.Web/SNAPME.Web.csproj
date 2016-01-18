@@ -210,6 +210,7 @@
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
@@ -344,6 +345,12 @@
     <Content Include="Content\materialize_site.min.css">
       <DependentUpon>materialize_site.css</DependentUpon>
     </Content>
+    <Content Include="Content\mobile.css">
+      <DependentUpon>mobile.less</DependentUpon>
+    </Content>
+    <Content Include="Content\mobile.min.css">
+      <DependentUpon>mobile.css</DependentUpon>
+    </Content>
     <Content Include="Content\msite.css">
       <DependentUpon>msite.less</DependentUpon>
     </Content>
@@ -447,6 +454,10 @@
     </Content>
     <Content Include="Areas\Admin\Views\Shared\_MAdminNav.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Product.cshtml" />
+    <Content Include="Content\mobile.less" />
+    <Content Include="Content\mobile.css.map">
+      <DependentUpon>mobile.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\admin.js" />
@@ -566,6 +577,7 @@
     <Content Include="Views\Home\Seller.cshtml" />
     <Content Include="Views\MyAccount\Details.cshtml" />
     <Content Include="Views\MyAccount\Friends.cshtml" />
+    <Content Include="Views\Mobile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
