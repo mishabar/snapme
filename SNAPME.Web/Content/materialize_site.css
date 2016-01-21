@@ -157,23 +157,33 @@ footer hr {
   font-size: 1.3rem;
 }
 .btn.btn-facebook,
+.btn-large.btn-facebook,
 .btn-floating.btn-facebook {
   background-color: #0d47a1;
   color: #fff;
 }
 .btn.btn-twitter,
+.btn-large.btn-twitter,
 .btn-floating.btn-twitter {
   background-color: #00aced;
   color: #fff;
 }
 .btn.btn-google-plus,
+.btn-large.btn-google-plus,
 .btn-floating.btn-google-plus {
   background-color: #dd4b39;
   color: #fff;
 }
 .btn.btn-pinterest,
+.btn-large.btn-pinterest,
 .btn-floating.btn-pinterest {
   background-color: #cb2027;
+  color: #fff;
+}
+.btn.btn-email,
+.btn-large.btn-email,
+.btn-floating.btn-email {
+  background-color: #ffde00;
   color: #fff;
 }
 /* Home page */
@@ -834,5 +844,26 @@ li.address .collapsible-body {
 }
 .collection-item.comment:nth-child(n+6) {
   display: none;
+}
+.invite .background {
+  background-image: url(http://blog.hihostels.com/wp-content/uploads/2014/05/party.jpg);
+  height: 822px;
+  opacity: 0.4;
+  position: absolute;
+  top: 65px;
+  right: 0;
+  left: 0;
+  background-position: 50% 50%;
+}
+.invite .card {
+  max-width: 900px;
+  margin: 40px auto;
+}
+.invite .card .options {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.invite .card .options .btn-large {
+  width: 100%;
 }
 /*# sourceMappingURL=materialize_site.css.map */

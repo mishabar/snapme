@@ -198,7 +198,7 @@ footer {
     }
 }
 
-.btn, .btn-floating {
+.btn, .btn-large, .btn-floating {
     &.btn-facebook {
         background-color: #0d47a1;
         color: #fff;
@@ -216,6 +216,11 @@ footer {
 
     &.btn-pinterest {
         background-color: #cb2027;
+        color: #fff;
+    }
+
+    &.btn-email {
+        background-color: #ffde00;
         color: #fff;
     }
 }
@@ -1049,4 +1054,31 @@ li.address .collapsible-body {
 
 .collection-item.comment:nth-child(n+6) {
     display: none;
+}
+
+.invite {
+    .background {
+        background-image: url(http://blog.hihostels.com/wp-content/uploads/2014/05/party.jpg);
+        height: 822px;
+        opacity: 0.4;
+        position: absolute;
+        top: 65px;
+        right: 0;
+        left: 0;
+        background-position: 50% 50%;
+    }
+
+    .card {
+        max-width: 900px;
+        margin: 40px auto;
+
+        .options {
+            margin-top: 40px;
+            margin-bottom: 40px;
+
+            .btn-large {
+                width: 100%;
+            }
+        }
+    }
 }

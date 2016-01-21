@@ -40,6 +40,12 @@ namespace SNAPME.Web.Controllers
             return View(model);
         }
 
+        [Route("Invite")]
+        public ActionResult Invite()
+        {
+            return View();
+        }
+
         [Route("About")]
         public ActionResult About()
         {

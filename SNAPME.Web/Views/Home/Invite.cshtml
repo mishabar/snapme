@@ -1,0 +1,56 @@
+﻿@model SNAPME.Web.Models.Home.HomepageModel
+@using SNAPME.Web.Core;
+
+@{
+    Layout = "~/Views/Shared/_MLayout.cshtml";
+    ViewBag.Title = "Welcome";
+}
+
+@section openGraph{
+    <meta name="twitter:title" content="iiSnap - Now you can afford anything you want">
+    <meta name="twitter:description" content="Get the best prices with a little help from your friends">
+    <meta name="twitter:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
+    <meta property="og:title" content="iiSnap - Now you can afford anything you want">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.iisnap.com/">
+    <meta property="og:description" content="Get the best prices with a little help from your friends">
+    <meta property="og:image" content="http://www.iisnap.com/content/images/iisnap_fb_share.png">
+}
+
+<div ng-app="iisnapApp" ng-controller="inviteController" class="invite">
+    <div class="background"></div>
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Invite Your Friends to iiSnap</span>
+            <p>
+                As you have probably noticed, we are all about buying power! And the best way to make us stronger and lower the prices even more is to bring your friends aboard!<br />
+                Select one or more of the following ways to invite your friends to join iiSnap and win Bonus Reward Points when they join!
+            </p>
+            <p>
+                <div class="row options">
+                    <div class="col s12 m3">
+                        <div class="waves-effect waves-light btn-large btn-facebook"><i class="fa fa-facebook-f left"></i>Facebook</div>
+                    </div>
+                    <div class="col s12 m3">
+                        <div class="waves-effect waves-light btn-large btn-twitter"><i class="fa fa-twitter left"></i>Twitter</div>
+                    </div>
+                    <div class="col s12 m3">
+                        <div class="waves-effect waves-light btn-large btn-google-plus"><i class="fa fa-google-plus left"></i>Google+</div>
+                    </div>
+                    <div class="col s12 m3">
+                        <div class="waves-effect waves-light btn-large btn-email"><i class="fa fa-envelope left"></i>Email</div>
+                    </div>
+                    <div class="center-align col s12" style="font-size: small; margin-top: 10px;">
+                        <i class="material-icons" style="font-size: inherit;">lock</i>&nbsp;We will not share your contacts with anybody or email anyone without your consent.
+                    </div>
+                </div>
+            </p>
+            <p class="center-align">
+                <a href="/start">Back to Active Sales</a>
+            </p>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/controllers/invite.js"></script>
+}

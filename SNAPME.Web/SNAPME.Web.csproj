@@ -464,6 +464,7 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\contact.js" />
+    <Content Include="Scripts\controllers\invite.js" />
     <Content Include="Scripts\controllers\userfriends.js" />
     <Content Include="Scripts\controllers\userrewards.js" />
     <Content Include="Scripts\controllers\usersnaps.js" />
@@ -578,6 +579,7 @@
     <Content Include="Views\MyAccount\Details.cshtml" />
     <Content Include="Views\MyAccount\Friends.cshtml" />
     <Content Include="Views\Mobile\Index.cshtml" />
+    <Content Include="Views\Home\Invite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

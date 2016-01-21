@@ -8,7 +8,7 @@
             <ul id="nav-mobile" class="right">
                 @if (Request.IsAuthenticated)
                 {
-                    <li><a href="#!" style="color:#0d47a1; height: 38px;" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Invite Friends" ng-click="inviteFriends('@User.Identity.GetUserId()')"><i class="material-icons">record_voice_over</i></a></li>
+                    <li><a href="/invite" style="color:#0d47a1; height: 64px;" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Invite Friends"><i class="material-icons">group_add</i></a></li>
                     <li><a class="dropdown-button" href="#!" data-activates="accountMenu"><img src="@User.Identity.ProfileImage()" /> @User.Identity.DisplayName()<i class="material-icons right">arrow_drop_down</i></a></li>
                 }
                 else
