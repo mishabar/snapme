@@ -8,8 +8,10 @@
             <ul id="nav-mobile" class="right">
                 @if (Request.IsAuthenticated)
                 {
+                    <li><a class="dropdown-button" href="#!" data-activates="systemMessages" ng-disabled="system_messages.length == 0" ng-class="{on: hasAlerts}"><i class="material-icons">message</i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="friendsActivities" ng-class="{on: hasActivities}"><i class="material-icons">person_pin</i></a></li>
                     <li><a href="/invite" style="color:#0d47a1; height: 64px;" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Invite Friends"><i class="material-icons">group_add</i></a></li>
-                    <li><a class="dropdown-button" href="#!" data-activates="accountMenu"><img src="@User.Identity.ProfileImage()" /> @User.Identity.DisplayName()<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="accountMenu">@User.Identity.DisplayName()<img src="@User.Identity.ProfileImage()" /></a></li>
                 }
                 else
                 {
@@ -27,7 +29,6 @@
     {
         <ul id="accountMenu" class="dropdown-content">
             <li><a href="/MyAccount"><i class="material-icons" style="color: #ffde00;">account_circle</i> My Account</a></li>
-            @*<li><a href="/MyAccount/Dashboard">Dashboard</a></li>*@
             <li><a href="/MyAccount/RewardsCenter"><i class="material-icons" style="color: #1eb045;">redeem</i> Reward Center</a></li>
             <li><a href="/MyAccount/Friends"><i class="material-icons" style="color: #0d47a1;">supervisor_account</i> Friends on iiSnap</a></li>
             <li class="divider"></li>
@@ -38,6 +39,30 @@
                 <li class="divider"></li>
             }
             <li><a href="#!" ng-click="logoff($event)"><i class="material-icons" style="color: #666;">exit_to_app</i> Sign out</a></li>
+        </ul>
+        <ul id="systemMessages" class="dropdown-content">
+            <li>
+                <ul class=" collection">
+                    <li ng-repeat="message in system_messages" class="collection-item">
+
+                    </li>
+                    <li ng-if="system_messages.length > 5" class="collection-item"><a class="collection-view-all-link" href="/System/Messages">View All</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul id="friendsActivities" class="dropdown-content">
+            <li>
+                <ul class="collection">
+                    <li ng-repeat="activity in friends_activities" class="collection-item">
+                        <img src="/MyAccount/Image/{{activity.user_id}}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                        <div>
+                            {{activity.text}}<br />
+                            {{activity.created_on}}
+                        </div>
+                    </li>
+                    <li ng-if="friends_activities.length != null" class="collection-item"><a class="collection-view-all-link" href="/MyAccount/Friends/Activities">View All</a></li>
+                </ul>
+            </li>
         </ul>
         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "hide" }))
         {
@@ -57,7 +82,8 @@
                 <button type="submit" class="btn waves-effect waves-light btn-facebook" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account"><i class="fa fa-facebook-f"></i>Sign in / Register</button>
             </form>
         </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
     </div>
 </div>

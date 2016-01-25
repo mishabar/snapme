@@ -17,6 +17,26 @@ body {
 
 header {
     border-bottom: 1px solid #eee;
+
+    nav ul a {
+        font-size: 1rem;
+        padding: 0 5px;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+        img {
+            height: 2rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+    }
+}
+
+.collection-view-all-link {
+    text-align: center;
+    font-size: 0.9rem;
 }
 
 input[type=number].no-spinner::-webkit-inner-spin-button,
@@ -126,7 +146,8 @@ nav {
 
             i.material-icons {
                 float: left;
-                margin-right: 10px;
+                font-size: 1.6rem;
+                margin: 0 5px;
             }
 
             img {
@@ -136,11 +157,18 @@ nav {
                 float: left;
                 margin-right: 5px;
             }
+
+            &.on {
+                color: #ffde00;
+            }
         }
     }
 
     #accountMenu {
         top: 64px !important;
+        width: 200px !important;
+        right: 0;
+        left: auto !important;
 
         li {
             min-height: 0;
@@ -149,6 +177,67 @@ nav {
                 padding: 0.5rem 1rem;
                 font-size: 1rem;
                 color: #000;
+            }
+        }
+    }
+
+    #systemMessages {
+        top: 64px !important;
+        width: 250px !important;
+        margin-left: -100px;
+
+        li {
+            min-height: 0;
+        }
+
+        .collection {
+            margin: 0;
+            border: none;
+
+            li {
+                min-height: 0;
+
+                a {
+                    padding: 0;
+                    font-size: 0.9rem;
+                    color: #333;
+                }
+            }
+        }
+    }
+
+    #friendsActivities {
+        top: 64px !important;
+        width: 250px !important;
+        margin-left: -100px;
+
+        li {
+            min-height: 0;
+        }
+
+        .collection {
+            margin: 0;
+            border: none;
+
+            li {
+                min-height: 0;
+
+                a {
+                    padding: 0;
+                    font-size: 0.9rem;
+                    color: #333;
+                }
+
+                img {
+                    float: left;
+                    width: 2rem;
+                }
+
+                div {
+                    margin-left: 2.5rem;
+                    font-size: 0.8rem;
+                    line-height: 1rem;
+                }
             }
         }
     }
@@ -224,9 +313,6 @@ footer {
         color: #fff;
     }
 }
-
-
-
 /* Home page */
 .featured-products {
     height: 592px;

@@ -16,6 +16,22 @@ body {
 header {
   border-bottom: 1px solid #eee;
 }
+header nav ul a {
+  font-size: 1rem;
+  padding: 0 5px;
+}
+header nav ul a:hover {
+  background-color: transparent;
+}
+header nav ul a img {
+  height: 2rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+.collection-view-all-link {
+  text-align: center;
+  font-size: 0.9rem;
+}
 input[type=number].no-spinner::-webkit-inner-spin-button,
 input[type=number].no-spinner::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -102,7 +118,8 @@ nav ul a.facebook-blue {
 }
 nav ul a i.material-icons {
   float: left;
-  margin-right: 10px;
+  font-size: 1.6rem;
+  margin: 0 5px;
 }
 nav ul a img {
   height: 40px;
@@ -111,8 +128,14 @@ nav ul a img {
   float: left;
   margin-right: 5px;
 }
+nav ul a.on {
+  color: #ffde00;
+}
 nav #accountMenu {
   top: 64px !important;
+  width: 200px !important;
+  right: 0;
+  left: auto !important;
 }
 nav #accountMenu li {
   min-height: 0;
@@ -121,6 +144,55 @@ nav #accountMenu li a {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   color: #000;
+}
+nav #systemMessages {
+  top: 64px !important;
+  width: 250px !important;
+  margin-left: -100px;
+}
+nav #systemMessages li {
+  min-height: 0;
+}
+nav #systemMessages .collection {
+  margin: 0;
+  border: none;
+}
+nav #systemMessages .collection li {
+  min-height: 0;
+}
+nav #systemMessages .collection li a {
+  padding: 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+nav #friendsActivities {
+  top: 64px !important;
+  width: 250px !important;
+  margin-left: -100px;
+}
+nav #friendsActivities li {
+  min-height: 0;
+}
+nav #friendsActivities .collection {
+  margin: 0;
+  border: none;
+}
+nav #friendsActivities .collection li {
+  min-height: 0;
+}
+nav #friendsActivities .collection li a {
+  padding: 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+nav #friendsActivities .collection li img {
+  float: left;
+  width: 2rem;
+}
+nav #friendsActivities .collection li div {
+  margin-left: 2.5rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
 }
 footer {
   background-color: #464646;
