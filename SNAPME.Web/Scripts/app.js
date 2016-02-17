@@ -111,7 +111,14 @@ var SharedDataService = angular.module('SharedDataService', [])
         }
     });
 
-var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'ngSanitize', 'SalesService', 'ProductsService', 'SellerService', 'AccountService', 'SharedDataService']);
+var PostalService = angular.module('PostalService', [])
+    .service('postalService', function ($http) {
+        this.getQuote = function (id, zip) {
+            return $http.post('/api/v1/postal/quote', { id: id, zip: zip});
+        }
+    });
+
+var iisnapApp = angular.module('iisnapApp', ['ngCookies', 'ngSanitize', 'SalesService', 'ProductsService', 'SellerService', 'AccountService', 'SharedDataService', 'PostalService']);
 
 iisnapApp.filter('range', function () {
     return function (val, range) {

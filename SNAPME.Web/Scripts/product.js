@@ -1,9 +1,10 @@
 ﻿// create angular controller
-iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cookies, salesService, productsService, sharedDataService) {
+iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cookies, salesService, productsService, sharedDataService, postalService) {
     $scope.loading = true;
     $scope.joining = false;
     $scope.product = { sale: { joined: false } };
     $scope.user = {};
+    $scope.shipping = { id: 0, zip: null };
     $scope.activities = [];
     $scope.authenticated = false;
     $scope.Math = window.Math;
@@ -18,6 +19,7 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
         $scope.user = sharedDataService.get('user');
         productsService.getProduct($scope.productId)
             .success(function (data) {
+                $scope.shipping.id = $scope.productId;
                 $scope.product = data;
                 $scope.loading = false;
                 $timeout(function () {
@@ -92,6 +94,16 @@ iisnapApp.controller('saleController', function ($scope, $http, $timeout, $cooki
             $scope.intervalFunction();
         }, 5000);
     };
+
+    $scope.getShippingQuote = function () {
+        if ($scope.shippingForm.$valid) {
+            postalService.getQuote($scope.shipping.id, $scope.shipping.zip)
+                .then(function (response) {
+                    $scope.shipping.price = response.data.postage_result.total_cost;
+                    $scope.shipping.time = response.data.postage_result.delivery_time;
+                });
+        }
+    }
 
     //$scope.refresh();
 

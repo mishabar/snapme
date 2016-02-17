@@ -58,6 +58,19 @@
                                 <div class="drops-counter amber lighten-1" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">{{product.sale.drops}} Snaps</div>
                                 <div class="current-price grey darken-4" style="left:{{Math.min(92, Math.max(6, product.sale.progress - 1))}}%">${{Math.floor(product.sale.price)}}.{{product.sale.price.toFixed(2).toString().substr(-2)}}</div>
                             </div>
+                            <div class="shipping-quote">
+                                <form name="shippingForm" ng-submit="getShippingQuote()" novalidate>
+                                    <div class="row">
+                                        <div class="input-field col s3">
+                                            <input placeholder="Zip Code" name="zip" type="text" class="validate" ng-model="shipping.zip" required ng-class="{invalid: shippingForm.$submitted && shippingForm.zip.$invalid}" />
+                                        </div>
+                                        <div class="input-field col s3">
+                                            <button class="btn iisnap-orange waves-effect waves-light"><i class="material-icons">local_shipping</i></button>
+                                        </div>
+                                        <div class="input-field col s6 right-align" ng-show="shipping.price" style="height: 3rem;line-height: 3.2rem;font-size: 16px;">$ {{shipping.price.toFixed(2).toLocaleString() + ',  ' + shipping.time}}</div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="sale-actions" ng-show="product.sale.price > product.sale.target">
                                 <div class="potential-points tooltipped" data-position="bottom" data-delay="50" data-tooltip="Upon successful checkout your account will be credited with the earned Snap Points.">Collect {{product.sale.points}}</div>
                                 <button type="button" class="waves-effect waves-light btn-large join" ng-click="joinSale()">Join Sale</button><!-- ng-disabled="product.sale.joined"-->

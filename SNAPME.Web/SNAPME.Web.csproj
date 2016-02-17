@@ -202,6 +202,7 @@
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\ContactController.cs" />
     <Compile Include="Controllers\Api\EmailController.cs" />
+    <Compile Include="Controllers\Api\PostalController.cs" />
     <Compile Include="Controllers\Api\PreLaunchController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SalesController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Models\Api\Account\AddressToken.cs" />
     <Compile Include="Models\Api\ContactRequestToken.cs" />
     <Compile Include="Models\Api\ListQueryToken.cs" />
+    <Compile Include="Models\Api\PostalQuoteToken.cs" />
     <Compile Include="Models\Api\PreLaunchRegisterToken.cs" />
     <Compile Include="Models\Api\Sales\ListProductsRequest.cs" />
     <Compile Include="Models\Api\UploadImageToken.cs" />
