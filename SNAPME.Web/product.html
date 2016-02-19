@@ -19,6 +19,24 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        
+        md-card md-card-content img.ii-avatar {
+            margin: 0 6px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+        
+        md-card md-card-content .ii-prices {
+            margin-bottom: 12;
+        }
+        
+        md-card md-card-content .ii-more-snappers {
+            margin-left: 10px;
+            font-size: 14px;
+            line-height: 40px;
+            color: rgb(33, 150, 243);
+        }
     </style>
 </head>
 
@@ -29,110 +47,72 @@
             <img src="http://www.iisnap.com/content/images/logo.png" />&nbsp;&nbsp;<span style="color: #000;">Cars</span>
         </div>
     </md-toolbar>
-    
+
     <div style="height: 400; background: url('http://1.cdn.metrodetroitacuradealers.inspirelightning.com/wp-content/themes/DealerInspireDealerTheme/images/dealer-page-banner.jpg') no-repeat 50% 50%; background-size: cover;"></div>
 
     <div style="max-width: 1200px; margin: 0 auto;" layout="row">
         <md-content flex style="background: transparent;">
             <div layout="row" layout-wrap layout-padding>
-                <div flex="100" flex-gt-xs="50" flex-gt-md="33">
+                <div flex="100" flex-gt-xs="50" flex-gt-md="33" ng-repeat="product in products">
                     <md-card>
                         <div>
-                            <img src="http://www.autoblog.nl/files/2012/02/audi-a5-facelift-abt-tuning1.jpg" class="md-card-image" alt="AUDI A4">
+                            <img ng-src="{{product.image}}" class="md-card-image" alt="{{product.name}}" title="{{product.name}}">
                         </div>
                         <md-card-title flex="initial">
                             <md-card-title-text>
-                                <span class="md-headline">AUDI A4</span>
-                                <span class="md-subhead">Advancement through Technology</span>
+                                <span class="md-headline">{{product.name}}</span>
+                                <span class="md-subhead">{{product.description}}</span>
                             </md-card-title-text>
                         </md-card-title>
                         <md-card-content>
-                            <div layout="row">
-                                <span class="md-title">$ 99.00</span><span flex></span><span class="md-title">$ 69.00</span>
+                            <div ng-show="product.mode == 'info' || !product.mode">
+                                <div layout="row" class="ii-prices">
+                                    <span class="md-title">$ {{product.price.toFixed(2).toLocaleString()}}</span><span flex></span>
+                                    <span class="md-title">$ {{product.target.toFixed(2).toLocaleString()}}</span>
+                                </div>
+                                <md-progress-linear md-mode="determinate" value="{{product.progress}}" class="md-accent"></md-progress-linear>
                             </div>
-                            <md-progress-linear md-mode="determinate" value="40" class="md-accent"></md-progress-linear>
+                            <div ng-show="product.mode == 'shipping'">
+                                <div layout="row" ng-form name="shippingForm">
+                                    <md-input-container class="md-block" flex="30">
+                                        <label>Postal Code</label>
+                                        <input name="postalCode" ng-model="postalCode" placeholder="3000" required ng-pattern="/^[0-9]{4}$/" md-maxlength="4" ng-change="getQuote()">
+                                    </md-input-container>
+                                    <span flex></span>
+                                    <md-input-container class="md-block" flex="60">
+                                        <span ng-hide="loadingQuote">{{postalDetails || 'Enter / change postal code'}}</span>
+                                        <md-progress-linear ng-show="loadingQuote" class="md-accent"></md-progress-linear>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div ng-show="product.mode == 'social'">
+                                <div layout="row">
+                                    <img src="http://graph.facebook.com/10152734377022123/picture?type=square" class="ii-avatar" alt="Michael Bar" title="Michael Bar"
+                                    />
+                                    <img src="http://graph.facebook.com/10152686035091417/picture?type=square" class="ii-avatar" alt="Michael Bar" title="Michael Bar"
+                                    />
+                                    <a class="ii-more-snappers" href="">and 24 more</a>
+                                </div>
+                            </div>
                             <br>
                             <div layout="row">
                                 <span flex></span>
-                                <md-button class="md-icon-button" aria-label="Activity">
+                                <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'social'}" aria-label="Activity" ng-click="product.mode = 'social'">
                                     <md-icon class="material-icons">people</md-icon>
                                 </md-button>
-                                <md-button class="md-icon-button" aria-label="Shipping Calculation">
+                                <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'shipping'}" aria-label="Shipping Calculation"
+                                ng-click="product.mode = 'shipping'">
                                     <md-icon class="material-icons">local_shipping</md-icon>
                                 </md-button>
-                                <md-button class="md-icon-button md-raised" aria-label="Sale Details">
+                                <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'info' || !product.mode}" aria-label="Sale Details"
+                                ng-click="product.mode = 'info'">
                                     <md-icon class="material-icons">local_offer</md-icon>
                                 </md-button>
                             </div>
                         </md-card-content>
                     </md-card>
                 </div>
-                <div flex="100" flex-gt-xs="50" flex-gt-md="33">
-                    <md-card>
-                        <div>
-                            <img ng-src="https://funsurfer.files.wordpress.com/2008/12/mercedes-benz-mclaren-slr-stirling-moss.jpg?w=450&h=253" class="md-card-image"
-                            alt="Mercedes Benz Mclaren SLR">
-                        </div>
-                        <md-card-title flex="initial">
-                            <md-card-title-text>
-                                <span class="md-headline">Mercedes Benz Mclaren SLR</span>
-                                <span class="md-subhead">The Best or Nothing</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content>
-                            <div layout="row">
-                                <span class="md-title">$ 99.00</span><span flex></span><span class="md-title">$ 69.00</span>
-                            </div>
-                            <md-progress-linear md-mode="determinate" value="70" class="md-accent"></md-progress-linear>
-                            <br>
-                            <div layout="row">
-                                <span flex></span>
-                                <md-button class="md-icon-button" aria-label="Activity">
-                                    <md-icon class="material-icons">people</md-icon>
-                                </md-button>
-                                <md-button class="md-icon-button" aria-label="Shipping Calculation">
-                                    <md-icon class="material-icons">local_shipping</md-icon>
-                                </md-button>
-                                <md-button class="md-icon-button md-raised" aria-label="Sale Details">
-                                    <md-icon class="material-icons">local_offer</md-icon>
-                                </md-button>
-                            </div>
-                        </md-card-content>
-                    </md-card>
-                </div>
-                <div flex="100" flex-gt-xs="50" flex-gt-md="33">
-                    <md-card>
-                        <div>
-                            <img ng-src="http://www.prestigecars.de/wp-content/uploads/2011/02/Kelleners-BMW-5er-M-Sportpaket-2.jpg" class="md-card-image"
-                            alt="BMW 5M">
-                        </div>
-                        <md-card-title flex="initial">
-                            <md-card-title-text>
-                                <span class="md-headline">BMW 5M</span>
-                                <span class="md-subhead">The Ultimate Driving Machine</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content>
-                            <div layout="row">
-                                <span class="md-title">$ 99.00</span><span flex></span><span class="md-title">$ 69.00</span>
-                            </div>
-                            <md-progress-linear md-mode="determinate" value="30" class="md-accent"></md-progress-linear>
-                            <br>
-                            <div layout="row">
-                                <span flex></span>
-                                <md-button class="md-icon-button" aria-label="Activity">
-                                    <md-icon class="material-icons">people</md-icon>
-                                </md-button>
-                                <md-button class="md-icon-button" aria-label="Shipping Calculation">
-                                    <md-icon class="material-icons">local_shipping</md-icon>
-                                </md-button>
-                                <md-button class="md-icon-button md-raised" aria-label="Sale Details">
-                                    <md-icon class="material-icons">local_offer</md-icon>
-                                </md-button>
-                            </div>
-                        </md-card-content>
-                    </md-card>
-                </div>
+
             </div>
         </md-content>
     </div>
@@ -158,8 +138,25 @@
     //         .warnPallet('red');
     });
         
-    app.controller('DemoController', function($scope) {
-        $scope.products = [];
+    app.controller('DemoController', function($scope, $interval) {
+        $scope.products = [
+            { name: 'AUDI A4', description: 'Advancement through Technology', price: 99, target: 69, progress: 40, image: 'http://www.autoblog.nl/files/2012/02/audi-a5-facelift-abt-tuning1.jpg', mode: 'social' },
+            { name: 'BMW M5', description: 'The Ultimate Driving Machine', price: 99, target: 69, progress: 13, image: 'http://www.prestigecars.de/wp-content/uploads/2011/02/Kelleners-BMW-5er-M-Sportpaket-2.jpg' },
+            { name: 'Mercedes Benz Mclaren SLR', description: 'The Best or Nothing', price: 99, target: 69, progress: 55, image: 'https://funsurfer.files.wordpress.com/2008/12/mercedes-benz-mclaren-slr-stirling-moss.jpg?w=450&h=253' },
+        ];
+        
+        $scope.getQuote = function(){
+            if (this.shippingForm.$valid){
+                this.loadingQuote = true;
+                var $element = window.event.srcElement;
+                $element.setAttribute('disabled', 'disabled');
+                var that = this;
+                $interval(function(){ 
+                    that.loadingQuote = false;
+                    that.postalDetails = '$ 13.50, 3-5 business days';
+                    $element.removeAttribute('disabled'); }, 1000);
+            }
+        };
     })
     </script>
 
