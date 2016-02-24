@@ -249,6 +249,7 @@
     <Content Include="Areas\Admin\Views\Product\Sale.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="close.png" />
     <Content Include="Content\admin.css">
       <DependentUpon>admin.less</DependentUpon>
     </Content>
@@ -463,6 +464,11 @@
     <None Include="Properties\PublishProfiles\FS.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="home.html" />
+    <Content Include="jquery.lightbox.min.css" />
+    <Content Include="jquery.lightbox.min.js" />
+    <Content Include="loading.gif" />
+    <Content Include="next.png" />
+    <Content Include="previous.png" />
     <Content Include="product.html" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\app.js" />

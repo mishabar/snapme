@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Open Sans';
-            font-size: 12px;
+            font-size: 13px;
         }
 
             body > div.wrapper {
@@ -142,7 +142,7 @@
                     <div flex-xs flex-gt-xs="50" flex-gt-md="33" ng-repeat="product in products">
                         <md-card>
                             <md-card-content>
-                                <div class="hero" style="background-image: url()" title="{{product.name}}">
+                                <div class="hero" title="{{product.name}}">
                                     <img ng-src="{{product.image}}" title="{{product.name}}" alt="{{product.name}}" />
                                 </div>
                                 <div class="md-title">{{product.name}}</div>
@@ -241,10 +241,10 @@
         app.controller('DemoController', function ($scope, $interval) {
             $scope.products = [
                 { name: 'AUDI A4', description: 'Advancement through Technology', snaps: 13, current_price: 87, price: 99, target: 69, progress: 40, image: 'http://www.autoblog.nl/files/2012/02/audi-a5-facelift-abt-tuning1.jpg', mode: 'social' },
-                { name: 'BMW M5', description: 'The Ultimate Driving Machine', snaps: 3, current_price: 95.1, price: 99, target: 69, progress: 13, image: 'http://www.prestigecars.de/wp-content/uploads/2011/02/Kelleners-BMW-5er-M-Sportpaket-2.jpg' },
+                { name: 'BMW M5', description: 'The Ultimate Driving Machine', snaps: 3, current_price: 95.1, price: 99, target: 69, progress: 13, image: 'http://static.autoblog.nl/images/wp2012/ACS-BMW-M5-F10.jpg' },
                 { name: 'Mercedes Benz Mclaren SLR', description: 'The Best or Nothing', snaps: 19, current_price: 82.5, price: 99, target: 69, progress: 55, image: 'https://funsurfer.files.wordpress.com/2008/12/mercedes-benz-mclaren-slr-stirling-moss.jpg?w=450&h=253' },
                 { name: 'Porcshe Panamera', description: 'Porsche, There is No Substitute', snaps: 12, current_price: 87.5, price: 99, target: 69, progress: 38.5, image: 'http://carstyling.hu/pic/news/news_20090918102823.jpg' },
-            { name: 'Tesla Model S', description: 'Accelerate the advent of sustainable transport', snaps: 3, current_price: 95.1, price: 99, target: 69, progress: 13, image: 'http://avtest.com.ua/uploads/posts/2015-07/medium/1437418236_55ad1052d983e_1437405266.jpg' }
+                { name: 'Tesla Model S', description: 'Accelerate the advent of sustainable transport', snaps: 3, current_price: 95.1, price: 99, target: 69, progress: 13, image: 'http://avtest.com.ua/uploads/posts/2015-07/medium/1437418236_55ad1052d983e_1437405266.jpg' }
             ];
 
             $scope.getQuote = function () {
