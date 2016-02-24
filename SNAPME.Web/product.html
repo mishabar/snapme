@@ -225,7 +225,7 @@
                     </md-card>
                     <md-card ng-if="!gtXS()">
                         <md-card-content layout="column">
-                            <div layout="row">
+                            <div layout="row" layout-wrap>
                                 <div ng-if="$index > 0" flex="50" flex-gt-sm="25" class="hero ii-additional-image" title="{{product.name}}" ng-repeat="image in product.images">
                                     <a href="{{image}}">
                                         <img ng-src="{{image}}" title="{{product.name}}" alt="{{product.name}}" />
