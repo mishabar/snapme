@@ -10,16 +10,23 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,500,700' rel='stylesheet' type='text/css'>
     <link href='jquery.lightbox.min.css' rel='stylesheet' type='text/css'>
     <style>
+        /*body {
+
+
+        }*/
+
         body {
             font-family: 'Open Sans';
-            font-size: 13px;
+            font-size: 1rem;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
         }
 
-            body > div.wrapper {
-                min-height: 100%;
-                height: auto !important;
-                height: 100%;
-            }
+        main {
+            flex: 1;
+            background-color: #fafafa;
+        }
 
         footer {
             background-color: #464646;
@@ -92,9 +99,9 @@
             }
 
         md-card md-card-content img.ii-avatar {
-            margin: 0 6px;
-            height: 40px;
-            width: 40px;
+            margin: 0 4px;
+            height: 50px;
+            width: 50px;
             border-radius: 50%;
         }
 
@@ -123,136 +130,192 @@
             z-index: 1;
         }
 
-        .product-title {
+        .ii-product-title {
             font-size: 24px;
             font-weight: bold;
+        }
+
+        .ii-section-header {
+            text-transform: uppercase;
+            font-weight: normal;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        @media (min-width: 600px) {
+            .flex-gt-xs-70,
+            .layout-gt-xs-row > .flex-gt-xs-70,
+            .layout-row > .flex-gt-xs-70 {
+                max-height: initial;
+            }
         }
     </style>
 </head>
 
-<body ng-app="BlankApp" ng-controller="DemoProductController" ng-cloak style="background-color: #fafafa;">
-    <div class="wrapper">
-        <header>
-            <md-toolbar>
-                <div class="md-toolbar-tools md-accent">
-                    <img src="http://www.iisnap.com/content/images/logo.png" />&nbsp;&nbsp;<span style="color: #000;">Cars</span>
-                    <span class="flex"></span>
-                    <md-button class="md-raised ii-facebook md-button md-ink-ripple">
-                        <md-icon class="fa fa-facebook"></md-icon>
-                        <span hide-xs>Sign In / Register</span>
-                        <span hide-gt-xs>Enter</span>
-                    </md-button>
-                </div>
-            </md-toolbar>
-        </header>
+<body ng-app="BlankApp" ng-controller="DemoProductController" ng-cloak layout="column">
+    <header>
+        <md-toolbar>
+            <div class="md-toolbar-tools md-accent">
+                <img src="http://www.iisnap.com/content/images/logo.png" />&nbsp;&nbsp;<span style="color: #000;">Cars</span>
+                <span class="flex"></span>
+                <md-button class="md-raised ii-facebook md-button md-ink-ripple">
+                    <md-icon class="fa fa-facebook"></md-icon>
+                    <span hide-xs>Sign In / Register</span>
+                    <span hide-gt-xs>Enter</span>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </header>
 
-        <main>
-            <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
-                <div layout="column" layout-gt-xs="row">
-                    <div flex-gt-xs="70">
-                        <md-card>
-                            <md-card-content>
-                                <div class="hero" title="{{product.name}}">
-                                    <a href="{{product.images[0]}}">
-                                        <img ng-src="{{product.images[0]}}" title="{{product.name}}" alt="{{product.name}}" />
+    <main>
+        <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
+            <div layout="column" layout-gt-xs="row">
+                <div flex-gt-xs="70">
+                    <md-card>
+                        <md-card-content>
+                            <div class="hero" title="{{product.name}}">
+                                <a href="{{product.images[0]}}">
+                                    <img ng-src="{{product.images[0]}}" title="{{product.name}}" alt="{{product.name}}" />
+                                </a>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                    <md-card ng-if="gtXS()">
+                        <md-card-content>
+                            <div layout="row" layout-wrap>
+                                <div ng-if="$index > 0" flex="50" flex-gt-sm="25" class="hero ii-additional-image" title="{{product.name}}" ng-repeat="image in product.images">
+                                    <a href="{{image}}">
+                                        <img ng-src="{{image}}" title="{{product.name}}" alt="{{product.name}}" />
                                     </a>
                                 </div>
-                            </md-card-content>
-                        </md-card>
-                        <md-card ng-if="gtXS()">
-                            <md-card-content>
-                                <div layout="row" layout-wrap>
-                                    <div ng-if="$index > 0" flex="50" flex-gt-sm="25" class="hero ii-additional-image" title="{{product.name}}" ng-repeat="image in product.images">
-                                        <a href="{{image}}">
-                                            <img ng-src="{{image}}" title="{{product.name}}" alt="{{product.name}}" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                    <div flex-gt-xs="30">
-                        <md-card>
-                            <md-card-content layout="column">
-                                <div class="product-title">{{product.name}}</div>
-                                <div class="md-subhead">{{product.description}}</div>
-                                <div class="ii-product-details">
-                                    <div layout="row" class="ii-prices">
-                                        <span class="md-title ii-text-crossed">$ {{product.price.toFixed(2).toLocaleString()}}</span>
-                                        <span flex></span>
-                                        <span class="md-title">$ {{product.target.toFixed(2).toLocaleString()}}</span>
-                                    </div>
-                                    <md-progress-linear md-mode="determinate" value="{{product.progress}}" class="md-accent"></md-progress-linear>
-                                    <h2 style="text-align: center; font-size: 24px;">
-                                        <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.current_price.toFixed(2).toLocaleString()}}
-                                    </h2>
-                                    <div layout="row" layout-align="center center">
-                                        <md-button class="md-rasied ii-green ii-large">Join Sale</md-button>
-                                    </div>
-                                </div>
-                            </md-card-content>
-                        </md-card>
-                        <md-card>
-                            <md-card-content layout="column">
-                                <h3>Already joined</h3>
-                                <div layout="row">
-                                    <img src="http://graph.facebook.com/10152734377022123/picture?type=square" class="ii-avatar" alt="Michael Bar" title="Michael Bar" />
-                                    <img src="http://graph.facebook.com/10152686035091417/picture?type=square" class="ii-avatar" alt="Michael Bar" title="Michael Bar" />
-                                </div>
-                            </md-card-content>
-                        </md-card>
-                        <md-card ng-if="!gtXS()">
-                            <md-card-content layout="column">
-                                <div layout="row">
-                                    <div ng-if="$index > 0" flex="50" flex-gt-sm="25" class="hero ii-additional-image" title="{{product.name}}" ng-repeat="image in product.images">
-                                        <a href="{{image}}">
-                                            <img ng-src="{{image}}" title="{{product.name}}" alt="{{product.name}}" />
-                                        </a>
-                                    </div>
-                                </div>
-                            </md-card-content>
-                        </md-card>
-                    </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
                 </div>
-                <div layout="column" layout-gt-xs="row">
-                    <div flex-gt-xs="70">
-                        <md-card>
-                            <md-card-content>
-                                <h3>Further details</h3>
-                                Et sit lorem sonet vidisse, semper cotidieque ne vix? Vix ad nonumes corrumpit, et sea quis
-                                essent necessitatibus, no alia sonet tritani sit. Perpetua partiendo eam id, mei fastidii
-                                erroribus imperdiet ne, vocibus fierent disputationi an qui. Te eum amet nibh mediocrem,
-                                ius ad putent iriure voluptaria, an per commune scripserit? Ei usu rebum autem dicam, ius
-                                nostrum oporteat ad? Vocent tractatos no nec. <br /><br />Odio alii suscipiantur quo et. Per ea ignota
-                                virtute definitionem, persius accusata concludaturque id sed? Omnis consulatu nec te, nam
-                                te splendide aliquando. No corrumpit cotidieque concludaturque sit, mel adhuc dicta appareat
-                                cu. Mea impedit postulant et. <br /><br />Illum dignissim adversarium vel ei, eros regione abhorreant
-                                an vix! At modo latine deterruisset his, case magna delectus vim ad? Et nullam mandamus maluisset
-                                sit, ut dolorum omittam per, vim meis delenit erroribus et. Mea volumus verterem ex, ex libris
-                                constituam eum, pro labores detraxit periculis et! Veniam melius democritum ut vim, duo at
-                                sanctus epicurei?<br /><br />Odio alii suscipiantur quo et. Per ea ignota
-                                virtute definitionem, persius accusata concludaturque id sed? Omnis consulatu nec te, nam
-                                te splendide aliquando. No corrumpit cotidieque concludaturque sit, mel adhuc dicta appareat
-                                cu. Mea impedit postulant et. <br /><br />Illum dignissim adversarium vel ei, eros regione abhorreant
-                                an vix! At modo latine deterruisset his, case magna delectus vim ad? Et nullam mandamus maluisset
-                                sit, ut dolorum omittam per, vim meis delenit erroribus et. Mea volumus verterem ex, ex libris
-                                constituam eum, pro labores detraxit periculis et! Veniam melius democritum ut vim, duo at
-                                sanctus epicurei?<br /><br />Odio alii suscipiantur quo et. Per ea ignota
-                                virtute definitionem, persius accusata concludaturque id sed? Omnis consulatu nec te, nam
-                                te splendide aliquando. No corrumpit cotidieque concludaturque sit, mel adhuc dicta appareat
-                                cu. Mea impedit postulant et. <br /><br />Illum dignissim adversarium vel ei, eros regione abhorreant
-                                an vix! At modo latine deterruisset his, case magna delectus vim ad? Et nullam mandamus maluisset
-                                sit, ut dolorum omittam per, vim meis delenit erroribus et. Mea volumus verterem ex, ex libris
-                                constituam eum, pro labores detraxit periculis et! Veniam melius democritum ut vim, duo at
-                                sanctus epicurei?
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                    <span flex-gt-xs="30"></span>
+                <div flex-gt-xs="30">
+                    <md-card>
+                        <md-card-content layout="column">
+                            <div class="ii-product-title">{{product.name}}</div>
+                            <div class="md-subhead">{{product.description}}</div>
+                            <div class="ii-product-details">
+                                <div layout="row" class="ii-prices">
+                                    <span class="md-title ii-text-crossed">$ {{product.price.toFixed(2).toLocaleString()}}</span>
+                                    <span flex></span>
+                                    <span class="md-title">$ {{product.target.toFixed(2).toLocaleString()}}</span>
+                                </div>
+                                <md-progress-linear md-mode="determinate" value="{{product.progress}}" class="md-accent"></md-progress-linear>
+                                <h2 style="text-align: center; font-size: 24px;">
+                                    <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.current_price.toFixed(2).toLocaleString()}}
+                                </h2>
+                                <div layout="row" layout-align="center center">
+                                    <md-button class="md-rasied ii-green ii-large">Join Sale</md-button>
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <md-card-content layout="column">
+                            <div class="ii-section-header">Already joined</div>
+                            <div layout="row">
+                                <img src="http://graph.facebook.com/10152734377022123/picture?type=square" class="ii-avatar" alt="Michael Bar" title="Michael Bar" />
+                                <img src="http://graph.facebook.com/10152686035091417/picture?type=square" class="ii-avatar" alt="Michael Bar" title="Michael Bar" />
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                    <md-card ng-if="!gtXS()">
+                        <md-card-content layout="column">
+                            <div layout="row">
+                                <div ng-if="$index > 0" flex="50" flex-gt-sm="25" class="hero ii-additional-image" title="{{product.name}}" ng-repeat="image in product.images">
+                                    <a href="{{image}}">
+                                        <img ng-src="{{image}}" title="{{product.name}}" alt="{{product.name}}" />
+                                    </a>
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
                 </div>
             </div>
-        </main>
-    </div>
+            <div layout="column" flex-gt-xs="70">
+                <md-card>
+                    <md-card-content>
+                        <div class="ii-section-header">Further details</div> Et sit lorem sonet vidisse, semper cotidieque ne vix? Vix ad nonumes corrumpit,
+                        et sea quis essent necessitatibus, no alia sonet tritani sit. Perpetua partiendo eam id, mei fastidii
+                        erroribus imperdiet ne, vocibus fierent disputationi an qui. Te eum amet nibh mediocrem, ius ad putent
+                        iriure voluptaria, an per commune scripserit? Ei usu rebum autem dicam, ius nostrum oporteat ad?
+                        Vocent tractatos no nec.
+                        <br />
+                        <br />Odio alii suscipiantur quo et. Per ea ignota virtute definitionem, persius accusata concludaturque
+                        id sed? Omnis consulatu nec te, nam te splendide aliquando. No corrumpit cotidieque concludaturque
+                        sit, mel adhuc dicta appareat cu. Mea impedit postulant et.
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Odio alii suscipiantur quo et. Per ea ignota virtute definitionem, persius accusata concludaturque
+                        id sed? Omnis consulatu nec te, nam te splendide aliquando. No corrumpit cotidieque concludaturque
+                        sit, mel adhuc dicta appareat cu. Mea impedit postulant et.
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Odio alii suscipiantur quo et. Per ea ignota virtute definitionem, persius accusata concludaturque
+                        id sed? Omnis consulatu nec te, nam te splendide aliquando. No corrumpit cotidieque concludaturque
+                        sit, mel adhuc dicta appareat cu. Mea impedit postulant et.
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                        <br />
+                        <br />Illum dignissim adversarium vel ei, eros regione abhorreant an vix! At modo latine deterruisset his,
+                        case magna delectus vim ad? Et nullam mandamus maluisset sit, ut dolorum omittam per, vim meis delenit
+                        erroribus et. Mea volumus verterem ex, ex libris constituam eum, pro labores detraxit periculis et!
+                        Veniam melius democritum ut vim, duo at sanctus epicurei?
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <div layout="row" layout-align="start center">
@@ -288,7 +351,7 @@
 
         app.controller('DemoProductController', function ($scope, $interval, $timeout) {
             $scope.product =
-                { name: 'AUDI A5', description: 'Advancement through Technology', snaps: 13, current_price: 87, price: 99, target: 69, progress: 40, images: ['http://cdn.pinthiscars.com/images/audi-coupe-2012-wallpaper-8.jpg', 'http://1.bp.blogspot.com/-HyZgNa6k6w4/T-YUIIfmkdI/AAAAAAAAALY/85C9u5sWmQU/s1600/White-Color-2012-Audi-A5-Coupe-Site-Back-Pose.jpg', 'http://www.carwallpapers.cc/wp/audi/a5/2011/Audi-A5-Coupe-2011-1600x900-013.jpg', 'https://www.imperial-rac.com/wp-content/uploads/2015/09/Audi-A5-SportBack...jpg', 'http://www.carwallpapers.ru/wp/audi/a5/2009-cabriolet/Audi-A5-Cabriolet-2009-1600x900-002.jpg'], mode: 'social' };
+                { name: 'AUDI A5', description: 'Advancement through Technology', snaps: 13, current_price: 87, price: 99, target: 69, progress: 40, images: ['http://cdn.pinthiscars.com/images/audi-coupe-2012-wallpaper-8.jpg', 'http://1.bp.blogspot.com/-HyZgNa6k6w4/T-YUIIfmkdI/AAAAAAAAALY/85C9u5sWmQU/s1600/White-Color-2012-Audi-A5-Coupe-Site-Back-Pose.jpg', 'http://img1.goodfon.su/original/1600x900/d/c7/rieger-audi-a5-s-line-coupe-7112.jpg', 'https://www.imperial-rac.com/wp-content/uploads/2015/09/Audi-A5-SportBack...jpg', 'http://www.avtodor.su/wp/audi/a5/2011/Audi-A5-Coupe-2011-1600x900-007.jpg'] };
 
             $scope.getQuote = function () {
                 if (this.shippingForm.$valid) {
