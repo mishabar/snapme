@@ -98,10 +98,20 @@
                 border: 2px solid #fff;
             }
 
+        .ii-snap-item {
+            -webkit-flex: 1 1 16.66%;
+            -ms-flex: 1 1 16.66%;
+            flex: 1 1 16.66%;
+            max-width: 16.66%;
+            max-height: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
         md-card md-card-content img.ii-avatar {
-            margin: 0 4px 8px 4px;
-            height: 50px;
-            width: 50px;
+            margin: 0.5rem auto;
+            height: 2rem;
+            width: 2rem;
             border-radius: 50%;
         }
 
@@ -220,6 +230,26 @@
                                 <a href="{{product.images[0]}}">
                                     <img ng-src="{{product.images[0]}}" title="{{product.name}}" alt="{{product.name}}" />
                                 </a>
+                                <div style="position: absolute;right: 0;top: 0;">
+                                    <md-fab-speed-dial md-open="false" md-direction="left" class="md-fling" aria-label="Share">
+                                        <md-fab-trigger>
+                                            <md-button aria-label="Share" class="md-fab md-primary">
+                                                <md-icon class="material-icons">share</md-icon>
+                                            </md-button>
+                                        </md-fab-trigger>
+                                        <md-fab-actions>
+                                            <md-button aria-label="Google+" class="md-fab md-raised md-mini" style="background-color: #dd4b39; color: #fff;">
+                                                <md-icon class="fa fa-google-plus" aria-label="Google+"></md-icon>
+                                            </md-button>
+                                            <md-button aria-label="Twitter" class="md-fab md-raised md-mini" style="background-color: #55acee; color: #fff;">
+                                                <md-icon class="fa fa-twitter" aria-label="Twitter"></md-icon>
+                                            </md-button>
+                                            <md-button aria-label="Facebook" class="md-fab md-raised md-mini" style="background-color: #3b5998; color: #fff;">
+                                                <md-icon class="fa fa-facebook" aria-label="Facebook"></md-icon>
+                                            </md-button>
+                                        </md-fab-actions>
+                                    </md-fab-speed-dial>
+                                </div>
                             </div>
                         </md-card-content>
                     </md-card>
@@ -260,29 +290,10 @@
                         <md-card-content layout="column">
                             <div class="ii-section-header">
                                 Already joined
-                                <div style="position: absolute;right: 0;top: -10px;">
-                                    <md-fab-speed-dial md-open="false" md-direction="left" class="md-fling" aria-label="Share">
-                                        <md-fab-trigger>
-                                            <md-button aria-label="Share" class="md-fab md-primary md-mini">
-                                                <md-icon class="material-icons">share</md-icon>
-                                            </md-button>
-                                        </md-fab-trigger>
-                                        <md-fab-actions>
-                                            <md-button aria-label="Google+" class="md-fab md-raised md-mini" style="background-color: #dd4b39; color: #fff;">
-                                                <md-icon class="fa fa-google-plus" aria-label="Google+"></md-icon>
-                                            </md-button>
-                                            <md-button aria-label="Twitter" class="md-fab md-raised md-mini" style="background-color: #55acee; color: #fff;">
-                                                <md-icon class="fa fa-twitter" aria-label="Twitter"></md-icon>
-                                            </md-button>
-                                            <md-button aria-label="Facebook" class="md-fab md-raised md-mini" style="background-color: #3b5998; color: #fff;">
-                                                <md-icon class="fa fa-facebook" aria-label="Facebook"></md-icon>
-                                            </md-button>
-                                        </md-fab-actions>
-                                    </md-fab-speed-dial>
-                                </div>
+                                <div style="float: right">{{product.snaps.length}}</div>
                             </div>
                             <div layout="row" layout-wrap class="ii-snaps-list">
-                                <div flex="20" ng-repeat="snap in product.snaps">
+                                <div ng-repeat="snap in product.snaps" class="ii-snap-item">
                                     <img ng-src="http://graph.facebook.com/{{snap.id}}/picture?type=square" class="ii-avatar" alt="{{snap.name}}" title="{{snap.name}}" />
                                 </div>
                                 <!--<img src="http://graph.facebook.com/10152686035091417/picture?type=square" class="ii-avatar" alt="Ami Barda" title="Michael Bar"
@@ -343,9 +354,10 @@
                         <div layout="column" ng-hide="showFullDescription" style="position: relative">
                             <div class="show-more-end"></div>
                         </div>
-                        <div layout="column" ng-hide="showFullDescription" layout-align="center center">
+                        <div layout="column" layout-align="center center">
                             <div>
-                                <md-button ng-click="showFullDescription = !showFullDescription">Show more</md-button>
+                                <md-button ng-hide="showFullDescription" ng-click="showFullDescription = !showFullDescription">More</md-button>
+                                <md-button ng-show="showFullDescription" ng-click="showFullDescription = !showFullDescription">Less</md-button>
                             </div>
                         </div>
                     </md-card-content>
@@ -388,7 +400,7 @@
 
         app.controller('DemoProductController', function ($scope, $interval, $timeout) {
             $scope.product =
-                { name: 'AUDI A5', description: 'Advancement through Technology', snaps: 13, current_price: 87, price: 99, target: 69, progress: 40, images: ['http://cdn.pinthiscars.com/images/audi-coupe-2012-wallpaper-8.jpg', 'http://1.bp.blogspot.com/-HyZgNa6k6w4/T-YUIIfmkdI/AAAAAAAAALY/85C9u5sWmQU/s1600/White-Color-2012-Audi-A5-Coupe-Site-Back-Pose.jpg', 'http://img1.goodfon.su/original/1600x900/d/c7/rieger-audi-a5-s-line-coupe-7112.jpg', 'https://www.imperial-rac.com/wp-content/uploads/2015/09/Audi-A5-SportBack...jpg', 'http://www.avtodor.su/wp/audi/a5/2011/Audi-A5-Coupe-2011-1600x900-007.jpg'], snaps: [] };
+                { name: 'AUDI A5', description: 'Advancement through Technology', snaps: 13, current_price: 87, price: 99, target: 69, progress: 40, images: ['http://cdn.pinthiscars.com/images/audi-coupe-2012-wallpaper-8.jpg', 'http://1.bp.blogspot.com/-HyZgNa6k6w4/T-YUIIfmkdI/AAAAAAAAALY/85C9u5sWmQU/s1600/White-Color-2012-Audi-A5-Coupe-Site-Back-Pose.jpg', 'http://img1.goodfon.su/original/1600x900/d/c7/rieger-audi-a5-s-line-coupe-7112.jpg', 'http://3.bp.blogspot.com/-Pspz2Fa60do/T_dfY-KynzI/AAAAAAAAPz8/45kF7MWpn_A/s1600/04b.jpg', 'http://www.avtodor.su/wp/audi/a5/2011/Audi-A5-Coupe-2011-1600x900-007.jpg'], snaps: [] };
             var snaps = [
             {
                 "name": "Dan Amiga",
