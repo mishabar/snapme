@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="HomeController" layout="column">
+    <div hide show-gt-sm style="height: 150px;"></div>
+    <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
+        <md-content layout="column" layout-wrap style="background: transparent;">
+            <h1 flex>We do better together</h1>
+            <h4>Shop with like minded and save on everything you buy</h4>
+            <div class="login-buttons" layout="row" layout-xs="column" layout-align="center center">
+                <form method="POST" action="/Account/ExternalLogin" id="frmFbLogin">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="Facebook" name="provider" value="Facebook" />
+                    <md-button class="md-raised ii-facebook md-button md-ink-ripple" type="submit">
+                        <md-icon class="fa fa-facebook"></md-icon>
+                        <span>Enter with Facebook</span>
+                    </md-button>
+                </form>
+                <span flex="5" hide-xs></span>
+                <md-button class="md-raised ii-google md-button md-ink-ripple" ng-disabled="true" ng-click="login('Google')">
+                    <md-icon class="fa fa-google"></md-icon>
+                    <span>Enter with Google</span>
+                </md-button>
+            </div>
+        </md-content>
+    </div>
+</div>
+
+
+@section footer_scripts
+{
+    <script type="text/javascript" src="~/Scripts/App/home.js"></script>
+}

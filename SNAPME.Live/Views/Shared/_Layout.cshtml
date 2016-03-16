@@ -1,0 +1,123 @@
+﻿@using SNAPME.Live.Helpers;
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg=="
+          crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,500,700' rel='stylesheet' type='text/css'>
+
+    @RenderSection("head", false)
+    <link rel="stylesheet" type="text/css" href="~/content/style.min.css" />
+
+    <link rel="icon" href="~/content/images/favicon.png">
+
+    <title>iiSnap - @(string.IsNullOrWhiteSpace(ViewBag.Title) ? "Social Buying Platform" : ViewBag.Title)</title>
+</head>
+<body ng-app="IISNAP" ng-cloak ng-controller="MainController">
+    @*<div class="wrapper">*@
+        <header>
+            <md-toolbar>
+                <div style="width: 100%; max-width: 1200px; margin: 0 auto; text-align: center;">
+                    <div class="md-toolbar-tools md-accent">
+                        <a href="/">
+                            <img src="~/content/images/logo.png" />
+                        </a>
+                        <span class="flex"></span>
+                        <md-button class="md-primary md-raised" hide-xs ng-click="showHowToDialog($event)" id="btnHowTo" ng-hide="false">
+                            HOW IT WORKS
+                        </md-button>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <md-menu md-position-mode="target-right target" md-offset="-15 38">
+                                <md-button ng-click="$mdOpenMenu($event)" style="color: #000;" aria-label="Account Menu">
+                                    <img src="@User.Identity.GetImageUrl()" />@User.Identity.Name
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button ng-click="logout()" aria-label="Logout">
+                                            <div layout="row">
+                                                <md-icon class="material-icons">exit_to_app</md-icon>
+                                                <p md-menu-align-target flex>Logout</p>
+                                            </div>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "frmLogout", @class = "md-hide" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                        }
+                    </div>
+                </div>
+            </md-toolbar>
+        </header>
+
+        <main>
+            @RenderBody()
+        </main>
+    @*</div>*@
+
+
+    <footer>
+        <div layout="row" layout-align="start center">
+            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                <img src="~/content/images/logo-footer.png" />
+                <div>iiSnap @DateTime.Now.Year. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <!-- Fcaboook -->
+    <script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]',
+            xfbml: true,
+            cookie: true,
+            version: 'v2.5'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    window._au = @Request.IsAuthenticated.ToString().ToLowerInvariant();
+    @if (Request.IsAuthenticated)
+        {
+            <text>
+        window._me = { id: '@User.Identity.GetFacebookId()', name: '@User.Identity.Name'};
+            </text>
+        }
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/App/app.js"></script>
+    @RenderSection("footer_scripts", false)
+
+</body>
+
+</html>

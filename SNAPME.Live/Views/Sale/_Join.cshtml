@@ -1,0 +1,111 @@
+﻿<md-toolbar>
+    <div class="md-toolbar-tools">
+        <img src="/content/images/logo.png" />
+        <span flex></span>
+        <h2>Join Sale</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content class="ii-join-sale-dialog" style="min-width: 640px; max-width:800px;max-height:810px;">
+    <div layout-padding>
+        <div layout="row">
+            <div flex flex-gt-md="40">
+                <div style="width: 100%; height: auto; padding-bottom: 56.25%; background: url({{product.images[0]}}) no-repeat 50% 50%; background-size: {{product.images_mode}};"></div>
+            </div>
+            <div flex-gt-md="5"></div>
+            <div flex flex-gt-md="55">
+                <div class="ii-product-title">{{product.name}}</div>
+                <div class="ii-product-details">
+                    <p>
+                        Current price is $ {{product.current_price.toFixed(2).toLocaleString()}}.
+                    </p>
+                    <p>
+                        Please fill the folowing details to complete the process.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+        <md-tab label="Details">
+            <form name="detailsForm" novalidate>
+                <div layout-gt-sm="row" layout-padding>
+                    <md-input-container flex>
+                        <label>Quantity</label>
+                        <input type="number" required name="quantity" autocomplete="off" ng-model="quantity" ng-min="1" ng-max="3" />
+                        <div ng-messages="detailsForm.quantity.$error" ng-show="detailsForm.quantity.$invalid">
+                            <div ng-message="required">Quantity is required. Valid Quantity is between 1 and 3.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </form>
+        </md-tab>
+        @*<md-tab label="Shipping">
+            <form name="shippingForm">
+                <div layout-padding>
+                    <div class="ii-section-header">Shipping Address</div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>First name</label>
+                            <input ng-model="shipping.firstName">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Last Name</label>
+                            <input ng-model="shipping.lastName">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Address</label>
+                            <input ng-model="shipping.address" required>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input ng-model="shipping.address2" placeholder="Address 2">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>City</label>
+                            <input ng-model="shipping.city">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>State</label>
+                            <md-select ng-model="shipping.state" required>
+                                <md-option ng-repeat="state in states" value="{{state}}">
+                                    {{state}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Postal Code</label>
+                            <input name="postalCode" ng-model="shipping.postalCode" placeholder="2000"
+                                   required ng-pattern="/^[0-9]{4}$/">
+                        </md-input-container>
+                    </div>
+                </div>
+            </form>
+        </md-tab>
+        <md-tab label="Billing">
+
+        </md-tab>*@
+    </md-tabs>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <md-button ng-click="cancel()">
+        Cancel
+    </md-button>
+    <span flex></span>
+    @*<md-button ng-click="prevStep()" ng-disabled="selectedIndex == 0" style="margin-right:20px;">
+        Back
+    </md-button>*@
+    <md-button ng-click="nextStep()" ng-disabled="!validForm()" style="margin-right:20px;">
+        JOIN
+    </md-button>
+</md-dialog-actions>
+
+

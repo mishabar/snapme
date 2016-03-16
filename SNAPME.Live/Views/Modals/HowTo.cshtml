@@ -1,0 +1,20 @@
+﻿<md-dialog-content class="ii-how-to-dialog" style="max-width:580px;max-height:810px; ">
+    <img src="~/Content/Images/Home/howto_banner.jpg" style="max-width: 100%; max-height: 200px;" />
+    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+        <md-tab ng-repeat="tab in tabs"
+                ng-disabled="tab.disabled"
+                label="{{tab.title}}">
+            <div style="text-align: center; min-width: 310px;" layout-padding>
+                <h2>{{tab.title}}</h2>
+                <p ng-bind-html="tab.content"></p>
+            </div>
+        </md-tab>
+    </md-tabs>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="nextSlide()" style="margin-right:20px;">
+        {{tabs[selectedIndex].btn}}
+    </md-button>
+</md-dialog-actions>
+
