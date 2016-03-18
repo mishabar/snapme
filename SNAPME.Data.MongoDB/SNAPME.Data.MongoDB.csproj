@@ -38,12 +38,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Bson">
-      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -66,16 +60,6 @@
     <Compile Include="UserDetailsRepository.cs" />
     <Compile Include="UserPreferencesRepository.cs" />
     <Compile Include="UserSnapsRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MongoDB.AspNet.Identity\MongoDB.AspNet.Identity.csproj">
-      <Project>{a3716ffb-e66a-4a54-bf9b-32d20dd4d0de}</Project>
-      <Name>MongoDB.AspNet.Identity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SNAPME.Data\SNAPME.Data.csproj">
-      <Project>{65e6499f-8e7d-4083-8ed0-e477fedf84d1}</Project>
-      <Name>SNAPME.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

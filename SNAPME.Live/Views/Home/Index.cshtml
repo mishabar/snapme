@@ -2,13 +2,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div ng-controller="HomeController" layout="column">
+@model Dictionary<string, object>
+
+<div ng-controller="HomeController" layout="column" layout-padding ng-init="init(@Model["full_mode"])">
     <div hide show-gt-sm style="height: 150px;"></div>
     <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
         <md-content layout="column" layout-wrap style="background: transparent;">
             <h1 flex>We do better together</h1>
             <h4>Shop with like minded and save on everything you buy</h4>
-            <div class="login-buttons" layout="row" layout-xs="column" layout-align="center center">
+            <div ng-if="fullMode" class="login-buttons" layout="row" layout-xs="column" layout-align="center center">
                 <form method="POST" action="/Account/ExternalLogin" id="frmFbLogin">
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="Facebook" name="provider" value="Facebook" />
@@ -22,6 +24,37 @@
                     <md-icon class="fa fa-google"></md-icon>
                     <span>Enter with Google</span>
                 </md-button>
+            </div>
+            <div ng-if="!fullMode" layout="column" class="ii-beta-registration" layout-padding layout-align="center center">
+                <h5>We are currently in Beta! Leave your email below to receive and invitation.</h5>
+                <md-card>
+                    <md-card-content>
+                        <form name="signUpForm" novalidate ng-submit="signupForBeta()" ng-if="signup.registered == -1">
+                            <div layout="row" layout-xs="column">
+                                <md-input-container flex class="md-block">
+                                    <input ng-model="signup.email" type="email" autofocus autocomplete="off" required />
+                                </md-input-container>
+                                <md-input-container style="margin-top: 6px">
+                                    <md-button class="md-raised md-primary" type="submit" ng-disabled="signUpForm.$invalid">Sign Up</md-button>
+                                </md-input-container>
+                            </div>
+                        </form>
+                        <div style="text-align: center; font-weight: bold;">
+                            <div ng-if="signup.registered == 0" class="md-warn">
+                                It looks like something went wrong...<br />
+                                Please reload the page and try again.
+                            </div>
+                            <div ng-if="signup.registered == 1">
+                                Thanks for your interest!<br />
+                                We are working really hard to allow everyone in.
+                            </div>
+                            <div ng-if="signup.registered == 2">
+                                Thanks for your interest!<br />
+                                It lloks like you have already registered. Please be patient, everybody will be on board soon enough.
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
             </div>
         </md-content>
     </div>

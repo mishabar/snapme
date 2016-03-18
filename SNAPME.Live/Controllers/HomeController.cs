@@ -16,7 +16,7 @@ namespace SNAPME.Live.Controllers
             }
             else
             {
-                return View();
+                return View(new Dictionary<string, object> { {"full_mode", Request.QueryString["mode"] == "full" ? "true" : "false"}});
             }
         }
 

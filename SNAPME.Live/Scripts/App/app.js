@@ -1,4 +1,4 @@
-﻿var app = angular.module('IISNAP', ['ngMaterial', 'ngSanitize', 'ngCookies']);
+﻿var app = angular.module('IISNAP', ['ngMaterial', 'ngSanitize', 'ngCookies', 'BetaRegistrationService']);
 app.config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue')

@@ -20,47 +20,80 @@
 </head>
 <body ng-app="IISNAP" ng-cloak ng-controller="MainController">
     @*<div class="wrapper">*@
-        <header>
-            <md-toolbar>
-                <div style="width: 100%; max-width: 1200px; margin: 0 auto; text-align: center;">
-                    <div class="md-toolbar-tools md-accent">
-                        <a href="/">
-                            <img src="~/content/images/logo.png" />
-                        </a>
-                        <span class="flex"></span>
-                        <md-button class="md-primary md-raised" hide-xs ng-click="showHowToDialog($event)" id="btnHowTo" ng-hide="false">
-                            HOW IT WORKS
-                        </md-button>
-                        @if (Request.IsAuthenticated)
+    <header>
+        <md-toolbar>
+            <div style="width: 100%; max-width: 1200px; margin: 0 auto; text-align: center;">
+                <div class="md-toolbar-tools md-accent">
+                    <a href="/">
+                        <img src="~/content/images/logo.png" />
+                    </a>
+                    <span class="flex"></span>
+                    <md-button class="md-primary md-raised" hide-xs ng-click="showHowToDialog($event)" id="btnHowTo" ng-hide="false">
+                        HOW IT WORKS
+                    </md-button>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <md-menu md-position-mode="target-right target" md-offset="-15 38">
+                            <md-button ng-click="$mdOpenMenu($event)" style="color: #000;" aria-label="Account Menu">
+                                <img src="@User.Identity.GetImageUrl()" />@User.Identity.Name
+                            </md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button class="md-block" aria-label="Invite Friends">
+                                        <div layout="row">
+                                            <md-icon class="material-icons">people</md-icon>
+                                            <p md-menu-align-target flex>Invite Friends</p>
+                                        </div>
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button class="md-block" aria-label="My Snaps">
+                                        <div layout="row">
+                                            <md-icon class="material-icons">shopping_cart</md-icon>
+                                            <p md-menu-align-target flex>My Snaps</p>
+                                        </div>
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button class="md-block" aria-label="Settings">
+                                        <div layout="row">
+                                            <md-icon class="material-icons">settings</md-icon>
+                                            <p md-menu-align-target flex>Settings</p>
+                                        </div>
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button class="md-block" aria-label="Help">
+                                        <div layout="row">
+                                            <md-icon class="material-icons">live_help</md-icon>
+                                            <p md-menu-align-target flex>Help</p>
+                                        </div>
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-divider></md-menu-divider>
+                                <md-menu-item>
+                                    <md-button ng-click="logout()" class="md-block" aria-label="Logout">
+                                        <div layout="row">
+                                            <md-icon class="material-icons">exit_to_app</md-icon>
+                                            <p md-menu-align-target flex>Logout</p>
+                                        </div>
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "frmLogout", @class = "md-hide" }))
                         {
-                            <md-menu md-position-mode="target-right target" md-offset="-15 38">
-                                <md-button ng-click="$mdOpenMenu($event)" style="color: #000;" aria-label="Account Menu">
-                                    <img src="@User.Identity.GetImageUrl()" />@User.Identity.Name
-                                </md-button>
-                                <md-menu-content width="4">
-                                    <md-menu-item>
-                                        <md-button ng-click="logout()" aria-label="Logout">
-                                            <div layout="row">
-                                                <md-icon class="material-icons">exit_to_app</md-icon>
-                                                <p md-menu-align-target flex>Logout</p>
-                                            </div>
-                                        </md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
-                            </md-menu>
-                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "frmLogout", @class = "md-hide" }))
-                            {
-                                @Html.AntiForgeryToken()
-                            }
+                            @Html.AntiForgeryToken()
                         }
-                    </div>
+                    }
                 </div>
-            </md-toolbar>
-        </header>
+            </div>
+        </md-toolbar>
+    </header>
 
-        <main>
-            @RenderBody()
-        </main>
+    <main>
+        @RenderBody()
+    </main>
     @*</div>*@
 
 
@@ -89,32 +122,33 @@
 
     <!-- Fcaboook -->
     <script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]',
-            xfbml: true,
-            cookie: true,
-            version: 'v2.5'
-        });
-    };
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]',
+                xfbml: true,
+                cookie: true,
+                version: 'v2.5'
+            });
+        };
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
-    window._au = @Request.IsAuthenticated.ToString().ToLowerInvariant();
-    @if (Request.IsAuthenticated)
+        window._au = @Request.IsAuthenticated.ToString().ToLowerInvariant();
+        @if (Request.IsAuthenticated)
         {
             <text>
         window._me = { id: '@User.Identity.GetFacebookId()', name: '@User.Identity.Name'};
-            </text>
+        </text>
         }
     </script>
 
+    <script type="text/javascript" src="~/Scripts/App/services.js"></script>
     <script type="text/javascript" src="~/Scripts/App/app.js"></script>
     @RenderSection("footer_scripts", false)
 

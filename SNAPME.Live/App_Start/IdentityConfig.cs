@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using SNAPME.Live.Models;
 using AspNet.Identity.MongoDB;
 using SNAPME.Live.App_Start;
+using MongoDB.Driver;
 
 namespace SNAPME.Live
 {
@@ -42,7 +43,9 @@ namespace SNAPME.Live
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationIdentityContext>()));
+            var mongoDB = (IMongoDatabase)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IMongoDatabase));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(mongoDB.GetCollection<ApplicationUser>("users")));
+
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

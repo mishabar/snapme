@@ -61,12 +61,6 @@
     <Compile Include="UserDetailsToken.cs" />
     <Compile Include="UserPreferencesToken.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SNAPME.Data\SNAPME.Data.csproj">
-      <Project>{65e6499f-8e7d-4083-8ed0-e477fedf84d1}</Project>
-      <Name>SNAPME.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

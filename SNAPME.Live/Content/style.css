@@ -70,7 +70,6 @@ body main {
 body main::after {
   content: '\00a0';
   display: block;
-  margin-top: 1.5em;
   height: 0;
   visibility: hidden;
 }
@@ -352,6 +351,12 @@ md-card-actions .md-button + md-badge {
   color: #fff;
   text-shadow: 1px 1px 2px #000;
 }
+.ii-my-home .ii-community-header {
+  width: 100%;
+  display: block;
+  background-color: #fff;
+  margin: 0 8px;
+}
 .ii-product {
   width: 100%;
 }
@@ -376,12 +381,19 @@ md-card-actions .md-button + md-badge {
     max-height: initial;
   }
 }
-md-whiteframe {
-  margin: 25px;
-  height: 100px;
-  background-color: #F2FCE2;
+.ii-beta-registration h5 {
+  font-size: 1rem;
+  color: #fff;
+  text-shadow: 1px 1px 2px #000;
+  text-align: center;
 }
-md-whiteframe > span {
-  font-size: 1.0em;
+.ii-beta-registration md-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: rgba(254, 254, 254, 0.7);
+  padding: 0;
+}
+.ii-beta-registration md-card .md-errors-spacer {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */
