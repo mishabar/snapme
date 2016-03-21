@@ -42,7 +42,6 @@ namespace SNAPME.Live
             var usersCollection = database.GetCollection<ApplicationUser>("users");
             var rolesCollection = database.GetCollection<IdentityRole>("roles");
             
-            IndexChecks.EnsureUniqueIndexOnUserName(usersCollection);
             IndexChecks.EnsureUniqueIndexOnEmail(usersCollection);
             IndexChecks.EnsureUniqueIndexOnRoleName(rolesCollection);
 

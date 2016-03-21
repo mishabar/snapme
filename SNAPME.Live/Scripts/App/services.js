@@ -4,3 +4,11 @@
             return $http.post('/api/v1/beta/register', { email: email });
         }
     });
+
+
+var ShippingService = angular.module('ShippingService', [])
+    .service('shippingService', function ($http) {
+        this.calculate = function (details) {
+            return $http.post('api/v1/shipping/rates', details);
+        }
+    });

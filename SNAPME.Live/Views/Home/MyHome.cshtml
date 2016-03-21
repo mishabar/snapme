@@ -19,7 +19,7 @@
                             <md-button class="md-primary" href="/community/{{community.name}}">{{community.name}}</md-button>
                         </div>
                         <div layout-xs="column" layout="row" layout-wrap layout-align="center center">
-                            <div flex-xs flex-gt-xs="50" flex-gt-md="33" class="ii-product" ng-repeat="product in community.products">
+                            <div flex-xs flex-gt-xs="50" flex-gt-sm="33" class="ii-product" ng-repeat="product in community.products">
                                 <md-card>
                                     <md-card-content>
                                         <div class="hero" title="{{product.name}}" ng-click="showProduct(product)">
@@ -40,16 +40,26 @@
                                                 </h2>
                                             </div>
                                             <div ng-show="product.mode == 'shipping'">
-                                                <div layout="row" ng-form name="shippingForm">
-                                                    <md-input-container class="md-block" flex="30">
-                                                        <label>Postal Code</label>
-                                                        <input name="postalCode" ng-model="postalCode" placeholder="3000" required ng-pattern="/^[0-9]{4}$/" ng-maxlength="4" ng-change="getQuote()">
-                                                    </md-input-container>
-                                                    <span flex></span>
-                                                    <md-input-container class="md-block" flex="60">
-                                                        <span ng-hide="loadingQuote">{{postalDetails || 'Enter / change postal code'}}</span>
-                                                        <md-progress-linear ng-show="loadingQuote" class="md-accent"></md-progress-linear>
-                                                    </md-input-container>
+                                                <div ng-controller="ShippingController" ng-init="init(product)">
+                                                    <form layout="column" name="shippingForm" class="ii-quick-shipping" novalidate>
+                                                        <div layout="row">
+                                                            <md-input-container class="md-block ii-hide-error-spacer" flex>
+                                                                <label>Postal Code</label>
+                                                                <input name="postalCode" ng-model="details.to_zip" placeholder="3000" autocomplete="off" required ng-pattern="/^[0-9]{4}$/" ng-maxlength="4" ng-disabled="loadingQuote">
+                                                            </md-input-container>
+                                                            <md-input-container>
+                                                                <md-button class="md-icon-button md-raised md-primary" ng-click="getQuote()" ng-disabled="shippingForm.$invalid || loadingQuote">
+                                                                    <md-icon class="material-icons">local_shipping</md-icon>
+                                                                </md-button>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div>
+                                                            <md-input-container class="md-block ii-no-top-margin" flex>
+                                                                <span ng-hide="loadingQuote">{{postalDetails || 'Enter / change postal code'}}</span>
+                                                                <md-progress-linear ng-show="loadingQuote" class="md-accent"></md-progress-linear>
+                                                            </md-input-container>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div ng-show="product.mode == 'social'">
@@ -138,5 +148,6 @@
 
 @section footer_scripts
 {
+    <script type="text/javascript" src="~/Scripts/App/shipping.js"></script>
     <script type="text/javascript" src="~/Scripts/App/myhome.js"></script>
 }

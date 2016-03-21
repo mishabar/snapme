@@ -147,6 +147,13 @@ button.ii-google[disabled] span,
 button.ii-google[disabled] md-icon {
   color: #fff !important;
 }
+.ii-hide-error-spacer .md-errors-spacer {
+  display: none;
+  visibility: hidden;
+}
+.ii-no-top-margin {
+  margin-top: 0;
+}
 .ii-video-wrapper {
   width: 100%;
   max-width: 850px;
@@ -350,12 +357,6 @@ md-card-actions .md-button + md-badge {
   font-weight: normal;
   color: #fff;
   text-shadow: 1px 1px 2px #000;
-}
-.ii-my-home .ii-community-header {
-  width: 100%;
-  display: block;
-  background-color: #fff;
-  margin: 0 8px;
 }
 .ii-product {
   width: 100%;

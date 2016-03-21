@@ -1,16 +1,16 @@
-﻿var app = angular.module('IISNAP', ['ngMaterial', 'ngSanitize', 'ngCookies', 'BetaRegistrationService']);
+﻿var app = angular.module('IISNAP', ['ngMaterial', 'ngSanitize', 'ngCookies', 'BetaRegistrationService', 'ShippingService']);
 app.config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue')
         .accentPalette('amber')
 });
 
-app.controller('MainController', function ($scope, $mdDialog, $cookies, $timeout) {
+app.controller('MainController', function ($scope, $mdDialog, $cookies, $timeout, shippingService) {
     $scope.communities = [
         {
             id: 1, name: 'Beauty', icon: null, banner: { nameClass: "rightMiddle", url: "http://www.lumene.com/sites/all/themes/lumene/images/stellar_look_campaign/model_banner.jpg", position: "50% 88%" },
             products: [
-            { name: 'ghd AIR® HAIRDRYER', description: 'A SALON FINISH 2X FASTER', snaps: 13, current_price: 87, price: 99, target: 69, progress: 40, image_mode: 'cover', image: 'http://www.ghdhair.com/medias/sys_master/products/8811542118430/Hercules_above.jpg' },
+            { name: 'ghd AIR® HAIRDRYER', description: 'A SALON FINISH 2X FASTER', snaps: 13, current_price: 87, price: 99, target: 69, progress: 40, image_mode: 'cover', image: 'http://www.ghdhair.com/medias/sys_master/products/8811542118430/Hercules_above.jpg', shipping_info: { from_zip: 4000, width: 20, length: 20, height: 20, weight: 2 } },
             { name: 'Brow Powder Duo', description: 'By ANASTASIA', snaps: 3, current_price: 95.1, price: 99, target: 69, progress: 13, image_mode: 'contain', image: 'http://dy6g3i6a1660s.cloudfront.net/Oms82f5Ssy9smF0Ued1uTwR-BH4/zb_p.jpg' },
             { name: 'Filmstar Killer Cheekbones', description: 'By CHARLOTTE TILBURY', snaps: 19, current_price: 82.5, price: 99, target: 69, progress: 55, image_mode: 'contain', image: 'http://dy6g3i6a1660s.cloudfront.net/TA7gGCNO3yXeRyduGhIxtwR-BH4/zb_p.jpg' },
             { name: 'Signature Kabuki Set', description: 'By RAE MORRIS', snaps: 12, current_price: 87.5, price: 99, target: 69, progress: 38.5, image_mode: 'contain', image: 'http://dy6g3i6a1660s.cloudfront.net/-fu6I8qh2AhSjquMZJcr8AR-BH4/zb_p-66/rae-morris-signature-kabuki-set.jpg' }

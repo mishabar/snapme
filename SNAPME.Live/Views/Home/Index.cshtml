@@ -26,7 +26,7 @@
                 </md-button>
             </div>
             <div ng-if="!fullMode" layout="column" class="ii-beta-registration" layout-padding layout-align="center center">
-                <h5>We are currently in Beta! Leave your email below to receive and invitation.</h5>
+                <h5>We are currently in Beta! Enter your email and we will put you on the invitation list.</h5>
                 <md-card>
                     <md-card-content>
                         <form name="signUpForm" novalidate ng-submit="signupForBeta()" ng-if="signup.registered == -1">
@@ -45,12 +45,12 @@
                                 Please reload the page and try again.
                             </div>
                             <div ng-if="signup.registered == 1">
-                                Thanks for your interest!<br />
-                                We are working really hard to allow everyone in.
+                                Thank you for your interest!<br />
+                                We will let you know as soon as we go live.
                             </div>
                             <div ng-if="signup.registered == 2">
                                 Thanks for your interest!<br />
-                                It lloks like you have already registered. Please be patient, everybody will be on board soon enough.
+                                It looks like you have already registered. Please be patient, everybody will be on board soon enough.
                             </div>
                         </div>
                     </md-card-content>

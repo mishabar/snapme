@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using AspNet.Identity.MongoDB;
+using System.Collections.Generic;
 
 namespace SNAPME.Live.Models
 {
@@ -9,6 +10,7 @@ namespace SNAPME.Live.Models
     public class ApplicationUser : IdentityUser
     {
         public string ImageUrl { get; set; }
+        public Dictionary<long, object> Communities { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -16,6 +18,8 @@ namespace SNAPME.Live.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             userIdentity.AddClaim(new Claim("ii-image", this.ImageUrl));
             userIdentity.AddClaim(new Claim("fb-id", this.Logins.Find(l => l.LoginProvider == "Facebook").ProviderKey));
+            userIdentity.AddClaim(new Claim("ii-communities", string.Join(",", Communities.Keys)));
+
             // Add custom user claims here
             return userIdentity;
         }

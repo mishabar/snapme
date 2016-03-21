@@ -346,7 +346,12 @@ namespace SNAPME.Live.Controllers
                     //return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
 
                     // Bypass email verification
-                    var user = new ApplicationUser { UserName = loginInfo.ExternalIdentity.Name, Email = loginInfo.Email, ImageUrl = string.Format("//graph.facebook.com/{0}/picture?type=square", loginInfo.Login.ProviderKey) };
+                    var user = new ApplicationUser { 
+                        UserName = loginInfo.ExternalIdentity.Name, 
+                        Email = loginInfo.Email, 
+                        ImageUrl = string.Format("//graph.facebook.com/{0}/picture?type=square", loginInfo.Login.ProviderKey),
+                        Communities = new System.Collections.Generic.Dictionary<long,object>()
+                    };
                     var identityResult = await UserManager.CreateAsync(user);
                     if (identityResult.Succeeded)
                     {
