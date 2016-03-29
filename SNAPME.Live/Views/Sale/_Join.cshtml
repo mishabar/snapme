@@ -43,18 +43,18 @@
                 </div>
             </form>
         </md-tab>
-        @*<md-tab label="Shipping">
+        <md-tab label="Shipping">
             <form name="shippingForm">
                 <div layout-padding>
-                    <div class="ii-section-header">Shipping Address</div>
+                    <div class="ii-section-header">Shipping Details</div>
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>First name</label>
-                            <input ng-model="shipping.firstName">
+                            <input ng-model="shipping.firstName" required>
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Last Name</label>
-                            <input ng-model="shipping.lastName">
+                            <input ng-model="shipping.lastName" required>
                         </md-input-container>
                     </div>
                     <div layout-gt-sm="row">
@@ -71,7 +71,7 @@
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>City</label>
-                            <input ng-model="shipping.city">
+                            <input ng-model="shipping.city" required>
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>State</label>
@@ -91,8 +91,80 @@
             </form>
         </md-tab>
         <md-tab label="Billing">
-
-        </md-tab>*@
+            <form name="billingForm">
+                <div layout-padding>
+                    <div class="ii-section-header">Billing Details</div>
+                    <div layout-gt-sm="row">
+                        $ {{(product.current_price * quantity).toFixed(2).toLocaleString()}} + $ {{shipping.price.toFixed(2).toLocaleString()}}
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Card Number</label>
+                            <input ng-model="billing.cardNumber" ng-model-options="{updateOn: 'blur'}" ui-validate="{invalidCard: 'validCardNumber($modelValue)'}" required>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>MM</label>
+                            <input ng-model="billing.expMonth" name="expMonth" type="number" min="01" max="12" maxlength="2" ng-model-options="{updateOn: 'blur'}" ui-validate="{invliadExp: 'validExpiration(\'M\', $value, billing)'}" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>YYYY</label>
+                            <input ng-model="billing.expYear" name="expYear" type="number" min="@DateTime.Now.Year" max="@(DateTime.Now.Year + 10)" maxlength="4" ng-model-options="{updateOn: 'blur'}" ui-validate="{invliadExp: 'validExpiration(\'Y\', $value, billing)'}" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>CVC</label>
+                            <input ng-model="billing.cvc" type="number" min="000" max="999" maxlength="3" required>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-checkbox md-no-ink aria-label="Same as Shipping Address" ng-model="billing.sameAsShipping" name="sameAsShipping" class="md-primary" ng-change="copyShippingAddress()">
+                            Same as Shipping Address
+                        </md-checkbox>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>First name</label>
+                            <input ng-model="billing.firstName" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Last Name</label>
+                            <input ng-model="billing.lastName" required>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Address</label>
+                            <input ng-model="billing.address" required>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <input ng-model="billing.address2" placeholder="Address 2">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>City</label>
+                            <input ng-model="billing.city" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>State</label>
+                            <md-select ng-model="billing.state" required>
+                                <md-option ng-repeat="state in states" value="{{state}}">
+                                    {{state}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Postal Code</label>
+                            <input name="postalCode" ng-model="billing.postalCode" placeholder="2000"
+                                   required ng-pattern="/^[0-9]{4}$/">
+                        </md-input-container>
+                    </div>
+                </div>
+            </form>
+        </md-tab>
     </md-tabs>
 </md-dialog-content>
 <md-dialog-actions layout="row">
@@ -100,11 +172,11 @@
         Cancel
     </md-button>
     <span flex></span>
-    @*<md-button ng-click="prevStep()" ng-disabled="selectedIndex == 0" style="margin-right:20px;">
+    <md-button ng-click="prevStep()" ng-disabled="selectedIndex == 0" style="margin-right:20px;">
         Back
-    </md-button>*@
+    </md-button>
     <md-button ng-click="nextStep()" ng-disabled="!validForm()" style="margin-right:20px;">
-        JOIN
+        {{nextButtonTitle}}
     </md-button>
 </md-dialog-actions>
 

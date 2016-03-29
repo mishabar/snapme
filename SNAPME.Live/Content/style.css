@@ -275,6 +275,9 @@ md-card-actions .md-button + md-badge {
 .ii-join-sale-dialog md-tabs-wrapper {
   display: none;
 }
+.ii-join-sale-dialog .md-errors-spacer {
+  display: none;
+}
 .ii-snap-item {
   -webkit-flex: 1 1 16.66%;
   -ms-flex: 1 1 16.66%;

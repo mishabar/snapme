@@ -1,6 +1,16 @@
-﻿app.controller('CommunityController', function ($scope, $filter) {
+﻿app.controller('CommunityController', function ($scope, $filter, communityService) {
+    $scope.loading = true;
+    $scope.community = {};
 
     $scope.init = function (communityName) {
-        $scope.community = $filter('filter')($scope.$parent.communities, { name: communityName }, true)[0];
+        communityService.getCommunity(communityName).then(
+            function (response) {
+                $scope.community = response.data;
+                $scope.loading = false;
+            },
+            function (response) {
+                $scope.$parent.communicationError();
+                $scope.loading = false;
+            });
     }
 });

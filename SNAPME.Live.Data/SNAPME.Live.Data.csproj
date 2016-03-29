@@ -63,12 +63,17 @@
   <ItemGroup>
     <Compile Include="Entities\BetaRegistration.cs" />
     <Compile Include="Entities\Community.cs" />
+    <Compile Include="Entities\ObjectState.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Sequence.cs" />
     <Compile Include="Mongo\BetaRegistrationRepository.cs" />
+    <Compile Include="Mongo\CommunityRepository.cs" />
     <Compile Include="Mongo\IDGenerators\NumberSequenceIdGenerator.cs" />
+    <Compile Include="Mongo\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IBetaRegistrationRepository.cs" />
+    <Compile Include="Repositories\ICommunityRepository.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

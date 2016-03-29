@@ -202,7 +202,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BetaController.cs" />
+    <Compile Include="Controllers\Api\CommunityController.cs" />
     <Compile Include="Controllers\Api\PaymentController.cs" />
+    <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\ShippingController.cs" />
     <Compile Include="Controllers\CommunityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Helpers\IdentityHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Api\BetaRegistrationRequest.cs" />
+    <Compile Include="Models\Api\JoinSaleRequest.cs" />
     <Compile Include="Models\Api\ShippingCalculationRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -251,7 +254,9 @@
     <Content Include="Scripts\App\sale.js" />
     <Content Include="Scripts\App\services.js" />
     <Content Include="Scripts\App\shipping.js" />
+    <Content Include="Scripts\App\validation.js" />
     <Content Include="Scripts\External\jquery.lightbox.min.js" />
+    <Content Include="Scripts\External\validate.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

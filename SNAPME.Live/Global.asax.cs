@@ -49,9 +49,14 @@ namespace SNAPME.Live
 
             // Register Repositories
             builder.Register(b => new BetaRegistrationRepository(database)).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(b => new CommunityRepository(database)).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(b => new ProductRepository(database)).AsImplementedInterfaces().InstancePerLifetimeScope();
 
             // Register Services
             builder.Register(b => new BetaRegistrationService(b.Resolve<IBetaRegistrationRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(b => new CommunityService(b.Resolve<ICommunityRepository>(), b.Resolve<IProductRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(b => new ProductService(b.Resolve<IProductRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(b => new PaymentService()).AsImplementedInterfaces().InstancePerLifetimeScope();
             
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
