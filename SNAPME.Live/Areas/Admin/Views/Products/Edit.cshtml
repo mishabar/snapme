@@ -81,7 +81,7 @@
                                             <div layout="column">
                                                 <md-input-container class="md-block">
                                                     <input type="url" placeholder="Image URL" ng-required="$index == 0" name="image_{{$index}}" ng-model="product.images[$index]">
-                                                    <div ng-messages="mediaForm.image_{{$index}}.$error">
+                                                    <div ng-if="$index == 0" ng-messages="mediaForm.image_0.$error">
                                                         <div ng-message="required">This is required.</div>
                                                     </div>
                                                 </md-input-container>
