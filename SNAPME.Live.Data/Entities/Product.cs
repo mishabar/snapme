@@ -24,23 +24,38 @@ namespace SNAPME.Live.Data.Entities
         public string[] images { get; set; }
 
         public SaleDetails sale { get; set; }
-            
-        public ShippingInfo shipping_info { get; set; }
+        public SaleDetails[] old_sales { get; set; }
+        public SaleDetails[] future_sales { get; set; }
+
+        public OriginShippingInfo shipping_info { get; set; }
 
         public ObjectState state { get; set; }
     }
 
-    public class ShippingInfo
+    public class OriginShippingInfo
     {
-        public string from_zip { get; set; }
+        public string zip { get; set; }
         public int width { get; set; }
         public int length { get; set; }
         public int height { get; set; }
         public double weight { get; set; }
     }
 
+    public class DestinationShippingInfo
+    {
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public string address { get; set; }
+        public string address2 { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zip { get; set; }
+    }
+
+
     public class SaleDetails
     {
+        public long sale_id { get; set; }
         public double target { get; set; }
         public double current_price { get; set; }
         public int progress { get; set; }
@@ -58,5 +73,6 @@ namespace SNAPME.Live.Data.Entities
         public string charge_id { get; set; }
         public int product_amount { get; set; }
         public int shipping_amount { get; set; }
+        public DestinationShippingInfo address { get; set; }
     }
 }

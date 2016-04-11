@@ -10,7 +10,10 @@ namespace SNAPME.Live.Services.Interfaces
 {
     public interface ICommunityService
     {
+        Task<IEnumerable<CommunityToken>> ListMyCommunities();
+
         Task<IEnumerable<CommunityToken>> ListCommunities();
+
         Task<CommunityToken> GetCommunity(string name);
     }
 }

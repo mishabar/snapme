@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
+using System.Net.Http;
 
 namespace SNAPME.Live.Helpers
 {

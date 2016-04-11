@@ -62,9 +62,12 @@
     <Compile Include="PaymentService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\BaseProductToken.cs" />
+    <Compile Include="Tokens\CardInfoToken.cs" />
     <Compile Include="Tokens\CommunityToken.cs" />
     <Compile Include="Tokens\FullProductToken.cs" />
     <Compile Include="Tokens\SimpleProductToken.cs" />
+    <Compile Include="Tokens\SnapToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SNAPME.Live.Data\SNAPME.Live.Data.csproj">

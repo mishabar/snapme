@@ -20,7 +20,8 @@ namespace SNAPME.Live.Controllers.Api
                 try
                 {
                     wc.Headers.Add("AUTH-KEY", "7e0a0c60-5d2a-4fa8-983d-8fbc876de831");
-                    var result = wc.DownloadString(string.Format("https://auspost.com.au/api/postage/parcel/domestic/calculate.json?from_postcode=4000&to_postcode={0}&length={1}&width={2}&height={3}&weight={4}&service_code=AUS_PARCEL_REGULAR", request.to_zip, request.length, request.width, request.height, request.weight));
+                    var result = wc.DownloadString(string.Format("https://auspost.com.au/api/postage/parcel/domestic/calculate.json?from_postcode={5}&to_postcode={0}&length={1}&width={2}&height={3}&weight={4}&service_code=AUS_PARCEL_REGULAR", 
+                        request.to_zip, request.length, request.width, request.height, request.weight, request.zip));
                     return Ok(Newtonsoft.Json.JsonConvert.DeserializeObject<object>(result));
                 }
                 catch

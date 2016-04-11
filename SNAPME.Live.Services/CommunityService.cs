@@ -1,4 +1,5 @@
-﻿using SNAPME.Live.Data.Repositories;
+﻿using SNAPME.Live.Data.Entities;
+using SNAPME.Live.Data.Repositories;
 using SNAPME.Live.Services.Interfaces;
 using SNAPME.Live.Services.Tokens;
 using System;
@@ -20,12 +21,20 @@ namespace SNAPME.Live.Services
             _productRepository = productRepository;
         }
 
-        public async Task<IEnumerable<CommunityToken>> ListCommunities()
+        public async Task<IEnumerable<CommunityToken>> ListMyCommunities()
         {
             var communities = await _communityRepository.ListCommunities();
             var products = await _productRepository.GetCommunityProducts(communities.Select(c => c.id).ToArray());
 
             return communities.Select(c => new CommunityToken(c, products.Where(p => p.community_id == c.id)));
+        }
+
+        public async Task<IEnumerable<CommunityToken>> ListCommunities()
+        {
+            var communities = await _communityRepository.ListCommunities();
+            //var products = await _productRepository.GetCommunityProducts(communities.Select(c => c.id).ToArray());
+
+            return communities.Select(c => new CommunityToken(c, Enumerable.Empty<Product>()));
         }
 
         public async Task<CommunityToken> GetCommunity(string name)

@@ -206,6 +206,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BetaController.cs" />
     <Compile Include="Controllers\Api\CommunityController.cs" />
@@ -232,6 +234,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\External\Images\close.png" />
     <Content Include="Content\External\Images\loading.gif" />
     <Content Include="Content\External\Images\next.png" />
@@ -248,10 +252,14 @@
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\my-home-banner.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\App\Admin\product.js" />
+    <Content Include="Scripts\App\Admin\products.js" />
     <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\App\myhome.js" />
     <Content Include="Scripts\App\home.js" />
@@ -261,8 +269,32 @@
     <Content Include="Scripts\App\services.js" />
     <Content Include="Scripts\App\shipping.js" />
     <Content Include="Scripts\App\validation.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\External\jquery.lightbox.min.js" />
+    <Content Include="Scripts\External\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\External\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\External\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\External\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\External\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\External\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\External\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Scripts\External\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\External\tinymce.min.js" />
     <Content Include="Scripts\External\validate.min.js" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\External\skins\lightgray\fonts\tinymce.woff" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -303,14 +335,21 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Content\style.css.map" />
     <Content Include="Content\style.less" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Modals\HowTo.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />

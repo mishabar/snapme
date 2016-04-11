@@ -7,7 +7,7 @@ namespace SNAPME.Live.Models.Api
 {
     public class ShippingCalculationRequest
     {
-        public string from_zip { get; set; }
+        public string zip { get; set; }
         public string to_zip { get; set; }
         public float width { get; set; }
         public float length { get; set; }

@@ -12,5 +12,13 @@ namespace SNAPME.Live.Data.Repositories
         Task<IEnumerable<Product>> GetCommunityProducts(long[] communityIds);
 
         Task<Product> GetProduct(string name);
+
+        Task<Product> GetProduct(long id);
+
+        Task<Snap> Snap(long productId, Snap snap);
+
+        Task<IEnumerable<Product>> GetProducts();
+
+        Task<bool> UpdateProduct(Product product);
     }
 }

@@ -20,11 +20,22 @@ var CommunityService = angular.module('CommunityService', [])
             return $http.get('/api/v1/communities');
         }
 
+        this.getCommunitiesList = function () {
+            return $http.get('/api/v1/communities/list');
+        }
+
         this.getCommunity = function (name) {
             return $http.get('/api/v1/community/' + encodeURI(name));
         }
     });
 
+
+var PaymentService = angular.module('PaymentService', [])
+    .service('paymentService', function ($http) {
+        this.getUserCards = function () {
+            return $http.get('/api/v1/payment/customer/cards');
+        }
+    });
 
 var ProductService = angular.module('ProductService', [])
     .service('productService', function ($http) {
@@ -32,11 +43,20 @@ var ProductService = angular.module('ProductService', [])
             return $http.get('/api/v1/product/' + encodeURI(name));
         }
 
-        this.joinSale = function (id, shipping, quantity, price, stripeToken, sourceId) {
+        this.getAllProducts = function () {
+            return $http.get('/api/v1/products');
+        }
+
+        this.updateProduct = function (product) {
+            return $http.post('/api/v1/product', product);
+        }
+
+        this.joinSale = function (product, shipping, quantity, stripeToken, sourceId) {
             var data = {};
-            data.id = id;
+            data.product_id = product.id;
+            data.product_name = product.name;
+            data.price = product.target;
             data.quantity = quantity;
-            data.price = price;
             data.shipping_price = shipping.price;
             data.stripe_token = stripeToken;
             data.source_id = sourceId;

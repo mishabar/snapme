@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
+using SNAPME.Live.Services.Tokens;
 
 namespace SNAPME.Live.Controllers.Api
 {
@@ -28,7 +29,16 @@ namespace SNAPME.Live.Controllers.Api
         {
             if (!string.IsNullOrWhiteSpace(name))
             {
-                var product = await _productService.GetProduct(name);
+                FullProductToken product = null;
+                long productId = 0;
+                if (long.TryParse(name, out productId))
+                {
+                    product = await _productService.GetProduct(productId);
+                }
+                else
+                {
+                    product = await _productService.GetProduct(name);
+                }
                 if (product == null)
                 {
                     return NotFound();
@@ -42,6 +52,18 @@ namespace SNAPME.Live.Controllers.Api
             return BadRequest("Missing Product Name");
         }
 
+        [Authorize(Roles="iiAdmin"), Route("products"), HttpGet]
+        public async Task<IHttpActionResult> GetProducts()
+        {
+            return Ok(await _productService.GetProducts());
+        }
+
+        [Authorize(Roles = "iiAdmin"), Route("product"), HttpPost]
+        public async Task<IHttpActionResult> UpdateProduct(FullProductToken request)
+        {
+            return Ok(await _productService.UpdateProduct(request));
+        }
+
         [Route("sale/join"), HttpPost, Authorize]
         public async Task<IHttpActionResult> JoinSale(JoinSaleRequest request)
         {
@@ -50,26 +72,35 @@ namespace SNAPME.Live.Controllers.Api
             var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
             var customerIdClaim = user.Claims.Find(c => c.Type == "billing:customer_id");
             string customerId = null;
+            string sourceId = request.source_id;
 
             if (customerIdClaim == null)
             {
                 // create customer
-                customerId = await _paymentService.CreateCustomer(user.Email,
+                var data = await _paymentService.CreateCustomer(user.Email,
                     string.Format("{0}, {1}/{2}", user.UserName, user.Logins.First().LoginProvider, user.Logins.First().ProviderKey),
                     request.stripe_token);
+                customerId = data[0];
+                sourceId = data[1];
+
                 if (customerId == null)
                     return Ok(new { error = new { message = "Error registering payment" } });
 
                 await userManager.AddClaimAsync(user.Id, new System.Security.Claims.Claim("billing:customer_id", customerId));
             }
-            else 
+            else
             {
                 customerId = customerIdClaim.Value;
             }
 
+            string chargeId = await _paymentService.CreateCharge(customerId, sourceId, 
+                (int)Math.Round(100F * (request.price * request.quantity + request.shipping_price), 0),
+                string.Format("{0} plus Shipping", request.product_id));
 
+            var snap = await _productService.JoinSale(request.product_id, User.Identity.GetUserId(), User.Identity.GetUserName(), customerId, chargeId,
+                request.first_name, request.last_name, request.address, request.address2, request.city, request.state, request.zip_code);
 
-            return Ok();
+            return Ok(snap);
         }
     }
 }

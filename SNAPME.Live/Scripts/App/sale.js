@@ -1,4 +1,4 @@
-﻿function JoinSaleDialogController($scope, $timeout, $filter, $mdDialog, shippingService, productService, product) {
+﻿function JoinSaleDialogController($scope, $timeout, $filter, $mdDialog, shippingService, productService, paymentService, product) {
 
     $scope.product = product;
     $scope.joining = false;
@@ -6,7 +6,8 @@
     $scope.nextButtonTitle = "Next";
     $scope.quantity = 1;
     $scope.shipping = {};
-    $scope.billing = {};
+    $scope.billing = { cardId: null };
+    $scope.cards = [];
     $scope.states = ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"];
 
     $scope.nextStep = function () {
@@ -20,33 +21,49 @@
                 .then(function (response) {
                     $scope.shipping.price = response.data.postage_result.total_cost;
                 });
+            paymentService.getUserCards()
+                .then(function (response) {
+                    $scope.cards = response.data;
+                    if ($scope.cards.length > 0) {
+                        $scope.billing.cardId = $scope.cards[0].id;
+                    }
+                });
         } else if ($scope.selectedIndex == 3) {
             $scope.joining = true;
-            Stripe.card.createToken({
-                number: $scope.billing.cardNumber,
-                cvc: $scope.billing.cvc,
-                exp_month: $scope.billing.expMonth,
-                exp_year: $scope.billing.expYear,
-                name: $scope.billing.firstName + ' ' + $scope.billing.lastName,
-                address_line1: $scope.billing.address,
-                address_line2: $scope.billing.address2,
-                address_city: $scope.billing.city,
-                address_state: $scope.billing.state,
-                address_zip: $scope.billing.postalCode,
-                address_country: "AU"
-            }, function (status, stripeResponse) {
-                if (stripeResponse.error) {
-                    $scope.joining = false;
-                    $scope.error = stripeResponse.error.message;
-                } else {
-                    productService.joinSale($scope.product.id, $scope.shipping, $scope.quantity, product.current_price, stripeResponse.id)
-                        .then(function (response) {
-                            $scope.joining = false;
-                        }, function (response) {
-                            $scope.joining = false;
-                        })
-                }
-            });
+            if ($scope.billing.cardId == 'new card') {
+                Stripe.card.createToken({
+                    number: $scope.billing.cardNumber,
+                    cvc: $scope.billing.cvc,
+                    exp_month: $scope.billing.expMonth,
+                    exp_year: $scope.billing.expYear,
+                    name: $scope.billing.firstName + ' ' + $scope.billing.lastName,
+                    address_line1: $scope.billing.address,
+                    address_line2: $scope.billing.address2,
+                    address_city: $scope.billing.city,
+                    address_state: $scope.billing.state,
+                    address_zip: $scope.billing.postalCode,
+                    address_country: "AU"
+                }, function (status, stripeResponse) {
+                    if (stripeResponse.error) {
+                        $scope.joining = false;
+                        $scope.error = stripeResponse.error.message;
+                    } else {
+                        productService.joinSale($scope.product, $scope.shipping, $scope.quantity, stripeResponse.id, null)
+                            .then(function (response) {
+                                $scope.joining = false;
+                            }, function (response) {
+                                $scope.joining = false;
+                            })
+                    }
+                });
+            } else {
+                productService.joinSale($scope.product, $scope.shipping, $scope.quantity, null, $scope.billing.cardId)
+                    .then(function (response) {
+                        $scope.joining = false;
+                    }, function (response) {
+                        $scope.joining = false;
+                    })
+            }
         }
     }
 

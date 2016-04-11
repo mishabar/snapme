@@ -99,68 +99,85 @@
                     </div>
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
-                            <label>Card Number</label>
-                            <input ng-model="billing.cardNumber" ng-model-options="{updateOn: 'blur'}" ui-validate="{invalidCard: 'validCardNumber($modelValue)'}" required>
-                        </md-input-container>
-                    </div>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>MM</label>
-                            <input ng-model="billing.expMonth" name="expMonth" type="number" min="01" max="12" maxlength="2" ng-model-options="{updateOn: 'blur'}" ui-validate="{invliadExp: 'validExpiration(\'M\', $value, billing)'}" required>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>YYYY</label>
-                            <input ng-model="billing.expYear" name="expYear" type="number" min="@DateTime.Now.Year" max="@(DateTime.Now.Year + 10)" maxlength="4" ng-model-options="{updateOn: 'blur'}" ui-validate="{invliadExp: 'validExpiration(\'Y\', $value, billing)'}" required>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>CVC</label>
-                            <input ng-model="billing.cvc" type="number" min="000" max="999" maxlength="3" required>
-                        </md-input-container>
-                    </div>
-                    <div layout-gt-sm="row">
-                        <md-checkbox md-no-ink aria-label="Same as Shipping Address" ng-model="billing.sameAsShipping" name="sameAsShipping" class="md-primary" ng-change="copyShippingAddress()">
-                            Same as Shipping Address
-                        </md-checkbox>
-                    </div>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>First name</label>
-                            <input ng-model="billing.firstName" required>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Last Name</label>
-                            <input ng-model="billing.lastName" required>
-                        </md-input-container>
-                    </div>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Address</label>
-                            <input ng-model="billing.address" required>
-                        </md-input-container>
-                    </div>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <input ng-model="billing.address2" placeholder="Address 2">
-                        </md-input-container>
-                    </div>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>City</label>
-                            <input ng-model="billing.city" required>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>State</label>
-                            <md-select ng-model="billing.state" required>
-                                <md-option ng-repeat="state in states" value="{{state}}">
-                                    {{state}}
+                            <label>Select Card</label>
+                            <md-select ng-model="billing.cardId">
+                                <md-option ng-repeat="card in cards" value="{{card.id}}">
+                                    <div>
+                                        <span flex>{{card.brand}} ending in {{card.last4}}</span>{{card.expiration}}
+                                    </div>
+                                </md-option>
+                                <md-option>
+                                    Add new...
                                 </md-option>
                             </md-select>
                         </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Postal Code</label>
-                            <input name="postalCode" ng-model="billing.postalCode" placeholder="2000"
-                                   required ng-pattern="/^[0-9]{4}$/">
-                        </md-input-container>
+                    </div>
+                    <div ng-if="billing.cardId == null">
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Card Number</label>
+                                <input ng-model="billing.cardNumber" ng-model-options="{updateOn: 'blur'}" ui-validate="{invalidCard: 'validCardNumber($modelValue)'}" required>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>MM</label>
+                                <input ng-model="billing.expMonth" name="expMonth" type="number" min="01" max="12" maxlength="2" ng-model-options="{updateOn: 'blur'}" ui-validate="{invliadExp: 'validExpiration(\'M\', $value, billing)'}" required>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>YYYY</label>
+                                <input ng-model="billing.expYear" name="expYear" type="number" min="@DateTime.Now.Year" max="@(DateTime.Now.Year + 10)" maxlength="4" ng-model-options="{updateOn: 'blur'}" ui-validate="{invliadExp: 'validExpiration(\'Y\', $value, billing)'}" required>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>CVC</label>
+                                <input ng-model="billing.cvc" type="number" min="000" max="999" maxlength="3" required>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-checkbox md-no-ink aria-label="Same as Shipping Address" ng-model="billing.sameAsShipping" name="sameAsShipping" class="md-primary" ng-change="copyShippingAddress()">
+                                Same as Shipping Address
+                            </md-checkbox>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>First name</label>
+                                <input ng-model="billing.firstName" required>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Last Name</label>
+                                <input ng-model="billing.lastName" required>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Address</label>
+                                <input ng-model="billing.address" required>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <input ng-model="billing.address2" placeholder="Address 2">
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>City</label>
+                                <input ng-model="billing.city" required>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>State</label>
+                                <md-select ng-model="billing.state" required>
+                                    <md-option ng-repeat="state in states" value="{{state}}">
+                                        {{state}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Postal Code</label>
+                                <input name="postalCode" ng-model="billing.postalCode" placeholder="2000"
+                                       required ng-pattern="/^[0-9]{4}$/">
+                            </md-input-container>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -179,5 +196,3 @@
         {{nextButtonTitle}}
     </md-button>
 </md-dialog-actions>
-
-

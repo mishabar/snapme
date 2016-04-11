@@ -1,4 +1,4 @@
-﻿var app = angular.module('IISNAP', ['ngMaterial', 'ngSanitize', 'ngCookies', 'ui.validate', 'BetaRegistrationService', 'ShippingService', 'CommunityService', 'ProductService']);
+﻿var app = angular.module('IISNAP', ['ngMaterial', 'ngSanitize', 'ngCookies', 'ui.validate', 'ui.tinymce', 'BetaRegistrationService', 'ShippingService', 'CommunityService', 'ProductService', 'PaymentService']);
 app.config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('blue')
@@ -6,6 +6,14 @@ app.config(function ($mdThemingProvider) {
 });
 
 app.controller('MainController', function ($scope, $mdDialog, $cookies, $timeout, shippingService) {
+    $scope.tinymceOptions = {
+        trusted: true,
+        plugins: 'image table',
+        skin: 'lightgray',
+        theme: 'modern',
+        height: 530
+    };
+
     //$scope.communities = [
     //    {
     //        id: 1, name: 'Beauty', icon: null, banner: { nameClass: "rightMiddle", url: "http://www.lumene.com/sites/all/themes/lumene/images/stellar_look_campaign/model_banner.jpg", position: "50% 88%" },
@@ -37,6 +45,8 @@ app.controller('MainController', function ($scope, $mdDialog, $cookies, $timeout
     //        }
     //    }
     //];
+
+    $scope.bodyColor = 'transparent';
 
     $scope.mysnapbox = [
         { name: 'FUGOO Style - Portable Bluetooth Speaker', url: 'http://www.amazon.com/dp/B00IBJ3MWU', wants: 34, image_mode: 'contain', image: 'http://ecx.images-amazon.com/images/I/81NdkRIsfGL._SL1500_.jpg' },

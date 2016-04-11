@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="AdminProductsController" layout="column" class="ii-admin ii-admin-products">
+    <div style="width: 100%; max-width: 1200px; margin: 0 auto;" layout-padding>
+        <div class="md-display-1">Products List</div>
+        <md-list ng-cloak>
+            <md-list-item ng-repeat="product in products" class="secondary-button-padding md-3-line md-long-text">
+                <div style="border: 1px solid #f1f1f1; width: 320px; height: 180px; margin-right: 20px; background: url({{product.image}}) no-repeat 50% 50%; background-size: {{product.images_mode}};"></div>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ product.name }}</h3>
+                    <h4>{{ product.description }}</h4>
+                    <p>${{ product.price.toFixed(2).toLocaleString() }}</p>
+                </div>
+                <md-button class="md-secondary" ng-href="/Admin/Product/{{product.id}}">Edit</md-button>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>
+
+
+
+@section footer_scripts
+{
+    <script type="text/javascript" src="~/Scripts/App/Admin/products.js"></script>
+}

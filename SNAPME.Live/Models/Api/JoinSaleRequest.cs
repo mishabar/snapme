@@ -7,7 +7,8 @@ namespace SNAPME.Live.Models.Api
 {
     public class JoinSaleRequest
     {
-        public long id { get; set; }
+        public long product_id { get; set; }
+        public string product_name { get; set; }
         public int quantity { get; set; }
         public double price { get; set; }
         public double shipping_price { get; set; }

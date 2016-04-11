@@ -70,6 +70,18 @@
                                         </div>
                                     </md-button>
                                 </md-menu-item>
+                                @if (User.IsInRole("iiAdmin"))
+                                {
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item>
+                                        <md-button href="/Admin/Products" class="md-block" aria-label="Manage">
+                                            <div layout="row">
+                                                <md-icon class="material-icons">tune</md-icon>
+                                                <p md-menu-align-target flex>Manage</p>
+                                            </div>
+                                        </md-button>
+                                    </md-menu-item>
+                                }
                                 <md-menu-divider></md-menu-divider>
                                 <md-menu-item>
                                     <md-button ng-click="logout()" class="md-block" aria-label="Logout">
@@ -91,7 +103,8 @@
         </md-toolbar>
     </header>
 
-    <main>
+
+    <main style="background-color: {{bodyColor || 'transparent'}}">
         @RenderBody()
     </main>
     @*</div>*@
@@ -107,12 +120,12 @@
     </footer>
 
     <!-- Angular Material requires Angular.js Libraries -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-sanitize.min.js"></script>
 
     <!-- Angular Material Library -->
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>
@@ -122,7 +135,7 @@
 
     <!-- Fcaboook -->
     <script>
-        window.fbAsyncInit = function () {
+        @*window.fbAsyncInit = function () {
             FB.init({
                 appId: '@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]',
                 xfbml: true,
@@ -139,7 +152,7 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        window._au = @Request.IsAuthenticated.ToString().ToLowerInvariant();
+        window._au = @Request.IsAuthenticated.ToString().ToLowerInvariant();*@
         @if (Request.IsAuthenticated)
         {
             <text>
@@ -148,6 +161,7 @@
         }
     </script>
 
+    <script type="text/javascript" src="~/Scripts/External/tinymce.min.js"></script>
     <script type="text/javascript" src="~/Scripts/App/services.js"></script>
     <script type="text/javascript" src="~/Scripts/External/validate.min.js"></script>
     <script type="text/javascript" src="~/Scripts/App/app.js"></script>
@@ -156,5 +170,6 @@
     @RenderSection("footer_scripts", false)
 
 </body>
+
 
 </html>

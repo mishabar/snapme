@@ -21,6 +21,20 @@ namespace SNAPME.Live.Controllers.Api
 
 
         [Route("communities"), HttpGet]
+        public async Task<IHttpActionResult> MyCommunities()
+        {
+            try
+            {
+                return Ok(await _communityService.ListMyCommunities());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+
+        [Route("communities/list"), HttpGet]
         public async Task<IHttpActionResult> ListCommunities()
         {
             try

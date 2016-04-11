@@ -5,6 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
+using SNAPME.Live.Services.Tokens;
 
 namespace SNAPME.Live.Controllers.Api
 {
@@ -12,13 +15,21 @@ namespace SNAPME.Live.Controllers.Api
     [Authorize]
     public class PaymentController : ApiController
     {
-        [Route("customer/{id}/cards"), HttpGet]
-        public IHttpActionResult GetCustomerCards(string id)
+        [Route("customer/cards"), HttpGet]
+        public async Task<IHttpActionResult> GetCustomerCards()
         {
-            var customerService = new StripeCustomerService();
-            StripeCustomer stripeCustomer = customerService.Get(id);
+            var userManager = Request.GetOwinContext().Get<ApplicationUserManager>("AspNet.Identity.Owin:" + typeof(ApplicationUserManager).AssemblyQualifiedName);
+            var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
+            var customerIdClaim = user.Claims.Find(c => c.Type == "billing:customer_id");
+            if (customerIdClaim != null)
+            {
+                var customerService = new StripeCustomerService();
+                StripeCustomer stripeCustomer = customerService.Get(customerIdClaim.Value);
 
-            return Ok(stripeCustomer.SourceList.Data);
+                return Ok(stripeCustomer.SourceList.Data.Select(c => new CardInfoToken(c)));
+            }
+
+            return Ok(new CardInfoToken[0]);
         }
 
         [Route("customer/{id}/charge"), HttpGet]
