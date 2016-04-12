@@ -32,11 +32,11 @@
                                                 <div layout="row" class="ii-prices">
                                                     <span class="md-title ii-text-crossed">$ {{product.price.toFixed(2).toLocaleString()}}</span>
                                                     <span flex></span>
-                                                    <span class="md-title">$ {{product.target.toFixed(2).toLocaleString()}}</span>
+                                                    <span class="md-title">$ {{product.sale.target.toFixed(2).toLocaleString()}}</span>
                                                 </div>
-                                                <md-progress-linear md-mode="determinate" value="{{product.progress}}" class="md-accent"></md-progress-linear>
+                                                <md-progress-linear md-mode="determinate" value="{{product.sale.progress}}" class="md-accent"></md-progress-linear>
                                                 <h2 style="text-align: center; font-size: 24px;">
-                                                    <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.current_price.toFixed(2).toLocaleString()}}
+                                                    <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.sale.current_price.toFixed(2).toLocaleString()}}
                                                 </h2>
                                             </div>
                                             <div ng-show="product.mode == 'shipping'">
@@ -64,7 +64,7 @@
                                             </div>
                                             <div ng-show="product.mode == 'social'">
                                                 <div layout="row">
-                                                    <img ng-repeat="snap in product.snaps" ng-src="http://graph.facebook.com/{{snap.external_user_id}}/picture?type=square" class="ii-avatar" alt="{{snap.name}}" title="{{snap.name}}" />
+                                                    <img ng-repeat="snap in product.sale.snaps" ng-src="http://graph.facebook.com/{{snap.external_user_id}}/picture?type=square" class="ii-avatar" alt="{{snap.name}}" title="{{snap.name}}" />
                                                 </div>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@
                                         <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'social'}" aria-label="Activity" ng-click="product.mode = 'social'">
                                             <md-icon class="material-icons">people</md-icon>
                                         </md-button>
-                                        <md-badge>{{product.snaps_count}}</md-badge>
+                                        <md-badge>{{product.sale.snaps_count}}</md-badge>
                                         <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'shipping'}" aria-label="Shipping Calculation"
                                                    ng-click="product.mode = 'shipping'">
                                             <md-icon class="material-icons">local_shipping</md-icon>

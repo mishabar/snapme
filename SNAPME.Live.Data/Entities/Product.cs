@@ -61,6 +61,10 @@ namespace SNAPME.Live.Data.Entities
         public int progress { get; set; }
         public Snap[] snaps { get; set; }
         public int snaps_count { get; set; }
+        public ObjectState state { get; set; }
+        public int stock { get; set; }
+        public DateTime starts_on { get; set; }
+        public DateTime ends_on { get; set; }
     }
 
     public class Snap

@@ -66,6 +66,7 @@
     <Compile Include="Tokens\CardInfoToken.cs" />
     <Compile Include="Tokens\CommunityToken.cs" />
     <Compile Include="Tokens\FullProductToken.cs" />
+    <Compile Include="Tokens\SaleToken.cs" />
     <Compile Include="Tokens\SimpleProductToken.cs" />
     <Compile Include="Tokens\SnapToken.cs" />
   </ItemGroup>

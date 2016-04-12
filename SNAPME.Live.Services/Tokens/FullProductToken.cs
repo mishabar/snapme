@@ -17,10 +17,6 @@ namespace SNAPME.Live.Services.Tokens
         {
             images = product.images;
             full_details = product.full_details;
-            if (product.sale != null)
-            {
-                snaps = product.sale.snaps;
-            }
         }
 
         public FullProductToken()

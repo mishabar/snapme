@@ -9,10 +9,7 @@ namespace SNAPME.Live.Services.Tokens
 {
     public class SimpleProductToken : BaseProductToken
     {
-        public double current_price { get; set; }
-        public int progress { get; set; }
-        public int snaps_count { get; set; }
-        public Snap[] snaps { get; set; }
+        public SaleToken sale { get; set; }
 
         public OriginShippingInfo shipping_info { get; set; }
 
@@ -21,11 +18,7 @@ namespace SNAPME.Live.Services.Tokens
         {
             if (product.sale != null)
             {
-                target = product.sale.target;
-                current_price = product.sale.current_price;
-                progress = product.sale.progress;
-                snaps_count = product.sale.snaps_count;
-                snaps = product.sale.snaps.Take(25).ToArray();
+                sale = new SaleToken(product.sale);
             }
 
             shipping_info = product.shipping_info;

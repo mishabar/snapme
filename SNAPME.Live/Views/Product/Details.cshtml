@@ -64,11 +64,11 @@
                             <div layout="row" class="ii-prices">
                                 <span class="md-title ii-text-crossed">$ {{product.price.toFixed(2).toLocaleString()}}</span>
                                 <span flex></span>
-                                <span class="md-title">$ {{product.target.toFixed(2).toLocaleString()}}</span>
+                                <span class="md-title">$ {{product.sale.target.toFixed(2).toLocaleString()}}</span>
                             </div>
-                            <md-progress-linear md-mode="determinate" value="{{product.progress}}" class="md-accent"></md-progress-linear>
+                            <md-progress-linear md-mode="determinate" value="{{product.sale.progress}}" class="md-accent"></md-progress-linear>
                             <h2 style="text-align: center; font-size: 24px;">
-                                <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.current_price.toFixed(2).toLocaleString()}}
+                                <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.sale.current_price.toFixed(2).toLocaleString()}}
                             </h2>
                             <div layout="row" layout-align="center center">
                                 <md-button ng-hide="iJoined()" class="md-rasied ii-green ii-large" ng-click="joinSale()">Join Sale</md-button>
@@ -81,10 +81,10 @@
                     <md-card-content layout="column">
                         <div class="ii-section-header">
                             Already joined
-                            <div style="float: right">{{product.snaps.length}}</div>
+                            <div style="float: right">{{product.sale.snaps_count}}</div>
                         </div>
                         <div layout="row" layout-wrap class="ii-snaps-list">
-                            <div ng-repeat="snap in product.snaps" class="ii-snap-item">
+                            <div ng-repeat="snap in product.sale.snaps" class="ii-snap-item">
                                 <img ng-src="http://graph.facebook.com/{{snap.id}}/picture?type=square" class="ii-avatar" alt="{{snap.name}}" title="{{snap.name}}" />
                             </div>
                             <div class="show-more-end-wrapper">
