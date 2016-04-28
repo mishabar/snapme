@@ -53,6 +53,19 @@ namespace SNAPME.Live.Data.Entities
     }
 
 
+    public enum SaleState
+    {
+        Ended,
+        Active,
+        Future
+    }
+
+    public enum SaleType
+    {
+        Stock,
+        Time
+    } 
+
     public class SaleDetails
     {
         public long sale_id { get; set; }
@@ -61,10 +74,12 @@ namespace SNAPME.Live.Data.Entities
         public int progress { get; set; }
         public Snap[] snaps { get; set; }
         public int snaps_count { get; set; }
-        public ObjectState state { get; set; }
+        public SaleState state { get; set; }
         public int stock { get; set; }
+        public int required_snaps { get; set; }
         public DateTime starts_on { get; set; }
         public DateTime ends_on { get; set; }
+        public SaleType sale_type { get; set; }
     }
 
     public class Snap

@@ -112,7 +112,7 @@
                                     <input required ng-pattern="/^[0-9]{4}$/" name="zip" ng-model="product.shipping_info.zip">
                                     <div ng-messages="shippingForm.zip.$error">
                                         <div ng-message="required">This is required.</div>
-                                        <div ng-pattern="md-maxlength">The zip has to have 4 digits.</div>
+                                        <div ng-message="pattern">The zip has to have 4 digits.</div>
                                     </div>
                                 </md-input-container>
                                 <md-input-container class="md-block" flex flex-gt-sm="20">
@@ -156,6 +156,84 @@
                     </form>
 
                     <md-progress-circular ng-if="loadingSales" md-mode="indeterminate"></md-progress-circular>
+                    <div ng-if="activeSale != null">
+                        <md-card>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">
+                                        Active Sale
+                                        <md-icon ng-show="activeSale.sale_type == 0" class="material-icons">widgets</md-icon>
+                                        <md-icon ng-show="activeSale.sale_type == 1" class="material-icons">alarm</md-icon>
+                                    </span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <div layout="column" layout-gt-sm="row">
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Started On</label>
+                                        <span>{{activeSale.starts_on | date : 'dd/MM/yyyy HH:mm'}}</span>
+                                    </md-input-container>
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Ends On</label>
+                                        <span>{{activeSale.ends_on | date : 'dd/MM/yyyy HH:mm'}}</span>
+                                    </md-input-container>
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Stock</label>
+                                        <span>{{activeSale.stock == -1 ? 'Unlimited' : activeSale.stock}}</span>
+                                    </md-input-container>
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Snaps</label>
+                                        <span>{{activeSale.snaps_count}}</span>
+                                    </md-input-container>
+                                </div>
+                                <div layout="column" layout-gt-sm="row">
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Current Price</label>
+                                        <span>{{activeSale.current_price.toFixed(2).toLocaleString()}}</span>
+                                    </md-input-container>
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Target Price</label>
+                                        <span>{{activeSale.target.toFixed(2).toLocaleString()}}</span>
+                                    </md-input-container>
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Progress</label>
+                                        <span>{{activeSale.progress}}%</span>
+                                    </md-input-container>
+                                    <md-input-container class="md-input-has-value" flex>
+                                        <label>Required Snaps</label>
+                                        <span>{{activeSale.required_snaps}}</span>
+                                    </md-input-container>
+                                </div>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div layout="row">
+                        <span flex></span>
+                        <md-button class="md-raised md-primary" ng-click="scheduleNewSale($event)">Schedule a Sale</md-button>
+                    </div>
+                    <div ng-if="futureSales.length > 0">
+                        <md-card>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">
+                                        Future Sales
+                                    </span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <md-list>
+                                    <md-list-item class="md-2-line" ng-repeat="sale in futureSales">
+                                        <md-icon ng-show="sale.sale_type == 0" class="material-icons">widgets</md-icon>
+                                        <md-icon ng-show="sale.sale_type == 1" class="material-icons">alarm</md-icon>
+                                        <div class="md-list-item-text" layout="column">
+                                            <h4>{{ sale.starts_on  | date : 'dd/MM/yyyy HH:mm'}} - {{sale.ends_on  | date : 'dd/MM/yyyy HH:mm'}}</h4>
+                                            <p>$ {{ sale.target.toFixed(2).toLocaleString() }}</p>
+                                        </div>
+                                    </md-list-item>
+                                </md-list>
+                            </md-card-content>
+                        </md-card>
+                    </div>
                 </md-content>
             </md-tab>
             <md-tab label="Discussions">

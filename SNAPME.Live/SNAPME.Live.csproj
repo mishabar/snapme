@@ -220,6 +220,7 @@
     <Compile Include="Controllers\ModalsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Controllers\SnapBoxAppController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,6 +228,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Api\BetaRegistrationRequest.cs" />
     <Compile Include="Models\Api\JoinSaleRequest.cs" />
+    <Compile Include="Models\Api\SaveSaleRequest.cs" />
     <Compile Include="Models\Api\ShippingCalculationRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -253,6 +255,12 @@
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\my-home-banner.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\snapboxapp.css">
+      <DependentUpon>snapboxapp.less</DependentUpon>
+    </Content>
+    <Content Include="Content\snapboxapp.min.css">
+      <DependentUpon>snapboxapp.css</DependentUpon>
+    </Content>
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css" />
     <Content Include="favicon.ico" />
@@ -292,6 +300,11 @@
     <Content Include="Scripts\External\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Scripts\External\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Scripts\External\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Areas\Admin\Views\Products\ScheduleSale.cshtml" />
+    <Content Include="Content\snapboxapp.less" />
+    <Content Include="Content\snapboxapp.css.map">
+      <DependentUpon>snapboxapp.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -300,6 +313,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SnapBoxApp\app.js" />
+    <Content Include="Scripts\SnapBoxApp\services.js" />
+    <Content Include="Scripts\SnapBoxApp\snapboxappcontroller.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -336,6 +352,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\SnapBoxApp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

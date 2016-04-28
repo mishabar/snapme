@@ -1,0 +1,89 @@
+﻿<md-toolbar>
+    <div class="md-toolbar-tools">
+        <img src="/content/images/logo.png" />
+        <span flex></span>
+        <h2>Schedule a Sale</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-dialog-content class="ii-schedule-sale-dialog">
+    <form name="scheduleSaleForm" novalidate layout-padding>
+        <div layout="column" layout-gt-sm="row">
+            <div flex="50">
+                <md-datepicker md-min-date="minStartDate" name="starts_on" ng-model="sale.starts_on" md-placeholder="Enter start date" ng-required ng-change="calculateMinDates()"></md-datepicker>
+                <div class="validation-messages" ng-messages="scheduleSaleForm.starts_on.$error">
+                    <div ng-message="required">This date is required!</div>
+                    <div ng-message="mindate">Date is too early!</div>
+                    <div ng-message="maxdate">Date is too late!</div>
+                </div>
+            </div>
+            <div flex="50">
+                <md-datepicker md-min-date="minEndDate" name="ends_on" ng-model="sale.ends_on" md-placeholder="Enter end date" ng-required ng-disabled="sale.starts_on == null"></md-datepicker>
+                <div class="validation-messages" ng-messages="scheduleSaleForm.ends_on.$error">
+                    <div ng-message="required">This date is required!</div>
+                    <div ng-message="mindate">Date is too early!</div>
+                    <div ng-message="maxdate">Date is too late!</div>
+                </div>
+            </div>
+        </div>
+        <div layout="column">
+            <md-input-container class="md-block">
+                <label>Sale Type</label>
+                <md-select ng-model="sale.sale_type" name="sale_type">
+                    <md-option ng-repeat="type in types" value="{{type.id}}">
+                        {{type.name}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="scheduleSaleForm.sale_type.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" ng-if="sale.sale_type == 0">
+                <label>Stock Quantity</label>
+                <input type="number" min="1" step="1" required name="stock" ng-model="sale.stock">
+                <div ng-messages="scheduleSaleForm.stock.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" ng-if="sale.sale_type == 1">
+                <label>Snaps to reach target price</label>
+                <input type="number" min="1" step="1" required name="required_snaps" ng-model="sale.required_snaps">
+                <div ng-messages="scheduleSaleForm.required_snaps.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+            <div layout="column" layout-gt-sm="row">
+                <div flex="50">
+                    <md-input-container class="md-block  md-input-has-value">
+                        <label>Price</label>
+                        <span>{{product.price.toFixed(2).toLocaleString()}}</span>
+                    </md-input-container>
+                </div>
+                <div flex="50">
+                    <md-input-container class="md-block">
+                        <label>Target Price</label>
+                        <input type="number" min="1.00" step="0.01" required name="target" ng-model="sale.target">
+                        <div ng-messages="scheduleSaleForm.target.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+    </form>
+</md-dialog-content>
+<md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()">
+        Cancel
+    </md-button>
+    <md-button ng-if="sale.id == 0" ng-click="create()" ng-disabled="scheduleSaleForm.$invalid">
+        Create
+    </md-button>
+    <md-button ng-if="sale.id != 0" ng-click="update()" ng-disabled="scheduleSaleForm.$invalid">
+        Update
+    </md-button>
+</md-dialog-actions>

@@ -20,5 +20,9 @@ namespace SNAPME.Live.Services.Interfaces
             string shippingCity, string shippingState, string shippingZip);
 
         Task<IEnumerable<BaseProductToken>> GetProducts();
+
+        Task<IEnumerable<SaleToken>> GetSales(long id);
+
+        Task<bool> SaveSale(long product_id, SaleToken saleToken);
     }
 }

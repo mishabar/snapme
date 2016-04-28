@@ -20,5 +20,9 @@ namespace SNAPME.Live.Data.Repositories
         Task<IEnumerable<Product>> GetProducts();
 
         Task<bool> UpdateProduct(Product product);
+
+        Task<IEnumerable<SaleDetails>> GetSales(long id);
+
+        Task<bool> SaveSale(long product_id, SaleDetails saleDetails);
     }
 }

@@ -250,7 +250,7 @@
         }).then(function(quantity) {
             addSnapper(quantity, window._me);
         }, function() {
-        });;
+        });
     }
 
     $scope.iJoined = function () {

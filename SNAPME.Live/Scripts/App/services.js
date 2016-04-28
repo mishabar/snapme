@@ -43,12 +43,26 @@ var ProductService = angular.module('ProductService', [])
             return $http.get('/api/v1/product/' + encodeURI(name));
         }
 
+        this.getProductSales = function (id) {
+            return $http.get('/api/v1/product/' + id + '/sales');
+        }
+
         this.getAllProducts = function () {
             return $http.get('/api/v1/products');
         }
 
         this.updateProduct = function (product) {
             return $http.post('/api/v1/product', product);
+        }
+
+        this.createSale = function (product_id, sale) {
+            var data = sale;
+            sale.product_id = product_id;
+            return $http.post('/api/v1/product/' + product_id + '/sales', data);
+        }
+
+        this.updateSale = function (product_id, sale) {
+            return $http.post('/api/v1/product/' + product_id + '/sales', { sale: sale });
         }
 
         this.joinSale = function (product, shipping, quantity, stripeToken, sourceId) {

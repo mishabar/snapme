@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using SNAPME.Live.Services.Tokens;
+using SNAPME.Live.Data.Entities;
 
 namespace SNAPME.Live.Controllers.Api
 {
@@ -62,6 +63,27 @@ namespace SNAPME.Live.Controllers.Api
         public async Task<IHttpActionResult> UpdateProduct(FullProductToken request)
         {
             return Ok(await _productService.UpdateProduct(request));
+        }
+
+        [Authorize(Roles = "iiAdmin"), Route("product/{id}/sales"), HttpGet]
+        public async Task<IHttpActionResult> GetProductSales(long id)
+        {
+            return Ok(await _productService.GetSales(id));
+        }
+
+        [Authorize(Roles = "iiAdmin"), Route("product/{id}/sales"), HttpPost]
+        public async Task<IHttpActionResult> SaveSale(SaveSaleRequest request)
+        {
+            return Ok(await _productService.SaveSale(request.product_id, new SaleToken{ 
+                sale_id = request.sale_id,
+                starts_on = request.starts_on,
+                ends_on = request.ends_on,
+                sale_type = request.sale_type,
+                stock = request.stock,
+                required_snaps = request.required_snaps,
+                target = request.target,
+                state = SaleState.Future
+            }));
         }
 
         [Route("sale/join"), HttpPost, Authorize]

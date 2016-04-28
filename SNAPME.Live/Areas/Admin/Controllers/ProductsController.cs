@@ -22,5 +22,12 @@ namespace SNAPME.Live.Areas.Admin.Controllers
         {
             return View(new Dictionary<string, object> { { "id", id } });
         }
+
+        // Get: Admin/Product/Sale
+        [Route("Product/Sale")]
+        public PartialViewResult ScheduleSale()
+        {
+            return PartialView("ScheduleSale");
+        }
     }
 }

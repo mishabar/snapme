@@ -400,4 +400,7 @@ md-card-actions .md-button + md-badge {
 .ii-beta-registration md-card .md-errors-spacer {
   display: none;
 }
+.ii-schedule-sale-dialog {
+  width: 500px;
+}
 /*# sourceMappingURL=style.css.map */

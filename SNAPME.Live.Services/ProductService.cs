@@ -45,8 +45,8 @@ namespace SNAPME.Live.Services
         }
 
 
-        public async Task<SnapToken> JoinSale(long productId, string userId, string userName, string customerId, string chargeId, 
-            string shippingFirstName, string shippingLastName, string shippingAddress, string shippingAddress2, string shippingCity, 
+        public async Task<SnapToken> JoinSale(long productId, string userId, string userName, string customerId, string chargeId,
+            string shippingFirstName, string shippingLastName, string shippingAddress, string shippingAddress2, string shippingCity,
             string shippingState, string shippingZip)
         {
             return null;
@@ -76,6 +76,28 @@ namespace SNAPME.Live.Services
         public async Task<IEnumerable<BaseProductToken>> GetProducts()
         {
             return (await _productRepository.GetProducts()).Select(p => new BaseProductToken(p));
+        }
+
+
+        public async Task<IEnumerable<SaleToken>> GetSales(long id)
+        {
+            return (await _productRepository.GetSales(id)).Select(s => new SaleToken(s, true));
+        }
+
+
+        public async Task<bool> SaveSale(long product_id, SaleToken sale)
+        {
+            return (await _productRepository.SaveSale(product_id, new SaleDetails
+            {
+                sale_id = sale.sale_id,
+                target = sale.target,
+                state = sale.state,
+                sale_type = sale.sale_type,
+                required_snaps = sale.required_snaps,
+                stock = sale.stock,
+                starts_on = sale.starts_on,
+                ends_on = sale.ends_on
+            }));
         }
     }
 }

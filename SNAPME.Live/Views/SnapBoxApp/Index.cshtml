@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>iiSnap SnapBox Application</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/Content/snapboxapp.min.css">
+</head>
+<body ng-app="IISNAPBOXAPP" ng-cloak ng-controller="SnapBoxAppController">
+
+    <div flex class="container" layout="column">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <img src="~/Content/Images/logo.png" />
+            </div>
+        </md-toolbar>
+        <md-tabs flex md-stretch-tabs="always" md-selected="data.selectedIndex" md-align-tabs="bottom">
+            <md-tab id="discover">
+                <md-tab-label><md-icon class="material-icons">location_searching</md-icon></md-tab-label>
+                <md-tab-body>
+                    <md-content>
+                        <md-card>
+                            <md-card-header>
+                                <md-card-avatar>
+                                    <img src="~/Content/Images/favicon.png" />
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span class="md-title">iiSnap</span>
+                                    <span class="md-subhead">Snapbox Application</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <img ng-src="~/Content/Images/Home/group.jpg" class="md-card-image" alt="Sample" />
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">Group buying platform</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                214 snappers
+                            </md-card-content>
+                        </md-card>
+                        <md-card>
+                            <md-card-header>
+                                <md-card-avatar>
+                                    <img src="~/Content/Images/favicon.png" />
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span class="md-title">iiSnap</span>
+                                    <span class="md-subhead">Snapbox Application</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <img ng-src="~/Content/Images/Home/group.jpg" class="md-card-image" alt="Sample" />
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">Group buying platform</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                24 snappers
+                            </md-card-content>
+                        </md-card>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <md-tab id="mybox">
+                <md-tab-label><md-icon class="material-icons">archive</md-icon></md-tab-label>
+                <md-tab-body layout-padding>
+                    View for Item #1 <br />
+                    data.selectedIndex = 0;
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+    </div>
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-sanitize.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/SnapBoxApp/services.js"></script>
+    <script type="text/javascript" src="~/Scripts/External/validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/SnapBoxApp/app.js"></script>
+    <script type="text/javascript" src="~/Scripts/SnapBoxApp/snapboxappcontroller.js"></script>
+</body>
+</html>
