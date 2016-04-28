@@ -9,6 +9,7 @@ window.addEventListener("load", function () {
     // Set a timeout...
     setTimeout(function () {
         // Hide the address bar!
+        document.body.style.height = screen.availHeight + 'px';
         window.scrollTo(0, 1);
     }, 0);
 });
