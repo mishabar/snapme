@@ -38,7 +38,7 @@
                     Select Category
                 </p>
                 <div layout="column">
-                    <md-button ng-repeat="category in categories" md-no-ink class="md-primary" ng-click="selectCategory(category)">{{cateogry}}</md-button>
+                    <md-button ng-repeat="category in categories" md-no-ink class="md-primary" ng-click="selectCategory($index)">{{category.name}}</md-button>
                 </div>
             </md-content>
         </md-sidenav>
@@ -47,7 +47,7 @@
                 <md-tab-label><md-icon class="material-icons">location_searching</md-icon></md-tab-label>
                 <md-tab-body>
                     <md-content>
-                        <md-card ng-repeat="product in products">
+                        <md-card ng-repeat="product in filteredProducts">
                             <md-card-header>
                                 <md-card-avatar>
                                     <img ng-src="{{product.supplier.image}}" />
