@@ -256,6 +256,7 @@
     <Content Include="Content\Images\my-home-banner.png" />
     <Content Include="Content\Images\SnapApp\asus.png" />
     <Content Include="Content\Images\SnapApp\ice.jpg" />
+    <Content Include="Content\Images\SnapApp\sephora.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\snapboxapp.css">
       <DependentUpon>snapboxapp.less</DependentUpon>
