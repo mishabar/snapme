@@ -13,7 +13,7 @@
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/Content/snapboxapp.min.css">
 </head>
 <body ng-app="IISNAPBOXAPP" ng-cloak ng-controller="SnapBoxAppController">
@@ -21,9 +21,27 @@
     <div flex class="container" layout="column">
         <md-toolbar>
             <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleSidenav()">
+                    <md-icon class="material-icons">menu</md-icon>
+                </md-button>
                 <img src="~/Content/Images/logo.png" />
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Alerts">
+                    <md-icon class="material-icons" style="color: rgba(0,0,0,0.12)" ng-if="alerts.length == 0">notifications_none</md-icon>
+                    <md-icon class="material-icons" ng-if="alerts.length > 0">notifications_active</md-icon>
+                </md-button>
             </div>
         </md-toolbar>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="sideNav">
+            <md-content layout-padding>
+                <p>
+                    Select Category
+                </p>
+                <div layout="column">
+                    <md-button ng-repeat="category in categories" md-no-ink class="md-primary" ng-click="selectCategory(category)">{{cateogry}}</md-button>
+                </div>
+            </md-content>
+        </md-sidenav>
         <md-tabs flex md-stretch-tabs="always" md-selected="data.selectedIndex" md-align-tabs="bottom">
             <md-tab id="discover">
                 <md-tab-label><md-icon class="material-icons">location_searching</md-icon></md-tab-label>
@@ -36,17 +54,11 @@
                                 </md-card-avatar>
                                 <md-card-header-text>
                                     <span class="md-title">{{product.supplier.name}}</span>
-                                    <span class="md-subhead">{{product.category}}</span>
+                                    <span class="md-subhead">{{product.supplier.category}}</span>
                                 </md-card-header-text>
                             </md-card-header>
                             <div class="ii-image" layout-padding>
                                 <div class="ii-product-image" style="background-image: url({{product.image}})"></div>
-                                @*<img ng-src="{{product.image}}" class="md-card-image" alt="{{product.name}}" />*@
-                                <div class="ii-snap-like" layout="row" layout-align="center center">
-                                    <md-button class="md-icon-button" aria-label="Like">
-                                        <md-icon class="material-icons">favorite_border</md-icon>
-                                    </md-button>
-                                </div>
                             </div>
                             <md-card-title>
                                 <md-card-title-text>
@@ -54,7 +66,17 @@
                                 </md-card-title-text>
                             </md-card-title>
                             <md-card-content>
-                                {{product.likes}} likes
+                                <div layout="row" layout-align="center center">
+                                    <span>{{product.wants}} wants</span>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" aria-label="Want" ng-click="toggleBox(product)">
+                                        <md-icon class="material-icons" ng-if="product.want == false">favorite_border</md-icon>
+                                        <md-icon class="material-icons" ng-if="product.want == true">favorite</md-icon>
+                                    </md-button>
+                                    <md-button class="md-icon-button" aria-label="Share" href="intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={{encodeUriComponent('http://www.iisnap.com/product/' + product.name)}};S.android.intent.extra.SUBJECT={{encodeUriComponent(product.name)}};end">
+                                        <md-icon class="material-icons">share</md-icon>
+                                    </md-button>
+                                </div>
                             </md-card-content>
                         </md-card>
                     </md-content>
@@ -64,44 +86,39 @@
                 <md-tab-label><md-icon class="material-icons">archive</md-icon></md-tab-label>
                 <md-tab-body>
                     <md-content>
-                        <md-card>
+                        <div layout-padding ng-if="mybox.length == 0" layout-align="center center">
+                            <p>You don't have any products in your Snap Box.</p>
+                        </div>
+                        <md-card ng-repeat="product in mybox">
                             <md-card-header>
                                 <md-card-avatar>
-                                    <img src="~/Content/Images/favicon.png" />
+                                    <img ng-src="{{product.supplier.image}}" />
                                 </md-card-avatar>
                                 <md-card-header-text>
-                                    <span class="md-title">iiSnap</span>
-                                    <span class="md-subhead">Snapbox Application</span>
+                                    <span class="md-title">{{product.supplier.name}}</span>
+                                    <span class="md-subhead">{{product.supplier.category}}</span>
                                 </md-card-header-text>
                             </md-card-header>
-                            <img ng-src="~/Content/Images/Home/group.jpg" class="md-card-image" alt="Sample" />
+                            <div class="ii-image" layout-padding>
+                                <div class="ii-product-image" style="background-image: url({{product.image}})"></div>
+                            </div>
                             <md-card-title>
                                 <md-card-title-text>
-                                    <span class="md-headline">Group buying platform</span>
+                                    <span class="md-headline">{{product.name}}</span>
                                 </md-card-title-text>
                             </md-card-title>
                             <md-card-content>
-                                214 snappers
-                            </md-card-content>
-                        </md-card>
-                        <md-card>
-                            <md-card-header>
-                                <md-card-avatar>
-                                    <img src="~/Content/Images/favicon.png" />
-                                </md-card-avatar>
-                                <md-card-header-text>
-                                    <span class="md-title">iiSnap</span>
-                                    <span class="md-subhead">Snapbox Application</span>
-                                </md-card-header-text>
-                            </md-card-header>
-                            <img ng-src="~/Content/Images/Home/group.jpg" class="md-card-image" alt="Sample" />
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">Group buying platform</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                            <md-card-content>
-                                24 snappers
+                                <div layout="row" layout-align="center center">
+                                    <span>{{product.wants}} wants</span>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" aria-label="Want" ng-click="toggleBox(product)">
+                                        <md-icon class="material-icons" ng-if="product.want == false">favorite_border</md-icon>
+                                        <md-icon class="material-icons" ng-if="product.want == true">favorite</md-icon>
+                                    </md-button>
+                                    <md-button class="md-icon-button" aria-label="Share" href="intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={{encodeUriComponent('http://www.iisnap.com/product/' + product.name)}};S.android.intent.extra.SUBJECT={{encodeUriComponent(product.name)}};end">
+                                        <md-icon class="material-icons">share</md-icon>
+                                    </md-button>
+                                </div>
                             </md-card-content>
                         </md-card>
                     </md-content>
