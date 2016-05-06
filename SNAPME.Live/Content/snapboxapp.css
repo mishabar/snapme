@@ -16,6 +16,24 @@ md-toolbar:not(.md-menu-toolbar) {
   min-height: 48px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
+.md-toolbar-tools .md-icon-button {
+  margin: 0;
+  padding: 8px 0;
+}
+md-sidenav .ii-user-info {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+md-sidenav .ii-user-info .ii-avatar {
+  border-radius: 50%;
+}
+md-sidenav .md-button {
+  margin: 0 8px;
+  display: block;
+  text-align: left;
+}
+md-sidenav .md-button md-icon {
+  margin-right: 15px;
+}
 md-tabs-wrapper {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }

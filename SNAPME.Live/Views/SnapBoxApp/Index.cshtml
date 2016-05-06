@@ -24,25 +24,82 @@
                 <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleSidenav()">
                     <md-icon class="material-icons">menu</md-icon>
                 </md-button>
-                <img src="~/Content/Images/logo.png" />
+                <img style="height: 27px;" src="~/Content/Images/logo.png" />
                 <span flex></span>
-                <md-button class="md-icon-button" aria-label="Alerts">
+                <md-button class="md-icon-button" aria-label="Alerts" style="width: 24px;">
                     <md-icon class="material-icons" style="color: rgba(0,0,0,0.12)" ng-if="alerts.length == 0">notifications_none</md-icon>
                     <md-icon class="material-icons" ng-if="alerts.length > 0">notifications_active</md-icon>
                 </md-button>
+                <md-menu md-position-mode="target-right target" md-offset="0 35">
+                    <md-button aria-label="Categories" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <md-icon md-menu-origin class="material-icons">style</md-icon>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="category in categories">
+                            <md-button md-no-ink class="md-primary" ng-click="selectCategory($index)">{{category.name}}</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
             </div>
         </md-toolbar>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="sideNav">
-            <md-content layout-padding>
-                <p>
-                    Select Category
-                </p>
+            <md-content>
+                <div layout-padding layout-align="start center" layout="row" class="ii-user-info">
+                    <img class="ii-avatar" ng-src="//graph.facebook.com/10152734377022123/picture?type=square" />
+                    <div class="md-title">Michael Bar</div>
+                </div>
                 <div layout="column">
-                    <md-button ng-repeat="category in categories" md-no-ink class="md-primary" ng-click="selectCategory($index)">{{category.name}}</md-button>
+                    <div><md-button flex md-no-ink href="#"><md-icon class="material-icons">settings</md-icon>Settings</md-button></div>
+                    <md-divider></md-divider>
+                    <div><md-button flex md-no-ink href="#"><md-icon class="material-icons">exit_to_app</md-icon>Log out</md-button></div>
                 </div>
             </md-content>
         </md-sidenav>
         <md-tabs flex md-stretch-tabs="always" md-selected="data.selectedIndex" md-align-tabs="bottom">
+            <md-tab id="auctions">
+                <md-tab-label><md-icon class="material-icons">gavel</md-icon></md-tab-label>
+                <md-tab-body>
+                    <md-content>
+                        <md-card ng-repeat="product in activeSales">
+                            <md-card-header>
+                                <md-card-avatar>
+                                    <img ng-src="{{product.supplier.image}}" />
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span class="md-title">{{product.supplier.name}}</span>
+                                    <span class="md-subhead">{{product.supplier.category}}</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <div class="ii-image" layout-padding>
+                                <div class="ii-product-image" style="background-image: url({{product.image}})"></div>
+                            </div>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{product.name}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <div layout="row" class="ii-prices">
+                                    <span class="md-title ii-text-crossed">$ 99.99</span>
+                                    <span flex></span>
+                                    <span class="md-title">$ 69.99</span>
+                                </div>
+                                <md-progress-linear md-mode="determinate" value="50" class="md-accent"></md-progress-linear>
+                                <h2 style="text-align: center; font-size: 24px;">
+                                    <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;84.99
+                                </h2>
+                                <div layout="row" layout-align="center center">
+                                    <span>{{product.snaps}} snaps</span>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" aria-label="Share" href="intent:#Intent;action=android.intent.action.SEND;type=text/plain;S.android.intent.extra.TEXT={{encodeUriComponent('http://www.iisnap.com/product/' + product.name)}};S.android.intent.extra.SUBJECT={{encodeUriComponent(product.name)}};end">
+                                        <md-icon class="material-icons">share</md-icon>
+                                    </md-button>
+                                </div>
+                            </md-card-content>
+                        </md-card>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
             <md-tab id="discover">
                 <md-tab-label><md-icon class="material-icons">location_searching</md-icon></md-tab-label>
                 <md-tab-body>
@@ -122,6 +179,12 @@
                             </md-card-content>
                         </md-card>
                     </md-content>
+                </md-tab-body>
+            </md-tab>
+            <md-tab id="cart">
+                <md-tab-label><md-icon class="material-icons">shopping_cart</md-icon></md-tab-label>
+                <md-tab-body>
+                    <md-content>My Snaps</md-content>
                 </md-tab-body>
             </md-tab>
         </md-tabs>
