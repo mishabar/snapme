@@ -13,9 +13,10 @@ namespace SNAPME.Live.Services.Interfaces
 
         Task<FullProductToken> GetProduct(string name);
         Task<FullProductToken> GetProduct(long productId);
-        Task<bool> UpdateProduct(FullProductToken request);
+        Task<long> SaveProduct(FullProductToken fullProductToken);
+        Task<bool> UpdateProduct(FullProductToken fullProductToken);
 
-        Task<SnapToken> JoinSale(long productId, string userId, string useName, string customerId, string chargeId,
+        Task<SnapToken> JoinSale(long productId, string userId, string imageUrl, string useName, string customerId, string chargeId,
             string shippingFirstName, string shippingLastName, string shippingAddress, string shippingAddress2,
             string shippingCity, string shippingState, string shippingZip);
 

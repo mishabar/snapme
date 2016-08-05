@@ -34,6 +34,11 @@ namespace SNAPME.Live.Data.Entities
 
     public class OriginShippingInfo
     {
+        public string address { get; set; }
+        public string address2 { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string country { get; set; }
         public string zip { get; set; }
         public int width { get; set; }
         public int length { get; set; }
@@ -50,6 +55,7 @@ namespace SNAPME.Live.Data.Entities
         public string city { get; set; }
         public string state { get; set; }
         public string zip { get; set; }
+        public string country { get; set; }
     }
 
 
@@ -85,6 +91,7 @@ namespace SNAPME.Live.Data.Entities
     public class Snap
     {
         public string user_id { get; set; }
+        public string image_url { get; set; }
         public string external_user_id { get; set; }
         public DateTime snapped_at { get; set; }
         public string name { get; set; }

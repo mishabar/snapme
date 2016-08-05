@@ -1,0 +1,52 @@
+﻿<div layout="column" flex>
+    <md-tabs>
+        <md-tab ng-repeat="category in categories" md-on-select="changeCategory(category)">
+            <md-tab-label>{{category.name}}</md-tab-label>
+        </md-tab>
+    </md-tabs>
+
+    <md-card flex style="margin: 8px 0;" id="contentCard">
+        <md-card-content>
+            <div layout="row" layout-align="start center" class="search-filter">
+                <md-input-container md-no-float class="md-icon-float">
+                    <md-icon class="material-icons">search</md-icon>
+                    <input ng-model="searchText" placeholder="Search...">
+                </md-input-container>
+                <span flex></span>
+                {{currentSortDirection.name}}
+                <md-menu md-position-mode="target-right target">
+                    <md-button aria-label="Sort By" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <md-icon md-menu-origin class="material-icons">{{currentSortDirection.icon}}</md-icon>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="item in sortDirections">
+                            <md-button ng-click="sortData(item)">
+                                <div layout="row">
+                                    <p flex>{{item.name}}</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+            <md-content md-scroll-y style="height: 300px;">
+                <div class="product md-whiteframe-1dp" layout="row" layout-align="start start" ng-repeat="product in products | orderBy : currentSortDirection.d | filter:searchText">
+                    <img ng-src="{{product.images[0]}}" flex="20" />
+                    <div layout="column" flex="70" layout-padding>
+                        <h3 class="md-title">{{product.name}}</h3>
+                        <div>{{product.description}}</div>
+                        <div>$ {{product.price.toFixed(2).toLocaleString()}}</div>
+                        <div layout="row" class="stats">
+                            <div flex="33">Likes: {{product.snapbox.likes}}</div>
+                        </div>
+                    </div>
+                    <div flex="10" layout="column" layout-align="center center">
+                        <md-button class="md-raised" href="/Product/{{product.id}}">Edit</md-button>
+                        <md-button class="md-raised md-warn" ng-click="removeFromSnapBox(product)">Remove</md-button>
+                        <md-button class="md-raised md-primary" ng-click="scheduleSale(product, $event)">Schedule Sale</md-button>
+                    </div>
+                </div>
+            </md-content>
+        </md-card-content>
+    </md-card>
+</div>

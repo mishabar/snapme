@@ -1,0 +1,32 @@
+﻿<div layout="column" flex>
+    <md-tabs>
+        <md-tab ng-repeat="category in categories" md-on-select="changeCategory(category)">
+            <md-tab-label>{{category.name}}</md-tab-label>
+        </md-tab>
+    </md-tabs>
+
+    <md-card flex style="margin: 8px 0;" id="contentCard">
+        <md-card-content>
+            <md-content md-scroll-y style="height: 300px;">
+                <div class="product md-whiteframe-1dp" layout="row" layout-align="center center" ng-repeat="product in products">
+                    <img ng-src="{{product.images[0]}}" flex="20" />
+                    <div layout="column" flex="70" layout-padding>
+                        <h3 class="md-title">{{product.name}}</h3>
+                        <div>{{product.description}}</div>
+                        <div>$ {{product.price.toFixed(2).toLocaleString()}}</div>
+                        <div layout="row" class="stats">
+                            <div flex="33">Drops: 0</div>
+                            <div flex="33">Ends in: {{product.sale.ends_in}}</div>
+                            <div flex="33">Visits: {{product.sale.visits.toLocaleString()}}</div>
+                        </div>
+                    </div>
+                    <div flex="10">
+                        <md-button href="/Sale/{{product.sale.id}}">
+                            Manage
+                        </md-button>
+                    </div>
+                </div>
+            </md-content>
+        </md-card-content>
+    </md-card>
+</div>

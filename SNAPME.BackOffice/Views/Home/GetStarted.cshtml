@@ -1,0 +1,126 @@
+﻿<div layout="row" layout-align="center center">
+    <div class="get-started md-whiteframe-1dp" ng-show="!submitted">
+        <form name="basicDetailsForm" novalidate ng-submit="submitSellerRequest()">
+            <md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom md-stretch-tabs="always">
+                <md-tab label="Basic Details" ng-disabled="selectedTab != 0">
+                    <md-content class="md-padding">
+                        <md-input-container class="md-block">
+                            <label>Name</label>
+                            <input required md-maxlength="50" name="name" ng-model="merchant.name">
+                            <div ng-messages="basicDetailsForm.name.$error">
+                                <div ng-message="required">This is required.</div>
+                                <div ng-message="md-maxlength">This name must be less than 50 characters long.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input required type="email" name="email" ng-model="merchant.email">
+                            <div ng-messages="basicDetailsForm.email.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Website URL</label>
+                            <input type="url" name="url" ng-model="merchant.url">
+                            <div class="hint">Please provide your website url for us to better understand your inventory</div>
+                        </md-input-container>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Merchant Information" ng-disabled="selectedTab != 1">
+                    <md-content class="md-padding">
+                        <md-input-container class="md-block">
+                            <md-select name="other_online" ng-model="merchant.other_online" multiple placeholder="Are you selling elsewhere online?">
+                                <md-option ng-repeat="option in onlineOptions" value="{{option}}">
+                                    {{option}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <div layout="row" layout-align="start center">
+                                <div class="md-title">Product Categories</div>&nbsp;&nbsp;&nbsp;
+                                <div class="md-subhead">Select product categories you intend to sell on iiSnap</div>
+                            </div>
+                        </md-input-container>
+                        <div layout="row" layout-wrap>
+                            <div flex="33" ng-repeat="category in categories">
+                                <md-checkbox ng-model="merchant.categories[category.id]" aria-label="category.name">
+                                    {{ category.name }}
+                                </md-checkbox>
+                            </div>
+                        </div>
+                        <md-input-container class="md-block">
+                            <div layout="row" layout-align="start center">
+                                <div class="md-title">Marketplace Sales Fee</div>&nbsp;&nbsp;&nbsp;
+                                <div class="md-subhead">Percentage of each sale you are willing to pay to iiSnap</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" md-no-float>
+                            <input name="percentage" placeholder="Percentage" type="number" min="0" ng-model="merchant.percentage">
+                            <div ng-messages="basicDetailsForm.percentage.$error">
+                                <div ng-message="min">Invalid percentage.</div>
+                            </div>
+                        </md-input-container>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Address" ng-disabled="selectedTab != 2">
+                    <md-content class="md-padding">
+                        <md-input-container class="md-block">
+                            <label>Address</label>
+                            <input ng-model="merchant.address" name="address" required>
+                            <div ng-messages="basicDetailsForm.address.$error">
+                                <div ng-message="required">Address is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container md-no-float class="md-block">
+                            <input ng-model="merchant.address2" placeholder="Address 2">
+                        </md-input-container>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex>
+                                <label>City</label>
+                                <input ng-model="merchant.city" name="city" required>
+                                <div ng-messages="basicDetailsForm.city.$error">
+                                    <div ng-message="required">City is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex>
+                                <label>State</label>
+                                <input ng-model="merchant.state" name="state">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex>
+                                <label>Country</label>
+                                <input ng-model="merchant.country" name="country" required>
+                                <div ng-messages="basicDetailsForm.country.$error">
+                                    <div ng-message="required">Country is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex>
+                                <label>Postal Code</label>
+                                <input name="postalCode" ng-model="merchant.postalCode" placeholder="2000"
+                                       required ng-pattern="/^[0-9]{4}$/" md-maxlength="4">
+                                <div ng-messages="basicDetailsForm.postalCode.$error" role="alert" multiple>
+                                    <div ng-message="required">Postal code is required.</div>
+                                    <div ng-message="pattern">
+                                        Invalid postal code.
+                                    </div>
+                                    <div ng-message="md-maxlength" class="my-message">
+                                        Invalid postal code.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+            <div layout="row" layout-margin class="footer-buttons">
+                <md-button ng-click="switchTab(-1)" ng-show="selectedTab > 0">Back</md-button>
+                <span flex></span>
+                <md-button class="md-primary md-raised" ng-disabled="!canSwitch()" ng-click="switchTab(1)" ng-show="selectedTab < 2">Next</md-button>
+                <md-button class="md-warn md-raised" ng-disabled="basicDetailsForm.$invalid" type="submit" ng-show="selectedTab == 2">Submit</md-button>
+            </div>
+        </form>
+    </div>
+
+    <div class="get-started" ng-show="submitted" layout-align="center center" layout="column">
+        <h3 class="md-headline">Thank you for your interest selling on iiSnap , our merchant review team will be in touch with you shortly to help you set <a target="_self" href="/Portal">your account</a>.</h3>
+    </div>
+</div>

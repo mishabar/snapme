@@ -3,23 +3,30 @@
 }
 
 <div ng-controller="MyHomeController" layout="column" class="ii-my-home">
-    <div class="ii-community-banner" layout-align="start center" layout-padding>
-        <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
-            <h1>My Communities</h1>
-        </div>
-    </div>
+    @*<div class="ii-community-banner" layout-align="start center" layout-padding>
+            <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
+                <h1>My Communities</h1>
+            </div>
+        </div>*@
 
     <div style="width: 100%; max-width: 1200px; margin: 0 auto;">
         <md-tabs md-dynamic-height md-border-bottom md-center-tabs="true">
             <md-tab>
-                <md-tab-label><span class="ii-top-label">discover</span></md-tab-label>
-                <md-tab-body class="md-padding">
-                    <div ng-repeat="community in communities" class="ii-home-community">
-                        <div class="ii-section-header">
-                            <md-button class="md-primary" href="/community/{{community.name}}">{{community.name}}</md-button>
+                <md-tab-label><span class="ii-top-label">live sales</span></md-tab-label>
+                <md-tab-body>
+                    <div layout="row">
+                        <div flex="15" hide-xs>
+                            <ul class="ii-list-menu">
+                                <li>
+                                    <md-button class="md-block" ng-class="{selected : selected_community == -1 }" ng-click="filterProucts(-1)">All</md-button>
+                                </li>
+                                <li ng-repeat="community in communities">
+                                    <md-button class="md-block" ng-class="{selected : selected_community == community.id }" ng-click="filterProucts(community.id)">{{community.name}}</md-button>
+                                </li>
+                            </ul>
                         </div>
-                        <div layout-xs="column" layout="row" layout-wrap layout-align="center center">
-                            <div flex-xs flex-gt-xs="50" flex-gt-sm="33" class="ii-product" ng-repeat="product in community.products">
+                        <div layout-xs="column" layout="row" flex="100" flex-gt-sm="85" layout-wrap layout-align="center center">
+                            <div flex-xs flex-gt-xs="50" flex-gt-sm="33" class="ii-product" ng-repeat="product in filtered_products">
                                 <md-card>
                                     <md-card-content>
                                         <div class="hero" title="{{product.name}}" ng-click="showProduct(product)">
@@ -27,71 +34,108 @@
                                         </div>
                                         <div class="md-title">{{product.name}}</div>
                                         <div class="md-subhead">{{product.description}}</div>
-                                        <div class="ii-product-full-details">
-                                            <div ng-show="product.mode == 'info' || !product.mode">
-                                                <div layout="row" class="ii-prices">
-                                                    <span class="md-title ii-text-crossed">$ {{product.price.toFixed(2).toLocaleString()}}</span>
-                                                    <span flex></span>
-                                                    <span class="md-title">$ {{product.sale.target.toFixed(2).toLocaleString()}}</span>
-                                                </div>
-                                                <md-progress-linear md-mode="determinate" value="{{product.sale.progress}}" class="md-accent"></md-progress-linear>
-                                                <h2 style="text-align: center; font-size: 24px;">
-                                                    <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.sale.current_price.toFixed(2).toLocaleString()}}
-                                                </h2>
-                                            </div>
-                                            <div ng-show="product.mode == 'shipping'">
-                                                <div ng-controller="ShippingController" ng-init="init(product)">
-                                                    <form layout="column" name="shippingForm" class="ii-quick-shipping" novalidate>
-                                                        <div layout="row">
-                                                            <md-input-container class="md-block ii-hide-error-spacer" flex>
-                                                                <label>Postal Code</label>
-                                                                <input name="postalCode" ng-model="details.to_zip" placeholder="3000" autocomplete="off" required ng-pattern="/^[0-9]{4}$/" ng-maxlength="4" ng-disabled="loadingQuote">
-                                                            </md-input-container>
-                                                            <md-input-container>
-                                                                <md-button class="md-icon-button md-raised md-primary" ng-click="getQuote()" ng-disabled="shippingForm.$invalid || loadingQuote">
-                                                                    <md-icon class="material-icons">local_shipping</md-icon>
-                                                                </md-button>
-                                                            </md-input-container>
-                                                        </div>
-                                                        <div>
-                                                            <md-input-container class="md-block ii-no-top-margin" flex>
-                                                                <span ng-hide="loadingQuote">{{postalDetails || 'Enter / change postal code'}}</span>
-                                                                <md-progress-linear ng-show="loadingQuote" class="md-accent"></md-progress-linear>
-                                                            </md-input-container>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div ng-show="product.mode == 'social'">
-                                                <div layout="row">
-                                                    <img ng-repeat="snap in product.sale.snaps" ng-src="http://graph.facebook.com/{{snap.external_user_id}}/picture?type=square" class="ii-avatar" alt="{{snap.name}}" title="{{snap.name}}" />
-                                                </div>
-                                            </div>
+                                        <div layout="row" class="ii-prices">
+                                            <span class="md-title ii-text-crossed">$ {{product.price.toFixed(2).toLocaleString()}}</span>
+                                            <span flex></span>
+                                            <span class="md-title ii-target"><md-icon class="material-icons">gps_fixed</md-icon><md-tooltip>{{getTargetInfo(product)}}</md-tooltip></span>
+                                        </div>
+                                        <md-progress-linear md-mode="determinate" value="{{product.sale.progress}}" class="md-accent"></md-progress-linear>
+                                        <div class="ii-current-price">
+                                            <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.sale.current_price.toFixed(2).toLocaleString()}}
+                                        </div>
+                                        <div layout="row">
+                                            <span ng-if="product.sale.snaps.length == 0">
+                                                <img class="ii-avatar fixed" src="~/Content/Images/favicon.png" />
+                                                <md-tooltip>Be the 1st to snap this product</md-tooltip>
+                                            </span>
+                                            <span ng-repeat="snap in product.sale.snaps">
+                                                <img ng-src="{{snap.image_url}}" class="ii-avatar" ng-class="{fixed: $index == 0}" />
+                                                <md-tooltip>{{snap.name}}</md-tooltip>
+                                            </span>
                                         </div>
                                     </md-card-content>
-                                    <md-card-actions layout="row" layout-align="start center">
-                                        <span flex></span>
-                                        <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'social'}" aria-label="Activity" ng-click="product.mode = 'social'">
-                                            <md-icon class="material-icons">people</md-icon>
-                                        </md-button>
-                                        <md-badge>{{product.sale.snaps_count}}</md-badge>
-                                        <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'shipping'}" aria-label="Shipping Calculation"
-                                                   ng-click="product.mode = 'shipping'">
-                                            <md-icon class="material-icons">local_shipping</md-icon>
-                                        </md-button>
-                                        <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'info' || !product.mode}" aria-label="Sale Details"
-                                                   ng-click="product.mode = 'info'">
-                                            <md-icon class="material-icons">local_offer</md-icon>
-                                        </md-button>
-                                    </md-card-actions>
                                 </md-card>
                             </div>
                         </div>
                     </div>
+                    @*<div ng-repeat="community in communities" class="ii-home-community">
+                            <div class="ii-section-header">
+                                <md-button class="md-primary" href="/community/{{community.name}}">{{community.name}}</md-button>
+                            </div>
+                            <div layout-xs="column" layout="row" layout-wrap layout-align="center center">
+                                <div flex-xs flex-gt-xs="50" flex-gt-sm="33" class="ii-product" ng-repeat="product in community.products">
+                                    <md-card>
+                                        <md-card-content>
+                                            <div class="hero" title="{{product.name}}" ng-click="showProduct(product)">
+                                                <div style="width: 100%; height: auto; padding-bottom: 56.25%; background: url({{product.image}}) no-repeat 50% 50%; background-size: {{product.images_mode}};"></div>
+                                            </div>
+                                            <div class="md-title">{{product.name}}</div>
+                                            <div class="md-subhead">{{product.description}}</div>
+                                            <div class="ii-product-full-details">
+                                                <div ng-show="product.mode == 'info' || !product.mode">
+                                                    <div layout="row" class="ii-prices">
+                                                        <span class="md-title ii-text-crossed">$ {{product.price.toFixed(2).toLocaleString()}}</span>
+                                                        <span flex></span>
+                                                        <span class="md-title">$ {{product.sale.target.toFixed(2).toLocaleString()}}</span>
+                                                    </div>
+                                                    <md-progress-linear md-mode="determinate" value="{{product.sale.progress}}" class="md-accent"></md-progress-linear>
+                                                    <h2 style="text-align: center; font-size: 24px;">
+                                                        <md-icon class="material-icons" style="line-height: 22px;">attach_money</md-icon>&nbsp;{{product.sale.current_price.toFixed(2).toLocaleString()}}
+                                                    </h2>
+                                                </div>
+                                                <div ng-show="product.mode == 'shipping'">
+                                                    <div ng-controller="ShippingController" ng-init="init(product)">
+                                                        <form layout="column" name="shippingForm" class="ii-quick-shipping" novalidate>
+                                                            <div layout="row">
+                                                                <md-input-container class="md-block ii-hide-error-spacer" flex>
+                                                                    <label>Postal Code</label>
+                                                                    <input name="postalCode" ng-model="details.to_zip" placeholder="3000" autocomplete="off" required ng-pattern="/^[0-9]{4}$/" ng-maxlength="4" ng-disabled="loadingQuote">
+                                                                </md-input-container>
+                                                                <md-input-container>
+                                                                    <md-button class="md-icon-button md-raised md-primary" ng-click="getQuote()" ng-disabled="shippingForm.$invalid || loadingQuote">
+                                                                        <md-icon class="material-icons">local_shipping</md-icon>
+                                                                    </md-button>
+                                                                </md-input-container>
+                                                            </div>
+                                                            <div>
+                                                                <md-input-container class="md-block ii-no-top-margin" flex>
+                                                                    <span ng-hide="loadingQuote">{{postalDetails || 'Enter / change postal code'}}</span>
+                                                                    <md-progress-linear ng-show="loadingQuote" class="md-accent"></md-progress-linear>
+                                                                </md-input-container>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="product.mode == 'social'">
+                                                    <div layout="row">
+                                                        <img ng-repeat="snap in product.sale.snaps" ng-src="http://graph.facebook.com/{{snap.external_user_id}}/picture?type=square" class="ii-avatar" alt="{{snap.name}}" title="{{snap.name}}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </md-card-content>
+                                        <md-card-actions layout="row" layout-align="start center">
+                                            <span flex></span>
+                                            <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'social'}" aria-label="Activity" ng-click="product.mode = 'social'">
+                                                <md-icon class="material-icons">people</md-icon>
+                                            </md-button>
+                                            <md-badge>{{product.sale.snaps_count}}</md-badge>
+                                            <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'shipping'}" aria-label="Shipping Calculation"
+                                                       ng-click="product.mode = 'shipping'">
+                                                <md-icon class="material-icons">local_shipping</md-icon>
+                                            </md-button>
+                                            <md-button class="md-icon-button" ng-class="{'md-raised md-primary': product.mode == 'info' || !product.mode}" aria-label="Sale Details"
+                                                       ng-click="product.mode = 'info'">
+                                                <md-icon class="material-icons">local_offer</md-icon>
+                                            </md-button>
+                                        </md-card-actions>
+                                    </md-card>
+                                </div>
+                            </div>
+                        </div>*@
                 </md-tab-body>
             </md-tab>
 
-            <md-tab>
+            @*<md-tab>
                 <md-tab-label><span class="ii-top-label">coming soon</span></md-tab-label>
                 <md-tab-body class="md-padding">
                     <div layout="column" layout-align="center center">
@@ -104,7 +148,7 @@
                         <div class="ii-review" ng-bind-html="featured_product.review"></div>
                     </div>
                 </md-tab-body>
-            </md-tab>
+            </md-tab>*@
 
             <md-tab>
                 <md-tab-label><span class="ii-top-label">snap box</span></md-tab-label>

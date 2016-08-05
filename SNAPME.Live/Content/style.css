@@ -147,6 +147,21 @@ button.ii-google[disabled] span,
 button.ii-google[disabled] md-icon {
   color: #fff !important;
 }
+.ii-list-menu {
+  list-style-type: none;
+  padding: 0;
+}
+.ii-list-menu li {
+  overflow: hidden;
+}
+.ii-list-menu li button {
+  width: 100%;
+  text-align: left;
+  margin: 2px 8px;
+}
+.ii-list-menu li button.selected {
+  font-weight: bold;
+}
 .ii-hide-error-spacer .md-errors-spacer {
   display: none;
   visibility: hidden;
@@ -243,25 +258,29 @@ md-card md-card-content .hero.ii-additional-image {
   border: 2px solid #fff;
 }
 md-card md-card-content img.ii-avatar {
-  margin: 0 6px;
-  height: 40px;
-  width: 40px;
+  margin-left: -12px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
+  border: 1px solid #f1f1f1;
+}
+md-card md-card-content img.ii-avatar.fixed {
+  margin-left: 0;
 }
 md-card md-card-content .ii-prices {
-  margin-bottom: 12;
+  margin-bottom: 12px;
 }
 md-card md-card-content .ii-prices .md-title {
   font-size: 16px;
+}
+md-card md-card-content .ii-prices .md-title.ii-target {
+  cursor: pointer;
 }
 md-card md-card-content .ii-more-snappers {
   margin-left: 10px;
   font-size: 14px;
   line-height: 40px;
   color: #2196f3;
-}
-md-card md-card-content .ii-product-full-details {
-  height: 80px;
 }
 md-card-actions .md-button + md-badge {
   margin: -24px 5px 0 -21px;
@@ -344,9 +363,6 @@ md-card-actions .md-button + md-badge {
 .ii-snaps-list .show-more-end {
   height: 60px;
 }
-.ii-my-home .ii-top-label {
-  font-size: 1.3rem;
-}
 .ii-my-home .ii-home-community {
   margin-top: 20px;
   clear: both;
@@ -366,9 +382,21 @@ md-card-actions .md-button + md-badge {
 }
 .ii-product .md-title,
 .ii-product .md-subhead {
+  font-size: 0.8rem;
   white-space: nowrap;
   overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+}
+.ii-product md-card md-card-content {
+  padding: 8px;
+}
+.ii-product .ii-current-price {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 8px 0;
 }
 .ii-wanted-product {
   width: 100%;

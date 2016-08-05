@@ -1,0 +1,66 @@
+﻿using AspNet.Identity.MongoDB;
+using Autofac;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using MongoDB.Driver;
+using SNAPME.BackOffice.Models;
+using SNAPME.Live.Data.Mongo;
+using SNAPME.Live.Data.Repositories;
+using SNAPME.Live.Services;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Reflection;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+
+namespace SNAPME.BackOffice
+{
+    public class WebApiApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var builder = new ContainerBuilder();
+
+            // registrating all the existing controllers
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            // Init MongoDB Identity
+            var client = new MongoClient(ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString);
+            var database = client.GetDatabase(ConfigurationManager.AppSettings["DBName"]);
+            var usersCollection = database.GetCollection<ApplicationUser>("users");
+            var rolesCollection = database.GetCollection<IdentityRole>("roles");
+
+            IndexChecks.EnsureUniqueIndexOnEmail(usersCollection);
+            IndexChecks.EnsureUniqueIndexOnRoleName(rolesCollection);
+
+            builder.Register(b => database).AsSelf().SingleInstance();
+
+            // Register Repositories
+            builder.Register(b => new ProductRepository(database)).AsImplementedInterfaces().InstancePerLifetimeScope();
+            //builder.Register(b => new CommunityRepository(database)).AsImplementedInterfaces().InstancePerLifetimeScope();
+            //builder.Register(b => new ProductRepository(database)).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            // Register Services
+            builder.Register(b => new ProductService(b.Resolve<IProductRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            //builder.Register(b => new CommunityService(b.Resolve<ICommunityRepository>(), b.Resolve<IProductRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            //builder.Register(b => new ProductService(b.Resolve<IProductRepository>())).AsImplementedInterfaces().InstancePerLifetimeScope();
+            //builder.Register(b => new PaymentService()).AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            IContainer container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+        }
+    }
+}

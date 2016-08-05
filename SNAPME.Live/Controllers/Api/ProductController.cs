@@ -10,6 +10,7 @@ using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using SNAPME.Live.Services.Tokens;
 using SNAPME.Live.Data.Entities;
+using SNAPME.Live.Helpers;
 
 namespace SNAPME.Live.Controllers.Api
 {
@@ -119,7 +120,7 @@ namespace SNAPME.Live.Controllers.Api
                 (int)Math.Round(100F * (request.price * request.quantity + request.shipping_price), 0),
                 string.Format("{0} plus Shipping", request.product_id));
 
-            var snap = await _productService.JoinSale(request.product_id, User.Identity.GetUserId(), User.Identity.GetUserName(), customerId, chargeId,
+            var snap = await _productService.JoinSale(request.product_id, User.Identity.GetUserId(), User.Identity.GetImageUrl(), User.Identity.GetUserName(), customerId, chargeId,
                 request.first_name, request.last_name, request.address, request.address2, request.city, request.state, request.zip_code);
 
             return Ok(snap);

@@ -39,37 +39,46 @@ namespace SNAPME.Live.Services
         }
 
 
+        public async Task<long> SaveProduct(FullProductToken fullProductToken)
+        {
+            return 1;
+        }
+
+
         public async Task<bool> UpdateProduct(FullProductToken request)
         {
             return await _productRepository.UpdateProduct(request.AsProduct());
         }
 
 
-        public async Task<SnapToken> JoinSale(long productId, string userId, string userName, string customerId, string chargeId,
+        public async Task<SnapToken> JoinSale(long productId, string userId, string imageUrl, string userName, string customerId, string chargeId,
             string shippingFirstName, string shippingLastName, string shippingAddress, string shippingAddress2, string shippingCity,
             string shippingState, string shippingZip)
         {
-            return null;
-            //return (await _productRepository.Snap(productId, new Snap
-            //{
-            //    external_user_id = customerId,
-            //    user_id = userId,
-            //    name = userName,
-            //    charge_id = chargeId,
-            //    quantity = 0,
-            //    product_amount = 0,
-            //    shipping_amount = 0,
-            //    snapped_at = DateTime.Now,
-            //    address = new DestinationShippingInfo { 
-            //        first_name = shippingFirstName, 
-            //        last_name = shippingLastName, 
-            //        address = shippingAddress,
-            //        address2 = shippingAddress2,
-            //        city = shippingCity,
-            //        state = shippingState,
-            //        zip = shippingZip
-            //    }
-            //})).AsToken();
+            var snap = await _productRepository.Snap(productId, new Snap
+            {
+                external_user_id = customerId,
+                user_id = userId,
+                image_url = imageUrl,
+                name = userName,
+                charge_id = chargeId,
+                quantity = 0,
+                product_amount = 0,
+                shipping_amount = 0,
+                snapped_at = DateTime.Now,
+                address = new DestinationShippingInfo
+                {
+                    first_name = shippingFirstName,
+                    last_name = shippingLastName,
+                    address = shippingAddress,
+                    address2 = shippingAddress2,
+                    city = shippingCity,
+                    state = shippingState,
+                    zip = shippingZip
+                }
+            });
+            
+            return new SnapToken(snap);
         }
 
 

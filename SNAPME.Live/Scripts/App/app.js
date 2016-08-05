@@ -72,7 +72,7 @@ app.controller('MainController', function ($scope, $mdDialog, $cookies, $timeout
 
     $scope.showHowToDialog = function (ev) {
         $mdDialog.show({
-            controller: HowToDialogController,
+            controller: HowItWorksDialogController,
             templateUrl: '/Modals/Howto',
             parent: angular.element(document.body),
             clickOutsideToClose: false
@@ -93,22 +93,9 @@ app.filter('trustAsResourceUrl', ['$sce', function ($sce) {
 }])
 
 
-function HowToDialogController($scope, $mdDialog, $cookies) {
+function HowItWorksDialogController($scope, $mdDialog) {
 
-    $cookies.put('ht', 't');
-
-    $scope.tabs = [
-        { title: "What?", btn: "Why?", content: "iiSnap is a community shop that lets you buy with like minded and save on everything you buy." },
-        { title: "Why?", btn: "When?", content: "Shopping as a community means you can share your passion with others and shop with confidence." },
-        { title: "When?", btn: "How?", content: "Discover new snap sales weekly, upcoming products can be view on the coming soon section on the site." },
-        { title: "How?", btn: "Got Ya!", content: "Join a sale you fancy and invite others to drive the price down.<br/><br/>When time is up you only pay the closing price." }
-    ];
-    $scope.selectedIndex = 0;
-
-    $scope.nextSlide = function () {
-        $scope.selectedIndex++;
-        if ($scope.selectedIndex == $scope.tabs.length) {
-            $mdDialog.hide();
-        }
+    $scope.cancel = function () {
+        $mdDialog.cancel();
     }
 }

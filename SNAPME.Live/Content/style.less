@@ -169,6 +169,25 @@ button.ii-google {
     }
 }
 
+.ii-list-menu {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+        overflow: hidden;
+
+        button {
+            width: 100%;
+            text-align: left;
+            margin: 2px 8px;
+
+            &.selected {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
 .ii-hide-error-spacer {
     .md-errors-spacer {
         display: none;
@@ -176,7 +195,7 @@ button.ii-google {
     }
 }
 
-.ii-no-top-margin{
+.ii-no-top-margin {
     margin-top: 0;
 }
 
@@ -287,18 +306,27 @@ md-card md-card-content .hero.ii-additional-image {
 }
 
 md-card md-card-content img.ii-avatar {
-    margin: 0 6px;
-    height: 40px;
-    width: 40px;
+    margin-left: -12px;
+    height: 25px;
+    width: 25px;
     border-radius: 50%;
+    border: 1px solid #f1f1f1;
+
+    &.fixed {
+        margin-left: 0;
+    }
 }
 
 md-card md-card-content .ii-prices {
-    margin-bottom: 12;
+    margin-bottom: 12px;
 }
 
 md-card md-card-content .ii-prices .md-title {
     font-size: 16px;
+
+    &.ii-target {
+        cursor: pointer;
+    }
 }
 
 md-card md-card-content .ii-more-snappers {
@@ -306,10 +334,6 @@ md-card md-card-content .ii-more-snappers {
     font-size: 14px;
     line-height: 40px;
     color: rgb(33, 150, 243);
-}
-
-md-card md-card-content .ii-product-full-details {
-    height: 80px;
 }
 
 md-card-actions .md-button + md-badge {
@@ -325,7 +349,7 @@ md-card-actions .md-button + md-badge {
     display: none;
 }
 
-.ii-join-sale-dialog .md-errors-spacer{
+.ii-join-sale-dialog .md-errors-spacer {
     display: none;
 }
 
@@ -410,10 +434,6 @@ md-card-actions .md-button + md-badge {
 
 .ii-my-home {
 
-    .ii-top-label {
-        font-size: 1.3rem;
-    }
-
     .ii-home-community {
         margin-top: 20px;
         clear: both;
@@ -436,9 +456,23 @@ md-card-actions .md-button + md-badge {
     width: 100%;
 
     .md-title, .md-subhead {
+        font-size: 0.8rem;
         white-space: nowrap;
         overflow: hidden;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
+    }
+
+    md-card md-card-content {
+        padding: 8px;
+    }
+
+    .ii-current-price {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+        padding: 8px 0;
     }
 }
 
@@ -482,6 +516,6 @@ md-card-actions .md-button + md-badge {
     }
 }
 
-.ii-schedule-sale-dialog{
+.ii-schedule-sale-dialog {
     width: 500px;
 }

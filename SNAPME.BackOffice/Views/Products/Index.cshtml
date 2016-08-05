@@ -1,0 +1,46 @@
+﻿<div layout="column" flex>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <span>Products</span>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" href="/product/0" aria-label="Add Product">
+                <md-icon class="material-icons">add</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <br />
+
+    <md-tabs>
+        <md-tab ng-repeat="category in categories" md-on-select="changeCategory(category)">
+            <md-tab-label>{{category.name}}</md-tab-label>
+        </md-tab>
+    </md-tabs>
+
+    <md-card flex style="margin: 8px 0;" id="contentCard">
+        <md-card-content>
+            <md-content md-scroll-y style="height: 300px;">
+                <div class="product md-whiteframe-1dp" layout="row" layout-align="start start" ng-repeat="product in products">
+                    <img ng-src="{{product.images[0]}}" flex="20" />
+                    <div layout="column" flex="70" layout-padding>
+                        <h3 class="md-title">{{product.name}}</h3>
+                        <div>{{product.description}}</div>
+                        <div>$ {{product.price.toFixed(2).toLocaleString()}}</div>
+                        <div layout="row" class="stats">
+                            <div flex="33">Drops: 0</div>
+                            <div flex="33">Active</div>
+                            <div flex="33">Snapbox: 100</div>
+                        </div>
+                    </div>
+                    <div flex="10" layout="column" layout-align="center center">
+                        <md-button class="md-raised" href="/Product/{{product.id}}">Edit</md-button>
+                        <md-button class="md-raised md-accent" ng-click="addToSnapBox(product)">Add To SnapBox</md-button>
+                        <md-button class="md-raised md-primary" ng-click="scheduleSale(product)">Schedule Sale</md-button>
+                    </div>
+                </div>
+            </md-content>
+        </md-card-content>
+    </md-card>
+</div>

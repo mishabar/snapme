@@ -1,0 +1,123 @@
+﻿html {
+  height: 100%;
+}
+body {
+  font-family: 'Open Sans';
+  font-size: 1rem;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+body header,
+body footer {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+body main {
+  -ms-flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+body main::after {
+  content: '\00a0';
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+body main md-sidenav {
+  border-right: 1px solid #ccc;
+}
+body main .main-content {
+  background-color: #fafafa;
+}
+body.unauthorized md-toolbar:not(.md-menu-toolbar) {
+  background-color: #ffffff;
+  color: #000;
+  border-bottom: 1px solid #ccc;
+}
+body.unauthorized .main-content {
+  background-color: #ffffff;
+}
+body.unauthorized .max-width {
+  width: 100%;
+  max-width: 1200px;
+}
+body.unauthorized .banner {
+  background-color: #ffde00;
+  padding: 0 60px;
+}
+body.unauthorized .banner .md-button.get-started {
+  font-size: 24px;
+  padding: 15px 25px;
+  margin: 0 0 50px 0;
+  background-color: #666;
+  color: #fff;
+}
+body.unauthorized div.get-started {
+  width: 800px;
+  margin-top: 50px;
+}
+body.unauthorized div.get-started .footer-buttons {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+md-pagination-wrapper {
+  background-color: #fff;
+}
+.product .md-title {
+  margin: 0;
+}
+.product .stats {
+  text-align: center;
+}
+#contentCard .product {
+  margin-bottom: 10px;
+}
+.search-filter md-input-container {
+  margin: 0;
+}
+.search-filter md-input-container.md-icon-float > md-icon {
+  top: 5px;
+}
+.date-field-container {
+  margin: 14px 0;
+}
+.date-field-container [ng-messages] {
+  color: #dd2c00;
+}
+.date-field-container [ng-message] {
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  -moz-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  -o-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  opacity: 1;
+  margin-top: 0;
+  padding-top: 5px;
+  padding-left: 16px;
+}
+.date-field-container .md-datepicker-input {
+  font-size: 100%;
+}
+.section-description {
+  font-size: smaller;
+}
+md-input-container.md-icon-right.md-icon-right-only {
+  padding-left: 0;
+}
+md-input-container.md-icon-right.md-icon-right-only > label {
+  left: 0;
+}
+/*# sourceMappingURL=style.css.map */

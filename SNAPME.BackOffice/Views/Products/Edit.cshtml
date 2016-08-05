@@ -1,0 +1,268 @@
+﻿<div layout="column" flex>
+    <md-content md-scroll-y style="background-color: transparent;" id="pageContent">
+        <form ng-submit="updateProduct()" name="productForm">
+            <md-card>
+                <md-card-title>
+                    <h2 class="md-display-1">Product Info</h2>
+                </md-card-title>
+                <md-card-content>
+                    <div layout="column" layout-gt-md="row">
+                        <div class="section-description" flex flex-gt-md="20">
+                            Enter basic information about your product as well as a more detailed description, tech details and everything you thing a buyer will be interested in.
+                        </div>
+                        <span flex hide-lt-md></span>
+                        <div class="section-content" layout="column" flex flex-gt-md="70">
+                            <div layout="column" layout-gt-md="row">
+                                <md-input-container flex flex-gt-md="70">
+                                    <label>Name</label>
+                                    <input ng-model="product.name" name="name" required minlength="5" maxlength="50" />
+                                    <div ng-messages="productForm.name.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Title is required
+                                        </div>
+                                        <div ng-message="minlength">
+                                            Product Title should be between 5 and 50 charecters.
+                                        </div>
+                                        <div ng-message="maxlength">
+                                            Product Title should be between 5 and 50 charecters.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-md="30">
+                                    <label>Category</label>
+                                    <md-select ng-model="product.community_id" name="category" required>
+                                        <md-option ng-repeat="category in categories" value="{{category.id}}">
+                                            {{category.name}}
+                                        </md-option>
+                                    </md-select>
+                                    <div ng-messages="productForm.category.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Category is required
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div>
+                                <md-input-container class="md-block md-input-has-value" ng-class="{'md-input-has-value': true}">
+                                    <label>Slogan</label>
+                                    <input ng-model="product.description" name="description" required maxlength="100" />
+                                    <div ng-messages="productForm.description.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Slogan is required
+                                        </div>
+                                        <div ng-message="maxlength">
+                                            Product Slogan maximum length is 100 characters
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div>
+                                <md-input-container class="md-block md-input-has-value" ng-class="{'md-input-has-value': true}">
+                                    <label>Description</label>
+                                    <textarea ui-tinymce="tinymceOptions" ng-model="product.full_details"></textarea>
+                                </md-input-container>
+                            </div>
+                            <div layout="column" layout-gt-md="row">
+                                <md-input-container flex flex-gt-md="33" class="md-icon-right md-icon-right-only">
+                                    <label>Price</label>
+                                    <input ng-model="product.price" name="price" required min="0" type="number" />
+                                    <md-icon class="material-icons">attach_money</md-icon>
+                                    <div ng-messages="productForm.price.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Price is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Product Price must be a positive number.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-md="33" class="md-icon-right md-icon-right-only">
+                                    <label>Retail Price</label>
+                                    <input ng-model="product.retail_price" name="retail_price" required min="{{product.price}}" type="number" />
+                                    <md-icon class="material-icons">attach_money</md-icon>
+                                    <div ng-messages="productForm.retail_price.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Retail Price is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Product Retail Price must be a positive number (usually greater than the Price).
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-md="33" class="md-icon-right md-icon-right-only">
+                                    <label>Final Drop Price</label>
+                                    <input ng-model="product.final_drop_price" name="drop_price" required min="0" max="{{product.price}}" type="number" />
+                                    <md-icon class="material-icons">attach_money</md-icon>
+                                    <div ng-messages="productForm.drop_price.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Price is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Product Price must be a positive number lower than the Price.
+                                        </div>
+                                        <div ng-message="max">
+                                            Product Price must be a positive number lower than the Price.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex>&nbsp;</div>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+
+            <md-card>
+                <md-card-title>
+                    <h2 class="md-display-1">Images</h2>
+                </md-card-title>
+                <md-card-content>
+                    <div layout="column" layout-gt-md="row">
+                        <div class="section-description" flex flex-gt-md="20">
+                            Add images of your product. Try to keep all of the either portrait or landscape and as high quality as possible.
+                        </div>
+                        <span flex hide-lt-md></span>
+                        <div class="section-content" flex flex-gt-md="70">
+                            <lf-ng-md-file-input lf-files="images" accept="image/*" lf-placeholder="Pick Image(s)" multiple preview></lf-ng-md-file-input>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+
+            <md-card>
+                <md-card-title>
+                    <h2 class="md-display-1">Shipping Info</h2>
+                </md-card-title>
+                <md-card-content>
+                    <div layout="column" layout-gt-md="row">
+                        <div class="section-description" flex flex-gt-md="20">
+                            Enter the dimensions and the location of the items from where it will be shipped.
+                        </div>
+                        <span flex hide-lt-md></span>
+                        <div class="section-content" flex flex-gt-md="70">
+                            <div layout="column" layout-gt-sm="row">
+                                <md-input-container flex flex-gt-sm="25">
+                                    <label>Width</label>
+                                    <input ng-model="product.shipping_info.width" name="width" required min="0" type="number" />
+                                    <div ng-messages="productForm.width.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Width is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Product Width must be a positive number.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-sm="25">
+                                    <label>Height</label>
+                                    <input ng-model="product.shipping_info.height" name="height" required min="0" type="number" />
+                                    <div ng-messages="productForm.height.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Height is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Product Height must be a positive number.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-sm="25">
+                                    <label>Length</label>
+                                    <input ng-model="product.shipping_info.length" name="length" required min="0" type="number" />
+                                    <div ng-messages="productForm.length.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Length is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Product Length must be a positive number.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-sm="25">
+                                    <label>Weight</label>
+                                    <input ng-model="product.shipping_info.weight" name="weight" required min="0" type="number" />
+                                    <div ng-messages="productForm.weight.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Product Weight is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Product Weight must be a positive number.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout="column" layout-gt-sm="row">
+                                <md-input-container flex flex-gt-sm="75">
+                                    <label>Address</label>
+                                    <input ng-model="product.shipping_info.address" name="address" required />
+                                    <div ng-messages="productForm.address.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Shipping Address is required
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-sm="25">
+                                    <label>Zip Code</label>
+                                    <input ng-model="product.shipping_info.zip" name="zip" required min="1000" type="number" />
+                                    <div ng-messages="productForm.zip.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Shipping Zip Code is required
+                                        </div>
+                                        <div ng-message="min">
+                                            Invalid Zip Code
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout="column" layout-gt-sm="row">
+                                <md-input-container flex flex-gt-sm="33">
+                                    <label>City</label>
+                                    <input ng-model="product.shipping_info.city" name="city" required />
+                                    <div ng-messages="productForm.city.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Shipping City is required
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-sm="33">
+                                    <label>State</label>
+                                    <input ng-model="product.shipping_info.state" name="state" ng-required="product.shipping_info.country == 'Australia'" />
+                                    <div ng-messages="productForm.state.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Shipping State is required
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex flex-gt-sm="33">
+                                    <label>Country</label>
+                                    <input ng-model="product.shipping_info.country" name="country" required />
+                                    <div ng-messages="productForm.country.$error" md-auto-hide="true">
+                                        <div ng-message="required">
+                                            Shipping Country is required
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+
+            <md-card ng-show="productForm.$valid && newProduct == true">
+                <md-card-title>
+                    <h2 class="md-display-1">All Done</h2>
+                </md-card-title>
+                <md-card-content>
+                    <div layout="column" layout-gt-md="row">
+                        <div class="section-description" flex flex-gt-md="20">
+                            Looks like you are all done. We will review your product and move it on to our customers review. You will be able to acompany the stats in the Snapbox section.
+                        </div>
+                        <span flex hide-lt-md></span>
+                        <div class="section-content" flex flex-gt-md="70" layout-align="right center">
+                            <md-button class="md-primary md-raised" ng-click="saveProduct()">Save</md-button>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </form>
+    </md-content>
+</div>

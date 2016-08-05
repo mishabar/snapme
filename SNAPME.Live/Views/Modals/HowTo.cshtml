@@ -1,20 +1,14 @@
-﻿<md-dialog-content class="ii-how-to-dialog" style="max-width:580px;max-height:810px; ">
-    <img src="~/Content/Images/Home/howto_banner.jpg" style="max-width: 100%; max-height: 200px;" />
-    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
-        <md-tab ng-repeat="tab in tabs"
-                ng-disabled="tab.disabled"
-                label="{{tab.title}}">
-            <div style="text-align: center; min-width: 310px;" layout-padding>
-                <h2>{{tab.title}}</h2>
-                <p ng-bind-html="tab.content"></p>
-            </div>
-        </md-tab>
-    </md-tabs>
-</md-dialog-content>
-<md-dialog-actions layout="row">
-    <span flex></span>
-    <md-button ng-click="nextSlide()" style="margin-right:20px;">
-        {{tabs[selectedIndex].btn}}
-    </md-button>
-</md-dialog-actions>
-
+﻿<md-dialog style="padding: 0 5px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>iiSnap - How it works?</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/QDlVWDBfPEE?rel=0" frameborder="0" allowfullscreen></iframe>
+    </md-dialog-content>
+</md-dialog>

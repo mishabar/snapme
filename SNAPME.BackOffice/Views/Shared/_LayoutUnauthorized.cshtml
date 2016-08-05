@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://material.angularjs.org/1.0.8/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg=="
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css">
+    
+    @RenderSection("head", false)
+    <link rel="stylesheet" type="text/css" href="~/content/style.min.css" />
+
+    <link rel="icon" href="~/content/images/favicon.png">
+    <title>iiSnap - Seller Portal</title>
+</head>
+<body ng-app="IISNAP" ng-cloak ng-controller="MainController" class="unauthorized">
+    <header>
+        <md-toolbar>
+            <div style="width: 100%;margin: 0 auto;">
+                <div class="md-toolbar-tools md-accent">
+                    <a href="/">
+                        <img src="~/content/images/logo.png" />
+                    </a>
+                    <span style="margin: -5px 0 0 20px;">&nbsp;for Merchants</span>
+                    <span class="flex"></span>
+                </div>
+            </div>
+        </md-toolbar>
+    </header>
+
+    <main layout="row">
+        <md-content flex layout="column" class="main-content">
+            @RenderBody()
+        </md-content>
+    </main>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-sanitize.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://material.angularjs.org/1.0.8/angular-material.min.js"></script>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/External/lf-ng-md-file-input.js"></script>
+    <script type="text/javascript" src="~/Scripts/External/tinymce.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/App/services.js"></script>
+    <script type="text/javascript" src="~/Scripts/External/validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/App/app.js"></script>
+    <script type="text/javascript" src="~/Scripts/App/controllers.js"></script>
+</body>
+</html>

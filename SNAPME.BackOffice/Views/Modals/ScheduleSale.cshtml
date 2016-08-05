@@ -1,0 +1,64 @@
+﻿<md-dialog aria-label="{{product.name}}" ng-cloak>
+    <form name="scheduleForm" novalidate ng-submit="scheduleSale()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Schedule Sale</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="column">
+                    <h2>{{product.name}}</h2>
+                    <div layout="row">
+                        <div class="date-field-container" flex>
+                            <md-datepicker name="date" ng-model="sale.date" md-placeholder="Enter date"
+                                           required md-min-date="minDate" flex></md-datepicker>
+                            <div ng-messages="scheduleForm.date.$error && scheduledForm.date.$touched">
+                                <div ng-message="valid">Value is not a valid date</div>
+                                <div ng-message="required">Sale Date is required</div>
+                                <div ng-message="mindate">Date is too early</div>
+                            </div>
+                        </div>
+                        <md-input-container class="md-block" flex>
+                            <label>Target Price</label>
+                            <input ng-model="sale.target" name="target" flex required type="number" min="0" />
+                            <div ng-messages="scheduleForm.target.$error">
+                                <div ng-message="required">Target Price is required</div>
+                                <div ng-message="min">Target Price must be a positive number</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>Minimum Quantity</label>
+                            <input ng-model="sale.quantity" name="quantity" flex required type="number" min="10" />
+                            <div ng-messages="scheduleForm.quantity.$error">
+                                <div ng-message="required">Minimum Quantity is required</div>
+                                <div ng-message="min">Minimum Quantity must be above 10</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>Stock</label>
+                            <input ng-model="sale.stock" name="stock" flex required type="number" min="{{sale.quantity}}" />
+                            <div ng-messages="scheduleForm.stock.$error">
+                                <div ng-message="required">Stock is required</div>
+                                <div ng-message="min">Stock must be above Minimum Quantity</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-disabled="canSubmit()" class="md-raised md-primary" style="margin-right:20px;">
+                Schedule
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
