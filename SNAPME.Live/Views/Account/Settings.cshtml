@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="SettingsController" layout="column" class="ii-settings">
+    <div layout-padding style="width: 100%; max-width: 1200px; margin: 0 auto;">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab>
+                <md-tab-label><span class="ii-top-label">My Communities</span></md-tab-label>
+                <md-tab-body>
+                    <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="community in communities">
+                            <img ng-src="community.icon" class="md-avatar" alt="{{community.name}}" />
+                            <div class="md-list-item-text">
+                                <h3>{{community.name}}</h3>
+                                <p>{{community.description}}</p>
+                            </div>
+                            <md-switch class="md-secondary" ng-model="community.selected"></md-switch>
+                        </md-list-item>
+                    </md-list>
+                </md-tab-body>
+            </md-tab>
+            <md-tab>
+                <md-tab-label><span class="ii-top-label">Addresses</span></md-tab-label>
+                <md-tab-body>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+    </div>
+</div>
+
+@section footer_scripts
+{
+    <script type="text/javascript" src="~/Scripts/App/settings.js"></script>
+}

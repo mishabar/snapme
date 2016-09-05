@@ -29,6 +29,14 @@ var CommunityService = angular.module('CommunityService', [])
         }
     });
 
+var AccountService = angular.module('AccountService', [])
+    .service('accountService', function ($http) {
+        
+        this.getCommunities = function () {
+            return $http.get('/api/v1/my/communities');
+        }
+    });
+
 
 var PaymentService = angular.module('PaymentService', [])
     .service('paymentService', function ($http) {

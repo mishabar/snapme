@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BetaController.cs" />
     <Compile Include="Controllers\Api\CommunityController.cs" />
+    <Compile Include="Controllers\Api\MyAccountController.cs" />
     <Compile Include="Controllers\Api\PaymentController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\ShippingController.cs" />
@@ -278,6 +279,7 @@
     <Content Include="Scripts\App\product.js" />
     <Content Include="Scripts\App\sale.js" />
     <Content Include="Scripts\App\services.js" />
+    <Content Include="Scripts\App\settings.js" />
     <Content Include="Scripts\App\shipping.js" />
     <Content Include="Scripts\App\validation.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -356,6 +358,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\SnapBoxApp\Index.cshtml" />
+    <Content Include="Views\Account\Settings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

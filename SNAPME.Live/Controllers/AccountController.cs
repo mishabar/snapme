@@ -500,5 +500,11 @@ namespace SNAPME.Live.Controllers
             }
         }
         #endregion
+
+        [Route("Settings")]
+        public ActionResult Settings() 
+        {
+            return View();
+        }
     }
 }

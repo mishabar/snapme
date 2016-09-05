@@ -431,4 +431,7 @@ md-card-actions .md-button + md-badge {
 .ii-schedule-sale-dialog {
   width: 500px;
 }
+md-tabs.hidden-tabs md-tabs-wrapper {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */

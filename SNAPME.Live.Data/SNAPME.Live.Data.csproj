@@ -75,6 +75,7 @@
     <Compile Include="Entities\ObjectState.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Sequence.cs" />
+    <Compile Include="Entities\UserSettings.cs" />
     <Compile Include="Mongo\BetaRegistrationRepository.cs" />
     <Compile Include="Mongo\CommunityRepository.cs" />
     <Compile Include="Mongo\IDGenerators\NumberSequenceIdGenerator.cs" />
