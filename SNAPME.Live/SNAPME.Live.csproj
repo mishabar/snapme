@@ -282,8 +282,6 @@
     <Content Include="Scripts\App\settings.js" />
     <Content Include="Scripts\App\shipping.js" />
     <Content Include="Scripts\App\validation.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\External\jquery.lightbox.min.js" />
     <Content Include="Scripts\External\skins\lightgray\content.inline.min.css" />
     <Content Include="Scripts\External\skins\lightgray\content.min.css" />
@@ -310,9 +308,6 @@
     <Content Include="Content\snapboxapp.css.map">
       <DependentUpon>snapboxapp.css</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -356,7 +351,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\SnapBoxApp\Index.cshtml" />
     <Content Include="Views\Account\Settings.cshtml" />
   </ItemGroup>
