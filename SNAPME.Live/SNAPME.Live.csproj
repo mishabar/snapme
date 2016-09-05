@@ -282,7 +282,16 @@
     <Content Include="Scripts\App\settings.js" />
     <Content Include="Scripts\App\shipping.js" />
     <Content Include="Scripts\App\validation.js" />
+    <Content Include="Scripts\External\angular\angular-animate.min.js" />
+    <Content Include="Scripts\External\angular\angular-aria.min.js" />
+    <Content Include="Scripts\External\angular\angular-cookies.min.js" />
+    <Content Include="Scripts\External\angular\angular-material.min.js" />
+    <Content Include="Scripts\External\angular\angular-messages.min.js" />
+    <Content Include="Scripts\External\angular\angular-route.min.js" />
+    <Content Include="Scripts\External\angular\angular-sanitize.min.js" />
+    <Content Include="Scripts\External\angular\angular.min.js" />
     <Content Include="Scripts\External\jquery.lightbox.min.js" />
+    <Content Include="Scripts\External\jquery\jquery.min.js" />
     <Content Include="Scripts\External\skins\lightgray\content.inline.min.css" />
     <Content Include="Scripts\External\skins\lightgray\content.min.css" />
     <Content Include="Scripts\External\skins\lightgray\fonts\tinymce-small.svg" />
