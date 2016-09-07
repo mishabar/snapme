@@ -264,6 +264,11 @@ md-card md-card-content img.ii-avatar {
   border-radius: 50%;
   border: 1px solid #f1f1f1;
 }
+md-card md-card-content img.ii-avatar.ii-avatar-large {
+  margin-left: -20px;
+  height: 40px;
+  width: 40px;
+}
 md-card md-card-content img.ii-avatar.fixed {
   margin-left: 0;
 }
@@ -432,6 +437,12 @@ md-card-actions .md-button + md-badge {
   width: 500px;
 }
 md-tabs.hidden-tabs md-tabs-wrapper {
+  display: none;
+}
+md-fab-speed-dial.md-is-open .md-fab-action-item {
+  display: inline-block;
+}
+md-fab-speed-dial .md-fab-action-item {
   display: none;
 }
 /*# sourceMappingURL=style.css.map */

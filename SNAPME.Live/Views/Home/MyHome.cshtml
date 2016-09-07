@@ -166,13 +166,48 @@
                                                 </div>
                                                 <div class="md-title">{{product.name}}</div>
                                                 <div class="md-subhead">{{product.description}}</div>
-                                                <div layout="row" layout-align="space-around center">
+                                                <div layout="row" layout-align="space-around center" layout-margin>
                                                     <md-button ng-click="snapBoxNext()">
                                                         <md-icon class="material-icons">thumb_up</md-icon>
                                                     </md-button>
                                                     <md-button ng-click="snapBoxNext()">
                                                         <md-icon class="material-icons">thumb_down</md-icon>
                                                     </md-button>
+                                                </div>
+                                                <div layout="row" layout-align="start center" style="position: relative">
+                                                    <div flex>
+                                                        <span ng-if="product.sale.snaps.length == 0">
+                                                            <img class="ii-avatar ii-avatar-large fixed" src="~/Content/Images/favicon.png" />
+                                                            <md-tooltip>Be the 1st to snap this product</md-tooltip>
+                                                        </span>
+                                                        <span ng-repeat="snap in product.sale.snaps">
+                                                            <img ng-src="{{snap.image_url}}" class="ii-avatar ii-avatar-large" ng-class="{fixed: $index == 0}" />
+                                                            <md-tooltip>{{snap.name}}</md-tooltip>
+                                                        </span>
+                                                        <div ng-if="product.sale.snaps.length > 0" style="font-size: 0.8rem">
+                                                            {{product.sale.snaps.length}} wants
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <md-fab-speed-dial md-open="false" md-direction="left" class="md-fling" aria-label="Share">
+                                                            <md-fab-trigger>
+                                                                <md-button aria-label="Share" class="md-fab md-primary md-mini">
+                                                                    <md-icon class="material-icons">share</md-icon>
+                                                                </md-button>
+                                                            </md-fab-trigger>
+                                                            <md-fab-actions>
+                                                                <md-button aria-label="Google+" class="md-fab md-raised md-mini" style="background-color: #dd4b39; color: #fff;">
+                                                                    <md-icon class="fa fa-google-plus" aria-label="Google+"></md-icon>
+                                                                </md-button>
+                                                                <md-button aria-label="Twitter" class="md-fab md-raised md-mini" style="background-color: #55acee; color: #fff;">
+                                                                    <md-icon class="fa fa-twitter" aria-label="Twitter"></md-icon>
+                                                                </md-button>
+                                                                <md-button aria-label="Facebook" class="md-fab md-raised md-mini" style="background-color: #3b5998; color: #fff;">
+                                                                    <md-icon class="fa fa-facebook" aria-label="Facebook"></md-icon>
+                                                                </md-button>
+                                                            </md-fab-actions>
+                                                        </md-fab-speed-dial>
+                                                    </div>
                                                 </div>
                                             </md-card-content>
                                         </md-card>
